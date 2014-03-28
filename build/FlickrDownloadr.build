@@ -37,11 +37,20 @@
     <mkdir dir="${nunit.results.dir}" failonerror="true" unless="${directory::exists(nunit.results.dir)}"/>
   </target>
 
-  <target name="compilesolution" depends="cleanBin, createBin, increment-version">
+  <target name="restorenugetpackages">
+    <echo message="Downloading NuGet and restoring packages..." />
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg file="downloadNuget.sh" />
+    </exec>
+  </target>
+
+  <target name="compilesolution" depends="cleanBin, createBin, increment-version, restorenugetpackages">
     <echo message="Compiling Solution:" />
 
-    <exec program="msbuild.exe"  basedir="C:/WINDOWS/Microsoft.NET/Framework/v4.0.30319"
-			  commandline='"${source.directory}/${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m' workingdir="." />
+    <exec program="xbuild" workingdir="${source.directory}" />
   </target>
 
   <target name="unitTests">
@@ -58,8 +67,8 @@
 
   <target name="nunittest">
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
-    <exec program="${nunit.dir}/nunit-console.exe">
-      <arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${nunit.results.dir}/${nunittest.output.file.name}&quot;"/>
+    <exec program="mono" verbose="true">
+      <arg value="${nunit.dir}/nunit-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
     </exec>
   </target>
 
@@ -93,7 +102,7 @@
       <attributes>
         <attribute type="ComVisibleAttribute" value="false" />
         <attribute type="AssemblyTitleAttribute" value="flickrDownloadr" />
-        <attribute type="AssemblyDescriptionAttribute" value="A desktop application for windows that would help download all (or selected) photos from the user's photostream (in one of the selected sizes) along with the tags, titles and descriptions." />
+        <attribute type="AssemblyDescriptionAttribute" value="A desktop application for Linux that would help download all (or selected) photos from the user's photostream (in one of the selected sizes) along with the tags, titles and descriptions." />
         <attribute type="AssemblyConfigurationAttribute" value="${project.build.type}" />
         <attribute type="AssemblyCompanyAttribute" value="http://flickrdownloadr.com" />
         <attribute type="AssemblyProductAttribute" value="flickr downloadr" />
