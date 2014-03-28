@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!-- Documenting GetChecksum-->
+  <head>
+    <meta http-equiv="Content-Language" content="en-ca" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <title>file::get-checksum Function</title>
+  </head>
+  <body>
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" class="NavBar">
+      <tr>
+        <td class="NavBar-Cell">
+          <a href="">
+            <b>NAntContrib</b>
+          </a>
+          <img alt="-&gt;" src="../images/arrow.gif" />
+          <a href="../index.html">Help</a>
+          <img alt="-&gt;" src="../images/arrow.gif" />
+          <a href="index.html">Function Reference</a>
+          <img alt="-&gt;" src="../images/arrow.gif" /> file::get-checksum</td>
+        <td class="NavBar-Cell" align="right">
+                        v0.92</td>
+      </tr>
+    </table>
+    <h1>file::get-checksum</h1>
+    <p> Calculates a checksum for a given file and returns it in a hex string. </p>
+    <h3>Usage</h3>
+    <code>string file::get-checksum(<span class="parameter">path</span>, <span class="parameter">algorithm</span>)
+            </code>
+    <p />
+    <h3>Parameters</h3>
+    <div class="table">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>path</td>
+          <td>string</td>
+          <td>The file for which to calculate a checksum.</td>
+        </tr>
+        <tr>
+          <td>algorithm</td>
+          <td>string</td>
+          <td>The name of hash algorithm to use.</td>
+        </tr>
+      </table>
+    </div>
+    <h3>Return Value</h3> The hex-formatted checksum of the specified file. <h3>Exceptions</h3>
+            The function will fail in any of the following circumstances:
+            <div style="margin-left: 40px;"><ul><li>The specified file does not exist.</li><li><p><i>path</i> is a zero-length string, contains only white space, or contains one or more invalid characters. </p><p>-or-</p><p><i>algorithm</i> is not a valid name of a hash algorithm. </p></li><li>The specified path, file name, or both exceed the system-defined maximum length.</li><li>The <i>path</i> parameter is in an invalid format.</li></ul></div><h3>Examples</h3><ul class="examples"><li><p> Displays the MD5 checksum of a file. </p><pre class="code">
+&lt;echo&gt;Checksum=${file::get-checksum('Cegeka.exe', 'MD5')}"&gt;&lt;/echo&gt;
+    </pre></li></ul><h3>Requirements</h3><div style="margin-left: 20px;"><b>Assembly:</b> NAnt.Contrib.Tasks (0.92.4543.0)
+            </div></body>
+</html>

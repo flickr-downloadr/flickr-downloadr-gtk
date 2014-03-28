@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!-- Documenting IsInstalled-->
+  <head>
+    <meta http-equiv="Content-Language" content="en-ca" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <title>msi::is-installed Function</title>
+  </head>
+  <body>
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" class="NavBar">
+      <tr>
+        <td class="NavBar-Cell">
+          <a href="">
+            <b>NAntContrib</b>
+          </a>
+          <img alt="-&gt;" src="../images/arrow.gif" />
+          <a href="../index.html">Help</a>
+          <img alt="-&gt;" src="../images/arrow.gif" />
+          <a href="index.html">Function Reference</a>
+          <img alt="-&gt;" src="../images/arrow.gif" /> msi::is-installed</td>
+        <td class="NavBar-Cell" align="right">
+                        v0.92</td>
+      </tr>
+    </table>
+    <h1>msi::is-installed</h1>
+    <p> Returns a value indicating whether a product with the specified <code>product code</code> is installed. </p>
+    <h3>Usage</h3>
+    <code>bool msi::is-installed(<span class="parameter">productCode</span>)
+            </code>
+    <p />
+    <h3>Parameters</h3>
+    <div class="table">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>productCode</td>
+          <td>string</td>
+          <td>The product code of the product to check.</td>
+        </tr>
+      </table>
+    </div>
+    <h3>Return Value</h3>
+    <b>true</b> if a product with the specified product code is installed; otherwise, <b>false</b>. <h3>Examples</h3><ul class="examples"><li><p> Retrieves the product code of a given installer database, and fails the build if the product is not installed. </p><pre class="code">
+&lt;property name="office.productcode" value=${msi::get-product-code('Office.msi')}" /&gt;
+&lt;fail unless="${msi::is-installed(office.productcode)}"&gt;Please install Office first.&lt;/fail&gt;
+    </pre></li></ul><h3>Requirements</h3><div style="margin-left: 20px;"><b>Assembly:</b> NAnt.Contrib.Tasks (0.92.4543.0)
+            </div></body>
+</html>

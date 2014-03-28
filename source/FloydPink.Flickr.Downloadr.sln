@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.UI", "FloydPink.Flickr.Downloadr.UI\FloydPink.Flickr.Downloadr.UI.csproj", "{F846DD3F-33F0-41B6-9191-2126E3418A8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.Model", "FloydPink.Flickr.Downloadr.Model\FloydPink.Flickr.Downloadr.Model.csproj", "{D19B00F8-600E-46AC-AB3F-F4CE1BB1D651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.Repository", "FloydPink.Flickr.Downloadr.Repository\FloydPink.Flickr.Downloadr.Repository.csproj", "{E347AA45-9512-4661-8EA4-DFDD2ACD42E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.OAuth", "FloydPink.Flickr.Downloadr.OAuth\FloydPink.Flickr.Downloadr.OAuth.csproj", "{3F6823DD-CED6-4C91-8171-DFE5B89CA441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.Logic", "FloydPink.Flickr.Downloadr.Logic\FloydPink.Flickr.Downloadr.Logic.csproj", "{65F01787-97D7-44D0-8708-A70211C4EA2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.Presentation", "FloydPink.Flickr.Downloadr.Presentation\FloydPink.Flickr.Downloadr.Presentation.csproj", "{9C0A5C0A-C495-4A92-BFFC-32F165136140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.Bootstrap", "FloydPink.Flickr.Downloadr.Bootstrap\FloydPink.Flickr.Downloadr.Bootstrap.csproj", "{BAFF663C-0B67-4FF5-899E-5F96D543C60B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.UnitTests", "FloydPink.Flickr.Downloadr.UnitTests\FloydPink.Flickr.Downloadr.UnitTests.csproj", "{42C70914-9EBB-4E67-AD18-4A2F131044C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydPink.Flickr.Downloadr.BoundaryCrossingTests", "FloydPink.Flickr.Downloadr.BoundaryCrossingTests\FloydPink.Flickr.Downloadr.BoundaryCrossingTests.csproj", "{48CD526C-9284-4E43-BFDA-449B5DCA2B68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{728C37E0-C278-472D-A822-5A2381A411B2}"
+	ProjectSection(SolutionItems) = preProject
+		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0952EDC5-5EFA-4620-A480-504C1A866D4B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F6823DD-CED6-4C91-8171-DFE5B89CA441}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F6823DD-CED6-4C91-8171-DFE5B89CA441}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F6823DD-CED6-4C91-8171-DFE5B89CA441}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F6823DD-CED6-4C91-8171-DFE5B89CA441}.Release|x86.Build.0 = Release|Any CPU
+		{42C70914-9EBB-4E67-AD18-4A2F131044C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42C70914-9EBB-4E67-AD18-4A2F131044C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{42C70914-9EBB-4E67-AD18-4A2F131044C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{42C70914-9EBB-4E67-AD18-4A2F131044C4}.Release|x86.Build.0 = Release|Any CPU
+		{48CD526C-9284-4E43-BFDA-449B5DCA2B68}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{48CD526C-9284-4E43-BFDA-449B5DCA2B68}.Debug|x86.Build.0 = Debug|Any CPU
+		{48CD526C-9284-4E43-BFDA-449B5DCA2B68}.Release|x86.ActiveCfg = Release|Any CPU
+		{48CD526C-9284-4E43-BFDA-449B5DCA2B68}.Release|x86.Build.0 = Release|Any CPU
+		{65F01787-97D7-44D0-8708-A70211C4EA2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65F01787-97D7-44D0-8708-A70211C4EA2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{65F01787-97D7-44D0-8708-A70211C4EA2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{65F01787-97D7-44D0-8708-A70211C4EA2A}.Release|x86.Build.0 = Release|Any CPU
+		{9C0A5C0A-C495-4A92-BFFC-32F165136140}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C0A5C0A-C495-4A92-BFFC-32F165136140}.Debug|x86.Build.0 = Debug|Any CPU
+		{9C0A5C0A-C495-4A92-BFFC-32F165136140}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C0A5C0A-C495-4A92-BFFC-32F165136140}.Release|x86.Build.0 = Release|Any CPU
+		{BAFF663C-0B67-4FF5-899E-5F96D543C60B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BAFF663C-0B67-4FF5-899E-5F96D543C60B}.Debug|x86.Build.0 = Debug|Any CPU
+		{BAFF663C-0B67-4FF5-899E-5F96D543C60B}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAFF663C-0B67-4FF5-899E-5F96D543C60B}.Release|x86.Build.0 = Release|Any CPU
+		{D19B00F8-600E-46AC-AB3F-F4CE1BB1D651}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D19B00F8-600E-46AC-AB3F-F4CE1BB1D651}.Debug|x86.Build.0 = Debug|Any CPU
+		{D19B00F8-600E-46AC-AB3F-F4CE1BB1D651}.Release|x86.ActiveCfg = Release|Any CPU
+		{D19B00F8-600E-46AC-AB3F-F4CE1BB1D651}.Release|x86.Build.0 = Release|Any CPU
+		{E347AA45-9512-4661-8EA4-DFDD2ACD42E7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E347AA45-9512-4661-8EA4-DFDD2ACD42E7}.Debug|x86.Build.0 = Debug|Any CPU
+		{E347AA45-9512-4661-8EA4-DFDD2ACD42E7}.Release|x86.ActiveCfg = Release|Any CPU
+		{E347AA45-9512-4661-8EA4-DFDD2ACD42E7}.Release|x86.Build.0 = Release|Any CPU
+		{F846DD3F-33F0-41B6-9191-2126E3418A8C}.Debug|x86.ActiveCfg = Debug|x86
+		{F846DD3F-33F0-41B6-9191-2126E3418A8C}.Debug|x86.Build.0 = Debug|x86
+		{F846DD3F-33F0-41B6-9191-2126E3418A8C}.Release|x86.ActiveCfg = Release|x86
+		{F846DD3F-33F0-41B6-9191-2126E3418A8C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FloydPink.Flickr.Downloadr.UI\FloydPink.Flickr.Downloadr.UI.csproj
+	EndGlobalSection
+EndGlobal
