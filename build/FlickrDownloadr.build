@@ -6,21 +6,21 @@
 
   <!-- Compilation settings -->
   <property name="flickrdownloadr.solution" value="FloydPink.Flickr.Downloadr.sln"/>
-  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI\FloydPink.Flickr.Downloadr.UI.csproj"/>
+  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI/FloydPink.Flickr.Downloadr.UI.csproj"/>
 
   <!-- Folder references -->
   <property name="working.dir" value="${path::get-full-path('..')}"/>
-  <property name="build.tools.dir" value="${working.dir}\build" />
-  <property name="source.directory" value="${working.dir}\source" />
-  <property name="bin.dir" value="${working.dir}\source\bin\${project.build.type}" />
-  <property name="nunit.results.dir" value="${working.dir}\source\bin\NUnit" />
+  <property name="build.tools.dir" value="${working.dir}/build" />
+  <property name="source.directory" value="${working.dir}/source" />
+  <property name="bin.dir" value="${working.dir}/source/bin/${project.build.type}" />
+  <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
 
   <!-- Test references -->
-  <property name="nunit.dir" value="${build.tools.dir}\nunit\NUnit-2.6.2\bin" dynamic="true" />
-  <property name="unittests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.UnitTests.exe" />
-  <property name="boundarycrossingtests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
+  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.2/bin" dynamic="true" />
+  <property name="unittests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.UnitTests.exe" />
+  <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
-  <loadtasks assembly="${build.tools.dir}\nant\nantcontrib-0.92\bin\NAnt.Contrib.Tasks.dll" />
+  <loadtasks assembly="${build.tools.dir}/nant/nantcontrib-0.92/bin/NAnt.Contrib.Tasks.dll" />
 
   <!-- Build Targets -->
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
@@ -40,8 +40,8 @@
   <target name="compilesolution" depends="cleanBin, createBin, increment-version">
     <echo message="Compiling Solution:" />
 
-    <exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319"
-			  commandline='"${source.directory}\${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m' workingdir="." />
+    <exec program="msbuild.exe"  basedir="C:/WINDOWS/Microsoft.NET/Framework/v4.0.30319"
+			  commandline='"${source.directory}/${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m' workingdir="." />
   </target>
 
   <target name="unitTests">
@@ -58,8 +58,8 @@
 
   <target name="nunittest">
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
-    <exec program="${nunit.dir}\nunit-console.exe">
-      <arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${nunit.results.dir}\${nunittest.output.file.name}&quot;"/>
+    <exec program="${nunit.dir}/nunit-console.exe">
+      <arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${nunit.results.dir}/${nunittest.output.file.name}&quot;"/>
     </exec>
   </target>
 
@@ -108,7 +108,7 @@
   </target>
 
   <target name="deploy" depends="publish">
-    <exec program="bash.exe" basedir="C:\Program Files (x86)\Git\bin\" verbose="true">
+    <exec program="bash.exe" basedir="C:/Program Files (x86)/Git/bin/" verbose="true">
       <environment>
         <variable name="HOME" value="${environment::get-variable('userprofile')}"/>
         <variable name="ADDPATH" value=".:/usr/local/bin:/mingw/bin:/bin:/bin"/>
@@ -121,7 +121,7 @@
   <target name="publish" depends="compilesolution">
     <echo message="Publishing flickr downloadr:" />
 
-    <msbuild project="${source.directory}\${flickrdownloadr.app.project}">
+    <msbuild project="${source.directory}/${flickrdownloadr.app.project}">
       <arg value="/v:m"/>
       <arg value="/p:IsWebBootstrapper=true"/>
       <arg value="/p:UpdateEnabled=true"/>
@@ -133,7 +133,7 @@
       <arg value="/p:PublisherName=flickrdownloadr"/>
       <arg value="/p:ProductName=flickr downloadr (beta v${buildnumber.version})"/>
       <arg value="/p:ApplicationVersion=${buildnumber.version}"/>
-      <arg value="/p:PublishDir=${bin.dir}\Deploy\"/>
+      <arg value="/p:PublishDir=${bin.dir}/Deploy/"/>
       <arg value="/p:InstallUrl=http://flickrdownloadr.com/downloads/latest/"/>
       <arg value="/p:SupportUrl=http://flickrdownloadr.com/downloads/latest/"/>
       <arg value="/p:ErrorReportUrl=http://flickrdownloadr.com/"/>
