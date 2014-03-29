@@ -46,22 +46,30 @@ namespace FloydPink.Flickr.Downloadr
 
 		public void ShowLoggedInControl(Preferences preferences)
 		{
+			Console.WriteLine ("In ShowLoggedInControl");
 			Preferences = preferences;
 //			FileCache.AppCacheDirectory = Preferences != null
 //				? Preferences.CacheLocation
 //				: Preferences.GetDefault().CacheLocation;
 //			PreferencesButton.Dispatch(
 //				p => p.Visibility = (Preferences != null ? Visibility.Visible : Visibility.Collapsed));
-//			LoggedInCanvas.Dispatch(c => c.Visibility = Visibility.Visible);
-//			LoggedOutCanvas.Dispatch(c => c.Visibility = Visibility.Collapsed);
-			Console.WriteLine ("In ShowLoggedInControl");
+
+			hboxBottomButtons.Visible = true;
+			hboxAvatar.Visible = true;
+
+			hboxLogin.Visible = false;
+			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Click 'Continue' to browse and download photos...");
 		}
 
 		public void ShowLoggedOutControl()
 		{
-//			LoggedOutCanvas.Dispatch(c => c.Visibility = Visibility.Visible);
-//			LoggedInCanvas.Dispatch(c => c.Visibility = Visibility.Collapsed);
 			Console.WriteLine ("In ShowLoggedOutControl");
+
+			hboxLogin.Visible = true;
+			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click 'Login' to continue.");
+
+			hboxBottomButtons.Visible = false;
+			hboxAvatar.Visible = false;
 		}
 
 		#endregion
@@ -85,16 +93,6 @@ namespace FloydPink.Flickr.Downloadr
 //			preferencesWindow.Show();
 //			Close();
 		}
-//
-//		private void LoginButtonClick(object sender, RoutedEventArgs e)
-//		{
-//			_presenter.Login();
-//		}
-//
-//		private void LogoutButtonClick(object sender, RoutedEventArgs e)
-//		{
-//			_presenter.Logout();
-//		}
 //
 //		private void SetWelcomeLabel(User user)
 //		{
@@ -140,6 +138,11 @@ namespace FloydPink.Flickr.Downloadr
 		protected void buttonLoginClick (object sender, EventArgs e)
 		{
 			_presenter.Login();
+		}
+
+		protected void buttonLogoutClick (object sender, EventArgs e)
+		{
+			_presenter.Logout ();
 		}
 	}
 }
