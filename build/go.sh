@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 nant="nant/nant-0.92/bin/NAnt.exe"
 buildfile="FlickrDownloadr.build"
 
