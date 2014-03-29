@@ -16,7 +16,7 @@
   <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
 
   <!-- Test references -->
-  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.2/bin" dynamic="true" />
+  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.3/bin" dynamic="true" />
   <property name="unittests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.UnitTests.exe" />
   <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
@@ -50,7 +50,8 @@
   <target name="compilesolution" depends="cleanBin, createBin, increment-version, restorenugetpackages">
     <echo message="Compiling Solution:" />
 
-    <exec program="xbuild" workingdir="${source.directory}" />
+    <exec program="xbuild" workingdir="${source.directory}"
+		commandline='"${source.directory}/${flickrdownloadr.solution}" /p:Platform="x86" /p:Configuration=${project.build.type} /t:Rebuild /v:m' />
   </target>
 
   <target name="unitTests">
