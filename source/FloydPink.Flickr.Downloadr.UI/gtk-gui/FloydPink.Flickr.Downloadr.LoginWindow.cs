@@ -143,7 +143,6 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.image1 = new global::Gtk.Image ();
 			this.image1.Name = "image1";
-			this.image1.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, "../../../misc/25764928@N00.jpg"));
 			this.hbox4.Add (this.image1);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.image1]));
 			w9.Position = 0;
@@ -307,6 +306,7 @@ namespace FloydPink.Flickr.Downloadr
 			w29.Position = 1;
 			w29.Expand = false;
 			w29.Fill = false;
+			w29.Padding = ((uint)(5));
 			this.vbox2.Add (this.vbox7);
 			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox7]));
 			w30.Position = 2;
@@ -318,8 +318,10 @@ namespace FloydPink.Flickr.Downloadr
 				this.Child.ShowAll ();
 			}
 			this.Show ();
+			this.buttonAbout.Clicked += new global::System.EventHandler (this.buttonAboutClick);
 			this.buttonLogin.Clicked += new global::System.EventHandler (this.buttonLoginClick);
 			this.buttonLogout.Clicked += new global::System.EventHandler (this.buttonLogoutClick);
+			this.buttonContinue.Clicked += new global::System.EventHandler (this.buttonContinueClick);
 		}
 	}
 }

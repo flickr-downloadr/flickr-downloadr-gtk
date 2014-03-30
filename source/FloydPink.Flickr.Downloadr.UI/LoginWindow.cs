@@ -40,7 +40,7 @@ namespace FloydPink.Flickr.Downloadr
 			set
 			{
 				_user = value;
-				//SetWelcomeLabel(value);
+				SetWelcomeLabel(value);
 			}
 		}
 
@@ -94,19 +94,14 @@ namespace FloydPink.Flickr.Downloadr
 //			Close();
 		}
 //
-//		private void SetWelcomeLabel(User user)
-//		{
-//			WelcomeUserLabel.Dispatch(
-//				l => l.Content = string.IsNullOrEmpty(user.UserNsId) ? string.Empty : user.WelcomeMessage);
-//			if (user.Info == null) return;
-//			BuddyIcon.Dispatch(i => i.ImageUrl = user.Info.BuddyIconUrl);
-//		}
-//
-//		private void ContinueButtonClick(object sender, RoutedEventArgs e)
-//		{
-//			_presenter.Continue();
-//		}
-//
+		private void SetWelcomeLabel(User user)
+		{
+			labelWelcomeUsername.LabelProp =
+				string.IsNullOrEmpty(user.UserNsId) ? string.Empty : user.WelcomeMessage;
+			if (user.Info == null) return;
+			//BuddyIcon.Dispatch(i => i.ImageUrl = user.Info.BuddyIconUrl);
+		}
+
 //		private void EditLogConfigClick(object sender, RoutedEventArgs e)
 //		{
 //			OpenInNotepad(Bootstrapper.GetLogConfigFile().FullName);
@@ -129,12 +124,6 @@ namespace FloydPink.Flickr.Downloadr
 //			Close();
 //		}
 //
-//		private void AboutButtonClick(object sender, RoutedEventArgs e)
-//		{
-//			var aboutWindow = new AboutWindow();
-//			aboutWindow.ShowDialog();
-//		}
-
 		protected void buttonLoginClick (object sender, EventArgs e)
 		{
 			_presenter.Login();
@@ -143,6 +132,17 @@ namespace FloydPink.Flickr.Downloadr
 		protected void buttonLogoutClick (object sender, EventArgs e)
 		{
 			_presenter.Logout ();
+		}
+
+		protected void buttonContinueClick (object sender, EventArgs e)
+		{
+			_presenter.Continue ();
+		}
+
+		protected void buttonAboutClick (object sender, EventArgs e)
+		{
+			var aboutWindow = new AboutWindow ();
+			aboutWindow.ShowAll ();
 		}
 	}
 }

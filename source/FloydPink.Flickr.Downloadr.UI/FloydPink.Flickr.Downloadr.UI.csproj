@@ -61,6 +61,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\misc\icon.png" />
     <EmbeddedResource Include="..\..\misc\logo-Small.png" />
+    <EmbeddedResource Include="..\..\misc\logo-Small-About.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="LoginWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.LoginWindow.cs" />
     <Compile Include="Helpers\VersionHelper.cs" />
+    <Compile Include="AboutWindow.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.AboutWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
