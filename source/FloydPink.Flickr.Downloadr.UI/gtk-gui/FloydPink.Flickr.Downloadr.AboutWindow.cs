@@ -74,6 +74,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.labelVersion = new global::Gtk.Label ();
 			this.labelVersion.Name = "labelVersion";
 			this.labelVersion.LabelProp = global::Mono.Unix.Catalog.GetString ("flickr downloadr");
+			this.labelVersion.UseMarkup = true;
 			this.vbox4.Add (this.labelVersion);
 			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.labelVersion]));
 			w5.Position = 2;

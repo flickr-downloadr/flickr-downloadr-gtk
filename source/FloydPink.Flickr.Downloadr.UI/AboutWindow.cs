@@ -9,8 +9,9 @@ namespace FloydPink.Flickr.Downloadr
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			Title += VersionHelper.GetVersionString();
-			labelVersion.LabelProp += VersionHelper.GetVersionString ();
+			Title += VersionHelper.GetVersionString ();
+			labelVersion.LabelProp = string.Format ("<big><b>flickr downloadr {0}</b></big>", 
+				VersionHelper.GetVersionString ());
 		}
 
 		protected void buttonCloseClick (object sender, EventArgs e)

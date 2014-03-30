@@ -162,6 +162,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.labelWelcomeUsername = new global::Gtk.Label ();
 			this.labelWelcomeUsername.Name = "labelWelcomeUsername";
 			this.labelWelcomeUsername.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome, <username>!");
+			this.labelWelcomeUsername.UseMarkup = true;
 			this.vbox1.Add (this.labelWelcomeUsername);
 			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.labelWelcomeUsername]));
 			w11.Position = 1;
@@ -321,6 +322,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonAbout.Clicked += new global::System.EventHandler (this.buttonAboutClick);
 			this.buttonLogin.Clicked += new global::System.EventHandler (this.buttonLoginClick);
 			this.buttonLogout.Clicked += new global::System.EventHandler (this.buttonLogoutClick);
+			this.buttonPrefs.Clicked += new global::System.EventHandler (this.buttonPrefsClick);
 			this.buttonContinue.Clicked += new global::System.EventHandler (this.buttonContinueClick);
 		}
 	}

@@ -74,6 +74,9 @@
     <Compile Include="Helpers\VersionHelper.cs" />
     <Compile Include="AboutWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.AboutWindow.cs" />
+    <Compile Include="PreferencesWindow.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.PreferencesWindow.cs" />
+    <Compile Include="Helpers\MessageBox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
