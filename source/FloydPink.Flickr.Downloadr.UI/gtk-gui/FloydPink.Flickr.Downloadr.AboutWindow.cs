@@ -13,7 +13,10 @@ namespace FloydPink.Flickr.Downloadr
 		private global::Gtk.Label labelVersion;
 		private global::Gtk.VBox vbox5;
 		private global::Gtk.HBox hbox6;
-		private global::Gtk.TextView textviewHyperlink;
+		private global::Gtk.Alignment alignment1;
+		private global::Gtk.EventBox eventboxHyperlink;
+		private global::Gtk.Label label1;
+		private global::Gtk.Alignment alignment2;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Button buttonClose;
 
@@ -93,22 +96,39 @@ namespace FloydPink.Flickr.Downloadr
 			this.hbox6.Name = "hbox6";
 			this.hbox6.Spacing = 6;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.textviewHyperlink = new global::Gtk.TextView ();
-			this.textviewHyperlink.Buffer.Text = "http://flickrdownloadr.com";
-			global::Gtk.Tooltips w7 = new Gtk.Tooltips ();
-			w7.SetTip (this.textviewHyperlink, "http://flickrdownloadr.com", "http://flickrdownloadr.com");
-			this.textviewHyperlink.CanFocus = true;
-			this.textviewHyperlink.Name = "textviewHyperlink";
-			this.textviewHyperlink.Editable = false;
-			this.textviewHyperlink.CursorVisible = false;
-			this.textviewHyperlink.Justification = ((global::Gtk.Justification)(2));
-			this.textviewHyperlink.PixelsAboveLines = 10;
-			this.hbox6.Add (this.textviewHyperlink);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.textviewHyperlink]));
-			w8.Position = 1;
+			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1.Name = "alignment1";
+			this.hbox6.Add (this.alignment1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment1]));
+			w7.Position = 0;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.eventboxHyperlink = new global::Gtk.EventBox ();
+			this.eventboxHyperlink.Name = "eventboxHyperlink";
+			// Container child eventboxHyperlink.Gtk.Container+ContainerChild
+			this.label1 = new global::Gtk.Label ();
+			global::Gtk.Tooltips w8 = new Gtk.Tooltips ();
+			w8.SetTip (this.label1, "http://flickrdownloadr.com", "http://flickrdownloadr.com");
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("<b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b>");
+			this.label1.UseMarkup = true;
+			this.label1.UseUnderline = true;
+			this.eventboxHyperlink.Add (this.label1);
+			this.hbox6.Add (this.eventboxHyperlink);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.eventboxHyperlink]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment2.Name = "alignment2";
+			this.hbox6.Add (this.alignment2);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment2]));
+			w11.Position = 2;
 			this.vbox5.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox6]));
-			w9.Position = 1;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox6]));
+			w12.Position = 1;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
 			this.hbox5 = new global::Gtk.HBox ();
 			this.hbox5.Name = "hbox5";
@@ -122,18 +142,18 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonClose.UseUnderline = true;
 			this.buttonClose.Label = global::Mono.Unix.Catalog.GetString ("Close");
 			this.hbox5.Add (this.buttonClose);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonClose]));
-			w10.Position = 2;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonClose]));
+			w13.Position = 2;
+			w13.Expand = false;
+			w13.Fill = false;
 			this.vbox5.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox5]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox5]));
+			w14.Position = 2;
+			w14.Expand = false;
+			w14.Fill = false;
 			this.vbox3.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox5]));
-			w12.Position = 1;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox5]));
+			w15.Position = 1;
 			this.Add (this.vbox3);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -141,6 +161,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show ();
+			this.eventboxHyperlink.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.eventboxHyperlinkClicked);
 			this.buttonClose.Clicked += new global::System.EventHandler (this.buttonCloseClick);
 		}
 	}

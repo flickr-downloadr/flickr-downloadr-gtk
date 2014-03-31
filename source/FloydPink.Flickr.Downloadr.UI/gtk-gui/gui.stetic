@@ -18,6 +18,7 @@
     <property name="AllowGrow">False</property>
     <property name="DefaultWidth">495</property>
     <property name="DefaultHeight">287</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="LoggedOutCanvas">
         <property name="MemberName" />
@@ -178,7 +179,7 @@
                             <child>
                               <widget class="Gtk.Label" id="labelWelcomeUsername">
                                 <property name="MemberName" />
-                                <property name="LabelProp" translatable="yes">Welcome, &lt;username&gt;!</property>
+                                <property name="LabelProp" translatable="yes">Welcome, username!</property>
                                 <property name="UseMarkup">True</property>
                               </widget>
                               <packing>
@@ -526,31 +527,56 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <placeholder />
-                </child>
-                <child>
-                  <widget class="Gtk.TextView" id="textviewHyperlink">
+                  <widget class="Gtk.Alignment" id="alignment1">
                     <property name="MemberName" />
-                    <property name="Tooltip" translatable="yes">http://flickrdownloadr.com</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Editable">False</property>
-                    <property name="CursorVisible">False</property>
-                    <property name="Text" translatable="yes">http://flickrdownloadr.com</property>
-                    <property name="Justification">Center</property>
-                    <property name="PixelsAboveLines">10</property>
+                    <child>
+                      <placeholder />
+                    </child>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">0</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.EventBox" id="eventboxHyperlink">
+                    <property name="MemberName" />
+                    <signal name="ButtonPressEvent" handler="eventboxHyperlinkClicked" />
+                    <child>
+                      <widget class="Gtk.Label" id="label1">
+                        <property name="MemberName" />
+                        <property name="Tooltip" translatable="yes">http://flickrdownloadr.com</property>
+                        <property name="LabelProp" translatable="yes">&lt;b&gt;&lt;big&gt;&lt;span color="blue"&gt;http://flickrdownloadr.com&lt;/span&gt;&lt;/big&gt;&lt;/b&gt;</property>
+                        <property name="UseMarkup">True</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment2">
+                    <property name="MemberName" />
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
                 <property name="Position">1</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>

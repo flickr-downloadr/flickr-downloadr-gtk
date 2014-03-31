@@ -30,6 +30,12 @@ namespace FloydPink.Flickr.Downloadr
 			_presenter.InitializeScreen ();
 		}
 
+		protected void OnDeleteEvent (object sender, DeleteEventArgs args)
+		{
+			Application.Quit ();
+			args.RetVal = true;
+		}
+
 		#region ILoginView Members
 
 		protected Preferences Preferences { get; set; }
@@ -67,8 +73,6 @@ namespace FloydPink.Flickr.Downloadr
 			hboxAvatar.Visible = false;
 		}
 
-		#endregion
-
 		public void ShowSpinner (bool show)
 		{
 //			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
@@ -88,6 +92,8 @@ namespace FloydPink.Flickr.Downloadr
 			preferencesWindow.Show ();
 			Destroy ();
 		}
+
+		#endregion
 
 		private void SetWelcomeLabel (User user)
 		{
