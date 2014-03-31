@@ -7,7 +7,6 @@ using FloydPink.Flickr.Downloadr.Model;
 using FloydPink.Flickr.Downloadr.Model.Extensions;
 using FloydPink.Flickr.Downloadr.Presentation;
 using FloydPink.Flickr.Downloadr.Presentation.Views;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
 
 namespace FloydPink.Flickr.Downloadr
 {

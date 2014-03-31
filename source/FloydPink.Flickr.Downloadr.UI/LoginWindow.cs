@@ -50,33 +50,39 @@ namespace FloydPink.Flickr.Downloadr
 
 		public void ShowLoggedInControl (Preferences preferences)
 		{
-			Preferences = preferences;
-//			FileCache.AppCacheDirectory = Preferences != null
-//				? Preferences.CacheLocation
-//				: Preferences.GetDefault().CacheLocation;
-//			PreferencesButton.Dispatch(
-//				p => p.Visibility = (Preferences != null ? Visibility.Visible : Visibility.Collapsed));
+			Application.Invoke (delegate {
+				Preferences = preferences;
+				//			FileCache.AppCacheDirectory = Preferences != null
+				//				? Preferences.CacheLocation
+				//				: Preferences.GetDefault().CacheLocation;
+				//			PreferencesButton.Dispatch(
+				//				p => p.Visibility = (Preferences != null ? Visibility.Visible : Visibility.Collapsed));
 
-			hboxBottomButtons.Visible = true;
-			hboxAvatar.Visible = true;
+				hboxBottomButtons.Visible = true;
+				hboxAvatar.Visible = true;
 
-			hboxLogin.Visible = false;
-			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Click 'Continue' to browse and download photos...");
+				hboxLogin.Visible = false;
+				this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Click 'Continue' to browse and download photos...");
+			});
 		}
 
 		public void ShowLoggedOutControl ()
 		{
-			hboxLogin.Visible = true;
-			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click 'Login' to continue.");
+			Application.Invoke (delegate {
+				hboxLogin.Visible = true;
+				this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click 'Login' to continue.");
 
-			hboxBottomButtons.Visible = false;
-			hboxAvatar.Visible = false;
+				hboxBottomButtons.Visible = false;
+				hboxAvatar.Visible = false;
+			});
 		}
 
 		public void ShowSpinner (bool show)
 		{
+			Application.Invoke (delegate {
 //			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
 //			Spinner.Dispatch(s => s.Visibility = visibility);
+			});
 		}
 
 		public void OpenBrowserWindow ()

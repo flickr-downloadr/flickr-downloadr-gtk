@@ -27,4 +27,3 @@ namespace FloydPink.Flickr.Downloadr
 		}
 	}
 }
-
