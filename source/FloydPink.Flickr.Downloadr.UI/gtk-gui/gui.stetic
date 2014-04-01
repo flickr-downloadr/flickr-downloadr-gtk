@@ -848,7 +848,6 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo Title</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -908,7 +907,9 @@
                   <widget class="Gtk.ComboBox" id="comboboxDownloadSize">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes" />
+                    <property name="Items" translatable="yes">Medium
+Large
+Original</property>
                   </widget>
                   <packing>
                     <property name="Position">2</property>
@@ -936,7 +937,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.CheckButton" id="checkbuttonDescriptions">
+                      <widget class="Gtk.CheckButton" id="checkbuttonDescription">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Description</property>
@@ -1085,7 +1086,6 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1123,7 +1123,9 @@
                   <widget class="Gtk.ComboBox" id="comboboxSafetyLevel">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes" />
+                    <property name="Items" translatable="yes">Safe
+Moderate
+Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
@@ -1137,7 +1139,10 @@
                   <widget class="Gtk.ComboBox" id="comboboxPhotosPerPage">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes" />
+                    <property name="Items" translatable="yes">25
+50
+75
+100</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
@@ -1199,13 +1204,14 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button1">
+              <widget class="Gtk.Button" id="buttonDefaults">
                 <property name="MemberName" />
                 <property name="WidthRequest">80</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Defaults</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="buttonDefaultsClick" />
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -1215,13 +1221,14 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button3">
+              <widget class="Gtk.Button" id="buttonSave">
                 <property name="MemberName" />
                 <property name="WidthRequest">80</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Save</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="buttonSaveClick" />
               </widget>
               <packing>
                 <property name="Position">2</property>
@@ -1266,6 +1273,95 @@
             <property name="Position">0</property>
             <property name="AutoSize">False</property>
             <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.FatalErrorWindow" design-size="480 640">
+    <property name="MemberName" />
+    <property name="WidthRequest">320</property>
+    <property name="HeightRequest">200</property>
+    <property name="Title" translatable="yes">Fatal Error - flickr downloadr</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.icon.png</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">Center</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox4">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment5">
+            <property name="MemberName" />
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox6">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment8">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Image" id="image3">
+                <property name="MemberName" />
+                <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.fatal-error.png</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment7">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment6">
+            <property name="MemberName" />
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
           </packing>
         </child>
       </widget>

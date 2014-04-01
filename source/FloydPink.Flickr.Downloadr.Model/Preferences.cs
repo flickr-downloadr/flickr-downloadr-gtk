@@ -105,7 +105,7 @@ namespace FloydPink.Flickr.Downloadr.Model
                         PhotoMetadata.Tags
                     },
                 DownloadSize = PhotoDownloadSize.Original,
-                SafetyLevel = "Safe",
+				SafetyLevel = SafeSearch.Safe,
                 NeedOriginalTags = false,
                 CacheLocation =
                     string.Format("{0}\\flickr-downloadr\\Cache\\",

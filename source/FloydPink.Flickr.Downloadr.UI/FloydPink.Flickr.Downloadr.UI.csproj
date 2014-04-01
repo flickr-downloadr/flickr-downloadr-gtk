@@ -63,6 +63,7 @@
     <EmbeddedResource Include="..\..\misc\logo-Small.png" />
     <EmbeddedResource Include="..\..\misc\logo-Small-About.png" />
     <EmbeddedResource Include="..\..\misc\logo.png" />
+    <EmbeddedResource Include="..\..\misc\fatal-error.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="SplashWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.SplashWindow.cs" />
+    <Compile Include="FatalErrorWindow.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.FatalErrorWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
