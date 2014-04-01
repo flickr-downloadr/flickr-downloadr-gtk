@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Gtk;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
@@ -128,16 +127,19 @@ namespace FloydPink.Flickr.Downloadr
 			comboboxPhotosPerPage.Active = photosPerPageMap [preferences.PhotosPerPage.ToString ()];
 
 			//Safety level
-			comboboxSafetyLevel.Active = int.Parse (preferences.SafetyLevel) - 0;
+			comboboxSafetyLevel.Active = int.Parse (preferences.SafetyLevel) - 1;
 
 			// Tags
 			radioTagsInternal.Active = !preferences.NeedOriginalTags;
 			radioTagsOriginal.Active = preferences.NeedOriginalTags;
+
+			// Cache location
+			entryCacheLocation.Text = preferences.CacheLocation;
 		}
 
 		private Preferences getModelFromFields ()
 		{
-			var metadata = new ObservableCollection<string> ();
+			var metadata = new List<string> ();
 			if (checkbuttonTags.Active)
 				metadata.Add (PhotoMetadata.Tags);
 			if (checkbuttonDescription.Active)
@@ -151,7 +153,8 @@ namespace FloydPink.Flickr.Downloadr
 				Metadata = metadata,
 				PhotosPerPage = int.Parse (comboboxPhotosPerPage.ActiveText),
 				SafetyLevel = (comboboxSafetyLevel.Active + 1).ToString (),
-				NeedOriginalTags = radioTagsOriginal.Active
+				NeedOriginalTags = radioTagsOriginal.Active,
+				CacheLocation = entryCacheLocation.Text
 			};
 		}
 

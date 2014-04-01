@@ -55,9 +55,8 @@ namespace FloydPink.Flickr.Downloadr
 				//			FileCache.AppCacheDirectory = Preferences != null
 				//				? Preferences.CacheLocation
 				//				: Preferences.GetDefault().CacheLocation;
-				//			PreferencesButton.Dispatch(
-				//				p => p.Visibility = (Preferences != null ? Visibility.Visible : Visibility.Collapsed));
 
+				buttonPrefs.Visible = Preferences != null;
 				hboxBottomButtons.Visible = true;
 				hboxAvatar.Visible = true;
 
@@ -72,6 +71,7 @@ namespace FloydPink.Flickr.Downloadr
 				hboxLogin.Visible = true;
 				this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click 'Login' to continue.");
 
+				buttonPrefs.Visible = false;
 				hboxBottomButtons.Visible = false;
 				hboxAvatar.Visible = false;
 			});
@@ -104,7 +104,7 @@ namespace FloydPink.Flickr.Downloadr
 		private void SetWelcomeLabel (User user)
 		{
 			var welcomeMessage = string.IsNullOrEmpty (user.UserNsId) ? string.Empty : user.WelcomeMessage;
-			labelWelcomeUsername.LabelProp = string.Format("<b><big>{0}</big></b>", welcomeMessage);
+			labelWelcomeUsername.LabelProp = string.Format ("<b><big>{0}</big></b>", welcomeMessage);
 			if (user.Info == null)
 				return;
 			//BuddyIcon.Dispatch(i => i.ImageUrl = user.Info.BuddyIconUrl);
