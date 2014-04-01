@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Gtk;
 using FloydPink.Flickr.Downloadr.Bootstrap;
 
@@ -11,8 +12,17 @@ namespace FloydPink.Flickr.Downloadr
 			Bootstrapper.Initialize();
 
 			Application.Init ();
-			LoginWindow win = new LoginWindow ();
+			SplashWindow win = new SplashWindow ();
 			win.Show ();
+
+			var thread = new Thread (delegate() {
+				LoginWindow loginWindow = new LoginWindow();
+				Thread.Sleep(2000);
+				loginWindow.Show();
+				win.Destroy();
+			});
+			thread.Start ();
+
 			Application.Run ();
 		}
 	}
