@@ -28,6 +28,12 @@ namespace FloydPink.Flickr.Downloadr
 			//SetCacheSize();
 		}
 
+		protected void OnDeleteEvent (object sender, DeleteEventArgs args)
+		{
+			Application.Quit ();
+			args.RetVal = true;
+		}
+
 		protected User User { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
