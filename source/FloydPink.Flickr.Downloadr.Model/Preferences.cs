@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using FloydPink.Flickr.Downloadr.Model.Enums;
 using FloydPink.Flickr.Downloadr.Model.Extensions;
+using System.IO;
 
 namespace FloydPink.Flickr.Downloadr.Model
 {
@@ -91,8 +92,8 @@ namespace FloydPink.Flickr.Downloadr.Model
 				DownloadSize = PhotoDownloadSize.Original,
 				SafetyLevel = SafeSearch.Safe,
 				NeedOriginalTags = false,
-				CacheLocation = string.Format ("{0}/flickr-downloadr/Cache/",
-					Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData))
+				CacheLocation = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData),
+					"flickr-downloadr", "Cache")
 			};
 		}
 	}
