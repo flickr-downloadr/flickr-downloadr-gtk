@@ -64,6 +64,8 @@ namespace FloydPink.Flickr.Downloadr
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
+			this.DefaultWidth = 550;
+			this.DefaultHeight = 510;
 			// Container child FloydPink.Flickr.Downloadr.PreferencesWindow.Gtk.Container+ContainerChild
 			this.vbox9 = new global::Gtk.VBox ();
 			this.vbox9.Name = "vbox9";
@@ -513,8 +515,6 @@ namespace FloydPink.Flickr.Downloadr
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 590;
-			this.DefaultHeight = 534;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonDownloadLocation.Clicked += new global::System.EventHandler (this.buttonDownloadLocationClick);
