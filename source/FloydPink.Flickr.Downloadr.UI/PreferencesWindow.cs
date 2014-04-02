@@ -176,8 +176,9 @@ namespace FloydPink.Flickr.Downloadr
 
 			ResponseType result = (ResponseType)dialog.Run ();
 			if (result == ResponseType.Ok) {
-				preferences.CacheLocation = dialog.CurrentFolder;
+				Preferences.CacheLocation = preferences.CacheLocation = dialog.CurrentFolder;
 				setFieldsFromModel (preferences);
+				SetCacheSize ();
 			}
 
 			dialog.Destroy ();
