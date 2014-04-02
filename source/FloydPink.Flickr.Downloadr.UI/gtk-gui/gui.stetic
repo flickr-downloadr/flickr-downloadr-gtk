@@ -833,6 +833,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo ID</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -888,6 +889,7 @@
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">...</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="buttonDownloadLocationClick" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -1059,6 +1061,7 @@ Original</property>
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">...</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="buttonCacheLocationClick" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -1086,6 +1089,7 @@ Original</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>

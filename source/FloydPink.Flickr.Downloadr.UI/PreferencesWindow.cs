@@ -53,34 +53,6 @@ namespace FloydPink.Flickr.Downloadr
 //			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
 //			Spinner.Dispatch(s => s.Visibility = visibility);
 		}
-		//		private void SelectDownloadFolderButtonClick(object sender, RoutedEventArgs e)
-		//		{
-		//			var dialog = new FolderBrowserDialog
-		//			{
-		//				Description = "Select folder to save downloaded photos:",
-		//				SelectedPath = Preferences.DownloadLocation
-		//			};
-		//			DialogResult result = dialog.ShowDialog();
-		//			if (result == System.Windows.Forms.DialogResult.OK)
-		//			{
-		//				Preferences.DownloadLocation = dialog.SelectedPath;
-		//			}
-		//		}
-		//
-		//		private void SelectCacheFolderButtonClick(object sender, RoutedEventArgs e)
-		//		{
-		//			var dialog = new FolderBrowserDialog
-		//			{
-		//				Description = "Select folder to save the cached thumbnails:",
-		//				SelectedPath = Preferences.CacheLocation
-		//			};
-		//			DialogResult result = dialog.ShowDialog();
-		//			if (result == System.Windows.Forms.DialogResult.OK)
-		//			{
-		//				Preferences.CacheLocation = dialog.SelectedPath;
-		//			}
-		//		}
-		//
 		//		private void EmptyCacheClick(object sender, RoutedEventArgs e)
 		//		{
 		//			ResponseType result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
@@ -178,6 +150,51 @@ namespace FloydPink.Flickr.Downloadr
 //			browserWindow.Show ();
 //			Destroy ();
 		}
+
+		protected void buttonDownloadLocationClick (object sender, EventArgs e)
+		{
+			// Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
+			FileChooserDialog dialog = new FileChooserDialog ("Select folder to save downloaded photos:", 
+				null, FileChooserAction.SelectFolder);
+
+			var preferences = getModelFromFields ();
+
+			dialog.SetCurrentFolder(preferences.DownloadLocation);
+
+			dialog.AddButton(Stock.Cancel, ResponseType.Cancel);
+			dialog.AddButton(Stock.Ok, ResponseType.Ok);
+
+			ResponseType result = (ResponseType)dialog.Run();
+			if (result == ResponseType.Ok) {
+				preferences.DownloadLocation = dialog.CurrentFolder;
+				setFieldsFromModel (preferences);
+			}
+
+			dialog.Destroy();
+		}
+
+		protected void buttonCacheLocationClick (object sender, EventArgs e)
+		{
+			// Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
+			FileChooserDialog dialog = new FileChooserDialog ("Select folder to save the cached thumbnails:", 
+				null, FileChooserAction.SelectFolder);
+
+			var preferences = getModelFromFields ();
+
+			dialog.SetCurrentFolder(preferences.CacheLocation);
+
+			dialog.AddButton(Stock.Cancel, ResponseType.Cancel);
+			dialog.AddButton(Stock.Ok, ResponseType.Ok);
+
+			ResponseType result = (ResponseType)dialog.Run();
+			if (result == ResponseType.Ok) {
+				preferences.CacheLocation = dialog.CurrentFolder;
+				setFieldsFromModel (preferences);
+			}
+
+			dialog.Destroy();
+		}
+
 	}
 }
 

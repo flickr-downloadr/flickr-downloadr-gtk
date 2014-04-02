@@ -517,6 +517,8 @@ namespace FloydPink.Flickr.Downloadr
 			this.DefaultHeight = 534;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.buttonDownloadLocation.Clicked += new global::System.EventHandler (this.buttonDownloadLocationClick);
+			this.buttonCacheLocation.Clicked += new global::System.EventHandler (this.buttonCacheLocationClick);
 			this.buttonCancel.Clicked += new global::System.EventHandler (this.buttonCancelClick);
 			this.buttonDefaults.Clicked += new global::System.EventHandler (this.buttonDefaultsClick);
 			this.buttonSave.Clicked += new global::System.EventHandler (this.buttonSaveClick);
