@@ -624,17 +624,14 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.PreferencesWindow" design-size="590 534">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.PreferencesWindow" design-size="612 534">
     <property name="MemberName" />
-    <property name="WidthRequest">550</property>
     <property name="HeightRequest">510</property>
     <property name="Title" translatable="yes">Preferences - flickr downloadr</property>
     <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
-    <property name="DefaultWidth">550</property>
-    <property name="DefaultHeight">510</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox9">
