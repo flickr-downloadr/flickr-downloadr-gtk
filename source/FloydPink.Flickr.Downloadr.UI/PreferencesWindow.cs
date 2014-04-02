@@ -27,7 +27,7 @@ namespace FloydPink.Flickr.Downloadr
 
 			_presenter = Bootstrapper.GetPresenter<IPreferencesView, IPreferencesPresenter> (this);
 
-			SetCacheSize();
+			SetCacheSize ();
 		}
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs args)
@@ -185,13 +185,12 @@ namespace FloydPink.Flickr.Downloadr
 
 		protected void buttonEmptyCacheClick (object sender, EventArgs e)
 		{
-			//			ResponseType result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
-			//				ButtonsType.YesNo, MessageType.Question);
-			//			if (result == ResponseType.Yes)
-			//			{
-			//				_presenter.EmptyCacheDirectory(Preferences.CacheLocation);
-			//				SetCacheSize();
-			//			}
+			ResponseType result = MessageBox.Show (this, "Are you sure you want to empty the cache folder?",
+				                         ButtonsType.YesNo, MessageType.Question);
+			if (result == ResponseType.Yes) {
+				_presenter.EmptyCacheDirectory (Preferences.CacheLocation);
+				SetCacheSize ();
+			}
 		}
 	}
 }
