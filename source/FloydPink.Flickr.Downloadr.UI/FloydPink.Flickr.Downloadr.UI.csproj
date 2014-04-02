@@ -57,10 +57,10 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\misc\icon.png" />
-    <EmbeddedResource Include="..\..\misc\logo-Small.png" />
-    <EmbeddedResource Include="..\..\misc\logo-Small-About.png" />
-    <EmbeddedResource Include="..\..\misc\fatal-error.png" />
+    <EmbeddedResource Include="Assets\icon.png" />
+    <EmbeddedResource Include="Assets\logo-Small.png" />
+    <EmbeddedResource Include="Assets\logo-Small-About.png" />
+    <EmbeddedResource Include="Assets\fatal-error.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -96,5 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
 </Project>

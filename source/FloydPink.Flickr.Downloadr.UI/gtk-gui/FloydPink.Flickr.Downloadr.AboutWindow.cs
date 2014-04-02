@@ -28,7 +28,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.HeightRequest = 220;
 			this.Name = "FloydPink.Flickr.Downloadr.AboutWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("About - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
@@ -56,7 +56,7 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child hbox7.Gtk.Box+BoxChild
 			this.image2 = new global::Gtk.Image ();
 			this.image2.Name = "image2";
-			this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.logo-Small-About.png");
+			this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.logo-Small-About.png");
 			this.hbox7.Add (this.image2);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.image2]));
 			w2.Position = 1;

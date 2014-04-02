@@ -60,7 +60,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.HeightRequest = 510;
 			this.Name = "FloydPink.Flickr.Downloadr.PreferencesWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Preferences - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
