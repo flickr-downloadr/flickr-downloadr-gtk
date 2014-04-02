@@ -27,7 +27,7 @@ namespace FloydPink.Flickr.Downloadr
 
 			_presenter = Bootstrapper.GetPresenter<IPreferencesView, IPreferencesPresenter> (this);
 
-			//SetCacheSize();
+			SetCacheSize();
 		}
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs args)
@@ -53,24 +53,12 @@ namespace FloydPink.Flickr.Downloadr
 //			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
 //			Spinner.Dispatch(s => s.Visibility = visibility);
 		}
-		//		private void EmptyCacheClick(object sender, RoutedEventArgs e)
-		//		{
-		//			ResponseType result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
-		//				ButtonsType.YesNo, MessageType.Question);
-		//			if (result == ResponseType.Yes)
-		//			{
-		//				_presenter.EmptyCacheDirectory(Preferences.CacheLocation);
-		//				SetCacheSize();
-		//			}
-		//		}
-		//
-		//		private void SetCacheSize()
-		//		{
-		////			CacheSize.Content = _presenter.GetCacheFolderSize(Preferences.CacheLocation);
-		////			EmptyCacheButton.Visibility = (CacheSize.Content.ToString() == "0 B" || CacheSize.Content.ToString() == "-")
-		////				? Visibility.Collapsed
-		////				: Visibility.Visible;
-		//		}
+
+		private void SetCacheSize ()
+		{
+			labelCacheSize.Text = _presenter.GetCacheFolderSize (Preferences.CacheLocation);
+			buttonEmptyCache.Visible = !(labelCacheSize.Text == "0 B" || labelCacheSize.Text == "-");
+		}
 
 		private void setFieldsFromModel (Preferences preferences)
 		{
@@ -155,46 +143,56 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			// Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
 			FileChooserDialog dialog = new FileChooserDialog ("Select folder to save downloaded photos:", 
-				null, FileChooserAction.SelectFolder);
+				                           null, FileChooserAction.SelectFolder);
 
 			var preferences = getModelFromFields ();
 
-			dialog.SetCurrentFolder(preferences.DownloadLocation);
+			dialog.SetCurrentFolder (preferences.DownloadLocation);
 
-			dialog.AddButton(Stock.Cancel, ResponseType.Cancel);
-			dialog.AddButton(Stock.Ok, ResponseType.Ok);
+			dialog.AddButton (Stock.Cancel, ResponseType.Cancel);
+			dialog.AddButton (Stock.Ok, ResponseType.Ok);
 
-			ResponseType result = (ResponseType)dialog.Run();
+			ResponseType result = (ResponseType)dialog.Run ();
 			if (result == ResponseType.Ok) {
 				preferences.DownloadLocation = dialog.CurrentFolder;
 				setFieldsFromModel (preferences);
 			}
 
-			dialog.Destroy();
+			dialog.Destroy ();
 		}
 
 		protected void buttonCacheLocationClick (object sender, EventArgs e)
 		{
 			// Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
 			FileChooserDialog dialog = new FileChooserDialog ("Select folder to save the cached thumbnails:", 
-				null, FileChooserAction.SelectFolder);
+				                           null, FileChooserAction.SelectFolder);
 
 			var preferences = getModelFromFields ();
 
-			dialog.SetCurrentFolder(preferences.CacheLocation);
+			dialog.SetCurrentFolder (preferences.CacheLocation);
 
-			dialog.AddButton(Stock.Cancel, ResponseType.Cancel);
-			dialog.AddButton(Stock.Ok, ResponseType.Ok);
+			dialog.AddButton (Stock.Cancel, ResponseType.Cancel);
+			dialog.AddButton (Stock.Ok, ResponseType.Ok);
 
-			ResponseType result = (ResponseType)dialog.Run();
+			ResponseType result = (ResponseType)dialog.Run ();
 			if (result == ResponseType.Ok) {
 				preferences.CacheLocation = dialog.CurrentFolder;
 				setFieldsFromModel (preferences);
 			}
 
-			dialog.Destroy();
+			dialog.Destroy ();
 		}
 
+		protected void buttonEmptyCacheClick (object sender, EventArgs e)
+		{
+			//			ResponseType result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
+			//				ButtonsType.YesNo, MessageType.Question);
+			//			if (result == ResponseType.Yes)
+			//			{
+			//				_presenter.EmptyCacheDirectory(Preferences.CacheLocation);
+			//				SetCacheSize();
+			//			}
+		}
 	}
 }
 

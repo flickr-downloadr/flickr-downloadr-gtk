@@ -37,7 +37,7 @@ namespace FloydPink.Flickr.Downloadr
 		private global::Gtk.Fixed fixed5;
 		private global::Gtk.HBox hbox7;
 		private global::Gtk.Label labelCacheSize;
-		private global::Gtk.Button button4;
+		private global::Gtk.Button buttonEmptyCache;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Entry entryCacheLocation;
 		private global::Gtk.Button buttonCacheLocation;
@@ -263,8 +263,8 @@ namespace FloydPink.Flickr.Downloadr
 			w21.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxDownloadSize = global::Gtk.ComboBox.NewText ();
-			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Medium"));
-			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Large"));
+			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Medium\r"));
+			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Large\r"));
 			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Original"));
 			this.comboboxDownloadSize.Name = "comboboxDownloadSize";
 			this.vbox13.Add (this.comboboxDownloadSize);
@@ -340,15 +340,15 @@ namespace FloydPink.Flickr.Downloadr
 			w29.Expand = false;
 			w29.Fill = false;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.button4 = new global::Gtk.Button ();
-			this.button4.WidthRequest = 100;
-			this.button4.HeightRequest = 0;
-			this.button4.CanFocus = true;
-			this.button4.Name = "button4";
-			this.button4.UseUnderline = true;
-			this.button4.Label = global::Mono.Unix.Catalog.GetString ("Empty Cache");
-			this.hbox7.Add (this.button4);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.button4]));
+			this.buttonEmptyCache = new global::Gtk.Button ();
+			this.buttonEmptyCache.WidthRequest = 100;
+			this.buttonEmptyCache.HeightRequest = 0;
+			this.buttonEmptyCache.CanFocus = true;
+			this.buttonEmptyCache.Name = "buttonEmptyCache";
+			this.buttonEmptyCache.UseUnderline = true;
+			this.buttonEmptyCache.Label = global::Mono.Unix.Catalog.GetString ("Empty Cache");
+			this.hbox7.Add (this.buttonEmptyCache);
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.buttonEmptyCache]));
 			w30.Position = 1;
 			w30.Expand = false;
 			w30.Fill = false;
@@ -518,6 +518,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonDownloadLocation.Clicked += new global::System.EventHandler (this.buttonDownloadLocationClick);
 			this.buttonCacheLocation.Clicked += new global::System.EventHandler (this.buttonCacheLocationClick);
+			this.buttonEmptyCache.Clicked += new global::System.EventHandler (this.buttonEmptyCacheClick);
 			this.buttonCancel.Clicked += new global::System.EventHandler (this.buttonCancelClick);
 			this.buttonDefaults.Clicked += new global::System.EventHandler (this.buttonDefaultsClick);
 			this.buttonSave.Clicked += new global::System.EventHandler (this.buttonSaveClick);

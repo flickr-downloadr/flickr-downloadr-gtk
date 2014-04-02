@@ -1011,7 +1011,7 @@ Original</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="button4">
+                      <widget class="Gtk.Button" id="buttonEmptyCache">
                         <property name="MemberName" />
                         <property name="WidthRequest">100</property>
                         <property name="HeightRequest">0</property>
@@ -1019,6 +1019,7 @@ Original</property>
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Empty Cache</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="buttonEmptyCacheClick" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
