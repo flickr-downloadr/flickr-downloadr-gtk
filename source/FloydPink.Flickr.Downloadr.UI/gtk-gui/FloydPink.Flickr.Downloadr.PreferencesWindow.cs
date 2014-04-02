@@ -263,8 +263,8 @@ namespace FloydPink.Flickr.Downloadr
 			w21.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxDownloadSize = global::Gtk.ComboBox.NewText ();
-			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Medium\r"));
-			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Large\r"));
+			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Medium"));
+			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Large"));
 			this.comboboxDownloadSize.AppendText (global::Mono.Unix.Catalog.GetString ("Original"));
 			this.comboboxDownloadSize.Name = "comboboxDownloadSize";
 			this.vbox13.Add (this.comboboxDownloadSize);
