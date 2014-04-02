@@ -1253,35 +1253,6 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.SplashWindow" design-size="1180 300">
-    <property name="MemberName" />
-    <property name="WidthRequest">1177</property>
-    <property name="HeightRequest">281</property>
-    <property name="Title" translatable="yes">Splash - flickr downloadr</property>
-    <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterAlways</property>
-    <property name="Resizable">False</property>
-    <property name="AllowGrow">False</property>
-    <property name="AcceptFocus">False</property>
-    <property name="Decorated">False</property>
-    <child>
-      <widget class="Gtk.VBox" id="vbox1">
-        <property name="MemberName" />
-        <property name="Spacing">6</property>
-        <child>
-          <widget class="Gtk.Image" id="image1">
-            <property name="MemberName" />
-            <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.logo.png</property>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-  </widget>
   <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.FatalErrorWindow" design-size="480 640">
     <property name="MemberName" />
     <property name="WidthRequest">320</property>

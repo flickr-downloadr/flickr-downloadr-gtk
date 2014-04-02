@@ -15,16 +15,8 @@ namespace FloydPink.Flickr.Downloadr
 			Bootstrapper.Initialize ();
 
 			Application.Init ();
-			SplashWindow win = new SplashWindow ();
-			win.Show ();
-
-			var thread = new Systhread.Thread (delegate() {
-				LoginWindow loginWindow = new LoginWindow ();
-				Systhread.Thread.Sleep (2000);
-				loginWindow.Show ();
-				win.Destroy ();
-			});
-			thread.Start ();
+			LoginWindow loginWindow = new LoginWindow ();
+			loginWindow.Show ();
 
 			UnhandledExceptionHandler handler = new UnhandledExceptionHandler (OnUnhandledException);
 			ExceptionManager.UnhandledException += handler;
