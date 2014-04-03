@@ -78,6 +78,8 @@
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="FatalErrorWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.FatalErrorWindow.cs" />
+    <Compile Include="BrowserWindow.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.BrowserWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

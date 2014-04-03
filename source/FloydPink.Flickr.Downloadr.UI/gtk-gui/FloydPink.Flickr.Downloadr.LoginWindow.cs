@@ -212,7 +212,6 @@ namespace FloydPink.Flickr.Downloadr
 			w19.Position = 0;
 			// Container child LoggedOutCanvas.Gtk.Box+BoxChild
 			this.vbox2 = new global::Gtk.VBox ();
-			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);

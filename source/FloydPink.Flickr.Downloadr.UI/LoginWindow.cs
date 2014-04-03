@@ -87,9 +87,9 @@ namespace FloydPink.Flickr.Downloadr
 
 		public void OpenBrowserWindow ()
 		{
-//			var browserWindow = new BrowserWindow(User, Preferences);
-//			browserWindow.Show();
-//			Close();
+			var browserWindow = new BrowserWindow(User, Preferences);
+			browserWindow.Show();
+			Destroy();
 		}
 
 		public void OpenPreferencesWindow (Preferences preferences)

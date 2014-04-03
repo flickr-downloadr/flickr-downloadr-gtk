@@ -12,7 +12,7 @@ using FloydPink.Flickr.Downloadr.Presentation.Views;
 
 namespace FloydPink.Flickr.Downloadr
 {
-	public partial class PreferencesWindow : Window, IPreferencesView, INotifyPropertyChanged
+	public partial class PreferencesWindow : Window, IPreferencesView
 	{
 		private readonly IPreferencesPresenter _presenter;
 		private Preferences _preferences;
@@ -37,8 +37,6 @@ namespace FloydPink.Flickr.Downloadr
 		}
 
 		protected User User { get; set; }
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public Preferences Preferences {
 			get { return _preferences; }
@@ -134,9 +132,9 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			var preferences = getModelFromFields ();
 			_presenter.Save (preferences);
-//			var browserWindow = new BrowserWindow (User, preferences);
-//			browserWindow.Show ();
-//			Destroy ();
+			var browserWindow = new BrowserWindow (User, preferences);
+			browserWindow.Show ();
+			Destroy ();
 		}
 
 		protected void buttonDownloadLocationClick (object sender, EventArgs e)
@@ -187,7 +185,7 @@ namespace FloydPink.Flickr.Downloadr
 		protected void buttonEmptyCacheClick (object sender, EventArgs e)
 		{
 			ResponseType result = MessageBox.Show (this, "Are you sure you want to empty the cache folder?",
-				                         ButtonsType.YesNo, MessageType.Question);
+				                      ButtonsType.YesNo, MessageType.Question);
 			if (result == ResponseType.Yes) {
 				_presenter.EmptyCacheDirectory (Preferences.CacheLocation);
 				SetCacheSize ();
