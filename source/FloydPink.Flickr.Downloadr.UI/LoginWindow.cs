@@ -7,6 +7,7 @@ using FloydPink.Flickr.Downloadr.Presentation;
 using FloydPink.Flickr.Downloadr.Presentation.Views;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
 using FloydPink.Flickr.Downloadr.UI.CachedImage;
+using System.IO;
 
 namespace FloydPink.Flickr.Downloadr
 {
@@ -14,8 +15,6 @@ namespace FloydPink.Flickr.Downloadr
 	{
 		private readonly ILoginPresenter _presenter;
 		private User _user;
-
-		private CachedImageWidget imageAvatar;
 
 		public LoginWindow ()
 			: this (new User ())
@@ -26,7 +25,6 @@ namespace FloydPink.Flickr.Downloadr
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			AddAvatarImage ();
 			Title += VersionHelper.GetVersionString ();
 			User = user;
 
@@ -105,26 +103,13 @@ namespace FloydPink.Flickr.Downloadr
 
 		#endregion
 
-		void AddAvatarImage ()
-		{
-			this.imageAvatar = new CachedImageWidget ();
-			this.imageAvatar.Name = "imageAvatar";
-			this.imageAvatar.HeightRequest = 48;
-			this.imageAvatar.WidthRequest = 48;
-			this.hbox4.Add (this.imageAvatar);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.imageAvatar]));
-			w9.Position = 0;
-			w9.Expand = false;
-			w9.Fill = false;
-		}
-
 		private void SetWelcomeLabel (User user)
 		{
 			var welcomeMessage = string.IsNullOrEmpty (user.UserNsId) ? string.Empty : user.WelcomeMessage;
 			labelWelcomeUsername.LabelProp = string.Format ("<b><big>{0}</big></b>", welcomeMessage);
 			if (user.Info == null)
 				return;
-			imageAvatar.ImageUrl = user.Info.BuddyIconUrl;
+			imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
 		}
 		//		private void EditLogConfigClick(object sender, RoutedEventArgs e)
 		//		{
