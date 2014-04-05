@@ -213,6 +213,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.radioPhotoId = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Photo ID"));
 			this.radioPhotoId.CanFocus = true;
 			this.radioPhotoId.Name = "radioPhotoId";
+			this.radioPhotoId.Active = true;
 			this.radioPhotoId.DrawIndicator = true;
 			this.radioPhotoId.UseUnderline = true;
 			this.radioPhotoId.Group = new global::GLib.SList (global::System.IntPtr.Zero);
@@ -398,6 +399,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.radioTagsInternal = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Internal"));
 			this.radioTagsInternal.CanFocus = true;
 			this.radioTagsInternal.Name = "radioTagsInternal";
+			this.radioTagsInternal.Active = true;
 			this.radioTagsInternal.DrawIndicator = true;
 			this.radioTagsInternal.UseUnderline = true;
 			this.radioTagsInternal.Group = new global::GLib.SList (global::System.IntPtr.Zero);

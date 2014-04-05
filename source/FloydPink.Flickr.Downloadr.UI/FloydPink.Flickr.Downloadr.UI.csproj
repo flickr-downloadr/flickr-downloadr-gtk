@@ -80,6 +80,11 @@
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.FatalErrorWindow.cs" />
     <Compile Include="BrowserWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.BrowserWindow.cs" />
+    <Compile Include="CachedImage\FileCache.cs" />
+    <Compile Include="CachedImage\HttpHelper.cs" />
+    <Compile Include="CachedImage\WebResponseExtension.cs" />
+    <Compile Include="CachedImage\CachedImageWidget.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.CachedImageWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -99,5 +104,6 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Assets\" />
+    <Folder Include="CachedImage\" />
   </ItemGroup>
 </Project>

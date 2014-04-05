@@ -1,7 +1,7 @@
 ﻿using System;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr
+namespace FloydPink.Flickr.Downloadr.UI.Helpers
 {
 	public class MessageBox
 	{
