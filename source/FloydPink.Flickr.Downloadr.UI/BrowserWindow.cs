@@ -119,7 +119,7 @@ namespace FloydPink.Flickr.Downloadr
 				//PagePhotoList.DataContext = Photos;
 				SelectAlreadySelectedPhotos ();
 				_doNotSyncSelectedItems = false;
-				SetPhotosToGtkScrollViewer ();
+				UpdateUI ();
 			}
 		}
 
@@ -222,30 +222,6 @@ namespace FloydPink.Flickr.Downloadr
 			await _presenter.InitializePhotoset ();
 		}
 
-		private async void FirstPageButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			await _presenter.NavigateTo (PhotoPage.First);
-		}
-
-		private async void PreviousPageButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			await _presenter.NavigateTo (PhotoPage.Previous);
-		}
-
-		private async void NextPageButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			await _presenter.NavigateTo (PhotoPage.Next);
-		}
-
-		private async void LastPageButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			await _presenter.NavigateTo (PhotoPage.Last);
-		}
-
 		private async void DownloadSelectionButtonClick (object sender, EventArgs e)
 		{
 			//LoseFocus((UIElement) sender);
@@ -292,8 +268,13 @@ namespace FloydPink.Flickr.Downloadr
 			PropertyChanged.Notify (() => SelectedPhotosCountText);
 		}
 
-		void SetPhotosToGtkScrollViewer ()
+		void UpdateUI ()
 		{
+			Application.Invoke (delegate {
+				labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
+					FirstPhoto, LastPhoto, Total);
+				labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
+			});
 			SetupTheImageGrid (Photos);
 		}
 
@@ -302,6 +283,30 @@ namespace FloydPink.Flickr.Downloadr
 			var loginWindow = new LoginWindow { User = User };
 			loginWindow.Show ();
 			Destroy ();
+		}
+
+		protected async void buttonNextPageClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			await _presenter.NavigateTo (PhotoPage.Next);
+		}
+
+		protected async void buttonLastPageClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			await _presenter.NavigateTo (PhotoPage.Last);
+		}
+
+		protected async void buttonFirstPageClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			await _presenter.NavigateTo (PhotoPage.First);
+		}
+
+		protected async void buttonPreviousPageClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			await _presenter.NavigateTo (PhotoPage.Previous);
 		}
 	}
 }

@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../../bin/Debug/FloydPink.Flickr.Downloadr.exe" internal="true" />
+    <widget-library name="../../bin/Release/FloydPink.Flickr.Downloadr.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.LoginWindow" design-size="495 319">
     <property name="MemberName" />
@@ -1507,6 +1507,7 @@ Restricted</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">| &lt;&lt;</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="buttonFirstPageClick" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1523,6 +1524,7 @@ Restricted</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">&lt;</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="buttonPreviousPageClick" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -1571,6 +1573,7 @@ Restricted</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">&gt;</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="buttonNextPageClick" />
                   </widget>
                   <packing>
                     <property name="Position">3</property>
@@ -1587,6 +1590,7 @@ Restricted</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">&gt;&gt; |</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="buttonLastPageClick" />
                   </widget>
                   <packing>
                     <property name="Position">4</property>
