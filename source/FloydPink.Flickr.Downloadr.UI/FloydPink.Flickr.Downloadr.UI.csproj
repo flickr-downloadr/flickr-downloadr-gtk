@@ -86,6 +86,7 @@
     <Compile Include="CachedImage\HttpHelper.cs" />
     <Compile Include="CachedImage\WebResponseExtension.cs" />
     <Compile Include="CachedImage\ImageExtension.cs" />
+    <Compile Include="BrowserWindowPhotoGrid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

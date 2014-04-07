@@ -119,6 +119,7 @@ namespace FloydPink.Flickr.Downloadr
 				//PagePhotoList.DataContext = Photos;
 				SelectAlreadySelectedPhotos ();
 				_doNotSyncSelectedItems = false;
+				SetPhotosToGtkScrollViewer ();
 			}
 		}
 
@@ -289,6 +290,11 @@ namespace FloydPink.Flickr.Downloadr
 			//PagePhotoList.SelectedItems.Clear();
 			PropertyChanged.Notify (() => SelectedPhotosExist);
 			PropertyChanged.Notify (() => SelectedPhotosCountText);
+		}
+
+		void SetPhotosToGtkScrollViewer ()
+		{
+			SetupTheImageGrid (Photos);
 		}
 
 		protected void buttonBackClick (object sender, EventArgs e)

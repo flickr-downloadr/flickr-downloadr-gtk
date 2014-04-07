@@ -39,7 +39,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
             var extraParams = new Dictionary<string, string>
             {
                 {ParameterNames.UserId, user.UserNsId},
-                {ParameterNames.SafeSearch, SafeSearch.GetValue(preferences.SafetyLevel)},
+                {ParameterNames.SafeSearch, preferences.SafetyLevel},
                 {
                     ParameterNames.PerPage,
                     preferences.PhotosPerPage.ToString(CultureInfo.InvariantCulture)
