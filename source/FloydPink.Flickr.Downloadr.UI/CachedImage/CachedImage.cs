@@ -27,7 +27,7 @@ namespace FloydPink.Flickr.Downloadr
 			}
 			set {
 				_isSelected = value;
-				frameLabel.LabelProp = _isSelected ? "<b><span color=\"red\"> ✅ </span></b>" : string.Empty;
+				frameLabel.LabelProp = _isSelected ? "<span color=\"red\"> ✔ </span>" : null;
 				if (_isSelected) {
 					frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (150, 150, 255));
 				} else {
