@@ -52,6 +52,9 @@ namespace FloydPink.Flickr.Downloadr
 //
 //			FileCache.AppCacheDirectory = Preferences.CacheLocation;
 
+			labelPhotos.Markup = "<small>                       </small>";
+			labelPages.Markup = "<small>                       </small>";
+
 			_presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter> (this);
 			_presenter.InitializePhotoset ();
 		}

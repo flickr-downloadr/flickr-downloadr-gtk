@@ -24,6 +24,12 @@ namespace FloydPink.Flickr.Downloadr
 
 		void SetupTheImageRow (int i, IEnumerable<Photo> rowPhotos)
 		{
+			var rowPhotosCount = rowPhotos.Count ();
+
+			if (rowPhotosCount == 0) {
+				return;
+			}
+
 			var rowId = string.Format ("hboxPhotoRow{0}", i.ToString ());
 			var hboxPhotoRow = new global::Gtk.HBox ();
 			hboxPhotoRow.Name = rowId;
@@ -32,8 +38,10 @@ namespace FloydPink.Flickr.Downloadr
 				this.vboxPhotos.Add (hboxPhotoRow);
 				Box.BoxChild vboxChild = ((Box.BoxChild)(this.vboxPhotos [hboxPhotoRow]));
 				vboxChild.Position = i;
+				vboxChild.Padding = (uint)15;
 			});
-			for (int j = 0; j < rowPhotos.Count (); j++) {
+
+			for (int j = 0; j < rowPhotosCount; j++) {
 				hboxPhotoRow = AddImageToRow (hboxPhotoRow, j, rowPhotos.ElementAt (j), rowId);
 			}
 		}
@@ -41,6 +49,8 @@ namespace FloydPink.Flickr.Downloadr
 		void SetupTheImageGrid (IEnumerable<Photo> photos)
 		{
 			var numberOfRows = photos.Count () / NUMBER_OF_PHOTOS_IN_A_ROW;
+			var fullRowPhotosCount = NUMBER_OF_PHOTOS_IN_A_ROW * numberOfRows;
+			var lastRowPhotosCount = photos.Count () - fullRowPhotosCount;
 
 			Application.Invoke (delegate {
 				foreach (Widget child in this.vboxPhotos.Children) {
@@ -48,15 +58,9 @@ namespace FloydPink.Flickr.Downloadr
 				}
 			});
 
-			for (int i = 0; i < numberOfRows; i++) {
-				var rowPhotos = photos.Skip (i * NUMBER_OF_PHOTOS_IN_A_ROW).Take (NUMBER_OF_PHOTOS_IN_A_ROW);
+			for (int i = 0; i <= numberOfRows; i++) {
+				var rowPhotos = photos.Skip (i * NUMBER_OF_PHOTOS_IN_A_ROW).Take (i == numberOfRows ? lastRowPhotosCount : NUMBER_OF_PHOTOS_IN_A_ROW);
 				SetupTheImageRow (i, rowPhotos);
-			}
-
-			var fullRowPhotosCount = NUMBER_OF_PHOTOS_IN_A_ROW * numberOfRows;
-			var lastRowPhotosCount = photos.Count () - fullRowPhotosCount;
-			if (lastRowPhotosCount > 0) {
-				SetupTheImageRow (numberOfRows, photos.Skip (fullRowPhotosCount).Take (lastRowPhotosCount));
 			}
 		}
 	}
