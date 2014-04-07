@@ -10,6 +10,21 @@ namespace FloydPink.Flickr.Downloadr
 	{
 		private const int NUMBER_OF_PHOTOS_IN_A_ROW = 5;
 
+		void OnSelectionChanged (object sender, EventArgs e)
+		{
+			var cachedImage = (CachedImage)sender;
+
+			if (!AllSelectedPhotos.ContainsKey(Page)) {
+				AllSelectedPhotos [Page] = new Dictionary<string, Photo> ();
+			}
+
+			if (cachedImage.IsSelected) {
+				AllSelectedPhotos [Page].Add (cachedImage.Photo.Id, cachedImage.Photo);
+			} else {
+				AllSelectedPhotos [Page].Remove (cachedImage.Photo.Id);
+			}
+		}
+
 		HBox AddImageToRow (HBox hboxPhotoRow, int j, Photo photo, string rowId)
 		{
 			Box.BoxChild hboxChild;
@@ -17,6 +32,8 @@ namespace FloydPink.Flickr.Downloadr
 				var imageCell = new CachedImage ();
 				imageCell.Name = string.Format ("{0}Image{1}", rowId, j.ToString ());
 				imageCell.ImageUrl = photo.LargeSquare150X150Url;
+				imageCell.Photo = photo;
+				imageCell.SelectionChanged += OnSelectionChanged;
 				hboxPhotoRow.Add (imageCell);
 				hboxChild = ((Box.BoxChild)(hboxPhotoRow [imageCell]));
 			} else {
@@ -69,6 +86,22 @@ namespace FloydPink.Flickr.Downloadr
 			for (int i = 0; i < numberOfRows; i++) {
 				var rowPhotos = photos.Skip (i * NUMBER_OF_PHOTOS_IN_A_ROW).Take (NUMBER_OF_PHOTOS_IN_A_ROW);
 				SetupTheImageRow (i, rowPhotos);
+			}
+		}
+
+		void SetSelectionOnAllImages (bool selected)
+		{
+			foreach (var box in vboxPhotos.AllChildren) {
+				var hbox = box as HBox;
+				if (hbox == null) {
+					continue;
+				}
+				foreach (var image in hbox.AllChildren) {
+					var cachedImage = image as CachedImage;
+					if (cachedImage != null) {
+						cachedImage.IsSelected = selected;
+					}
+				}
 			}
 		}
 	}

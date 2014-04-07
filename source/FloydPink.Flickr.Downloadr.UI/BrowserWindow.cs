@@ -305,13 +305,13 @@ namespace FloydPink.Flickr.Downloadr
 		protected void buttonSelectAllClick (object sender, EventArgs e)
 		{
 			//LoseFocus((UIElement) sender);
-			//PagePhotoList.SelectAll();
+			SetSelectionOnAllImages (true);
 		}
 
 		protected void buttonUnSelectAllClick (object sender, EventArgs e)
 		{
 			//LoseFocus((UIElement) sender);
-			//PagePhotoList.SelectedItems.Clear();
+			SetSelectionOnAllImages (false);
 		}
 	}
 }

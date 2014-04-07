@@ -1,4 +1,5 @@
 ﻿using System;
+using FloydPink.Flickr.Downloadr.Model;
 
 namespace FloydPink.Flickr.Downloadr
 {
@@ -26,15 +27,24 @@ namespace FloydPink.Flickr.Downloadr
 				return _isSelected;
 			}
 			set {
-				_isSelected = value;
-				frameLabel.LabelProp = _isSelected ? "<span color=\"red\"> ✔ </span>" : null;
-				if (_isSelected) {
-					frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (150, 150, 255));
-				} else {
-					frameMain.ModifyBg (Gtk.StateType.Normal);
+				if (_isSelected != value) {
+					_isSelected = value;
+					frameLabel.LabelProp = _isSelected ? "<span color=\"red\"> ✔ </span>" : null;
+					if (_isSelected) {
+						frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (150, 150, 255));
+					} else {
+						frameMain.ModifyBg (Gtk.StateType.Normal);
+					}
+					if (SelectionChanged != null) {
+						SelectionChanged (this, new EventArgs ());
+					}
 				}
 			}
 		}
+
+		public Photo Photo { get; set; }
+
+		public event EventHandler SelectionChanged;
 
 		public CachedImage ()
 		{

@@ -127,6 +127,7 @@ namespace FloydPink.Flickr.Downloadr
 			w8.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1.Name = "alignment1";
 			this.hbox5.Add (this.alignment1);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.alignment1]));
 			w9.Position = 2;
@@ -146,7 +147,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonFirstPage.CanFocus = true;
 			this.buttonFirstPage.Name = "buttonFirstPage";
 			this.buttonFirstPage.UseUnderline = true;
-			this.buttonFirstPage.Label = global::Mono.Unix.Catalog.GetString ("| <<");
+			this.buttonFirstPage.Label = global::Mono.Unix.Catalog.GetString ("|<<");
 			this.hboxCenter.Add (this.buttonFirstPage);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonFirstPage]));
 			w12.Position = 0;
@@ -203,7 +204,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonLastPage.CanFocus = true;
 			this.buttonLastPage.Name = "buttonLastPage";
 			this.buttonLastPage.UseUnderline = true;
-			this.buttonLastPage.Label = global::Mono.Unix.Catalog.GetString (">> |");
+			this.buttonLastPage.Label = global::Mono.Unix.Catalog.GetString (">>|");
 			this.hboxCenter.Add (this.buttonLastPage);
 			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonLastPage]));
 			w18.Position = 4;
@@ -282,6 +283,8 @@ namespace FloydPink.Flickr.Downloadr
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonBack.Clicked += new global::System.EventHandler (this.buttonBackClick);
+			this.buttonSelectAll.Clicked += new global::System.EventHandler (this.buttonSelectAllClick);
+			this.buttonUnSelectAll.Clicked += new global::System.EventHandler (this.buttonUnSelectAllClick);
 			this.buttonFirstPage.Clicked += new global::System.EventHandler (this.buttonFirstPageClick);
 			this.buttonPreviousPage.Clicked += new global::System.EventHandler (this.buttonPreviousPageClick);
 			this.buttonNextPage.Clicked += new global::System.EventHandler (this.buttonNextPageClick);
