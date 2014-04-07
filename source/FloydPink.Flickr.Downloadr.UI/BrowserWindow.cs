@@ -251,18 +251,6 @@ namespace FloydPink.Flickr.Downloadr
 		//			FocusManager.SetFocusedElement(scope, PagePhotoList);
 		//		}
 		//
-		private void SelectAllButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			//PagePhotoList.SelectAll();
-		}
-
-		private void DeselectAllButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			//PagePhotoList.SelectedItems.Clear();
-		}
-
 		private void ClearSelectedPhotos ()
 		{
 			AllSelectedPhotos.Clear ();
@@ -312,6 +300,18 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			//LoseFocus((UIElement) sender);
 			await _presenter.NavigateTo (PhotoPage.Previous);
+		}
+
+		protected void buttonSelectAllClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			//PagePhotoList.SelectAll();
+		}
+
+		protected void buttonUnSelectAllClick (object sender, EventArgs e)
+		{
+			//LoseFocus((UIElement) sender);
+			//PagePhotoList.SelectedItems.Clear();
 		}
 	}
 }
