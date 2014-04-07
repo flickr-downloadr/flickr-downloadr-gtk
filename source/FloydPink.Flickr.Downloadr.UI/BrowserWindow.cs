@@ -24,7 +24,7 @@ namespace FloydPink.Flickr.Downloadr
 		private string _page;
 		private string _pages;
 		private string _perPage;
-		private ObservableCollection<Photo> _photos;
+		private IEnumerable<Photo> _photos;
 		private string _total;
 
 		public BrowserWindow (User user, Preferences preferences) : 
@@ -91,7 +91,7 @@ namespace FloydPink.Flickr.Downloadr
 		public bool AreAllPagePhotosSelected {
 			get {
 				return Photos != null &&
-				(!AllSelectedPhotos.ContainsKey (Page) || Photos.Count != AllSelectedPhotos [Page].Count);
+					(!AllSelectedPhotos.ContainsKey (Page) || Photos.Count() != AllSelectedPhotos [Page].Count);
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace FloydPink.Flickr.Downloadr
 
 		public Preferences Preferences { get; set; }
 
-		public ObservableCollection<Photo> Photos {
+		public IEnumerable<Photo> Photos {
 			get { return _photos; }
 			set {
 				_photos = value;
@@ -277,8 +277,10 @@ namespace FloydPink.Flickr.Downloadr
 				labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
 					FirstPhoto, LastPhoto, Total);
 				labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
+				buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
+				buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
+				SetupTheImageGrid (Photos);
 			});
-			SetupTheImageGrid (Photos);
 		}
 
 		protected void buttonBackClick (object sender, EventArgs e)

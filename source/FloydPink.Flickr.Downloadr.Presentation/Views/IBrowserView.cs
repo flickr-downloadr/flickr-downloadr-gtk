@@ -8,7 +8,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation.Views
     {
         User User { get; set; }
         Preferences Preferences { get; set; }
-        ObservableCollection<Photo> Photos { get; set; }
+		IEnumerable<Photo> Photos { get; set; }
         IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
         bool ShowAllPhotos { get; }
 

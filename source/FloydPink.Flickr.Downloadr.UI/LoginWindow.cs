@@ -105,11 +105,13 @@ namespace FloydPink.Flickr.Downloadr
 
 		private void SetWelcomeLabel (User user)
 		{
-			var welcomeMessage = string.IsNullOrEmpty (user.UserNsId) ? string.Empty : user.WelcomeMessage;
-			labelWelcomeUsername.LabelProp = string.Format ("<b><big>{0}</big></b>", welcomeMessage);
-			if (user.Info == null)
-				return;
-			imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
+			Application.Invoke (delegate {
+				var welcomeMessage = string.IsNullOrEmpty (user.UserNsId) ? string.Empty : user.WelcomeMessage;
+				labelWelcomeUsername.LabelProp = string.Format ("<b><big>{0}</big></b>", welcomeMessage);
+				if (user.Info == null)
+					return;
+				imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
+			});
 		}
 		//		private void EditLogConfigClick(object sender, RoutedEventArgs e)
 		//		{

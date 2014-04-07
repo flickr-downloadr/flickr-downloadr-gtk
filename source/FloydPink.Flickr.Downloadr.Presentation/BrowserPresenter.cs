@@ -166,7 +166,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
             _view.Pages = photosResponse.Pages.ToString(CultureInfo.InvariantCulture);
             _view.PerPage = photosResponse.PerPage.ToString(CultureInfo.InvariantCulture);
             _view.Total = photosResponse.Total.ToString(CultureInfo.InvariantCulture);
-            _view.Photos = new ObservableCollection<Photo>(photosResponse.Photos);
+            _view.Photos = photosResponse.Photos;
         }
     }
 }
