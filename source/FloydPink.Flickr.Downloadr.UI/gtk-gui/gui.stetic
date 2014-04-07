@@ -1540,7 +1540,6 @@ Restricted</property>
                     <child>
                       <widget class="Gtk.Label" id="labelPhotos">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;small&gt;1  -  25  of  626  Photos&lt;/small&gt;</property>
                         <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
@@ -1551,7 +1550,6 @@ Restricted</property>
                     <child>
                       <widget class="Gtk.Label" id="labelPages">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;small&gt;1  of  26  Pages&lt;/small&gt;</property>
                         <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
