@@ -127,7 +127,6 @@ namespace FloydPink.Flickr.Downloadr
 			w8.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment1.Name = "alignment1";
 			this.hbox5.Add (this.alignment1);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.alignment1]));
 			w9.Position = 2;
