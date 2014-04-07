@@ -10,6 +10,9 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 {
 	public static class DictionaryExtensions
 	{
+
+		static bool runningOnMono = Type.GetType ("Mono.Runtime") != null;
+
 		public static object GetValue (this Dictionary<string, object> dictionary, string key)
 		{
 			return dictionary.ContainsKey (key) ? dictionary [key] : string.Empty;
@@ -28,8 +31,15 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 		public static PhotosResponse GetPhotosResponseFromDictionary (this Dictionary<string, object> dictionary)
 		{
 			var photos = new List<Photo> ();
-			var arrayList = (ArrayList)dictionary.GetSubValue ("photos", "photo");
-			IEnumerable<Dictionary<string, object>> photoDictionary = arrayList.Cast<Dictionary<string, object>> ();
+			IEnumerable<Dictionary<string, object>> photoDictionary;
+
+			if (runningOnMono) {
+				var photoListAsArrayList = (ArrayList)dictionary.GetSubValue ("photos", "photo");
+				photoDictionary = photoListAsArrayList.Cast<Dictionary<string, object>> ();
+			} else {
+				var photoListAsIEnumerable = (IEnumerable<object>)dictionary.GetSubValue ("photos", "photo");
+				photoDictionary = photoListAsIEnumerable.Cast<Dictionary<string, object>> ();
+			}
 
 			photos.AddRange (photoDictionary.Select (BuildPhoto));
 
