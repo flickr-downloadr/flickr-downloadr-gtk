@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../../bin/Release/FloydPink.Flickr.Downloadr.exe" internal="true" />
+    <widget-library name="../../bin/Debug/FloydPink.Flickr.Downloadr.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.LoginWindow" design-size="495 319">
     <property name="MemberName" />
@@ -1342,9 +1342,9 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.BrowserWindow" design-size="950 600">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.BrowserWindow" design-size="970 600">
     <property name="MemberName" />
-    <property name="WidthRequest">950</property>
+    <property name="WidthRequest">970</property>
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">Photo Browser - flickr downloadr</property>
     <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
@@ -1405,7 +1405,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonBack">
                     <property name="MemberName" />
-                    <property name="WidthRequest">75</property>
+                    <property name="WidthRequest">65</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Back</property>
@@ -1636,12 +1636,13 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadSelection">
                     <property name="MemberName" />
-                    <property name="WidthRequest">75</property>
+                    <property name="WidthRequest">105</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Selection</property>
                     <property name="UseUnderline">True</property>
                     <property name="FocusOnClick">False</property>
+                    <signal name="Clicked" handler="buttonDownloadSelectionClick" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -1653,12 +1654,13 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadThisPage">
                     <property name="MemberName" />
-                    <property name="WidthRequest">75</property>
+                    <property name="WidthRequest">65</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">This Page</property>
                     <property name="UseUnderline">True</property>
                     <property name="FocusOnClick">False</property>
+                    <signal name="Clicked" handler="buttonDownloadThisPageClick" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
@@ -1670,12 +1672,13 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadAllPages">
                     <property name="MemberName" />
-                    <property name="WidthRequest">75</property>
+                    <property name="WidthRequest">65</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">All Pages</property>
                     <property name="UseUnderline">True</property>
                     <property name="FocusOnClick">False</property>
+                    <signal name="Clicked" handler="buttonDownloadAllPagesClick" />
                   </widget>
                   <packing>
                     <property name="Position">3</property>

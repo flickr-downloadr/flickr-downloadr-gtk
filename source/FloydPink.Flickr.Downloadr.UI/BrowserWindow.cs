@@ -21,7 +21,7 @@ namespace FloydPink.Flickr.Downloadr
 	public partial class BrowserWindow : Window, IBrowserView
 	{
 		private readonly IBrowserPresenter _presenter;
-		private bool _doNotSyncSelectedItems;
+		private bool _doNotFireOnSelectionChanged;
 		private string _page;
 		private string _pages;
 		private string _perPage;
@@ -107,10 +107,10 @@ namespace FloydPink.Flickr.Downloadr
 				_photos = value;
 				PropertyChanged.Notify (() => AreAllPagePhotosSelected);
 				Application.Invoke (delegate {
-					_doNotSyncSelectedItems = true;
+					_doNotFireOnSelectionChanged = true;
 					UpdateUI ();
 					SelectAlreadySelectedPhotos ();
-					_doNotSyncSelectedItems = false;
+					_doNotFireOnSelectionChanged = false;
 				});
 			}
 		}
@@ -177,17 +177,23 @@ namespace FloydPink.Flickr.Downloadr
 
 		public void DownloadComplete (string downloadedLocation, bool downloadComplete)
 		{
-			const string proTip = "\r\n\r\n(ProTip™: CTRL+C will copy all of this message with the location.)";
-			if (downloadComplete) {
-				ClearSelectedPhotos ();
-				MessageBox.Show (this,
-					string.Format ("Download completed to the directory: \r\n{0}{1}",
-						downloadedLocation, proTip), ButtonsType.Ok, MessageType.Info);
-			} else {
-				MessageBox.Show (this,
-					string.Format ("Incomplete download could be found at: \r\n{0}{1}",
-						downloadedLocation, proTip), ButtonsType.Ok, MessageType.Info);
-			}
+			Application.Invoke (delegate {
+				string proTip = MainClass.RunningOnMono ? string.Empty :
+					string.Format ("{0}{0}(ProTip™: CTRL+C will copy all of this message with the location.)",
+					                Environment.NewLine);
+				if (downloadComplete) {
+					ClearSelectedPhotos ();
+					MessageBox.Show (this,
+						string.Format ("Download completed to the directory: {0}{1}{2}",
+							Environment.NewLine, downloadedLocation, proTip),
+						ButtonsType.Ok, MessageType.Info);
+				} else {
+					MessageBox.Show (this,
+						string.Format ("Incomplete download could be found at: {0}{1}{2}",
+							Environment.NewLine, downloadedLocation, proTip),
+						ButtonsType.Ok, MessageType.Info);
+				}
+			});
 		}
 
 		#region INotifyPropertyChanged Members
@@ -205,24 +211,6 @@ namespace FloydPink.Flickr.Downloadr
 			SelectPhotos (photos);
 		}
 
-		private async void DownloadSelectionButtonClick (object sender, EventArgs e)
-		{
-			LoseFocus ((Button)sender);
-			await _presenter.DownloadSelection ();
-		}
-
-		private async void DownloadThisPageButtonClick (object sender, EventArgs e)
-		{
-			LoseFocus ((Button)sender);
-			await _presenter.DownloadThisPage ();
-		}
-
-		private async void DownloadAllPagesButtonClick (object sender, EventArgs e)
-		{
-			LoseFocus ((Button)sender);
-			await _presenter.DownloadAllPages ();
-		}
-
 		private void LoseFocus (Button element)
 		{
 			if (element.HasFocus) {
@@ -238,7 +226,8 @@ namespace FloydPink.Flickr.Downloadr
 			PropertyChanged.Notify (() => SelectedPhotosCountText);
 		}
 
-		void UpdateButtons() {
+		void UpdateButtons ()
+		{
 			buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
 			buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
 
@@ -308,6 +297,24 @@ namespace FloydPink.Flickr.Downloadr
 			LoseFocus ((Button)sender);
 			ClearSelectedPhotos ();
 			await _presenter.InitializePhotoset ();
+		}
+
+		protected async void buttonDownloadSelectionClick (object sender, EventArgs e)
+		{
+			LoseFocus ((Button)sender);
+			await _presenter.DownloadSelection ();
+		}
+
+		protected async void buttonDownloadThisPageClick (object sender, EventArgs e)
+		{
+			LoseFocus ((Button)sender);
+			await _presenter.DownloadThisPage ();
+		}
+
+		protected async void buttonDownloadAllPagesClick (object sender, EventArgs e)
+		{
+			LoseFocus ((Button)sender);
+			await _presenter.DownloadAllPages ();
 		}
 	}
 }

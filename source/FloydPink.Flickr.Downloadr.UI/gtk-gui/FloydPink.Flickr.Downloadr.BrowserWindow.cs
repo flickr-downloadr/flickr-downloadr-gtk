@@ -33,7 +33,7 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget FloydPink.Flickr.Downloadr.BrowserWindow
-			this.WidthRequest = 950;
+			this.WidthRequest = 970;
 			this.HeightRequest = 600;
 			this.Name = "FloydPink.Flickr.Downloadr.BrowserWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Photo Browser - flickr downloadr");
@@ -75,7 +75,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.hboxLeft.Spacing = 6;
 			// Container child hboxLeft.Gtk.Box+BoxChild
 			this.buttonBack = new global::Gtk.Button ();
-			this.buttonBack.WidthRequest = 60;
+			this.buttonBack.WidthRequest = 65;
 			this.buttonBack.CanFocus = true;
 			this.buttonBack.Name = "buttonBack";
 			this.buttonBack.UseUnderline = true;
@@ -118,6 +118,7 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.buttonUnSelectAll = new global::Gtk.Button ();
 			this.buttonUnSelectAll.WidthRequest = 35;
+			this.buttonUnSelectAll.Sensitive = false;
 			this.buttonUnSelectAll.CanFocus = true;
 			this.buttonUnSelectAll.Name = "buttonUnSelectAll";
 			this.buttonUnSelectAll.UseUnderline = true;
@@ -238,8 +239,7 @@ namespace FloydPink.Flickr.Downloadr
 			w20.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadSelection = new global::Gtk.Button ();
-			this.buttonDownloadSelection.WidthRequest = 100;
-			this.buttonDownloadSelection.Sensitive = false;
+			this.buttonDownloadSelection.WidthRequest = 105;
 			this.buttonDownloadSelection.CanFocus = true;
 			this.buttonDownloadSelection.Name = "buttonDownloadSelection";
 			this.buttonDownloadSelection.UseUnderline = true;
@@ -248,6 +248,8 @@ namespace FloydPink.Flickr.Downloadr
 			this.hboxRight.Add (this.buttonDownloadSelection);
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hboxRight [this.buttonDownloadSelection]));
 			w21.Position = 1;
+			w21.Expand = false;
+			w21.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadThisPage = new global::Gtk.Button ();
 			this.buttonDownloadThisPage.WidthRequest = 65;
@@ -287,7 +289,7 @@ namespace FloydPink.Flickr.Downloadr
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 950;
+			this.DefaultWidth = 970;
 			this.DefaultHeight = 600;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
@@ -299,6 +301,9 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonPreviousPage.Clicked += new global::System.EventHandler (this.buttonPreviousPageClick);
 			this.buttonNextPage.Clicked += new global::System.EventHandler (this.buttonNextPageClick);
 			this.buttonLastPage.Clicked += new global::System.EventHandler (this.buttonLastPageClick);
+			this.buttonDownloadSelection.Clicked += new global::System.EventHandler (this.buttonDownloadSelectionClick);
+			this.buttonDownloadThisPage.Clicked += new global::System.EventHandler (this.buttonDownloadThisPageClick);
+			this.buttonDownloadAllPages.Clicked += new global::System.EventHandler (this.buttonDownloadAllPagesClick);
 		}
 	}
 }

@@ -10,6 +10,8 @@ namespace FloydPink.Flickr.Downloadr
 {
 	class MainClass
 	{
+		public static bool RunningOnMono = Type.GetType ("Mono.Runtime") != null;
+
 		public static void Main (string[] args)
 		{
 			Bootstrapper.Initialize ();

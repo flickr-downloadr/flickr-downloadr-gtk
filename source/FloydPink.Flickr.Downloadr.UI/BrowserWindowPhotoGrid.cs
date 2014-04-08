@@ -12,7 +12,7 @@ namespace FloydPink.Flickr.Downloadr
 
 		void OnSelectionChanged (object sender, EventArgs e)
 		{
-			if (_doNotSyncSelectedItems) {
+			if (_doNotFireOnSelectionChanged) {
 				return;
 			}
 			var cachedImage = (CachedImage)sender;
