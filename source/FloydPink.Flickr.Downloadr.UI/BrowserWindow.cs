@@ -14,6 +14,7 @@ using FloydPink.Flickr.Downloadr.Model.Extensions;
 using FloydPink.Flickr.Downloadr.Presentation;
 using FloydPink.Flickr.Downloadr.Presentation.Views;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
+using FloydPink.Flickr.Downloadr.UI.CachedImage;
 
 namespace FloydPink.Flickr.Downloadr
 {
@@ -37,20 +38,7 @@ namespace FloydPink.Flickr.Downloadr
 			User = user;
 			AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>> ();
 
-//			PagePhotoList.SelectionChanged += (sender, args) =>
-//			{
-//				if (_doNotSyncSelectedItems) return;
-//				AllSelectedPhotos[Page] = PagePhotoList.SelectedItems.Cast<Photo>().
-//					ToDictionary(p => p.Id, p => p);
-//				PropertyChanged.Notify(() => SelectedPhotosExist);
-//				PropertyChanged.Notify(() => SelectedPhotosCountText);
-//				PropertyChanged.Notify(() => AreAnyPagePhotosSelected);
-//				PropertyChanged.Notify(() => AreAllPagePhotosSelected);
-//			};
-//
 //			SpinnerInner.SpinnerCanceled += (sender, args) => _presenter.CancelDownload();
-//
-//			FileCache.AppCacheDirectory = Preferences.CacheLocation;
 
 			labelPhotos.Markup = "<small>                       </small>";
 			labelPages.Markup = "<small>                       </small>";
@@ -250,8 +238,17 @@ namespace FloydPink.Flickr.Downloadr
 			PropertyChanged.Notify (() => SelectedPhotosCountText);
 		}
 
+		void UpdateButtons() {
+			buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
+			buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
+
+			buttonDownloadSelection.Label = SelectedPhotosCountText;
+			buttonDownloadSelection.Sensitive = SelectedPhotosExist;
+		}
+
 		void UpdateUI ()
 		{
+			UpdateButtons ();
 			labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
 				FirstPhoto, LastPhoto, Total);
 			labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);

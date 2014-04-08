@@ -17,7 +17,7 @@ namespace FloydPink.Flickr.Downloadr
 			}
 			var cachedImage = (CachedImage)sender;
 
-			if (!AllSelectedPhotos.ContainsKey(Page)) {
+			if (!AllSelectedPhotos.ContainsKey (Page)) {
 				AllSelectedPhotos [Page] = new Dictionary<string, Photo> ();
 			}
 
@@ -26,6 +26,8 @@ namespace FloydPink.Flickr.Downloadr
 			} else {
 				AllSelectedPhotos [Page].Remove (cachedImage.Photo.Id);
 			}
+
+			UpdateButtons ();
 		}
 
 		HBox AddImageToRow (HBox hboxPhotoRow, int j, Photo photo, string rowId)
@@ -131,7 +133,6 @@ namespace FloydPink.Flickr.Downloadr
 				FindAndSelectPhoto (photo);
 			}
 		}
-
 	}
 }
 

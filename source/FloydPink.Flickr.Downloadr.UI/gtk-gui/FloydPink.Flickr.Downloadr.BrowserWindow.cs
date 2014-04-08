@@ -75,7 +75,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.hboxLeft.Spacing = 6;
 			// Container child hboxLeft.Gtk.Box+BoxChild
 			this.buttonBack = new global::Gtk.Button ();
-			this.buttonBack.WidthRequest = 75;
+			this.buttonBack.WidthRequest = 60;
 			this.buttonBack.CanFocus = true;
 			this.buttonBack.Name = "buttonBack";
 			this.buttonBack.UseUnderline = true;
@@ -238,7 +238,8 @@ namespace FloydPink.Flickr.Downloadr
 			w20.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadSelection = new global::Gtk.Button ();
-			this.buttonDownloadSelection.WidthRequest = 75;
+			this.buttonDownloadSelection.WidthRequest = 100;
+			this.buttonDownloadSelection.Sensitive = false;
 			this.buttonDownloadSelection.CanFocus = true;
 			this.buttonDownloadSelection.Name = "buttonDownloadSelection";
 			this.buttonDownloadSelection.UseUnderline = true;
@@ -247,11 +248,9 @@ namespace FloydPink.Flickr.Downloadr
 			this.hboxRight.Add (this.buttonDownloadSelection);
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hboxRight [this.buttonDownloadSelection]));
 			w21.Position = 1;
-			w21.Expand = false;
-			w21.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadThisPage = new global::Gtk.Button ();
-			this.buttonDownloadThisPage.WidthRequest = 75;
+			this.buttonDownloadThisPage.WidthRequest = 65;
 			this.buttonDownloadThisPage.CanFocus = true;
 			this.buttonDownloadThisPage.Name = "buttonDownloadThisPage";
 			this.buttonDownloadThisPage.UseUnderline = true;
@@ -264,7 +263,7 @@ namespace FloydPink.Flickr.Downloadr
 			w22.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadAllPages = new global::Gtk.Button ();
-			this.buttonDownloadAllPages.WidthRequest = 75;
+			this.buttonDownloadAllPages.WidthRequest = 65;
 			this.buttonDownloadAllPages.CanFocus = true;
 			this.buttonDownloadAllPages.Name = "buttonDownloadAllPages";
 			this.buttonDownloadAllPages.UseUnderline = true;
