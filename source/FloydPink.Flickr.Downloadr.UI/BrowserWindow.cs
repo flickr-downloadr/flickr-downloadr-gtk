@@ -178,21 +178,12 @@ namespace FloydPink.Flickr.Downloadr
 		public void DownloadComplete (string downloadedLocation, bool downloadComplete)
 		{
 			Application.Invoke (delegate {
-				string proTip = MainClass.RunningOnMono ? string.Empty :
-					string.Format ("{0}{0}(ProTip™: CTRL+C will copy all of this message with the location.)",
-					                Environment.NewLine);
+				var message = downloadComplete ? "Download completed to the directory" : "Incomplete download could be found at";
 				if (downloadComplete) {
 					ClearSelectedPhotos ();
-					MessageBox.Show (this,
-						string.Format ("Download completed to the directory: {0}{1}{2}",
-							Environment.NewLine, downloadedLocation, proTip),
-						ButtonsType.Ok, MessageType.Info);
-				} else {
-					MessageBox.Show (this,
-						string.Format ("Incomplete download could be found at: {0}{1}{2}",
-							Environment.NewLine, downloadedLocation, proTip),
-						ButtonsType.Ok, MessageType.Info);
 				}
+				MessageBox.Show (this, string.Format ("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),
+					ButtonsType.Ok, MessageType.Info);
 			});
 		}
 
