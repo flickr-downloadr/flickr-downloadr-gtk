@@ -33,7 +33,6 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget FloydPink.Flickr.Downloadr.BrowserWindow
-			this.WidthRequest = 970;
 			this.HeightRequest = 600;
 			this.Name = "FloydPink.Flickr.Downloadr.BrowserWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Photo Browser - flickr downloadr");
@@ -87,7 +86,7 @@ namespace FloydPink.Flickr.Downloadr
 			w5.Fill = false;
 			// Container child hboxLeft.Gtk.Box+BoxChild
 			this.togglebuttonShowAllPhotos = new global::Gtk.ToggleButton ();
-			this.togglebuttonShowAllPhotos.WidthRequest = 155;
+			this.togglebuttonShowAllPhotos.WidthRequest = 185;
 			this.togglebuttonShowAllPhotos.CanFocus = true;
 			this.togglebuttonShowAllPhotos.Name = "togglebuttonShowAllPhotos";
 			this.togglebuttonShowAllPhotos.UseUnderline = true;
@@ -239,7 +238,7 @@ namespace FloydPink.Flickr.Downloadr
 			w20.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadSelection = new global::Gtk.Button ();
-			this.buttonDownloadSelection.WidthRequest = 105;
+			this.buttonDownloadSelection.WidthRequest = 125;
 			this.buttonDownloadSelection.CanFocus = true;
 			this.buttonDownloadSelection.Name = "buttonDownloadSelection";
 			this.buttonDownloadSelection.UseUnderline = true;
@@ -252,7 +251,7 @@ namespace FloydPink.Flickr.Downloadr
 			w21.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadThisPage = new global::Gtk.Button ();
-			this.buttonDownloadThisPage.WidthRequest = 65;
+			this.buttonDownloadThisPage.WidthRequest = 76;
 			this.buttonDownloadThisPage.CanFocus = true;
 			this.buttonDownloadThisPage.Name = "buttonDownloadThisPage";
 			this.buttonDownloadThisPage.UseUnderline = true;
@@ -265,7 +264,7 @@ namespace FloydPink.Flickr.Downloadr
 			w22.Fill = false;
 			// Container child hboxRight.Gtk.Box+BoxChild
 			this.buttonDownloadAllPages = new global::Gtk.Button ();
-			this.buttonDownloadAllPages.WidthRequest = 65;
+			this.buttonDownloadAllPages.WidthRequest = 75;
 			this.buttonDownloadAllPages.CanFocus = true;
 			this.buttonDownloadAllPages.Name = "buttonDownloadAllPages";
 			this.buttonDownloadAllPages.UseUnderline = true;
@@ -289,7 +288,7 @@ namespace FloydPink.Flickr.Downloadr
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 970;
+			this.DefaultWidth = 1130;
 			this.DefaultHeight = 600;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);

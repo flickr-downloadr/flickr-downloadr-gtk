@@ -1342,9 +1342,8 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.BrowserWindow" design-size="970 600">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.BrowserWindow" design-size="1130 600">
     <property name="MemberName" />
-    <property name="WidthRequest">970</property>
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">Photo Browser - flickr downloadr</property>
     <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
@@ -1422,7 +1421,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.ToggleButton" id="togglebuttonShowAllPhotos">
                     <property name="MemberName" />
-                    <property name="WidthRequest">155</property>
+                    <property name="WidthRequest">185</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Show All Photos</property>
@@ -1636,7 +1635,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadSelection">
                     <property name="MemberName" />
-                    <property name="WidthRequest">105</property>
+                    <property name="WidthRequest">125</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Selection</property>
@@ -1654,7 +1653,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadThisPage">
                     <property name="MemberName" />
-                    <property name="WidthRequest">65</property>
+                    <property name="WidthRequest">76</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">This Page</property>
@@ -1672,7 +1671,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Button" id="buttonDownloadAllPages">
                     <property name="MemberName" />
-                    <property name="WidthRequest">65</property>
+                    <property name="WidthRequest">75</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">All Pages</property>
