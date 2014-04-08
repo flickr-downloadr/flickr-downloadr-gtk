@@ -91,7 +91,7 @@ namespace FloydPink.Flickr.Downloadr
 		public bool AreAllPagePhotosSelected {
 			get {
 				return Photos != null &&
-					(!AllSelectedPhotos.ContainsKey (Page) || Photos.Count() != AllSelectedPhotos [Page].Count);
+				(!AllSelectedPhotos.ContainsKey (Page) || Photos.Count () != AllSelectedPhotos [Page].Count);
 			}
 		}
 
@@ -129,8 +129,7 @@ namespace FloydPink.Flickr.Downloadr
 		public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
 
 		public bool ShowAllPhotos {
-			get { return false; }
-			//get { return PublicAllToggleButton.IsChecked != null && (bool) PublicAllToggleButton.IsChecked; }
+			get { return togglebuttonShowAllPhotos.Active; }
 		}
 
 		public string Page {
@@ -218,43 +217,35 @@ namespace FloydPink.Flickr.Downloadr
 			}
 		}
 
-		private async void TogglePhotosButtonClick (object sender, EventArgs e)
-		{
-			//LoseFocus((UIElement) sender);
-			ClearSelectedPhotos ();
-			await _presenter.InitializePhotoset ();
-		}
-
 		private async void DownloadSelectionButtonClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.DownloadSelection ();
 		}
 
 		private async void DownloadThisPageButtonClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.DownloadThisPage ();
 		}
 
 		private async void DownloadAllPagesButtonClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.DownloadAllPages ();
 		}
-		//		private void LoseFocus(UIElement element)
-		//		{
-		//			// http://stackoverflow.com/a/6031393/218882
-		//			DependencyObject scope = FocusManager.GetFocusScope(element);
-		//			FocusManager.SetFocusedElement(scope, null);
-		//			Keyboard.ClearFocus();
-		//			FocusManager.SetFocusedElement(scope, PagePhotoList);
-		//		}
-		//
+
+		private void LoseFocus (Button element)
+		{
+			if (element.HasFocus) {
+				this.Focus = buttonBack;
+			}
+		}
+
 		private void ClearSelectedPhotos ()
 		{
 			AllSelectedPhotos.Clear ();
-			//PagePhotoList.SelectedItems.Clear();
+			SetSelectionOnAllImages (false);
 			PropertyChanged.Notify (() => SelectedPhotosExist);
 			PropertyChanged.Notify (() => SelectedPhotosCountText);
 		}
@@ -280,38 +271,48 @@ namespace FloydPink.Flickr.Downloadr
 
 		protected async void buttonNextPageClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.NavigateTo (PhotoPage.Next);
 		}
 
 		protected async void buttonLastPageClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.NavigateTo (PhotoPage.Last);
 		}
 
 		protected async void buttonFirstPageClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.NavigateTo (PhotoPage.First);
 		}
 
 		protected async void buttonPreviousPageClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			await _presenter.NavigateTo (PhotoPage.Previous);
 		}
 
 		protected void buttonSelectAllClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			SetSelectionOnAllImages (true);
 		}
 
 		protected void buttonUnSelectAllClick (object sender, EventArgs e)
 		{
-			//LoseFocus((UIElement) sender);
+			LoseFocus((Button) sender);
 			SetSelectionOnAllImages (false);
+		}
+
+		protected async void togglebuttonShowAllPhotosClick (object sender, EventArgs e)
+		{
+			var toggleButton = (ToggleButton)sender;
+			toggleButton.Label = toggleButton.Active ? "Show Only Public Photos" : "Show All Photos";
+
+			LoseFocus ((Button)sender);
+			ClearSelectedPhotos ();
+			await _presenter.InitializePhotoset ();
 		}
 	}
 }

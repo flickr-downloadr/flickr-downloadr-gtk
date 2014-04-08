@@ -87,10 +87,11 @@ namespace FloydPink.Flickr.Downloadr
 			w5.Fill = false;
 			// Container child hboxLeft.Gtk.Box+BoxChild
 			this.togglebuttonShowAllPhotos = new global::Gtk.ToggleButton ();
+			this.togglebuttonShowAllPhotos.WidthRequest = 155;
 			this.togglebuttonShowAllPhotos.CanFocus = true;
 			this.togglebuttonShowAllPhotos.Name = "togglebuttonShowAllPhotos";
 			this.togglebuttonShowAllPhotos.UseUnderline = true;
-			this.togglebuttonShowAllPhotos.Inconsistent = true;
+			this.togglebuttonShowAllPhotos.FocusOnClick = false;
 			this.togglebuttonShowAllPhotos.Label = global::Mono.Unix.Catalog.GetString ("Show All Photos");
 			this.hboxLeft.Add (this.togglebuttonShowAllPhotos);
 			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hboxLeft [this.togglebuttonShowAllPhotos]));
@@ -107,6 +108,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonSelectAll.CanFocus = true;
 			this.buttonSelectAll.Name = "buttonSelectAll";
 			this.buttonSelectAll.UseUnderline = true;
+			this.buttonSelectAll.FocusOnClick = false;
 			this.buttonSelectAll.Label = global::Mono.Unix.Catalog.GetString ("☑");
 			this.hbox5.Add (this.buttonSelectAll);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonSelectAll]));
@@ -119,6 +121,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonUnSelectAll.CanFocus = true;
 			this.buttonUnSelectAll.Name = "buttonUnSelectAll";
 			this.buttonUnSelectAll.UseUnderline = true;
+			this.buttonUnSelectAll.FocusOnClick = false;
 			this.buttonUnSelectAll.Label = global::Mono.Unix.Catalog.GetString ("☒");
 			this.hbox5.Add (this.buttonUnSelectAll);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonUnSelectAll]));
@@ -147,6 +150,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonFirstPage.CanFocus = true;
 			this.buttonFirstPage.Name = "buttonFirstPage";
 			this.buttonFirstPage.UseUnderline = true;
+			this.buttonFirstPage.FocusOnClick = false;
 			this.buttonFirstPage.Label = global::Mono.Unix.Catalog.GetString ("|<<");
 			this.hboxCenter.Add (this.buttonFirstPage);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonFirstPage]));
@@ -159,6 +163,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonPreviousPage.CanFocus = true;
 			this.buttonPreviousPage.Name = "buttonPreviousPage";
 			this.buttonPreviousPage.UseUnderline = true;
+			this.buttonPreviousPage.FocusOnClick = false;
 			this.buttonPreviousPage.Label = global::Mono.Unix.Catalog.GetString ("<");
 			this.hboxCenter.Add (this.buttonPreviousPage);
 			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonPreviousPage]));
@@ -192,6 +197,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonNextPage.CanFocus = true;
 			this.buttonNextPage.Name = "buttonNextPage";
 			this.buttonNextPage.UseUnderline = true;
+			this.buttonNextPage.FocusOnClick = false;
 			this.buttonNextPage.Label = global::Mono.Unix.Catalog.GetString (">");
 			this.hboxCenter.Add (this.buttonNextPage);
 			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonNextPage]));
@@ -204,6 +210,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonLastPage.CanFocus = true;
 			this.buttonLastPage.Name = "buttonLastPage";
 			this.buttonLastPage.UseUnderline = true;
+			this.buttonLastPage.FocusOnClick = false;
 			this.buttonLastPage.Label = global::Mono.Unix.Catalog.GetString (">>|");
 			this.hboxCenter.Add (this.buttonLastPage);
 			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hboxCenter [this.buttonLastPage]));
@@ -235,6 +242,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonDownloadSelection.CanFocus = true;
 			this.buttonDownloadSelection.Name = "buttonDownloadSelection";
 			this.buttonDownloadSelection.UseUnderline = true;
+			this.buttonDownloadSelection.FocusOnClick = false;
 			this.buttonDownloadSelection.Label = global::Mono.Unix.Catalog.GetString ("Selection");
 			this.hboxRight.Add (this.buttonDownloadSelection);
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hboxRight [this.buttonDownloadSelection]));
@@ -247,6 +255,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonDownloadThisPage.CanFocus = true;
 			this.buttonDownloadThisPage.Name = "buttonDownloadThisPage";
 			this.buttonDownloadThisPage.UseUnderline = true;
+			this.buttonDownloadThisPage.FocusOnClick = false;
 			this.buttonDownloadThisPage.Label = global::Mono.Unix.Catalog.GetString ("This Page");
 			this.hboxRight.Add (this.buttonDownloadThisPage);
 			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hboxRight [this.buttonDownloadThisPage]));
@@ -259,6 +268,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonDownloadAllPages.CanFocus = true;
 			this.buttonDownloadAllPages.Name = "buttonDownloadAllPages";
 			this.buttonDownloadAllPages.UseUnderline = true;
+			this.buttonDownloadAllPages.FocusOnClick = false;
 			this.buttonDownloadAllPages.Label = global::Mono.Unix.Catalog.GetString ("All Pages");
 			this.hboxRight.Add (this.buttonDownloadAllPages);
 			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hboxRight [this.buttonDownloadAllPages]));
@@ -283,6 +293,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonBack.Clicked += new global::System.EventHandler (this.buttonBackClick);
+			this.togglebuttonShowAllPhotos.Clicked += new global::System.EventHandler (this.togglebuttonShowAllPhotosClick);
 			this.buttonSelectAll.Clicked += new global::System.EventHandler (this.buttonSelectAllClick);
 			this.buttonUnSelectAll.Clicked += new global::System.EventHandler (this.buttonUnSelectAllClick);
 			this.buttonFirstPage.Clicked += new global::System.EventHandler (this.buttonFirstPageClick);
