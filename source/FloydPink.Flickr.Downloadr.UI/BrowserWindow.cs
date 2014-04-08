@@ -118,11 +118,12 @@ namespace FloydPink.Flickr.Downloadr
 			set {
 				_photos = value;
 				PropertyChanged.Notify (() => AreAllPagePhotosSelected);
-				_doNotSyncSelectedItems = true;
-				//PagePhotoList.DataContext = Photos;
-				SelectAlreadySelectedPhotos ();
-				_doNotSyncSelectedItems = false;
-				UpdateUI ();
+				Application.Invoke (delegate {
+					_doNotSyncSelectedItems = true;
+					UpdateUI ();
+					SelectAlreadySelectedPhotos ();
+					_doNotSyncSelectedItems = false;
+				});
 			}
 		}
 
@@ -211,27 +212,26 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			if (!AllSelectedPhotos.ContainsKey (Page) || AllSelectedPhotos [Page].Count <= 0)
 				return;
+
 			List<Photo> photos = Photos.Where (photo => AllSelectedPhotos [Page].ContainsKey (photo.Id)).ToList ();
-			foreach (Photo photo in photos) {
-				//((ListBoxItem) PagePhotoList.ItemContainerGenerator.ContainerFromItem(photo)).IsSelected = true;
-			}
+			SelectPhotos (photos);
 		}
 
 		private async void DownloadSelectionButtonClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.DownloadSelection ();
 		}
 
 		private async void DownloadThisPageButtonClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.DownloadThisPage ();
 		}
 
 		private async void DownloadAllPagesButtonClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.DownloadAllPages ();
 		}
 
@@ -252,14 +252,12 @@ namespace FloydPink.Flickr.Downloadr
 
 		void UpdateUI ()
 		{
-			Application.Invoke (delegate {
-				labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
-					FirstPhoto, LastPhoto, Total);
-				labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
-				buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
-				buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
-				SetupTheImageGrid (Photos);
-			});
+			labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
+				FirstPhoto, LastPhoto, Total);
+			labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
+			buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
+			buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
+			SetupTheImageGrid (Photos);
 		}
 
 		protected void buttonBackClick (object sender, EventArgs e)
@@ -271,37 +269,37 @@ namespace FloydPink.Flickr.Downloadr
 
 		protected async void buttonNextPageClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.NavigateTo (PhotoPage.Next);
 		}
 
 		protected async void buttonLastPageClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.NavigateTo (PhotoPage.Last);
 		}
 
 		protected async void buttonFirstPageClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.NavigateTo (PhotoPage.First);
 		}
 
 		protected async void buttonPreviousPageClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			await _presenter.NavigateTo (PhotoPage.Previous);
 		}
 
 		protected void buttonSelectAllClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			SetSelectionOnAllImages (true);
 		}
 
 		protected void buttonUnSelectAllClick (object sender, EventArgs e)
 		{
-			LoseFocus((Button) sender);
+			LoseFocus ((Button)sender);
 			SetSelectionOnAllImages (false);
 		}
 

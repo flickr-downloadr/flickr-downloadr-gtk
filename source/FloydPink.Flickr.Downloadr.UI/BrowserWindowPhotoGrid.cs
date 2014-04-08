@@ -12,6 +12,9 @@ namespace FloydPink.Flickr.Downloadr
 
 		void OnSelectionChanged (object sender, EventArgs e)
 		{
+			if (_doNotSyncSelectedItems) {
+				return;
+			}
 			var cachedImage = (CachedImage)sender;
 
 			if (!AllSelectedPhotos.ContainsKey(Page)) {
@@ -104,6 +107,31 @@ namespace FloydPink.Flickr.Downloadr
 				}
 			}
 		}
+
+		void FindAndSelectPhoto (Photo photo)
+		{
+			foreach (var box in vboxPhotos.AllChildren) {
+				var hbox = box as HBox;
+				if (hbox == null) {
+					continue;
+				}
+				foreach (var image in hbox.AllChildren) {
+					var cachedImage = image as CachedImage;
+					if (cachedImage != null && cachedImage.Photo.Id == photo.Id) {
+						cachedImage.IsSelected = true;
+						return;
+					}
+				}
+			}
+		}
+
+		void SelectPhotos (List<Photo> photos)
+		{
+			foreach (var photo in photos) {
+				FindAndSelectPhoto (photo);
+			}
+		}
+
 	}
 }
 
