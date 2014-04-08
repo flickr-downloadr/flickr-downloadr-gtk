@@ -4,7 +4,7 @@ using FloydPink.Flickr.Downloadr.Model;
 namespace FloydPink.Flickr.Downloadr
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class CachedImage : Gtk.Bin
+	public partial class PhotoWidget : Gtk.Bin
 	{
 		string _imageUrl;
 
@@ -48,7 +48,7 @@ namespace FloydPink.Flickr.Downloadr
 
 		public event EventHandler SelectionChanged;
 
-		public CachedImage ()
+		public PhotoWidget ()
 		{
 			this.Build ();
 		}

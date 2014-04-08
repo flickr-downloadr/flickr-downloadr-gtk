@@ -6,6 +6,7 @@ using Gtk;
 
 namespace FloydPink.Flickr.Downloadr
 {
+	// This is another partial class module for the BrowserWindow class
 	public partial class BrowserWindow
 	{
 		private const int NUMBER_OF_PHOTOS_IN_A_ROW = 5;
@@ -15,7 +16,7 @@ namespace FloydPink.Flickr.Downloadr
 			if (_doNotFireOnSelectionChanged) {
 				return;
 			}
-			var cachedImage = (CachedImage)sender;
+			var cachedImage = (PhotoWidget)sender;
 
 			if (!AllSelectedPhotos.ContainsKey (Page)) {
 				AllSelectedPhotos [Page] = new Dictionary<string, Photo> ();
@@ -34,7 +35,7 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			Box.BoxChild hboxChild;
 			if (photo != null) {
-				var imageCell = new CachedImage ();
+				var imageCell = new PhotoWidget ();
 				imageCell.Name = string.Format ("{0}Image{1}", rowId, j.ToString ());
 				imageCell.ImageUrl = photo.LargeSquare150X150Url;
 				imageCell.Photo = photo;
@@ -102,7 +103,7 @@ namespace FloydPink.Flickr.Downloadr
 					continue;
 				}
 				foreach (var image in hbox.AllChildren) {
-					var cachedImage = image as CachedImage;
+					var cachedImage = image as PhotoWidget;
 					if (cachedImage != null) {
 						cachedImage.IsSelected = selected;
 					}
@@ -118,7 +119,7 @@ namespace FloydPink.Flickr.Downloadr
 					continue;
 				}
 				foreach (var image in hbox.AllChildren) {
-					var cachedImage = image as CachedImage;
+					var cachedImage = image as PhotoWidget;
 					if (cachedImage != null && cachedImage.Photo.Id == photo.Id) {
 						cachedImage.IsSelected = true;
 						return;
@@ -135,4 +136,3 @@ namespace FloydPink.Flickr.Downloadr
 		}
 	}
 }
-

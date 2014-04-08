@@ -1704,7 +1704,7 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.CachedImage" design-size="466 300">
+  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.PhotoWidget" design-size="466 300">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
