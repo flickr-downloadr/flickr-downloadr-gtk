@@ -30,7 +30,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.frameMain = new global::Gtk.Frame ();
 			this.frameMain.Name = "frameMain";
 			this.frameMain.ShadowType = ((global::Gtk.ShadowType)(2));
-			this.frameMain.LabelXalign = 0.9F;
+			this.frameMain.LabelXalign = 0.95F;
 			// Container child frameMain.Gtk.Container+ContainerChild
 			this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 			this.GtkAlignment.Name = "GtkAlignment";
@@ -46,6 +46,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.frameMain.Add (this.GtkAlignment);
 			this.frameLabel = new global::Gtk.Label ();
 			this.frameLabel.Name = "frameLabel";
+			this.frameLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>");
 			this.frameLabel.UseMarkup = true;
 			this.frameMain.LabelWidget = this.frameLabel;
 			this.hboxContainer.Add (this.frameMain);

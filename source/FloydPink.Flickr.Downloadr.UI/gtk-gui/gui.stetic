@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../../bin/Debug/FloydPink.Flickr.Downloadr.exe" internal="true" />
+    <widget-library name="../../bin/Release/FloydPink.Flickr.Downloadr.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.LoginWindow" design-size="495 319">
     <property name="MemberName" />
@@ -1690,7 +1690,7 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.CachedImage" design-size="300 300">
+  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.CachedImage" design-size="466 300">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -1705,7 +1705,7 @@ Restricted</property>
               <widget class="Gtk.Frame" id="frameMain">
                 <property name="MemberName" />
                 <property name="ShadowType">Out</property>
-                <property name="LabelXalign">0.9</property>
+                <property name="LabelXalign">0.95</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment">
                     <property name="MemberName" />
@@ -1728,6 +1728,7 @@ Restricted</property>
                 <child>
                   <widget class="Gtk.Label" id="frameLabel">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;span color="silver" size="x-large"&gt;&lt;b&gt;&lt;big&gt; ☆ &lt;/big&gt;&lt;/b&gt;&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
