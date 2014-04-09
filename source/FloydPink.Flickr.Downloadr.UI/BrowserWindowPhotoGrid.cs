@@ -28,7 +28,7 @@ namespace FloydPink.Flickr.Downloadr
 				AllSelectedPhotos [Page].Remove (cachedImage.Photo.Id);
 			}
 
-			UpdateButtons ();
+			UpdateSelectionButtons ();
 		}
 
 		HBox AddImageToRow (HBox hboxPhotoRow, int j, Photo photo, string rowId)
@@ -70,11 +70,13 @@ namespace FloydPink.Flickr.Downloadr
 				}
 			}
 
-			this.vboxPhotos.Add (hboxPhotoRow);
-			Box.BoxChild vboxChild = ((Box.BoxChild)(this.vboxPhotos [hboxPhotoRow]));
-			vboxChild.Position = i;
-			vboxChild.Padding = (uint)10;
-			vboxPhotos.ShowAll ();
+			Application.Invoke (delegate {
+				this.vboxPhotos.Add (hboxPhotoRow);
+				Box.BoxChild vboxChild = ((Box.BoxChild)(this.vboxPhotos [hboxPhotoRow]));
+				vboxChild.Position = i;
+				vboxChild.Padding = (uint)10;
+				vboxPhotos.ShowAll ();
+			});
 		}
 
 		void SetupTheImageGrid (IEnumerable<Photo> photos)
@@ -86,7 +88,9 @@ namespace FloydPink.Flickr.Downloadr
 			numberOfRows = numberOfRows < 3 ? 3 : numberOfRows;	// render a minimum of 3 rows
 
 			foreach (Widget child in this.vboxPhotos.Children) {
-				this.vboxPhotos.Remove (child);
+				Application.Invoke (delegate {
+					this.vboxPhotos.Remove (child);
+				});
 			}
 
 			for (int i = 0; i < numberOfRows; i++) {

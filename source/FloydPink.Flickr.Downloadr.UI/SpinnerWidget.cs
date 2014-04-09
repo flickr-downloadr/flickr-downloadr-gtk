@@ -24,10 +24,8 @@ namespace FloydPink.Flickr.Downloadr
 			}
 			set {
 				_percentDone = value;
-				if (!string.IsNullOrEmpty (_percentDone)) {
-					labelPercent.LabelProp = _percentDone;
-					labelPercent.Visible = true;
-				}
+				labelPercent.LabelProp = _percentDone;
+				labelPercent.Visible = !string.IsNullOrEmpty (_percentDone);
 			}
 		}
 
@@ -38,10 +36,8 @@ namespace FloydPink.Flickr.Downloadr
 			}
 			set {
 				_operation = value;
-				if (!string.IsNullOrEmpty (_operation)) {
-					labelOperation.LabelProp = _operation;
-					labelOperation.Visible = true;
-				}
+				labelOperation.LabelProp = _operation;
+				labelOperation.Visible = !string.IsNullOrEmpty (_operation);
 			}
 		}
 

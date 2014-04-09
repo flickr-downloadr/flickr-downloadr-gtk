@@ -130,9 +130,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
             if (!string.IsNullOrWhiteSpace(warningFormat))
             {
                 lotOfPhotosWarningFailed = _view.ShowWarning(string.Format(warningFormat,
-                    photosList.Count()
-                        .ToString(
-                            CultureInfo.InvariantCulture)));
+                    photosList.Count().ToString(CultureInfo.InvariantCulture)));
             }
 
             if (!lotOfPhotosWarningFailed)

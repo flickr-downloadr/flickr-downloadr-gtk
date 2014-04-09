@@ -107,9 +107,9 @@ namespace FloydPink.Flickr.Downloadr
 			set {
 				_photos = value;
 				PropertyChanged.Notify (() => AreAllPagePhotosSelected);
+				UpdateUI ();
 				Application.Invoke (delegate {
 					_doNotFireOnSelectionChanged = true;
-					UpdateUI ();
 					SelectAlreadySelectedPhotos ();
 					_doNotFireOnSelectionChanged = false;
 				});
@@ -199,51 +199,6 @@ namespace FloydPink.Flickr.Downloadr
 
 		#endregion
 
-		private void SelectAlreadySelectedPhotos ()
-		{
-			if (!AllSelectedPhotos.ContainsKey (Page) || AllSelectedPhotos [Page].Count <= 0)
-				return;
-
-			List<Photo> photos = Photos.Where (photo => AllSelectedPhotos [Page].ContainsKey (photo.Id)).ToList ();
-			SelectPhotos (photos);
-		}
-
-		private void LoseFocus (Button element)
-		{
-			if (element.HasFocus) {
-				this.Focus = buttonBack;
-			}
-		}
-
-		private void ClearSelectedPhotos ()
-		{
-			AllSelectedPhotos.Clear ();
-			SetSelectionOnAllImages (false);
-			PropertyChanged.Notify (() => SelectedPhotosExist);
-			PropertyChanged.Notify (() => SelectedPhotosCountText);
-		}
-
-		void UpdateButtons ()
-		{
-			buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
-			buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
-
-			buttonDownloadSelection.Label = SelectedPhotosCountText;
-			buttonDownloadSelection.Sensitive = SelectedPhotosExist;
-		}
-
-		void UpdateUI ()
-		{
-			UpdateButtons ();
-			labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
-				FirstPhoto, LastPhoto, Total);
-			labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
-			buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
-			buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
-			scrolledwindowPhotos.Vadjustment.Value = 0;
-			SetupTheImageGrid (Photos);
-		}
-
 		void AddSpinnerWidget ()
 		{
 			spinner = new SpinnerWidget () {
@@ -261,6 +216,56 @@ namespace FloydPink.Flickr.Downloadr
 			Box.BoxChild spinnerSlot = ((Box.BoxChild)(this.hboxSpinner [spinner]));
 			spinnerSlot.Position = 0;
 			spinnerSlot.Expand = true;
+		}
+
+		void SelectAlreadySelectedPhotos ()
+		{
+			if (!AllSelectedPhotos.ContainsKey (Page) || AllSelectedPhotos [Page].Count <= 0)
+				return;
+
+			List<Photo> photos = Photos.Where (photo => AllSelectedPhotos [Page].ContainsKey (photo.Id)).ToList ();
+			SelectPhotos (photos);
+		}
+
+		void LoseFocus (Button element)
+		{
+			if (element.HasFocus) {
+				this.Focus = buttonBack;
+			}
+		}
+
+		void ClearSelectedPhotos ()
+		{
+			AllSelectedPhotos.Clear ();
+			SetSelectionOnAllImages (false);
+			PropertyChanged.Notify (() => SelectedPhotosExist);
+			PropertyChanged.Notify (() => SelectedPhotosCountText);
+		}
+
+		void UpdateSelectionButtons ()
+		{
+			buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
+			buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
+
+			buttonDownloadSelection.Label = SelectedPhotosCountText;
+			buttonDownloadSelection.Sensitive = SelectedPhotosExist;
+		}
+
+		void UpdateUI ()
+		{
+			Application.Invoke (delegate {
+				UpdateSelectionButtons();
+
+				labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
+					FirstPhoto, LastPhoto, Total);
+				labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
+
+				buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
+				buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
+
+				scrolledwindowPhotos.Vadjustment.Value = 0;
+			});
+			SetupTheImageGrid (Photos);
 		}
 
 		#region "Button Events"
