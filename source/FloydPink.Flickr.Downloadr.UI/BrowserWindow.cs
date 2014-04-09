@@ -234,6 +234,7 @@ namespace FloydPink.Flickr.Downloadr
 			labelPages.Markup = string.Format ("<small>{0} of {1} Pages</small>", Page, Pages);
 			buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
 			buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
+			scrolledwindowPhotos.Vadjustment.Value = 0;
 			SetupTheImageGrid (Photos);
 		}
 
