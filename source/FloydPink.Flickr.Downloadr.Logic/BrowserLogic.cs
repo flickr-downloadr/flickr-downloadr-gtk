@@ -13,34 +13,31 @@ using FloydPink.Flickr.Downloadr.OAuth;
 
 namespace FloydPink.Flickr.Downloadr.Logic
 {
-    public class BrowserLogic : IBrowserLogic
-    {
-        private readonly IDownloadLogic _downloadLogic;
-        private readonly IOAuthManager _oAuthManager;
+	public class BrowserLogic : IBrowserLogic
+	{
+		private readonly IDownloadLogic _downloadLogic;
+		private readonly IOAuthManager _oAuthManager;
 
-        public BrowserLogic(IOAuthManager oAuthManager, IDownloadLogic downloadLogic)
-        {
-            _oAuthManager = oAuthManager;
-            _downloadLogic = downloadLogic;
-        }
+		public BrowserLogic (IOAuthManager oAuthManager, IDownloadLogic downloadLogic)
+		{
+			_oAuthManager = oAuthManager;
+			_downloadLogic = downloadLogic;
+		}
 
-        #region IBrowserLogic Members
+		#region IBrowserLogic Members
 
-        public async Task<PhotosResponse> GetPhotosAsync(string methodName, User user, Preferences preferences, int page,
-            IProgress<ProgressUpdate> progress)
-        {
-            var progressUpdate = new ProgressUpdate
-            {
-                OperationText = "Getting list of photos...",
-                ShowPercent = false
-            };
-            progress.Report(progressUpdate);
+		public async Task<PhotosResponse> GetPhotosAsync (string methodName, User user, Preferences preferences, int page,
+		                                                       IProgress<ProgressUpdate> progress)
+		{
+			var progressUpdate = new ProgressUpdate {
+				OperationText = "Getting list of photos...",
+				ShowPercent = false
+			};
+			progress.Report (progressUpdate);
 
-            var extraParams = new Dictionary<string, string>
-            {
-                {ParameterNames.UserId, user.UserNsId},
-                {ParameterNames.SafeSearch, preferences.SafetyLevel},
-                {
+			var extraParams = new Dictionary<string, string> {
+				{ ParameterNames.UserId, user.UserNsId },
+				{ ParameterNames.SafeSearch, preferences.SafetyLevel }, {
                     ParameterNames.PerPage,
                     preferences.PhotosPerPage.ToString(CultureInfo.InvariantCulture)
                 },
