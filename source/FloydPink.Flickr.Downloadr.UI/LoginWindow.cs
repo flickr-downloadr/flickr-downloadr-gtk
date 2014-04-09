@@ -120,7 +120,6 @@ namespace FloydPink.Flickr.Downloadr
 
 		void AddSpinnerControl ()
 		{
-			// Container child vbox2.Gtk.Box+BoxChild
 			spinner = new SpinnerWidget () {
 				Name = "loginSpinner",
 				Cancellable = true,

@@ -24,7 +24,7 @@ namespace FloydPink.Flickr.Downloadr
 			}
 			set {
 				_percentDone = value;
-				if (string.IsNullOrEmpty (_percentDone)) {
+				if (!string.IsNullOrEmpty (_percentDone)) {
 					labelPercent.LabelProp = _percentDone;
 					labelPercent.Visible = true;
 				}

@@ -27,6 +27,7 @@ namespace FloydPink.Flickr.Downloadr
 		private string _perPage;
 		private IEnumerable<Photo> _photos;
 		private string _total;
+		private SpinnerWidget spinner;
 
 		public BrowserWindow (User user, Preferences preferences) : 
 			base (WindowType.Toplevel)
@@ -38,7 +39,7 @@ namespace FloydPink.Flickr.Downloadr
 			User = user;
 			AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>> ();
 
-//			SpinnerInner.SpinnerCanceled += (sender, args) => _presenter.CancelDownload();
+			AddSpinnerWidget ();
 
 			labelPhotos.Markup = "<small>                       </small>";
 			labelPages.Markup = "<small>                       </small>";
@@ -158,15 +159,20 @@ namespace FloydPink.Flickr.Downloadr
 
 		public void ShowSpinner (bool show)
 		{
-//			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
-//			Spinner.Dispatch(s => s.Visibility = visibility);
+			Application.Invoke (delegate {
+				hboxButtons.Sensitive = !show;
+				scrolledwindowPhotos.Visible = !show;
+				spinner.Visible = show;
+			});
 		}
 
 		public void UpdateProgress (string percentDone, string operationText, bool cancellable)
 		{
-//			SpinnerInner.Dispatch(sc => sc.Cancellable = cancellable);
-//			SpinnerInner.Dispatch(sc => sc.OperationText = operationText);
-//			SpinnerInner.Dispatch(sc => sc.PercentDone = percentDone);
+			Application.Invoke (delegate {
+				spinner.Cancellable = cancellable;
+				spinner.Operation = operationText;
+				spinner.PercentDone = percentDone;
+			});
 		}
 
 		public bool ShowWarning (string warningMessage)
@@ -238,6 +244,27 @@ namespace FloydPink.Flickr.Downloadr
 			SetupTheImageGrid (Photos);
 		}
 
+		void AddSpinnerWidget ()
+		{
+			spinner = new SpinnerWidget () {
+				Name = "browserSpinner",
+				Cancellable = true,
+				Operation = "Please wait...",
+				Visible = false
+			};
+			spinner.SpinnerCanceled += (object sender, EventArgs e) => {
+				scrolledwindowPhotos.Visible = true;
+				hboxButtons.Sensitive = true;
+				_presenter.CancelDownload ();
+			};
+			this.hboxSpinner.Add (spinner);
+			Box.BoxChild spinnerSlot = ((Box.BoxChild)(this.hboxSpinner [spinner]));
+			spinnerSlot.Position = 0;
+			spinnerSlot.Expand = true;
+		}
+
+		#region "Button Events"
+
 		protected void buttonBackClick (object sender, EventArgs e)
 		{
 			var loginWindow = new LoginWindow { User = User };
@@ -308,6 +335,8 @@ namespace FloydPink.Flickr.Downloadr
 			LoseFocus ((Button)sender);
 			await _presenter.DownloadAllPages ();
 		}
+
+		#endregion
 	}
 }
 
