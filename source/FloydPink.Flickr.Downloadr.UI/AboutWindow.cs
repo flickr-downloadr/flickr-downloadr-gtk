@@ -11,6 +11,9 @@ namespace FloydPink.Flickr.Downloadr
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+
+			labelLink.TooltipText = "http://flickrdownloadr.com";
+
 			Title += VersionHelper.GetVersionString ();
 			labelVersion.LabelProp = string.Format ("<big><big>flickr downloadr {0}</big></big>",
 				VersionHelper.GetVersionString ());

@@ -1,5 +1,6 @@
 ﻿using System;
 using FloydPink.Flickr.Downloadr.Model;
+using Gtk;
 
 namespace FloydPink.Flickr.Downloadr
 {
@@ -51,11 +52,23 @@ namespace FloydPink.Flickr.Downloadr
 		public PhotoWidget ()
 		{
 			this.Build ();
+			this.HasTooltip = true;
+			this.QueryTooltip += (object o, Gtk.QueryTooltipArgs args) => {
+				var photo = ((PhotoWidget)o).Photo;
+				SetupOnHoverImage(args, photo);
+			};
 		}
 
 		protected void imageClick (object o, Gtk.ButtonPressEventArgs args)
 		{
 			IsSelected = !IsSelected;
+		}
+
+		void SetupOnHoverImage (QueryTooltipArgs args, Photo photo)
+		{
+			var customTooltip = new PreviewPhotoWidget(photo);
+			args.Tooltip.Custom = customTooltip;
+			args.RetVal = true;
 		}
 	}
 }

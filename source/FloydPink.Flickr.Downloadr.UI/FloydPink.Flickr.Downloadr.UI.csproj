@@ -84,11 +84,13 @@
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.BrowserWindow.cs" />
     <Compile Include="CachedImage\FileCache.cs" />
     <Compile Include="CachedImage\HttpHelper.cs" />
-    <Compile Include="CachedImage\WebResponseExtension.cs" />
     <Compile Include="CachedImage\ImageExtension.cs" />
     <Compile Include="BrowserWindowPhotoGrid.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.PhotoWidget.cs" />
     <Compile Include="PhotoWidget.cs" />
+    <Compile Include="PreviewPhotoWidget.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.PreviewPhotoWidget.cs" />
+    <Compile Include="CachedImage\WebResponseExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
