@@ -16,6 +16,8 @@ namespace FloydPink.Flickr.Downloadr
 		private readonly ILoginPresenter _presenter;
 		private User _user;
 
+		private SpinnerWidget spinner;
+
 		public LoginWindow ()
 			: this (new User ())
 		{
@@ -27,6 +29,8 @@ namespace FloydPink.Flickr.Downloadr
 			this.Build ();
 			Title += VersionHelper.GetVersionString ();
 			User = user;
+
+			AddSpinnerControl ();
 
 			_presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter> (this);
 			_presenter.InitializeScreen ();
@@ -82,8 +86,8 @@ namespace FloydPink.Flickr.Downloadr
 		public void ShowSpinner (bool show)
 		{
 			Application.Invoke (delegate {
-//			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
-//			Spinner.Dispatch(s => s.Visibility = visibility);
+				hboxLogin.Sensitive = !show;
+				spinner.Visible = show;
 			});
 		}
 
@@ -113,6 +117,28 @@ namespace FloydPink.Flickr.Downloadr
 				imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
 			});
 		}
+
+		void AddSpinnerControl ()
+		{
+			// Container child vbox2.Gtk.Box+BoxChild
+			spinner = new SpinnerWidget () {
+				Name = "loginSpinner",
+				Cancellable = true,
+				Operation = "Please wait...",
+				Visible = false
+			};
+			spinner.SpinnerCanceled += (object sender, EventArgs e) => {
+				Application.Invoke(delegate {
+					hboxLogin.Sensitive = true;
+				});
+			};
+			this.vbox2.Add (spinner);
+
+			Box.BoxChild spinnerSlot = ((Box.BoxChild)(this.vbox2 [spinner]));
+			spinnerSlot.Position = 0;
+			spinnerSlot.Expand = true;
+		}
+
 		//		private void EditLogConfigClick(object sender, RoutedEventArgs e)
 		//		{
 		//			OpenInNotepad(Bootstrapper.GetLogConfigFile().FullName);

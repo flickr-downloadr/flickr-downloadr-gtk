@@ -63,6 +63,7 @@
     <EmbeddedResource Include="Assets\logo-Small.png" />
     <EmbeddedResource Include="Assets\logo-Small-About.png" />
     <EmbeddedResource Include="Assets\fatal-error.png" />
+    <EmbeddedResource Include="Assets\loading.gif" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="PreviewPhotoWidget.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.PreviewPhotoWidget.cs" />
     <Compile Include="CachedImage\WebResponseExtension.cs" />
+    <Compile Include="SpinnerWidget.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.SpinnerWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
