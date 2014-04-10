@@ -34,15 +34,14 @@ namespace FloydPink.Flickr.Downloadr
 		{
 			this.Build ();
 
+			AddTooltips ();
+
 			Title += VersionHelper.GetVersionString ();
 			Preferences = preferences;
 			User = user;
 			AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>> ();
 
 			AddSpinnerWidget ();
-
-			labelPhotos.Markup = "<small>                       </small>";
-			labelPages.Markup = "<small>                       </small>";
 
 			_presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter> (this);
 			_presenter.InitializePhotoset ();
@@ -198,6 +197,21 @@ namespace FloydPink.Flickr.Downloadr
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		#endregion
+
+		void AddTooltips ()
+		{
+			buttonBack.TooltipText = "Close this window and go back to the login window";
+			togglebuttonShowAllPhotos.TooltipText = "Click to toggle seeing all the photos (including those marked private) or only the public ones";
+			buttonSelectAll.TooltipText = "Select all the photos on this page";
+			buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
+			buttonFirstPage.TooltipText = "Go to the first page of photos";
+			buttonPreviousPage.TooltipText = "Go to the previous page of photos";
+			buttonNextPage.TooltipText = "Go to the next page of photos";
+			buttonLastPage.TooltipText = "Go the last page of photos";
+			buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";
+			buttonDownloadThisPage.TooltipText = "Download all the photos from this page";
+			buttonDownloadAllPages.TooltipText = "Download all the photos from all the pages";
+		}
 
 		void AddSpinnerWidget ()
 		{

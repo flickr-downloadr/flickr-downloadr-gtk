@@ -27,6 +27,9 @@ namespace FloydPink.Flickr.Downloadr
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+
+			AddTooltips ();
+
 			Title += VersionHelper.GetVersionString ();
 			User = user;
 
@@ -116,6 +119,14 @@ namespace FloydPink.Flickr.Downloadr
 					return;
 				imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
 			});
+		}
+
+		void AddTooltips ()
+		{
+			buttonLogin.TooltipText = "Log in to flickr using OAuth";
+			buttonPrefs.TooltipText = "Update the Preferences";
+			buttonLogout.TooltipText = "Log out from the currently logged in account";
+			buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
 		}
 
 		void AddSpinnerControl ()

@@ -46,10 +46,15 @@ namespace FloydPink.Flickr.Downloadr
 		public SpinnerWidget ()
 		{
 			this.Build ();
-			imageLoading.PixbufAnimation = new Gdk.PixbufAnimation (Assembly.GetAssembly (typeof(SpinnerWidget)), "FloydPink.Flickr.Downloadr.Assets.loading.gif");
+
+			imageLoading.PixbufAnimation = new Gdk.PixbufAnimation (Assembly.GetAssembly (typeof(SpinnerWidget)),
+				"FloydPink.Flickr.Downloadr.Assets.loading.gif");
+
 			labelOperation.Visible = false;
 			labelPercent.Visible = false;
 			buttonCancel.Visible = false;
+
+			buttonCancel.TooltipText = "Cancel the operation";
 		}
 
 		protected void buttonCancelClick (object sender, EventArgs e)

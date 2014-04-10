@@ -11,16 +11,16 @@ namespace FloydPink.Flickr.Downloadr
 		private global::Gtk.Alignment alignment4;
 		private global::Gtk.VBox vbox11;
 		private global::Gtk.VBox vbox12;
-		private global::Gtk.Label label4;
-		private global::Gtk.Label label5;
-		private global::Gtk.Label label6;
-		private global::Gtk.Label label7;
+		private global::Gtk.Label labelFilename;
+		private global::Gtk.Label labelDownloadLocation;
+		private global::Gtk.Label labelDownloadSize;
+		private global::Gtk.Label labelMetadata;
 		private global::Gtk.Label label9;
-		private global::Gtk.Label label13;
-		private global::Gtk.Label label12;
-		private global::Gtk.Label label11;
-		private global::Gtk.Label label10;
-		private global::Gtk.Label label8;
+		private global::Gtk.Label labelCacheSize;
+		private global::Gtk.Label labelCacheLocation;
+		private global::Gtk.Label labelTags;
+		private global::Gtk.Label labelSafetyLevel;
+		private global::Gtk.Label labelPhotosPerPage;
 		private global::Gtk.VBox vbox13;
 		private global::Gtk.HBox hbox3;
 		private global::Gtk.RadioButton radioPhotoId;
@@ -36,7 +36,7 @@ namespace FloydPink.Flickr.Downloadr
 		private global::Gtk.CheckButton checkbuttonTitle;
 		private global::Gtk.Fixed fixed5;
 		private global::Gtk.HBox hbox7;
-		private global::Gtk.Label labelCacheSize;
+		private global::Gtk.Label labelCacheSizeValue;
 		private global::Gtk.Button buttonEmptyCache;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Entry entryCacheLocation;
@@ -108,36 +108,36 @@ namespace FloydPink.Flickr.Downloadr
 			this.vbox12.Homogeneous = true;
 			this.vbox12.Spacing = 6;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label4 = new global::Gtk.Label ();
-			this.label4.Name = "label4";
-			this.label4.Xalign = 0F;
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Filename:");
-			this.vbox12.Add (this.label4);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label4]));
+			this.labelFilename = new global::Gtk.Label ();
+			this.labelFilename.Name = "labelFilename";
+			this.labelFilename.Xalign = 0F;
+			this.labelFilename.LabelProp = global::Mono.Unix.Catalog.GetString ("Filename:");
+			this.vbox12.Add (this.labelFilename);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelFilename]));
 			w4.Position = 0;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label5 = new global::Gtk.Label ();
-			this.label5.Name = "label5";
-			this.label5.Xalign = 0F;
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Download Location:");
-			this.vbox12.Add (this.label5);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label5]));
+			this.labelDownloadLocation = new global::Gtk.Label ();
+			this.labelDownloadLocation.Name = "labelDownloadLocation";
+			this.labelDownloadLocation.Xalign = 0F;
+			this.labelDownloadLocation.LabelProp = global::Mono.Unix.Catalog.GetString ("Download Location:");
+			this.vbox12.Add (this.labelDownloadLocation);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelDownloadLocation]));
 			w5.Position = 1;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label6 = new global::Gtk.Label ();
-			this.label6.Name = "label6";
-			this.label6.Xalign = 0F;
-			this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("Download Size:");
-			this.vbox12.Add (this.label6);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label6]));
+			this.labelDownloadSize = new global::Gtk.Label ();
+			this.labelDownloadSize.Name = "labelDownloadSize";
+			this.labelDownloadSize.Xalign = 0F;
+			this.labelDownloadSize.LabelProp = global::Mono.Unix.Catalog.GetString ("Download Size:");
+			this.vbox12.Add (this.labelDownloadSize);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelDownloadSize]));
 			w6.Position = 2;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label7 = new global::Gtk.Label ();
-			this.label7.Name = "label7";
-			this.label7.Xalign = 0F;
-			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Metadata:");
-			this.vbox12.Add (this.label7);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label7]));
+			this.labelMetadata = new global::Gtk.Label ();
+			this.labelMetadata.Name = "labelMetadata";
+			this.labelMetadata.Xalign = 0F;
+			this.labelMetadata.LabelProp = global::Mono.Unix.Catalog.GetString ("Metadata:");
+			this.vbox12.Add (this.labelMetadata);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelMetadata]));
 			w7.Position = 3;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.label9 = new global::Gtk.Label ();
@@ -147,48 +147,48 @@ namespace FloydPink.Flickr.Downloadr
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label9]));
 			w8.Position = 4;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label13 = new global::Gtk.Label ();
-			this.label13.Name = "label13";
-			this.label13.Xalign = 0F;
-			this.label13.LabelProp = global::Mono.Unix.Catalog.GetString ("Cache Size:");
-			this.vbox12.Add (this.label13);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label13]));
+			this.labelCacheSize = new global::Gtk.Label ();
+			this.labelCacheSize.Name = "labelCacheSize";
+			this.labelCacheSize.Xalign = 0F;
+			this.labelCacheSize.LabelProp = global::Mono.Unix.Catalog.GetString ("Cache Size:");
+			this.vbox12.Add (this.labelCacheSize);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelCacheSize]));
 			w9.PackType = ((global::Gtk.PackType)(1));
 			w9.Position = 5;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label12 = new global::Gtk.Label ();
-			this.label12.Name = "label12";
-			this.label12.Xalign = 0F;
-			this.label12.LabelProp = global::Mono.Unix.Catalog.GetString ("Cache Location:");
-			this.vbox12.Add (this.label12);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label12]));
+			this.labelCacheLocation = new global::Gtk.Label ();
+			this.labelCacheLocation.Name = "labelCacheLocation";
+			this.labelCacheLocation.Xalign = 0F;
+			this.labelCacheLocation.LabelProp = global::Mono.Unix.Catalog.GetString ("Cache Location:");
+			this.vbox12.Add (this.labelCacheLocation);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelCacheLocation]));
 			w10.PackType = ((global::Gtk.PackType)(1));
 			w10.Position = 6;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label11 = new global::Gtk.Label ();
-			this.label11.Name = "label11";
-			this.label11.Xalign = 0F;
-			this.label11.LabelProp = global::Mono.Unix.Catalog.GetString ("Tags:");
-			this.vbox12.Add (this.label11);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label11]));
+			this.labelTags = new global::Gtk.Label ();
+			this.labelTags.Name = "labelTags";
+			this.labelTags.Xalign = 0F;
+			this.labelTags.LabelProp = global::Mono.Unix.Catalog.GetString ("Tags:");
+			this.vbox12.Add (this.labelTags);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelTags]));
 			w11.PackType = ((global::Gtk.PackType)(1));
 			w11.Position = 7;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label10 = new global::Gtk.Label ();
-			this.label10.Name = "label10";
-			this.label10.Xalign = 0F;
-			this.label10.LabelProp = global::Mono.Unix.Catalog.GetString ("Safety Level:");
-			this.vbox12.Add (this.label10);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label10]));
+			this.labelSafetyLevel = new global::Gtk.Label ();
+			this.labelSafetyLevel.Name = "labelSafetyLevel";
+			this.labelSafetyLevel.Xalign = 0F;
+			this.labelSafetyLevel.LabelProp = global::Mono.Unix.Catalog.GetString ("Safety Level:");
+			this.vbox12.Add (this.labelSafetyLevel);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelSafetyLevel]));
 			w12.PackType = ((global::Gtk.PackType)(1));
 			w12.Position = 8;
 			// Container child vbox12.Gtk.Box+BoxChild
-			this.label8 = new global::Gtk.Label ();
-			this.label8.Name = "label8";
-			this.label8.Xalign = 0F;
-			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Photos Per Page:");
-			this.vbox12.Add (this.label8);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.label8]));
+			this.labelPhotosPerPage = new global::Gtk.Label ();
+			this.labelPhotosPerPage.Name = "labelPhotosPerPage";
+			this.labelPhotosPerPage.Xalign = 0F;
+			this.labelPhotosPerPage.LabelProp = global::Mono.Unix.Catalog.GetString ("Photos Per Page:");
+			this.vbox12.Add (this.labelPhotosPerPage);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.labelPhotosPerPage]));
 			w13.PackType = ((global::Gtk.PackType)(1));
 			w13.Position = 9;
 			this.vbox11.Add (this.vbox12);
@@ -213,7 +213,6 @@ namespace FloydPink.Flickr.Downloadr
 			this.radioPhotoId = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Photo ID"));
 			this.radioPhotoId.CanFocus = true;
 			this.radioPhotoId.Name = "radioPhotoId";
-			this.radioPhotoId.Active = true;
 			this.radioPhotoId.DrawIndicator = true;
 			this.radioPhotoId.UseUnderline = true;
 			this.radioPhotoId.Group = new global::GLib.SList (global::System.IntPtr.Zero);
@@ -332,11 +331,11 @@ namespace FloydPink.Flickr.Downloadr
 			this.hbox7.Name = "hbox7";
 			this.hbox7.Spacing = 6;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.labelCacheSize = new global::Gtk.Label ();
-			this.labelCacheSize.Name = "labelCacheSize";
-			this.labelCacheSize.LabelProp = global::Mono.Unix.Catalog.GetString ("0 KB");
-			this.hbox7.Add (this.labelCacheSize);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.labelCacheSize]));
+			this.labelCacheSizeValue = new global::Gtk.Label ();
+			this.labelCacheSizeValue.Name = "labelCacheSizeValue";
+			this.labelCacheSizeValue.LabelProp = global::Mono.Unix.Catalog.GetString ("0 KB");
+			this.hbox7.Add (this.labelCacheSizeValue);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.labelCacheSizeValue]));
 			w29.Position = 0;
 			w29.Expand = false;
 			w29.Fill = false;
@@ -399,7 +398,6 @@ namespace FloydPink.Flickr.Downloadr
 			this.radioTagsInternal = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Internal"));
 			this.radioTagsInternal.CanFocus = true;
 			this.radioTagsInternal.Name = "radioTagsInternal";
-			this.radioTagsInternal.Active = true;
 			this.radioTagsInternal.DrawIndicator = true;
 			this.radioTagsInternal.UseUnderline = true;
 			this.radioTagsInternal.Group = new global::GLib.SList (global::System.IntPtr.Zero);
@@ -465,6 +463,7 @@ namespace FloydPink.Flickr.Downloadr
 			w42.Padding = ((uint)(10));
 			// Container child vbox9.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2.Name = "hbox2";
 			this.hbox2.Homogeneous = true;
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild

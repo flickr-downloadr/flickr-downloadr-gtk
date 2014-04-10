@@ -200,6 +200,7 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.labelPhotos = new global::Gtk.Label ();
 			this.labelPhotos.Name = "labelPhotos";
+			this.labelPhotos.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>                       </small>");
 			this.labelPhotos.UseMarkup = true;
 			this.vbox4.Add (this.labelPhotos);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.labelPhotos]));
@@ -207,6 +208,7 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.labelPages = new global::Gtk.Label ();
 			this.labelPages.Name = "labelPages";
+			this.labelPages.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>                       </small>");
 			this.labelPages.UseMarkup = true;
 			this.vbox4.Add (this.labelPages);
 			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.labelPages]));

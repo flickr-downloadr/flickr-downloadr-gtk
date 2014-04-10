@@ -21,6 +21,9 @@ namespace FloydPink.Flickr.Downloadr
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+
+			AddTooltips ();
+
 			Title += VersionHelper.GetVersionString ();
 			Preferences = preferences;
 			User = user;
@@ -52,10 +55,36 @@ namespace FloydPink.Flickr.Downloadr
 //			Spinner.Dispatch(s => s.Visibility = visibility);
 		}
 
+		void AddTooltips ()
+		{
+			labelFilename.TooltipText = radioPhotoId.TooltipText = radioPhotoTitle.TooltipText =
+				"Choose to name the downloaded photos with its internal photo id (a unique number) or its title (Untitled images will be assigned random unique names)";
+			labelDownloadLocation.TooltipText = entryDownloadLocation.TooltipText = buttonDownloadLocation.TooltipText =
+				"Set the location to save the downloaded photos and metadata";
+			labelDownloadSize.TooltipText = comboboxDownloadSize.TooltipText =
+				"Set the size of the photos to download";
+			labelMetadata.TooltipText = checkbuttonTags.TooltipText = checkbuttonDescription.TooltipText = checkbuttonTitle.TooltipText =
+				"Select the attributes of the metadata to be downloaded";
+			labelPhotosPerPage.TooltipText = comboboxPhotosPerPage.TooltipText =
+				"Set the number of photos to be displayed in a page on the browser window";
+			labelSafetyLevel.TooltipText = comboboxSafetyLevel.TooltipText =
+				"Set the safety level of the photos to be downloaded";
+			labelTags.TooltipText = radioTagsInternal.TooltipText = radioTagsOriginal.TooltipText =
+				"Choose the type of tags to be downloaded - internal tags does not preserve the space, original will be exactly as it were entered";
+			labelCacheLocation.TooltipText = entryCacheLocation.TooltipText = buttonCacheLocation.TooltipText =
+				"Set the location to save the cached copy of the thumbnails and preview images";
+			labelCacheSize.TooltipText = labelCacheSizeValue.TooltipText =
+				"Amount of space taken by the current cache folder";
+			buttonEmptyCache.TooltipText = "Empty the cache folder if it is taking up too much space";
+			buttonCancel.TooltipText = "Revert all the settings to their last saved values and go back to the login window";
+			buttonDefaults.TooltipText = "Reset all the settings to their default values";
+			buttonSave.TooltipText = "Save all the settings and continue to the browser window";
+		}
+
 		private void SetCacheSize ()
 		{
-			labelCacheSize.Text = _presenter.GetCacheFolderSize (Preferences.CacheLocation);
-			buttonEmptyCache.Visible = !(labelCacheSize.Text == "0 B" || labelCacheSize.Text == "-");
+			labelCacheSizeValue.Text = _presenter.GetCacheFolderSize (Preferences.CacheLocation);
+			buttonEmptyCache.Visible = !(labelCacheSizeValue.Text == "0 B" || labelCacheSizeValue.Text == "-");
 		}
 
 		private void setFieldsFromModel (Preferences preferences)

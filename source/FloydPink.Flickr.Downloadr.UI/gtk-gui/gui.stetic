@@ -690,7 +690,7 @@
                     <property name="Homogeneous">True</property>
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Label" id="label4">
+                      <widget class="Gtk.Label" id="labelFilename">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Filename:</property>
@@ -701,7 +701,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label5">
+                      <widget class="Gtk.Label" id="labelDownloadLocation">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Download Location:</property>
@@ -712,7 +712,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label6">
+                      <widget class="Gtk.Label" id="labelDownloadSize">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Download Size:</property>
@@ -723,7 +723,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label7">
+                      <widget class="Gtk.Label" id="labelMetadata">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Metadata:</property>
@@ -744,7 +744,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label13">
+                      <widget class="Gtk.Label" id="labelCacheSize">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Cache Size:</property>
@@ -756,7 +756,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label12">
+                      <widget class="Gtk.Label" id="labelCacheLocation">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Cache Location:</property>
@@ -768,7 +768,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label11">
+                      <widget class="Gtk.Label" id="labelTags">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Tags:</property>
@@ -780,7 +780,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label10">
+                      <widget class="Gtk.Label" id="labelSafetyLevel">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Safety Level:</property>
@@ -792,7 +792,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label8">
+                      <widget class="Gtk.Label" id="labelPhotosPerPage">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Photos Per Page:</property>
@@ -832,7 +832,6 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo ID</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -999,7 +998,7 @@ Original</property>
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Label" id="labelCacheSize">
+                      <widget class="Gtk.Label" id="labelCacheSizeValue">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">0 KB</property>
                       </widget>
@@ -1089,7 +1088,6 @@ Original</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1583,6 +1581,7 @@ Restricted</property>
                         <child>
                           <widget class="Gtk.Label" id="labelPhotos">
                             <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
                             <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
@@ -1593,6 +1592,7 @@ Restricted</property>
                         <child>
                           <widget class="Gtk.Label" id="labelPages">
                             <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
                             <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
