@@ -1479,7 +1479,7 @@ Restricted</property>
                             <property name="WidthRequest">35</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">☑</property>
+                            <property name="Label" translatable="yes">✓</property>
                             <property name="UseUnderline">True</property>
                             <property name="FocusOnClick">False</property>
                             <signal name="Clicked" handler="buttonSelectAllClick" />
@@ -1498,7 +1498,7 @@ Restricted</property>
                             <property name="Sensitive">False</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">☒</property>
+                            <property name="Label" translatable="yes">✗</property>
                             <property name="UseUnderline">True</property>
                             <property name="FocusOnClick">False</property>
                             <signal name="Clicked" handler="buttonUnSelectAllClick" />
