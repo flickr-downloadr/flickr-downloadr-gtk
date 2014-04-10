@@ -145,7 +145,7 @@ namespace FloydPink.Flickr.Downloadr
 			this.buttonUnSelectAll.Name = "buttonUnSelectAll";
 			this.buttonUnSelectAll.UseUnderline = true;
 			this.buttonUnSelectAll.FocusOnClick = false;
-			this.buttonUnSelectAll.Label = global::Mono.Unix.Catalog.GetString ("✗");
+			this.buttonUnSelectAll.Label = global::Mono.Unix.Catalog.GetString ("X");
 			this.hbox5.Add (this.buttonUnSelectAll);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonUnSelectAll]));
 			w10.Position = 1;
