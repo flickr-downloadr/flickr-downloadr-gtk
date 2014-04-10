@@ -268,7 +268,7 @@ namespace FloydPink.Flickr.Downloadr
 		void UpdateUI ()
 		{
 			Application.Invoke (delegate {
-				UpdateSelectionButtons();
+				UpdateSelectionButtons ();
 
 				labelPhotos.Markup = string.Format ("<small>{0} - {1} of {2} Photos</small>", 
 					FirstPhoto, LastPhoto, Total);
