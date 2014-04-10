@@ -31,10 +31,10 @@ namespace FloydPink.Flickr.Downloadr
 				if (_isSelected != value) {
 					_isSelected = value;
 					frameLabel.LabelProp = _isSelected ? 
-						"<span color=\"blue\" size=\"x-large\"><b><big> ★ </big></b></span>" :
+						"<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>" :
 						"<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>";
 					if (_isSelected) {
-						frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (125, 125, 255));
+						frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 255, 0));
 					} else {
 						frameMain.ModifyBg (Gtk.StateType.Normal);
 					}
