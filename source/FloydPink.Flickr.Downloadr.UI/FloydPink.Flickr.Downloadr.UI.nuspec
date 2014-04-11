@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <title>flickr downloadr</title>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <dependencies>
+      <dependency id="FloydPink.Flickr.Downloadr.Model" version="[$version$]" />
+      <dependency id="FloydPink.Flickr.Downloadr.Repository" version="[$version$]" />
+      <dependency id="FloydPink.Flickr.Downloadr.OAuth" version="[$version$]" />
+      <dependency id="FloydPink.Flickr.Downloadr.Bootstrap" version="[$version$]" />
+      <dependency id="FloydPink.Flickr.Downloadr.Logic" version="[$version$]" />
+      <dependency id="FloydPink.Flickr.Downloadr.Presentation" version="[$version$]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.Model.dll" target="lib\net40\\" />
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.Repository.dll" target="lib\net40\\" />
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.OAuth.dll" target="lib\net40\\" />
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.Bootstrap.dll" target="lib\net40\\" />
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.Logic.dll" target="lib\net40\\" />
+    <file src="..\bin\$configuration$\FloydPink.Flickr.Downloadr.Presentation.dll" target="lib\net40\\" />
+  </files>
+</package>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FloydPink.Flickr.Downloadr.Model</id>
+    <title>flickr downloadr Models</title>
+    <version>$version$</version>
+    <authors>Floyd Pink</authors>
+    <description>Data models for flickr downloadr</description>
+  </metadata>
+</package>

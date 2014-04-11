@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FloydPink.Flickr.Downloadr.Logic</id>
+    <title>flickr downloadr Logic</title>
+    <version>$version$</version>
+    <authors>Floyd Pink</authors>
+    <description>Business logic for flickr downloadr</description>
+  </metadata>
+</package>
