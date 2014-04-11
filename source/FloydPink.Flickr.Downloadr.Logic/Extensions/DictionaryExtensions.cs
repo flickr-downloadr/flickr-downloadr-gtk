@@ -10,7 +10,6 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 {
 	public static class DictionaryExtensions
 	{
-
 		static bool runningOnMono = Type.GetType ("Mono.Runtime") != null;
 
 		public static object GetValue (this Dictionary<string, object> dictionary, string key)
@@ -19,7 +18,7 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 		}
 
 		public static object GetSubValue (this Dictionary<string, object> dictionary, string key,
-		                                       string subKey = AppConstants.FlickrDictionaryContentKey)
+		                                  string subKey = AppConstants.FlickrDictionaryContentKey)
 		{
 			if (dictionary.ContainsKey (key)) {
 				var subDictionary = (Dictionary<string, object>)dictionary [key];
@@ -53,11 +52,21 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 
 		public static IEnumerable<string> ExtractOriginalTags (this Dictionary<string, object> dictionary)
 		{
+			IEnumerable<Dictionary<string, object>> tagList;
+
 			var photoJson = (Dictionary<string, object>)dictionary.GetValue ("photo");
 			var tagsJson = (Dictionary<string, object>)photoJson.GetValue ("tags");
-			var tagJsonArray = (object[])tagsJson.GetValue ("tag");
-			return (from Dictionary<string, object> tag in tagJsonArray
-			                 select tag.GetValue ("raw").ToString ()).ToList ();
+
+			if (runningOnMono) {
+				var tagListAsArrayList = (ArrayList)tagsJson.GetValue ("tag");
+				tagList = tagListAsArrayList.Cast<Dictionary<string, object>> ();
+			} else {
+				var tagListAsIEnumerable = (IEnumerable<object>)tagsJson.GetValue ("tag");
+				tagList = tagListAsIEnumerable.Cast<Dictionary<string, object>> ();
+			}
+
+			return (from Dictionary<string, object> tag in tagList
+			        select tag.GetValue ("raw").ToString ()).ToList ();
 		}
 
 		private static Photo BuildPhoto (Dictionary<string, object> dictionary)
