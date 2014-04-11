@@ -145,6 +145,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
 
 			_cancellationTokenSource = new CancellationTokenSource ();
 			await _logic.Download (photosList, _cancellationTokenSource.Token, _progress, _view.Preferences);
+			Thread.Yield ();	// To allow the final ProgressChanged event to fire and update the _downloadComplete flag
 			_view.DownloadComplete (_downloadedLocation, _downloadComplete);
 
 			if (handleSpinner)
