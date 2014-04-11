@@ -6,21 +6,21 @@
 
   <!-- Compilation settings -->
   <property name="flickrdownloadr.solution" value="FloydPink.Flickr.Downloadr.sln"/>
-  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI\FloydPink.Flickr.Downloadr.UI.csproj"/>
+  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI/FloydPink.Flickr.Downloadr.UI.csproj"/>
 
   <!-- Folder references -->
   <property name="working.dir" value="${path::get-full-path('..')}"/>
-  <property name="build.tools.dir" value="${working.dir}\build" />
-  <property name="source.directory" value="${working.dir}\source" />
-  <property name="bin.dir" value="${working.dir}\source\bin\${project.build.type}" />
-  <property name="nunit.results.dir" value="${working.dir}\source\bin\NUnit" />
+  <property name="build.tools.dir" value="${working.dir}/build" />
+  <property name="source.directory" value="${working.dir}/source" />
+  <property name="bin.dir" value="${working.dir}/source/bin/${project.build.type}" />
+  <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
 
   <!-- Test references -->
-  <property name="nunit.dir" value="${build.tools.dir}\nunit\NUnit-2.6.3\bin" dynamic="true" />
-  <property name="unittests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.UnitTests.exe" />
-  <property name="boundarycrossingtests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
+  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.3/bin" dynamic="true" />
+  <property name="unittests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.UnitTests.exe" />
+  <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
-  <loadtasks assembly="${build.tools.dir}\nant\nantcontrib-0.92\bin\NAnt.Contrib.Tasks.dll" />
+  <loadtasks assembly="${build.tools.dir}/nant/nantcontrib-0.92/bin/NAnt.Contrib.Tasks.dll" />
 
   <!-- Build Targets -->
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
@@ -51,7 +51,7 @@
     <echo message="Compiling Solution:" />
 
     <exec program="xbuild" workingdir="${source.directory}"
-		commandline='"${source.directory}\${flickrdownloadr.solution}" /p:Platform="x86" /p:Configuration=${project.build.type} /t:Rebuild /v:m' />
+		commandline='"${source.directory}/${flickrdownloadr.solution}" /p:Platform="x86" /p:Configuration=${project.build.type} /t:Rebuild /v:m' />
   </target>
 
   <target name="unitTests">
@@ -69,7 +69,7 @@
   <target name="nunittest">
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
     <exec program="mono" verbose="true">
-      <arg value="${nunit.dir}\nunit-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
+      <arg value="${nunit.dir}/nunit-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
     </exec>
   </target>
 
@@ -80,8 +80,8 @@
   </target>
 
   <target name="create-common-assemblyinfo">
-    <!-- ensure source\CommonAssemblyInfo.cs is writable if it already exists -->
-    <attrib file="${source.directory}\CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${source.directory}\CommonAssemblyInfo.cs')}" />
+    <!-- ensure source/CommonAssemblyInfo.cs is writable if it already exists -->
+    <attrib file="${source.directory}/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${source.directory}/CommonAssemblyInfo.cs')}" />
     <!-- Get Copyright Symbol -->
     <script language="C#" prefix="csharp-functions" >
       <code>
@@ -94,7 +94,7 @@
       </code>
     </script>
     <!-- generate the source file holding the common assembly-level attributes -->
-    <asminfo output="${source.directory}\CommonAssemblyInfo.cs" language="CSharp">
+    <asminfo output="${source.directory}/CommonAssemblyInfo.cs" language="CSharp">
       <imports>
         <import namespace="System" />
         <import namespace="System.Reflection" />
