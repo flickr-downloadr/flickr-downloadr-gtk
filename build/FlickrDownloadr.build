@@ -117,42 +117,4 @@
     </asminfo>
   </target>
 
-  <target name="deploy" depends="publish">
-    <exec program="bash.exe" basedir="C:/Program Files (x86)/Git/bin/" verbose="true">
-      <environment>
-        <variable name="HOME" value="${environment::get-variable('userprofile')}"/>
-        <variable name="ADDPATH" value=".:/usr/local/bin:/mingw/bin:/bin:/bin"/>
-        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
-      </environment>
-      <arg file="deploy.sh" />
-    </exec>
-  </target>
-
-  <target name="publish" depends="compilesolution">
-    <echo message="Publishing flickr downloadr:" />
-
-    <msbuild project="${source.directory}/${flickrdownloadr.app.project}">
-      <arg value="/v:m"/>
-      <arg value="/p:IsWebBootstrapper=true"/>
-      <arg value="/p:UpdateEnabled=true"/>
-      <arg value="/p:UpdateMode=Foreground"/>
-      <arg value="/p:UpdateInterval=7"/>
-      <arg value="/p:UpdateIntervalUnits=Days"/>
-      <arg value="/p:UpdatePeriodically=false"/>
-      <arg value="/p:Configuration=${project.build.type}"/>
-      <arg value="/p:PublisherName=flickrdownloadr"/>
-      <arg value="/p:ProductName=flickr downloadr (beta v${buildnumber.version})"/>
-      <arg value="/p:ApplicationVersion=${buildnumber.version}"/>
-      <arg value="/p:PublishDir=${bin.dir}/Deploy/"/>
-      <arg value="/p:InstallUrl=http://flickrdownloadr.com/downloads/latest/"/>
-      <arg value="/p:SupportUrl=http://flickrdownloadr.com/downloads/latest/"/>
-      <arg value="/p:ErrorReportUrl=http://flickrdownloadr.com/"/>
-      <arg value="/p:BootstrapperEnabled=true"/>
-      <arg value="/p:CreateDesktopShortcut=true"/>
-      <arg value="/p:CreateWebPageOnPublish=true"/>
-      <arg value="/p:WebPage=index.html"/>
-      <arg value="/t:publish" />
-    </msbuild>
-  </target>
-
 </project>
