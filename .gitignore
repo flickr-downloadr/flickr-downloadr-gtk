@@ -193,3 +193,5 @@ $RECYCLE.BIN/
 *.resources
 *.userprefs
 
+source/.nuget/NuGet.exe
+
