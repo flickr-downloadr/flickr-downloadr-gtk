@@ -4,10 +4,6 @@
   <property name="project.name" value="FlickrDownloadr" />
   <property name="project.build.type" value="Release" />
 
-  <!-- Compilation settings -->
-  <property name="flickrdownloadr.solution" value="FloydPink.Flickr.Downloadr.sln"/>
-  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI/FloydPink.Flickr.Downloadr.UI.csproj"/>
-
   <!-- Folder references -->
   <property name="working.dir" value="${path::get-full-path('..')}"/>
   <property name="build.tools.dir" value="${working.dir}/build" />
@@ -15,12 +11,20 @@
   <property name="bin.dir" value="${working.dir}/source/bin/${project.build.type}" />
   <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
 
+  <!-- Compilation settings -->
+  <property name="flickrdownloadr.solution" value="FloydPink.Flickr.Downloadr.sln"/>
+  <property name="flickrdownloadr.app.project" value="FloydPink.Flickr.Downloadr.UI/FloydPink.Flickr.Downloadr.UI.csproj"/>
+  <property name="common.assembly.info" value="${source.directory}/CommonAssemblyInfo.cs" />
+
   <!-- Test references -->
   <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.3/bin" dynamic="true" />
   <property name="unittests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.UnitTests.exe" />
   <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
   <loadtasks assembly="${build.tools.dir}/nant/nantcontrib-0.92/bin/NAnt.Contrib.Tasks.dll" />
+  
+  <!-- Common Targets -->
+  <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
@@ -77,44 +81,6 @@
     <echo message="Incrementing the version:" />
     <version buildtype="NoIncrement" revisiontype="Increment" startdate="2012-04-02" verbose="true"/>
     <call target="create-common-assemblyinfo" />
-  </target>
-
-  <target name="create-common-assemblyinfo">
-    <!-- ensure source/CommonAssemblyInfo.cs is writable if it already exists -->
-    <attrib file="${source.directory}/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${source.directory}/CommonAssemblyInfo.cs')}" />
-    <!-- Get Copyright Symbol -->
-    <script language="C#" prefix="csharp-functions" >
-      <code>
-        <![CDATA[
-              [Function("get-copyright-symbol")]
-              public static string Testfunc(  ) {
-                  return "\u00a9";
-              }
-            ]]>
-      </code>
-    </script>
-    <!-- generate the source file holding the common assembly-level attributes -->
-    <asminfo output="${source.directory}/CommonAssemblyInfo.cs" language="CSharp">
-      <imports>
-        <import namespace="System" />
-        <import namespace="System.Reflection" />
-        <import namespace="System.Runtime.InteropServices" />
-      </imports>
-      <attributes>
-        <attribute type="ComVisibleAttribute" value="false" />
-        <attribute type="AssemblyTitleAttribute" value="flickrDownloadr" />
-        <attribute type="AssemblyDescriptionAttribute" value="A desktop application for Linux that would help download all (or selected) photos from the user's photostream (in one of the selected sizes) along with the tags, titles and descriptions." />
-        <attribute type="AssemblyConfigurationAttribute" value="${project.build.type}" />
-        <attribute type="AssemblyCompanyAttribute" value="http://flickrdownloadr.com" />
-        <attribute type="AssemblyProductAttribute" value="flickr downloadr" />
-        <attribute type="AssemblyCopyrightAttribute" value="Copyright ${csharp-functions::get-copyright-symbol()} 2012-${datetime::get-year(datetime::now())} Haridas Pachuveetil" />
-        <attribute type="AssemblyTrademarkAttribute" value="" />
-        <attribute type="AssemblyCultureAttribute" value="" />
-        <attribute type="AssemblyVersionAttribute" value="${buildnumber.version}" />
-        <attribute type="AssemblyFileVersionAttribute" value="${buildnumber.version}" />
-        <attribute type="AssemblyInformationalVersionAttribute" value="${buildnumber.major}.${buildnumber.minor}" />
-      </attributes>
-    </asminfo>
   </target>
 
 </project>

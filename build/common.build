@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="FlickrDownloadr-Common">
+
+  <target name="create-common-assemblyinfo">
+    <!-- ensure CommonAssemblyInfo.cs is writable if it already exists -->
+    <attrib file="${common.assembly.info}" readonly="false" if="${file::exists('${common.assembly.info}')}" />
+    <!-- Get Copyright Symbol -->
+    <script language="C#" prefix="csharp-functions" >
+      <code>
+        <![CDATA[
+              [Function("get-copyright-symbol")]
+              public static string Testfunc(  ) {
+                  return "\u00a9";
+              }
+            ]]>
+      </code>
+    </script>
+    <!-- generate the source file holding the common assembly-level attributes -->
+    <asminfo output="${common.assembly.info}" language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="AssemblyTitleAttribute" value="flickrDownloadr" />
+        <attribute type="AssemblyDescriptionAttribute" value="A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags." />
+        <attribute type="AssemblyConfigurationAttribute" value="${project.build.type}" />
+        <attribute type="AssemblyCompanyAttribute" value="http://flickrdownloadr.com" />
+        <attribute type="AssemblyProductAttribute" value="flickr downloadr" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright ${csharp-functions::get-copyright-symbol()} 2012-${datetime::get-year(datetime::now())} Haridas Pachuveetil" />
+        <attribute type="AssemblyTrademarkAttribute" value="" />
+        <attribute type="AssemblyCultureAttribute" value="" />
+        <attribute type="AssemblyVersionAttribute" value="${buildnumber.version}" />
+        <attribute type="AssemblyFileVersionAttribute" value="${buildnumber.version}" />
+        <!-- <attribute type="AssemblyInformationalVersionAttribute" value="${buildnumber.major}.${buildnumber.minor}" /> -->
+      </attributes>
+    </asminfo>
+  </target>
+  
+</project>
