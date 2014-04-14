@@ -37,6 +37,17 @@
     <mkdir dir="${nunit.results.dir}" failonerror="true" unless="${directory::exists(nunit.results.dir)}"/>
   </target>
 
+  <target name="createrelease" depends="unitTestsOnly">
+    <echo message="Creating the release..." />
+    <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
+        <arg value="-noprofile"/>
+        <arg value="-nologo"/>
+        <arg value="-noninteractive"/>
+        <arg value="-command"/>
+        <arg value=".\create-release-win.ps1"/>
+    </exec>
+  </target>
+
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
@@ -113,7 +124,7 @@
         <attribute type="AssemblyCultureAttribute" value="" />
         <attribute type="AssemblyVersionAttribute" value="${buildnumber.version}" />
         <attribute type="AssemblyFileVersionAttribute" value="${buildnumber.version}" />
-        <attribute type="AssemblyInformationalVersionAttribute" value="${buildnumber.major}.${buildnumber.minor}" />
+        <!-- <attribute type="AssemblyInformationalVersionAttribute" value="${buildnumber.major}.${buildnumber.minor}" /> -->
       </attributes>
     </asminfo>
   </target>

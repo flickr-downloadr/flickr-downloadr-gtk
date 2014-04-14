@@ -69,7 +69,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="FloydPink.Flickr.Downloadr.Model.nuspec" />
-  </ItemGroup>
 </Project>

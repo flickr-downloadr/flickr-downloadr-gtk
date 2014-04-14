@@ -78,7 +78,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="FloydPink.Flickr.Downloadr.Logic.nuspec" />
-  </ItemGroup>
 </Project>
