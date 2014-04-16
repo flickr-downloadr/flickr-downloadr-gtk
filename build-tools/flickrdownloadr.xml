@@ -8,9 +8,9 @@
     <logoImage>../misc/logo-Small-About.png</logoImage>
     <componentList>
         <component>
-            <name>default</name>
-            <description>Default Component</description>
-            <canBeEdited>1</canBeEdited>
+            <name>core</name>
+            <description>flickr downloadr</description>
+            <canBeEdited>0</canBeEdited>
             <selected>1</selected>
             <show>1</show>
             <desktopShortcutList>
@@ -137,7 +137,80 @@
                 </startMenuShortcut>
             </startMenuShortcutList>
         </component>
-    </componentList>
+        <component>
+            <name>gtksharp</name>
+            <description>GTK# Framework</description>
+            <canBeEdited>0</canBeEdited>
+            <detailedDescription>GTK# is a Graphical User Interface Toolkit for Mono and .NET which is used to build the user interface for flickr downloadr</detailedDescription>
+            <selected>1</selected>
+            <show>1</show>
+        </component>
+	   <!-- This component takes care of autodetecting an existing
+	   installation of .NET and unpack and install the bundled one
+	   if it is not found -->
+	   <component>
+		 <name>dotnet</name>
+		 <description>ServiceEx</description>
+		 <canBeEdited>0</canBeEdited>
+		 <selected>1</selected>
+		 <show>0</show>
+		 <folderList>
+		   <folder>
+			 <description>.NET installer</description>
+			 <destination>${installdir}</destination>
+			 <name>dotnet</name>
+			 <platforms>windows</platforms>
+			 <distributionFileList>
+			   <distributionFile>
+				 <origin>/path/to/dotnetfx.exe</origin>
+			   </distributionFile>
+			 </distributionFileList>
+			 <ruleList>
+				<!-- The .NET installer will be unpacked on demand
+				so we attach a rule that will be never passed to
+				prevent the automatic unpack process -->
+				<isTrue value="0"/>
+			 </ruleList>
+		   </folder>
+		 </folderList>
+		 <readyToInstallActionList>
+		   <!-- check .NET >= 2.0 is installed -->
+		   <autodetectDotNetFramework>
+			 <validDotNetVersionList>
+			   <validDotNetVersion>
+				 <maxVersion></maxVersion>
+				 <minVersion>4.5</minVersion>
+			   </validDotNetVersion>
+			 </validDotNetVersionList>
+		   </autodetectDotNetFramework>
+		   <!-- install .NET if not found -->
+		   <actionGroup>
+			 <progressText>Installing .NET framework</progressText>
+			 <actionList>
+			   <unpackFile>
+				 <component>dotnet</component>
+				 <destination>${system_temp_directory}/dotnetfx.exe</destination>
+				 <folder>dotnet</folder>
+				 <origin>dotnetfx.exe</origin>
+			   </unpackFile>
+			   <runProgram>
+				 <program>${system_temp_directory}/dotnetfx.exe</program>
+				 <programArguments>/q:a "/c:install.exe /qb"</programArguments>
+			   </runProgram>
+			   <!-- Delete the .NET installer -->
+			   <deleteFile>
+				 <path>${system_temp_directory}/dotnetfx.exe</path>
+			   </deleteFile>
+			 </actionList>
+			 <ruleList>
+			   <isFalse>
+				 <value>${dotnet_autodetected}</value>
+			   </isFalse>
+			 </ruleList>
+		   </actionGroup>
+		 </readyToInstallActionList>
+	   </component>
+   </componentList>
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
