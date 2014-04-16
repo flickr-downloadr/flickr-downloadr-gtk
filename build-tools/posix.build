@@ -6,7 +6,7 @@
 
   <!-- Folder references -->
   <property name="working.dir" value="${path::get-full-path('..')}"/>
-  <property name="build.tools.dir" value="${working.dir}/build" />
+  <property name="build.tools.dir" value="${working.dir}/build-tools" />
   <property name="source.directory" value="${working.dir}/source" />
   <property name="bin.dir" value="${working.dir}/source/bin/${project.build.type}" />
   <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
