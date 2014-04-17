@@ -29,7 +29,6 @@ namespace FloydPink.Flickr.Downloadr
 			// Container child hboxContainer.Gtk.Box+BoxChild
 			this.frameMain = new global::Gtk.Frame ();
 			this.frameMain.Name = "frameMain";
-			this.frameMain.ShadowType = ((global::Gtk.ShadowType)(2));
 			this.frameMain.LabelXalign = 0.95F;
 			// Container child frameMain.Gtk.Container+ContainerChild
 			this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
