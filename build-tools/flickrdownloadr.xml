@@ -6,6 +6,7 @@
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <leftImage>../misc/icon.png</leftImage>
     <logoImage>../misc/logo-Small-About.png</logoImage>
+    <splashImage>../misc/flickr_logo.png</splashImage>
     <componentList>
         <component>
             <name>core</name>
@@ -138,83 +139,114 @@
             </startMenuShortcutList>
         </component>
         <component>
+            <name>dotnet</name>
+            <description>.NET Framework</description>
+            <canBeEdited>0</canBeEdited>
+            <detailedDescription>Microsoft .NET Framework 4.5</detailedDescription>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>.NET installer</description>
+                    <destination>${installdir}</destination>
+                    <name>dotnet</name>
+                    <platforms>windows</platforms>
+                    <ruleList>
+                        <isTrue value="0"/>
+                    </ruleList>
+                </folder>
+            </folderList>
+            <readyToInstallActionList>
+                <autodetectDotNetFramework>
+                    <validDotNetVersionList>
+                        <validDotNetVersion>
+                            <frameworkType>full</frameworkType>
+                            <maxVersion></maxVersion>
+                            <minVersion>4.0</minVersion>
+                        </validDotNetVersion>
+                    </validDotNetVersionList>
+                </autodetectDotNetFramework>
+                <actionGroup>
+                    <progressText>Installing .NET framework</progressText>
+                    <actionList>
+                        <httpGet>
+                            <filename>${system_temp_directory}/dotnet45.exe</filename>
+                            <progressText>Downloading GTK# installer</progressText>
+                            <url>http://flickrdownloadr.com/installer/win/dependencies/dotnet45.exe</url>
+                        </httpGet>
+                        <runProgram>
+                            <program>${system_temp_directory}/dotnetfx.exe</program>
+                            <programArguments>/q:a "/c:install.exe /qb"</programArguments>
+                            <progressText>Installing GTK# Framework</progressText>
+                        </runProgram>
+                        <deleteFile>
+                            <path>${system_temp_directory}/dotnetfx.exe</path>
+                        </deleteFile>
+                    </actionList>
+                    <ruleList>
+                        <isFalse>
+                            <value>${dotnet_autodetected}</value>
+                        </isFalse>
+                    </ruleList>
+                </actionGroup>
+            </readyToInstallActionList>
+        </component>
+        <component>
             <name>gtksharp</name>
             <description>GTK# Framework</description>
             <canBeEdited>0</canBeEdited>
             <detailedDescription>GTK# is a Graphical User Interface Toolkit for Mono and .NET which is used to build the user interface for flickr downloadr</detailedDescription>
             <selected>1</selected>
             <show>1</show>
+            <folderList>
+                <folder>
+                    <description>GTK#</description>
+                    <destination>${installdir}</destination>
+                    <name>gtksharp</name>
+                    <platforms>all</platforms>
+                </folder>
+            </folderList>
+            <readyToInstallActionList>
+                <actionGroup>
+                    <progressText>Installing GTK# Framework</progressText>
+                    <actionList>
+                        <showProgressDialog>
+                            <progressText>Downloading And Installing GTK# Framework</progressText>
+                            <title>Installing GTK# Framework</title>
+                            <actionList>
+                                <httpGet>
+                                    <filename>${system_temp_directory}/gtk-sharp.msi</filename>
+                                    <progressText>Downloading GTK# Installer</progressText>
+                                    <url>http://flickrdownloadr.com/installer/win/dependencies/gtk-sharp-2.12.25.msi</url>
+                                </httpGet>
+                                <runProgram>
+                                    <program>msiexec</program>
+                                    <programArguments>/i ${system_temp_directory}\gtk-sharp.msi</programArguments>
+                                    <progressText>Installing GTK#</progressText>
+                                </runProgram>
+                            </actionList>
+                            <ruleList>
+                                <registryTest>
+                                    <key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\GtkSharp</key>
+                                    <logic>exists</logic>
+                                    <name></name>
+                                    <negate>1</negate>
+                                </registryTest>
+                            </ruleList>
+                        </showProgressDialog>
+                    </actionList>
+                    <ruleList>
+                        <platformTest>
+                            <type>windows</type>
+                        </platformTest>
+                    </ruleList>
+                </actionGroup>
+            </readyToInstallActionList>
         </component>
-	   <!-- This component takes care of autodetecting an existing
-	   installation of .NET and unpack and install the bundled one
-	   if it is not found -->
-	   <component>
-		 <name>dotnet</name>
-		 <description>ServiceEx</description>
-		 <canBeEdited>0</canBeEdited>
-		 <selected>1</selected>
-		 <show>0</show>
-		 <folderList>
-		   <folder>
-			 <description>.NET installer</description>
-			 <destination>${installdir}</destination>
-			 <name>dotnet</name>
-			 <platforms>windows</platforms>
-			 <distributionFileList>
-			   <distributionFile>
-				 <origin>/path/to/dotnetfx.exe</origin>
-			   </distributionFile>
-			 </distributionFileList>
-			 <ruleList>
-				<!-- The .NET installer will be unpacked on demand
-				so we attach a rule that will be never passed to
-				prevent the automatic unpack process -->
-				<isTrue value="0"/>
-			 </ruleList>
-		   </folder>
-		 </folderList>
-		 <readyToInstallActionList>
-		   <!-- check .NET >= 2.0 is installed -->
-		   <autodetectDotNetFramework>
-			 <validDotNetVersionList>
-			   <validDotNetVersion>
-				 <maxVersion></maxVersion>
-				 <minVersion>4.5</minVersion>
-			   </validDotNetVersion>
-			 </validDotNetVersionList>
-		   </autodetectDotNetFramework>
-		   <!-- install .NET if not found -->
-		   <actionGroup>
-			 <progressText>Installing .NET framework</progressText>
-			 <actionList>
-			   <unpackFile>
-				 <component>dotnet</component>
-				 <destination>${system_temp_directory}/dotnetfx.exe</destination>
-				 <folder>dotnet</folder>
-				 <origin>dotnetfx.exe</origin>
-			   </unpackFile>
-			   <runProgram>
-				 <program>${system_temp_directory}/dotnetfx.exe</program>
-				 <programArguments>/q:a "/c:install.exe /qb"</programArguments>
-			   </runProgram>
-			   <!-- Delete the .NET installer -->
-			   <deleteFile>
-				 <path>${system_temp_directory}/dotnetfx.exe</path>
-			   </deleteFile>
-			 </actionList>
-			 <ruleList>
-			   <isFalse>
-				 <value>${dotnet_autodetected}</value>
-			   </isFalse>
-			 </ruleList>
-		   </actionGroup>
-		 </readyToInstallActionList>
-	   </component>
-   </componentList>
+    </componentList>
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
-    <height>480</height>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
     <outputDirectory>installers</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
@@ -225,7 +257,6 @@
     <saveRelativePaths>1</saveRelativePaths>
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>
-    <width>640</width>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
