@@ -6,7 +6,7 @@
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <leftImage>../misc/icon.png</leftImage>
     <logoImage>../misc/logo-Small-About.png</logoImage>
-    <splashImage>../misc/flickr_logo.png</splashImage>
+    <splashImage>../misc/logo.png</splashImage>
     <componentList>
         <component>
             <name>core</name>
@@ -247,6 +247,7 @@
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
+    <height>480</height>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
     <outputDirectory>installers</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
@@ -257,6 +258,7 @@
     <saveRelativePaths>1</saveRelativePaths>
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>
+    <width>640</width>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
