@@ -22,7 +22,7 @@ environment:
     secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
 
 install:
-  - powershell .\downloadGtkSharp.ps1
+  - cmd: powershell .\downloadGtkSharp.ps1
 
 #---------------------------------#
 #       build configuration       #
