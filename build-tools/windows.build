@@ -26,6 +26,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
+  <target name="appveyor" depends="install, unitTestsOnly"/>
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
 
@@ -38,6 +39,17 @@
     <echo message="Create bin directory" />
     <mkdir dir="${bin.dir}" failonerror="true" unless="${directory::exists(bin.dir)}"/>
     <mkdir dir="${nunit.results.dir}" failonerror="true" unless="${directory::exists(nunit.results.dir)}"/>
+  </target>
+
+  <target name="install">
+    <echo message="Installing GTK# and BitRock Installer..." />
+    <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
+        <arg value="-noprofile"/>
+        <arg value="-nologo"/>
+        <arg value="-noninteractive"/>
+        <arg value="-command"/>
+        <arg value=".\install.ps1"/>
+    </exec>
   </target>
 
   <target name="createrelease" depends="unitTestsOnly">
