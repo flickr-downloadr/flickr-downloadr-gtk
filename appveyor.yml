@@ -1,0 +1,43 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# branches to build
+branches:
+  only:
+    - master
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+os: Windows Server 2012
+
+init:
+  - git config --global core.autocrlf input
+
+#environment variables
+environment:
+  oauth_token:
+    secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+build_script:
+  - cd ./build-tools
+  - go "" Release
+  - echo 'Build (and Deploy) completed...'
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test: off
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+deploy: off
