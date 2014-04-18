@@ -22,8 +22,7 @@ environment:
     secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
 
 install:
-  - ps: (new-object System.Net.WebClient).DownloadFile('http://flickrdownloadr.com/installer/win/dependencies/gtk-sharp-2.12.25.msi','./gtk-sharp-2.12.25.msi')
-  - ps: msiexec /i gtk-sharp-2.12.25.msi /quiet /qn /norestart /log install.log
+  - powershell .\downloadGtkSharp.ps1
 
 #---------------------------------#
 #       build configuration       #
