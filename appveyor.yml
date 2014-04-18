@@ -48,11 +48,11 @@ artifacts:
 
   - path: dist
     name: dist
-	type: zip
+    type: zip
 
   - path: build-tools\*.log
     name: logs
-	type: zip
+    type: zip
 
 #---------------------------------#
 #     deployment configuration    #
