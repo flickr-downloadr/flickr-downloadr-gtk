@@ -21,7 +21,8 @@ environment:
   oauth_token:
     secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
 
-install: install.ps1
+install:
+  - powershell install.ps1
 
 #---------------------------------#
 #       build configuration       #
