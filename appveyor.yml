@@ -41,6 +41,20 @@ build_script:
 test: off
 
 #---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+
+  - path: dist
+    name: dist
+	type: zip
+
+  - path: build-tools\*.log
+    name: logs
+	type: zip
+
+#---------------------------------#
 #     deployment configuration    #
 #---------------------------------#
 
