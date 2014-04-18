@@ -7,4 +7,5 @@ $pathToBuildFile = "flickrdownloadr.xml"
 
 (new-object System.Net.WebClient).DownloadFile($installBuilderExe,$installBuilderExeLocal)
 & $installBuilderExeLocal --mode unattended --unattendedmodeui none --debuglevel 4 --debugtrace $installBuilderInstallLog
+type $installBuilderInstallLog
 & $installBuilderCli build $pathToBuildFile
