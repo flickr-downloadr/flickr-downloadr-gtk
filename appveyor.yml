@@ -30,13 +30,9 @@ install:
 #---------------------------------#
 
 build_script:
-  - cd ./build-tools || goto :error
-  - go "" Release || goto :error
-  - echo 'Build (and Deploy) completed...' || goto :error
-  - goto :EOF
-  - :error
-  - echo Failed with error #%errorlevel%.
-  - exit /b %errorlevel%
+  - cd ./build-tools
+  - go createrelease Release
+  - echo 'Build (and Deploy) completed...'
 
 #---------------------------------#
 #       tests configuration       #

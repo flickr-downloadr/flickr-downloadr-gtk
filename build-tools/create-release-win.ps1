@@ -1,10 +1,10 @@
-$solutionDir = "..\source"                 # this is where my code lives
-$buildOutputDir = "..\source\bin\Release"  # this is where the build output lives
-$releasesDir = "..\dist\win"                 # publish to a folder outside the repository
+$installBuilderExe = "http://installbuilder.bitrock.com/installbuilder-enterprise-8.6.0-windows-installer.exe"
+$installBuilderExeLocal = "C:\projects\flickr-downloadr-gtk\installbuilder-enterprise-8.6.0-windows-installer.exe"
+$installBuilderInstallLog = "C:\projects\flickr-downloadr-gtk\installbuilder.log"
+$installBuilderCli = "C:\Program Files (x86)\BitRock InstallBuilder Enterprise 8.6.0\bin\builder-cli.exe"
+$pathToBuildFile = "flickrdownloadr.xml"
 
-$script =  Get-ChildItem "$solutionDir\packages\\" `
-                -Filter "Create-Release.ps1" `
-                -Recurse | Select-Object -first 1
 
-. $script.FullName -SolutionDir $solutionDir -BuildDir $buildOutputDir `
-                   -ReleasesDir $releasesDir
+(new-object System.Net.WebClient).DownloadFile($installBuilderExe,$installBuilderExeLocal)
+$installBuilderExeLocal --mode unattended --unattendedmodeui none --debuglevel 4 --debugtrace $installBuilderInstallLog
+$installBuilderCli build $pathToBuildFile

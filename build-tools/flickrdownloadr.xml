@@ -249,7 +249,7 @@
     <enableTimestamp>1</enableTimestamp>
     <height>480</height>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
-    <outputDirectory>installers</outputDirectory>
+    <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
     <productContact>contact.us@flickrdownloadr.com</productContact>
     <productDisplayIcon>${installdir}\icon.ico</productDisplayIcon>
