@@ -26,9 +26,12 @@ environment:
 #---------------------------------#
 
 build_script:
-  - cd ./build-tools
-  - go "" Release
-  - echo 'Build (and Deploy) completed...'
+  - cd ./build-tools || goto :error
+  - go "" Release || goto :error
+  - echo 'Build (and Deploy) completed...' || goto :error
+  - :error
+  - echo Failed with error #%errorlevel%.
+  - exit /b %errorlevel%
 
 #---------------------------------#
 #       tests configuration       #
