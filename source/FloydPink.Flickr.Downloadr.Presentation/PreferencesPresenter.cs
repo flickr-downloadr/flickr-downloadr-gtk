@@ -7,10 +7,8 @@ using FloydPink.Flickr.Downloadr.Presentation.Views;
 namespace FloydPink.Flickr.Downloadr.Presentation {
     public class PreferencesPresenter : PresenterBase, IPreferencesPresenter {
         private readonly IPreferencesLogic _logic;
-        private IPreferencesView _view;
 
         public PreferencesPresenter(IPreferencesView view, IPreferencesLogic logic) {
-            this._view = view;
             this._logic = logic;
         }
 
