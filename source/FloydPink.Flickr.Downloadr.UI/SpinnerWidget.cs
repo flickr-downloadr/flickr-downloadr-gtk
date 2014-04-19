@@ -1,69 +1,63 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Reflection;
+using Gdk;
+using Gtk;
 
-namespace FloydPink.Flickr.Downloadr
-{
-	[System.ComponentModel.ToolboxItem (true)]
-	public partial class SpinnerWidget : Gtk.Bin
-	{
-		bool _cancellable;
-		public bool Cancellable {
-			get {
-				return _cancellable;
-			}
-			set {
-				_cancellable = value;
-				buttonCancel.Visible = _cancellable;
-			}
-		}
+namespace FloydPink.Flickr.Downloadr {
+    [ToolboxItem(true)]
+    public partial class SpinnerWidget : Bin {
+        private bool _cancellable;
+        private string _operation;
 
-		string _percentDone;
-		public string PercentDone {
-			get {
-				return _percentDone;
-			}
-			set {
-				_percentDone = value;
-				labelPercent.LabelProp = _percentDone;
-				labelPercent.Visible = !string.IsNullOrEmpty (_percentDone);
-			}
-		}
+        private string _percentDone;
 
-		string _operation;
-		public string Operation {
-			get {
-				return _operation;
-			}
-			set {
-				_operation = value;
-				labelOperation.LabelProp = _operation;
-				labelOperation.Visible = !string.IsNullOrEmpty (_operation);
-			}
-		}
+        public SpinnerWidget() {
+            Build();
 
-		public event EventHandler SpinnerCanceled;
+            this.imageLoading.PixbufAnimation = new PixbufAnimation(Assembly.GetAssembly(typeof (SpinnerWidget)),
+                "FloydPink.Flickr.Downloadr.Assets.loading.gif");
 
-		public SpinnerWidget ()
-		{
-			this.Build ();
+            this.labelOperation.Visible = false;
+            this.labelPercent.Visible = false;
+            this.buttonCancel.Visible = false;
 
-			imageLoading.PixbufAnimation = new Gdk.PixbufAnimation (Assembly.GetAssembly (typeof(SpinnerWidget)),
-				"FloydPink.Flickr.Downloadr.Assets.loading.gif");
+            this.buttonCancel.TooltipText = "Cancel the operation";
+        }
 
-			labelOperation.Visible = false;
-			labelPercent.Visible = false;
-			buttonCancel.Visible = false;
+        public bool Cancellable {
+            get { return this._cancellable; }
+            set {
+                this._cancellable = value;
+                this.buttonCancel.Visible = this._cancellable;
+            }
+        }
 
-			buttonCancel.TooltipText = "Cancel the operation";
-		}
+        public string PercentDone {
+            get { return this._percentDone; }
+            set {
+                this._percentDone = value;
+                this.labelPercent.LabelProp = this._percentDone;
+                this.labelPercent.Visible = !string.IsNullOrEmpty(this._percentDone);
+            }
+        }
 
-		protected void buttonCancelClick (object sender, EventArgs e)
-		{
-			this.Visible = false;
-			if (SpinnerCanceled != null) {
-				SpinnerCanceled (this, new EventArgs ());
-			}
-		}
-	}
+        public string Operation {
+            get { return this._operation; }
+            set {
+                this._operation = value;
+                this.labelOperation.LabelProp = this._operation;
+                this.labelOperation.Visible = !string.IsNullOrEmpty(this._operation);
+            }
+        }
+
+        public event EventHandler SpinnerCanceled;
+
+        protected void buttonCancelClick(object sender, EventArgs e) {
+            Visible = false;
+            if (SpinnerCanceled != null) {
+                SpinnerCanceled(this, new EventArgs());
+            }
+        }
+    }
 }
-

@@ -2,14 +2,11 @@
 using FloydPink.Flickr.Downloadr.Repository.Extensions;
 using NUnit.Framework;
 
-namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests
-{
+namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
     [TestFixture]
-    public class JsonExtensionsTests
-    {
+    public class JsonExtensionsTests {
         [Test]
-        public void WillConvertEmptyJsonStringToNewInstance()
-        {
+        public void WillConvertEmptyJsonStringToNewInstance() {
             string userAsJson = string.Empty;
             var user = userAsJson.FromJson<User>();
             Assert.IsNotNull(user);
@@ -19,16 +16,14 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests
         }
 
         [Test]
-        public void WillConvertInstanceToJson()
-        {
+        public void WillConvertInstanceToJson() {
             var token = new Token("token", "secret");
             string tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
             Assert.AreEqual(tokenJson, token.ToJson());
         }
 
         [Test]
-        public void WillConvertJsonToInstance()
-        {
+        public void WillConvertJsonToInstance() {
             string tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
             var token = tokenJson.FromJson<Token>();
             Assert.AreEqual("token", token.TokenString);
@@ -36,8 +31,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests
         }
 
         [Test]
-        public void WillConvertJsonToUserInstance()
-        {
+        public void WillConvertJsonToUserInstance() {
             string userAsJson = "{\"Name\":\"name\",\"Username\":\"username\",\"UserNSId\":\"usernsid\"}";
             var user = userAsJson.FromJson<User>();
             Assert.AreEqual("name", user.Name);
@@ -46,8 +40,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests
         }
 
         [Test]
-        public void WillConvertUserInstanceToJson()
-        {
+        public void WillConvertUserInstanceToJson() {
             var user = new User("name", "username", "usernsid");
             string userAsJson =
                 "{\"Name\":\"name\",\"Username\":\"username\",\"UserNsId\":\"usernsid\",\"WelcomeMessage\":\"Welcome, name!\"}";

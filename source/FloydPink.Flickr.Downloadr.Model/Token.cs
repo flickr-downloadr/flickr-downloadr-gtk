@@ -1,15 +1,11 @@
-namespace FloydPink.Flickr.Downloadr.Model
-{
-    public class Token
-    {
-        public Token()
-        {
+namespace FloydPink.Flickr.Downloadr.Model {
+    public class Token {
+        public Token() {
             TokenString = string.Empty;
             Secret = string.Empty;
         }
 
-        public Token(string token, string secret)
-        {
+        public Token(string token, string secret) {
             TokenString = token;
             Secret = secret;
         }

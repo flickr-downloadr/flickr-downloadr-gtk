@@ -1,36 +1,31 @@
-﻿using System;
-using System.Diagnostics;
-using Systhread = System.Threading;
-using Gtk;
-using GLib;
+﻿using System.Diagnostics;
 using FloydPink.Flickr.Downloadr.Bootstrap;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
+using GLib;
+using Gtk;
+using Systhread = System.Threading;
 
-namespace FloydPink.Flickr.Downloadr
-{
-	class MainClass
-	{
-		public static void Main (string[] args)
-		{
-			Bootstrapper.Initialize ();
+namespace FloydPink.Flickr.Downloadr {
+    internal class MainClass {
+        public static void Main(string [] args) {
+            Bootstrapper.Initialize();
 
-			Application.Init ();
-			LoginWindow loginWindow = new LoginWindow ();
-			loginWindow.Show ();
+            Application.Init();
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
 
-			UnhandledExceptionHandler handler = new UnhandledExceptionHandler (OnUnhandledException);
-			ExceptionManager.UnhandledException += handler;
+            UnhandledExceptionHandler handler = OnUnhandledException;
+            ExceptionManager.UnhandledException += handler;
 
-			Application.Run ();
-		}
+            Application.Run();
+        }
 
-		static void OnUnhandledException (UnhandledExceptionArgs args)
-		{
-			Debug.WriteLine ("Fatal Error: {0} ... {1}", args.ExceptionObject, args.IsTerminating);
-			MessageBox.Show (new FatalErrorWindow (), "Unhandled exception.\n" +
-			"Please raise an issue on the Support website.", 
-				ButtonsType.Ok, MessageType.Error);
-			args.ExitApplication = true;
-		}
-	}
+        private static void OnUnhandledException(UnhandledExceptionArgs args) {
+            Debug.WriteLine("Fatal Error: {0} ... {1}", args.ExceptionObject, args.IsTerminating);
+            MessageBox.Show(new FatalErrorWindow(), "Unhandled exception.\n" +
+                                                    "Please raise an issue on the Support website.",
+                ButtonsType.Ok, MessageType.Error);
+            args.ExitApplication = true;
+        }
+    }
 }

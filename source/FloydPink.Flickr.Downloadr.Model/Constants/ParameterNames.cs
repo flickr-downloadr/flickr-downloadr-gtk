@@ -1,7 +1,5 @@
-namespace FloydPink.Flickr.Downloadr.Model.Constants
-{
-    public static class ParameterNames
-    {
+namespace FloydPink.Flickr.Downloadr.Model.Constants {
+    public static class ParameterNames {
         public static readonly string Format = "format";
         public static readonly string NoJsonCallback = "nojsoncallback";
         public static readonly string OAuthCallback = "oauth_callback";

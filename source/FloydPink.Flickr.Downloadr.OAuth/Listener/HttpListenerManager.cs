@@ -5,10 +5,8 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace FloydPink.Flickr.Downloadr.OAuth.Listener
-{
-    public class HttpListenerManager : IHttpListenerManager
-    {
+namespace FloydPink.Flickr.Downloadr.OAuth.Listener {
+    public class HttpListenerManager : IHttpListenerManager {
         private static readonly Random Random = new Random();
 
         private static readonly List<string> ActiveListeners = new List<string>();
@@ -21,22 +19,18 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener
 
         public event EventHandler<HttpListenerCallbackEventArgs> RequestReceived;
 
-        public bool RequestReceivedHandlerExists
-        {
-            get
-            {
+        public bool RequestReceivedHandlerExists {
+            get {
                 int count = 0;
                 EventHandler<HttpListenerCallbackEventArgs> eventHandler = RequestReceived;
-                if (eventHandler != null)
-                {
+                if (eventHandler != null) {
                     count = eventHandler.GetInvocationList().Length;
                 }
                 return count != 0;
             }
         }
 
-        public IAsyncResult SetupCallback()
-        {
+        public IAsyncResult SetupCallback() {
             ListenerAddress = GetNewHttpListenerAddress();
 
             KillAnyExistingListeners();
@@ -50,10 +44,8 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener
 
         #endregion
 
-        private void KillAnyExistingListeners()
-        {
-            if (ActiveListeners.Count != 0)
-            {
+        private void KillAnyExistingListeners() {
+            if (ActiveListeners.Count != 0) {
                 var staleListener = new HttpListener();
                 staleListener.Prefixes.Add(ActiveListeners[0]);
                 staleListener.Stop();
@@ -64,23 +56,19 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener
             ActiveListeners.Add(ListenerAddress);
         }
 
-        private string GetNewHttpListenerAddress()
-        {
+        private string GetNewHttpListenerAddress() {
             string listenerAddress;
-            while (true)
-            {
+            while (true) {
                 var listener = new HttpListener();
                 int randomPortNumber = Random.Next(1025, 65535);
                 listenerAddress = string.Format("http://localhost:{0}/", randomPortNumber);
                 listener.Prefixes.Add(listenerAddress);
-                try
-                {
+                try {
                     listener.Start();
                     listener.Stop();
                     listener.Close();
                 }
-                catch
-                {
+                catch {
                     continue;
                 }
                 break;
@@ -89,8 +77,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener
             return listenerAddress;
         }
 
-        private void HttpListenerCallback(IAsyncResult result)
-        {
+        private void HttpListenerCallback(IAsyncResult result) {
             var listener = (HttpListener) result.AsyncState;
 
             HttpListenerContext context = listener.EndGetContext(result);
@@ -98,7 +85,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener
             NameValueCollection queryStrings = request.QueryString;
 
             HttpListenerResponse response = context.Response;
-            byte[] buffer = Encoding.UTF8.GetBytes(ResponseString);
+            byte [] buffer = Encoding.UTF8.GetBytes(ResponseString);
             response.ContentLength64 = buffer.Length;
             Stream output = response.OutputStream;
             output.Write(buffer, 0, buffer.Length);

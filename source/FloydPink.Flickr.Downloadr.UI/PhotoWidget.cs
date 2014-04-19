@@ -1,75 +1,67 @@
 ﻿using System;
+using System.ComponentModel;
 using FloydPink.Flickr.Downloadr.Model;
+using Gdk;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr
-{
-	[System.ComponentModel.ToolboxItem (true)]
-	public partial class PhotoWidget : Gtk.Bin
-	{
-		string _imageUrl;
+namespace FloydPink.Flickr.Downloadr {
+    [ToolboxItem(true)]
+    public partial class PhotoWidget : Bin {
+        private string _imageUrl;
 
-		public string ImageUrl {
-			get {
-				return _imageUrl;
-			}
-			set {
-				_imageUrl = value;
-				if (!string.IsNullOrEmpty (_imageUrl)) {
-					imageMain.SetCachedImage (value);
-				}
-			}
-		}
+        private bool _isSelected;
 
-		bool _isSelected;
+        public PhotoWidget() {
+            Build();
+            HasTooltip = true;
+            QueryTooltip += (object o, QueryTooltipArgs args) => {
+                                Photo photo = ((PhotoWidget) o).Photo;
+                                SetupOnHoverImage(args, photo);
+                            };
+        }
 
-		public bool IsSelected {
-			get {
-				return _isSelected;
-			}
-			set {
-				if (_isSelected != value) {
-					_isSelected = value;
-					frameLabel.LabelProp = _isSelected ? 
-						"<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>" :
-						"<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>";
-					if (_isSelected) {
-						frameMain.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 255, 0));
-					} else {
-						frameMain.ModifyBg (Gtk.StateType.Normal);
-					}
-					if (SelectionChanged != null) {
-						SelectionChanged (this, new EventArgs ());
-					}
-				}
-			}
-		}
+        public string ImageUrl {
+            get { return this._imageUrl; }
+            set {
+                this._imageUrl = value;
+                if (!string.IsNullOrEmpty(this._imageUrl)) {
+                    this.imageMain.SetCachedImage(value);
+                }
+            }
+        }
 
-		public Photo Photo { get; set; }
+        public bool IsSelected {
+            get { return this._isSelected; }
+            set {
+                if (this._isSelected != value) {
+                    this._isSelected = value;
+                    this.frameLabel.LabelProp = this._isSelected
+                        ? "<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>"
+                        : "<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>";
+                    if (this._isSelected) {
+                        this.frameMain.ModifyBg(StateType.Normal, new Color(0, 255, 0));
+                    } else {
+                        this.frameMain.ModifyBg(StateType.Normal);
+                    }
+                    if (SelectionChanged != null) {
+                        SelectionChanged(this, new EventArgs());
+                    }
+                }
+            }
+        }
 
-		public event EventHandler SelectionChanged;
+        public Photo Photo { get; set; }
 
-		public PhotoWidget ()
-		{
-			this.Build ();
-			this.HasTooltip = true;
-			this.QueryTooltip += (object o, Gtk.QueryTooltipArgs args) => {
-				var photo = ((PhotoWidget)o).Photo;
-				SetupOnHoverImage(args, photo);
-			};
-		}
+        public event EventHandler SelectionChanged;
 
-		protected void imageClick (object o, Gtk.ButtonPressEventArgs args)
-		{
-			IsSelected = !IsSelected;
-		}
+        protected void imageClick(object o, ButtonPressEventArgs args) {
+            IsSelected = !IsSelected;
+        }
 
-		void SetupOnHoverImage (QueryTooltipArgs args, Photo photo)
-		{
-			var customTooltip = new PreviewPhotoWidget(photo);
-			args.Tooltip.Custom = customTooltip;
-			args.RetVal = true;
-		}
-	}
+        private void SetupOnHoverImage(QueryTooltipArgs args, Photo photo) {
+            var customTooltip = new PreviewPhotoWidget(photo);
+            args.Tooltip.Custom = customTooltip;
+            args.RetVal = true;
+        }
+    }
 }
-

@@ -6,10 +6,8 @@ using FloydPink.Flickr.Downloadr.OAuth.Listener;
 using FloydPink.Flickr.Downloadr.Repository.Helpers;
 using StructureMap.Configuration.DSL;
 
-namespace FloydPink.Flickr.Downloadr.Bootstrap
-{
-    public class OAuthRegistry : Registry
-    {
+namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    public class OAuthRegistry : Registry {
         private const string SharedSecret = "kn98nkgg90sknka2038234(&9883!@%^";
 
         private const string ConsumerKey =
@@ -18,8 +16,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap
         private const string ConsumerSecret = "EAAAAEsjQ3vGqYjtqsHqE+unh1gtlK6usoX2+65UUOW83RHCAC+/n0EPnCaPbaXUAvPs9w==";
 
         private static readonly ServiceProviderDescription FlickrServiceDescription =
-            new ServiceProviderDescription
-            {
+            new ServiceProviderDescription {
                 ProtocolVersion = ProtocolVersion.V10a,
                 RequestTokenEndpoint =
                     new MessageReceivingEndpoint("http://www.flickr.com/services/oauth/request_token",
@@ -31,19 +28,20 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap
                     new MessageReceivingEndpoint("http://www.flickr.com/services/oauth/access_token",
                         HttpDeliveryMethods.GetRequest),
                 TamperProtectionElements =
-                    new ITamperProtectionChannelBindingElement[] {new HmacSha1SigningBindingElement()}
+                    new ITamperProtectionChannelBindingElement [] {
+                        new HmacSha1SigningBindingElement()
+                    }
             };
 
         private static readonly MessageReceivingEndpoint FlickrServiceEndPoint =
             new MessageReceivingEndpoint("http://api.flickr.com/services/rest", HttpDeliveryMethods.PostRequest);
 
-        public OAuthRegistry()
-        {
+        public OAuthRegistry() {
             For<IOAuthManager>()
                 .Singleton()
-				//.EnrichAllWith(DynamicProxy.LoggingInterceptorFor<IOAuthManager>())
+                //.EnrichAllWith(DynamicProxy.LoggingInterceptorFor<IOAuthManager>())
                 .Use<OAuthManager>().
-                Ctor<MessageReceivingEndpoint>("serviceEndPoint").Is(FlickrServiceEndPoint);
+                 Ctor<MessageReceivingEndpoint>("serviceEndPoint").Is(FlickrServiceEndPoint);
 
             For<DesktopConsumer>()
                 .Use<DesktopConsumer>()
@@ -58,7 +56,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap
                 .Is(Crypt.Decrypt(ConsumerSecret, SharedSecret));
 
             For<IHttpListenerManager>()
-			//.EnrichAllWith(DynamicProxy.LoggingInterceptorFor<IHttpListenerManager>())
+                //.EnrichAllWith(DynamicProxy.LoggingInterceptorFor<IHttpListenerManager>())
                 .Use<HttpListenerManager>();
         }
     }

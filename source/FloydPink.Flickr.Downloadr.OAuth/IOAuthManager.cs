@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace FloydPink.Flickr.Downloadr.OAuth
-{
-    public interface IOAuthManager
-    {
+namespace FloydPink.Flickr.Downloadr.OAuth {
+    public interface IOAuthManager {
         string AccessToken { get; set; }
 
         event EventHandler<AuthenticatedEventArgs> Authenticated;

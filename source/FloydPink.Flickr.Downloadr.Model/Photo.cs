@@ -1,7 +1,5 @@
-namespace FloydPink.Flickr.Downloadr.Model
-{
-    public class Photo
-    {
+namespace FloydPink.Flickr.Downloadr.Model {
+    public class Photo {
         private readonly string _large1024Url;
         private readonly string _medium500Url;
         private readonly string _medium640Url;
@@ -10,13 +8,12 @@ namespace FloydPink.Flickr.Downloadr.Model
         private readonly string _small320Url;
 
         public Photo(string id, string owner, string secret, string server, int farm, string title, bool isPublic,
-            bool isFamily, bool isFriend,
-            string description, string tags, string originalSecret, string originalFormat,
-            string smallSquare75X75Url, string largeSquare150X150Url,
-            string thumbnailUrl, string small240Url, string small320Url, string medium500Url,
-            string medium640Url, string medium800Url, string large1024Url,
-            string originalUrl)
-        {
+                     bool isFamily, bool isFriend,
+                     string description, string tags, string originalSecret, string originalFormat,
+                     string smallSquare75X75Url, string largeSquare150X150Url,
+                     string thumbnailUrl, string small240Url, string small320Url, string medium500Url,
+                     string medium640Url, string medium800Url, string large1024Url,
+                     string originalUrl) {
             Id = id;
             Owner = owner;
             Secret = secret;
@@ -34,12 +31,12 @@ namespace FloydPink.Flickr.Downloadr.Model
             LargeSquare150X150Url = largeSquare150X150Url;
             ThumbnailUrl = thumbnailUrl;
             Small240Url = small240Url;
-            _small320Url = small320Url;
-            _medium500Url = medium500Url;
-            _medium640Url = medium640Url;
-            _medium800Url = medium800Url;
-            _large1024Url = large1024Url;
-            _originalUrl = originalUrl;
+            this._small320Url = small320Url;
+            this._medium500Url = medium500Url;
+            this._medium640Url = medium640Url;
+            this._medium800Url = medium800Url;
+            this._large1024Url = large1024Url;
+            this._originalUrl = originalUrl;
         }
 
         public string Id { get; private set; }
@@ -76,38 +73,31 @@ namespace FloydPink.Flickr.Downloadr.Model
 
         public string Small240Url { get; private set; }
 
-        public string Small320Url
-        {
-            get { return string.IsNullOrWhiteSpace(_small320Url) ? Small240Url : _small320Url; }
+        public string Small320Url {
+            get { return string.IsNullOrWhiteSpace(this._small320Url) ? Small240Url : this._small320Url; }
         }
 
-        public string Medium500Url
-        {
-            get { return string.IsNullOrWhiteSpace(_medium500Url) ? Small320Url : _medium500Url; }
+        public string Medium500Url {
+            get { return string.IsNullOrWhiteSpace(this._medium500Url) ? Small320Url : this._medium500Url; }
         }
 
-        public string Medium640Url
-        {
-            get { return string.IsNullOrWhiteSpace(_medium640Url) ? Medium500Url : _medium640Url; }
+        public string Medium640Url {
+            get { return string.IsNullOrWhiteSpace(this._medium640Url) ? Medium500Url : this._medium640Url; }
         }
 
-        public string Medium800Url
-        {
-            get { return string.IsNullOrWhiteSpace(_medium800Url) ? Medium640Url : _medium800Url; }
+        public string Medium800Url {
+            get { return string.IsNullOrWhiteSpace(this._medium800Url) ? Medium640Url : this._medium800Url; }
         }
 
-        public string Large1024Url
-        {
-            get { return string.IsNullOrWhiteSpace(_large1024Url) ? Medium800Url : _large1024Url; }
+        public string Large1024Url {
+            get { return string.IsNullOrWhiteSpace(this._large1024Url) ? Medium800Url : this._large1024Url; }
         }
 
-        public string OriginalUrl
-        {
-            get { return string.IsNullOrWhiteSpace(_originalUrl) ? Large1024Url : _originalUrl; }
+        public string OriginalUrl {
+            get { return string.IsNullOrWhiteSpace(this._originalUrl) ? Large1024Url : this._originalUrl; }
         }
 
-        public string DownloadFormat
-        {
+        public string DownloadFormat {
             get { return string.IsNullOrWhiteSpace(OriginalFormat) ? "jpg" : OriginalFormat; }
         }
     }

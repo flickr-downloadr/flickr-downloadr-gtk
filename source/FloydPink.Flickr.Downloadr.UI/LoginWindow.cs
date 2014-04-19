@@ -1,194 +1,176 @@
 ﻿using System;
-using Gtk;
-using System.Reflection;
 using FloydPink.Flickr.Downloadr.Bootstrap;
 using FloydPink.Flickr.Downloadr.Model;
 using FloydPink.Flickr.Downloadr.Presentation;
 using FloydPink.Flickr.Downloadr.Presentation.Views;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
 using FloydPink.Flickr.Downloadr.UI.CachedImage;
-using System.IO;
+using FloydPink.Flickr.Downloadr.UI.Helpers;
+using Gtk;
+using Mono.Unix;
 
-namespace FloydPink.Flickr.Downloadr
-{
-	public partial class LoginWindow : Gtk.Window, ILoginView
-	{
-		private readonly ILoginPresenter _presenter;
-		private User _user;
+namespace FloydPink.Flickr.Downloadr {
+    public partial class LoginWindow : Window, ILoginView {
+        private readonly ILoginPresenter _presenter;
+        private User _user;
 
-		private SpinnerWidget spinner;
+        private SpinnerWidget spinner;
 
-		public LoginWindow ()
-			: this (new User ())
-		{
-		}
+        public LoginWindow()
+            : this(new User()) { }
 
-		public LoginWindow (User user) :
-			base (Gtk.WindowType.Toplevel)
-		{
-			this.Build ();
+        public LoginWindow(User user) :
+            base(WindowType.Toplevel) {
+            Build();
 
-			AddTooltips ();
+            AddTooltips();
 
-			Title += VersionHelper.GetVersionString ();
-			User = user;
+            Title += VersionHelper.GetVersionString();
+            User = user;
 
-			AddSpinnerControl ();
+            AddSpinnerControl();
 
-			_presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter> (this);
-			_presenter.InitializeScreen ();
-		}
+            this._presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter>(this);
+            this._presenter.InitializeScreen();
+        }
 
-		protected void OnDeleteEvent (object sender, DeleteEventArgs args)
-		{
-			Application.Quit ();
-			args.RetVal = true;
-		}
+        protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
+            Application.Quit();
+            args.RetVal = true;
+        }
 
-		#region ILoginView Members
+        private void SetWelcomeLabel(User user) {
+            Application.Invoke(delegate {
+                                   string welcomeMessage = string.IsNullOrEmpty(user.UserNsId)
+                                       ? string.Empty
+                                       : user.WelcomeMessage;
+                                   this.labelWelcomeUsername.LabelProp = string.Format("<b><big>{0}</big></b>",
+                                       welcomeMessage);
+                                   if (user.Info == null) {
+                                       return;
+                                   }
+                                   this.imageBuddyIcon.SetCachedImage(user.Info.BuddyIconUrl);
+                               });
+        }
 
-		protected Preferences Preferences { get; set; }
+        private void AddTooltips() {
+            this.buttonLogin.TooltipText = "Log in to flickr using OAuth";
+            this.buttonPrefs.TooltipText = "Update the Preferences";
+            this.buttonLogout.TooltipText = "Log out from the currently logged in account";
+            this.buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
+        }
 
-		public User User {
-			get { return _user; }
-			set {
-				_user = value;
-				SetWelcomeLabel (value);
-			}
-		}
+        private void AddSpinnerControl() {
+            this.spinner = new SpinnerWidget {
+                Name = "loginSpinner",
+                Cancellable = true,
+                Operation = "Please wait...",
+                Visible = false
+            };
+            this.spinner.SpinnerCanceled +=
+                (object sender, EventArgs e) => { Application.Invoke(delegate { this.hboxLogin.Sensitive = true; }); };
+            this.vbox2.Add(this.spinner);
 
-		public void ShowLoggedInControl (Preferences preferences)
-		{
-			Application.Invoke (delegate {
-				Preferences = preferences;
-				FileCache.AppCacheDirectory = Preferences != null
-								? Preferences.CacheLocation
-								: Preferences.GetDefault ().CacheLocation;
+            var spinnerSlot = ((Box.BoxChild) (this.vbox2[this.spinner]));
+            spinnerSlot.Position = 0;
+            spinnerSlot.Expand = true;
+        }
 
-				buttonPrefs.Visible = Preferences != null;
-				hboxBottomButtons.Visible = true;
-				hboxAvatar.Visible = true;
+        //		private void EditLogConfigClick(object sender, RoutedEventArgs e)
+        //		{
+        //			OpenInNotepad(Bootstrapper.GetLogConfigFile().FullName);
+        //		}
+        //
+        //		private void ViewLogClick(object sender, RoutedEventArgs e)
+        //		{
+        //			OpenInNotepad(Bootstrapper.GetLogFile().FullName);
+        //		}
+        //
+        //		private static void OpenInNotepad(string filepath)
+        //		{
+        //			Process.Start("notepad.exe", filepath);
+        //		}
+        //
+        protected void buttonLoginClick(object sender, EventArgs e) {
+            this._presenter.Login();
+        }
 
-				hboxLogin.Visible = false;
-				this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Click 'Continue' to browse and download photos...");
-			});
-		}
+        protected void buttonLogoutClick(object sender, EventArgs e) {
+            this._presenter.Logout();
+        }
 
-		public void ShowLoggedOutControl ()
-		{
-			Application.Invoke (delegate {
-				hboxLogin.Visible = true;
-				this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click 'Login' to continue.");
+        protected void buttonContinueClick(object sender, EventArgs e) {
+            this._presenter.Continue();
+        }
 
-				buttonPrefs.Visible = false;
-				hboxBottomButtons.Visible = false;
-				hboxAvatar.Visible = false;
-			});
-		}
+        protected void buttonAboutClick(object sender, EventArgs e) {
+            var aboutWindow = new AboutWindow();
+            aboutWindow.ShowAll();
+        }
 
-		public void ShowSpinner (bool show)
-		{
-			Application.Invoke (delegate {
-				hboxLogin.Sensitive = !show;
-				spinner.Visible = show;
-			});
-		}
+        protected void buttonPrefsClick(object sender, EventArgs e) {
+            OpenPreferencesWindow(Preferences);
+        }
 
-		public void OpenBrowserWindow ()
-		{
-			var browserWindow = new BrowserWindow (User, Preferences);
-			browserWindow.Show ();
-			Destroy ();
-		}
+        #region ILoginView Members
 
-		public void OpenPreferencesWindow (Preferences preferences)
-		{
-			var preferencesWindow = new PreferencesWindow (User, preferences);
-			preferencesWindow.Show ();
-			Destroy ();
-		}
+        protected Preferences Preferences { get; set; }
 
-		#endregion
+        public User User {
+            get { return this._user; }
+            set {
+                this._user = value;
+                SetWelcomeLabel(value);
+            }
+        }
 
-		private void SetWelcomeLabel (User user)
-		{
-			Application.Invoke (delegate {
-				var welcomeMessage = string.IsNullOrEmpty (user.UserNsId) ? string.Empty : user.WelcomeMessage;
-				labelWelcomeUsername.LabelProp = string.Format ("<b><big>{0}</big></b>", welcomeMessage);
-				if (user.Info == null)
-					return;
-				imageBuddyIcon.SetCachedImage (user.Info.BuddyIconUrl);
-			});
-		}
+        public void ShowLoggedInControl(Preferences preferences) {
+            Application.Invoke(delegate {
+                                   Preferences = preferences;
+                                   FileCache.AppCacheDirectory = Preferences != null
+                                       ? Preferences.CacheLocation
+                                       : Preferences.GetDefault().CacheLocation;
 
-		void AddTooltips ()
-		{
-			buttonLogin.TooltipText = "Log in to flickr using OAuth";
-			buttonPrefs.TooltipText = "Update the Preferences";
-			buttonLogout.TooltipText = "Log out from the currently logged in account";
-			buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
-		}
+                                   this.buttonPrefs.Visible = Preferences != null;
+                                   this.hboxBottomButtons.Visible = true;
+                                   this.hboxAvatar.Visible = true;
 
-		void AddSpinnerControl ()
-		{
-			spinner = new SpinnerWidget () {
-				Name = "loginSpinner",
-				Cancellable = true,
-				Operation = "Please wait...",
-				Visible = false
-			};
-			spinner.SpinnerCanceled += (object sender, EventArgs e) => {
-				Application.Invoke(delegate {
-					hboxLogin.Sensitive = true;
-				});
-			};
-			this.vbox2.Add (spinner);
+                                   this.hboxLogin.Visible = false;
+                                   this.labelMessage.LabelProp =
+                                       Catalog.GetString("Click 'Continue' to browse and download photos...");
+                               });
+        }
 
-			Box.BoxChild spinnerSlot = ((Box.BoxChild)(this.vbox2 [spinner]));
-			spinnerSlot.Position = 0;
-			spinnerSlot.Expand = true;
-		}
+        public void ShowLoggedOutControl() {
+            Application.Invoke(delegate {
+                                   this.hboxLogin.Visible = true;
+                                   this.labelMessage.LabelProp =
+                                       Catalog.GetString("Welcome to Flickr Downloadr. Click 'Login' to continue.");
 
-		//		private void EditLogConfigClick(object sender, RoutedEventArgs e)
-		//		{
-		//			OpenInNotepad(Bootstrapper.GetLogConfigFile().FullName);
-		//		}
-		//
-		//		private void ViewLogClick(object sender, RoutedEventArgs e)
-		//		{
-		//			OpenInNotepad(Bootstrapper.GetLogFile().FullName);
-		//		}
-		//
-		//		private static void OpenInNotepad(string filepath)
-		//		{
-		//			Process.Start("notepad.exe", filepath);
-		//		}
-		//
-		protected void buttonLoginClick (object sender, EventArgs e)
-		{
-			_presenter.Login ();
-		}
+                                   this.buttonPrefs.Visible = false;
+                                   this.hboxBottomButtons.Visible = false;
+                                   this.hboxAvatar.Visible = false;
+                               });
+        }
 
-		protected void buttonLogoutClick (object sender, EventArgs e)
-		{
-			_presenter.Logout ();
-		}
+        public void ShowSpinner(bool show) {
+            Application.Invoke(delegate {
+                                   this.hboxLogin.Sensitive = !show;
+                                   this.spinner.Visible = show;
+                               });
+        }
 
-		protected void buttonContinueClick (object sender, EventArgs e)
-		{
-			_presenter.Continue ();
-		}
+        public void OpenBrowserWindow() {
+            var browserWindow = new BrowserWindow(User, Preferences);
+            browserWindow.Show();
+            Destroy();
+        }
 
-		protected void buttonAboutClick (object sender, EventArgs e)
-		{
-			var aboutWindow = new AboutWindow ();
-			aboutWindow.ShowAll ();
-		}
+        public void OpenPreferencesWindow(Preferences preferences) {
+            var preferencesWindow = new PreferencesWindow(User, preferences);
+            preferencesWindow.Show();
+            Destroy();
+        }
 
-		protected void buttonPrefsClick (object sender, EventArgs e)
-		{
-			OpenPreferencesWindow (Preferences);
-		}
-	}
+        #endregion
+    }
 }
-

@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using FloydPink.Flickr.Downloadr.Model;
 
-namespace FloydPink.Flickr.Downloadr.Presentation.Views
-{
-    public interface IBrowserView : IBaseView
-    {
+namespace FloydPink.Flickr.Downloadr.Presentation.Views {
+    public interface IBrowserView : IBaseView {
         User User { get; set; }
         Preferences Preferences { get; set; }
-		IEnumerable<Photo> Photos { get; set; }
+        IEnumerable<Photo> Photos { get; set; }
         IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
         bool ShowAllPhotos { get; }
 

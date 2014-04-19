@@ -3,12 +3,10 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FloydPink.Flickr.Downloadr.Repository.Helpers
-{
+namespace FloydPink.Flickr.Downloadr.Repository.Helpers {
     // code from stackoverflow.com/a/2791259/218882
-    public class Crypt
-    {
-        private static readonly byte[] Salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
+    public class Crypt {
+        private static readonly byte [] Salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
 
         /// <summary>
         ///     Encrypt the given string using AES.  The string can be decrypted using
@@ -16,38 +14,35 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers
         /// </summary>
         /// <param name="plainText">The text to encrypt.</param>
         /// <param name="sharedSecret">A password used to generate a key for encryption.</param>
-        public static string Encrypt(string plainText, string sharedSecret)
-        {
-            if (string.IsNullOrEmpty(plainText))
+        public static string Encrypt(string plainText, string sharedSecret) {
+            if (string.IsNullOrEmpty(plainText)) {
                 throw new ArgumentNullException("plainText");
-            if (string.IsNullOrEmpty(sharedSecret))
+            }
+            if (string.IsNullOrEmpty(sharedSecret)) {
                 throw new ArgumentNullException("sharedSecret");
+            }
 
             string outStr = null; // Encrypted string to return
             RijndaelManaged aesAlg = null; // RijndaelManaged object used to encrypt the data.
 
-            try
-            {
+            try {
                 // generate the key from the shared secret and the salt
                 var key = new Rfc2898DeriveBytes(sharedSecret, Salt);
 
                 // Create a RijndaelManaged object
                 aesAlg = new RijndaelManaged();
-                aesAlg.Key = key.GetBytes(aesAlg.KeySize/8);
+                aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
 
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
                 // Create the streams used for encryption.
-                using (var msEncrypt = new MemoryStream())
-                {
+                using (var msEncrypt = new MemoryStream()) {
                     // prepend the IV
                     msEncrypt.Write(BitConverter.GetBytes(aesAlg.IV.Length), 0, sizeof (int));
                     msEncrypt.Write(aesAlg.IV, 0, aesAlg.IV.Length);
-                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (var swEncrypt = new StreamWriter(csEncrypt))
-                        {
+                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) {
+                        using (var swEncrypt = new StreamWriter(csEncrypt)) {
                             //Write all data to the stream.
                             swEncrypt.Write(plainText);
                         }
@@ -55,11 +50,11 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers
                     outStr = Convert.ToBase64String(msEncrypt.ToArray());
                 }
             }
-            finally
-            {
+            finally {
                 // Clear the RijndaelManaged object.
-                if (aesAlg != null)
+                if (aesAlg != null) {
                     aesAlg.Clear();
+                }
             }
 
             // Return the encrypted bytes from the memory stream.
@@ -72,12 +67,13 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers
         /// </summary>
         /// <param name="cipherText">The text to decrypt.</param>
         /// <param name="sharedSecret">A password used to generate a key for decryption.</param>
-        public static string Decrypt(string cipherText, string sharedSecret)
-        {
-            if (string.IsNullOrEmpty(cipherText))
+        public static string Decrypt(string cipherText, string sharedSecret) {
+            if (string.IsNullOrEmpty(cipherText)) {
                 throw new ArgumentNullException("cipherText");
-            if (string.IsNullOrEmpty(sharedSecret))
+            }
+            if (string.IsNullOrEmpty(sharedSecret)) {
                 throw new ArgumentNullException("sharedSecret");
+            }
 
             // Declare the RijndaelManaged object
             // used to decrypt the data.
@@ -87,53 +83,47 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers
             // the decrypted text.
             string plaintext = null;
 
-            try
-            {
+            try {
                 // generate the key from the shared secret and the salt
                 var key = new Rfc2898DeriveBytes(sharedSecret, Salt);
 
                 // Create the streams used for decryption.                
-                byte[] bytes = Convert.FromBase64String(cipherText);
-                using (var msDecrypt = new MemoryStream(bytes))
-                {
+                byte [] bytes = Convert.FromBase64String(cipherText);
+                using (var msDecrypt = new MemoryStream(bytes)) {
                     // Create a RijndaelManaged object
                     // with the specified key and IV.
                     aesAlg = new RijndaelManaged();
-                    aesAlg.Key = key.GetBytes(aesAlg.KeySize/8);
+                    aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
                     // Get the initialization vector from the encrypted stream
                     aesAlg.IV = ReadByteArray(msDecrypt);
                     // Create a decrytor to perform the stream transform.
                     ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-                    using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (var srDecrypt = new StreamReader(csDecrypt))
-
+                    using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {
+                        using (var srDecrypt = new StreamReader(csDecrypt)) {
                             // Read the decrypted bytes from the decrypting stream
                             // and place them in a string.
                             plaintext = srDecrypt.ReadToEnd();
+                        }
                     }
                 }
             }
-            finally
-            {
+            finally {
                 // Clear the RijndaelManaged object.
-                if (aesAlg != null)
+                if (aesAlg != null) {
                     aesAlg.Clear();
+                }
             }
             return plaintext;
         }
 
-        private static byte[] ReadByteArray(Stream s)
-        {
+        private static byte [] ReadByteArray(Stream s) {
             var rawLength = new byte[sizeof (int)];
-            if (s.Read(rawLength, 0, rawLength.Length) != rawLength.Length)
-            {
+            if (s.Read(rawLength, 0, rawLength.Length) != rawLength.Length) {
                 throw new SystemException("Stream did not contain properly formatted byte array");
             }
 
             var buffer = new byte[BitConverter.ToInt32(rawLength, 0)];
-            if (s.Read(buffer, 0, buffer.Length) != buffer.Length)
-            {
+            if (s.Read(buffer, 0, buffer.Length) != buffer.Length) {
                 throw new SystemException("Did not read byte array properly");
             }
             return buffer;

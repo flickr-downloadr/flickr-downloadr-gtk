@@ -1,7 +1,5 @@
-﻿namespace FloydPink.Flickr.Downloadr.Model.Enums
-{
-    public static class PhotoSize
-    {
+﻿namespace FloydPink.Flickr.Downloadr.Model.Enums {
+    public static class PhotoSize {
         /*
             s	small square 75x75
             q	large square 150x150

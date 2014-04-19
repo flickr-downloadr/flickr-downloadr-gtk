@@ -1,7 +1,5 @@
-﻿namespace FloydPink.Flickr.Downloadr.Model
-{
-    public class ProgressUpdate
-    {
+﻿namespace FloydPink.Flickr.Downloadr.Model {
+    public class ProgressUpdate {
         public bool ShowPercent { get; set; }
         public int PercentDone { get; set; }
         public string OperationText { get; set; }
