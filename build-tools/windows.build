@@ -26,7 +26,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="appveyor" depends="install, unitTestsOnly"/>
+  <target name="appveyor" depends="install, unitTestsOnly, createrelease"/>
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
 
