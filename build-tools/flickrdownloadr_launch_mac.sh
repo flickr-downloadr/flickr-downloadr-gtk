@@ -3,10 +3,10 @@
 # Thanks to the detailed guide by Michael J Hutchinson - https://mjhutchinson.com/journal/2010/01/24/creating_mac_app_bundle_for_gtk_app
  
 #get the bundle's MacOS directory full path
-DIR=$(cd "$(dirname "$0")"; pwd)
+DIR=$(cd "$(dirname "$0")"; pwd)/bin
  
 #change these values to match your app
-EXE_PATH="$DIR\flickr-downloadr.exe"
+EXE_PATH="$DIR/flickr-downloadr.exe"
 PROCESS_NAME=flickr-downloadr
 APPNAME="flickr downloadr"
  
