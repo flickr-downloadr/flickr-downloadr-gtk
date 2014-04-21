@@ -64,7 +64,7 @@
     </exec>
   </target>
 
-  <target name="createrelease-win" depends="createmacappbundle">
+  <target name="createrelease-mac" depends="createmacappbundle">
   	<echo message="Need to now create the shell file" />
   	<move tofile="../dist/mac/flickrdownlodr.app">
 		<fileset basedir="flickrdownlodr.app"/>
