@@ -1,0 +1,24 @@
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>flickr-downloadr</string>
+	<key>CFBundleIconFile</key>
+	<string>flickr-downloadr.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.floydpink.mac.flickrdownloadr</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>flickr downloadr</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>@VERSION@</string>
+	<key>CFBundleSignature</key>
+	<string>xmmd</string>
+	<key>CFBundleVersion</key>
+	<string>@VERSION@</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>NO</string>
+</dict>

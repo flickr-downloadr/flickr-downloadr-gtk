@@ -29,7 +29,8 @@
   <target name="appveyor" depends="install, unitTestsOnly, createrelease"/>
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
-
+  <target name="createrelease" depends="createrelease-win, createrelease-mac">
+  
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
     <delete dir="${bin.dir}" failonerror="false"  if="${directory::exists(bin.dir)}"/>
@@ -52,7 +53,7 @@
     </exec>
   </target>
 
-  <target name="createrelease" depends="unitTestsOnly">
+  <target name="createrelease-win" depends="unitTestsOnly">
     <echo message="Creating the release..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
         <arg value="-noprofile"/>
@@ -63,6 +64,13 @@
     </exec>
   </target>
 
+  <target name="createrelease-win" depends="createmacappbundle">
+  	<echo message="Need to now create the shell file" />
+  	<move tofile="../dist/mac/flickrdownlodr.app">
+		<fileset basedir="flickrdownlodr.app"/>
+	</move>
+  </target>
+  
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">

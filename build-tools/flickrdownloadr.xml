@@ -36,6 +36,28 @@
                     <destination>${installdir}</destination>
                     <name>programfiles</name>
                     <platforms>all</platforms>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Uninstall</comment>
+                            <exec>${installdir}/${uninstallerName}</exec>
+                            <icon></icon>
+                            <name>Uninstall ${product_fullname}</name>
+                            <path>${installdir}</path>
+                            <platforms>all</platforms>
+                            <runAsAdmin>0</runAsAdmin>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath>${installdir}</windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileslinux</name>
+                    <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
                             <origin>../source/bin/Release/flickr-downloadr.exe</origin>
@@ -74,28 +96,6 @@
                             <origin>../misc/icon.png</origin>
                         </distributionFile>
                     </distributionFileList>
-                    <shortcutList>
-                        <shortcut>
-                            <comment>Uninstall</comment>
-                            <exec>${installdir}/${uninstallerName}</exec>
-                            <icon></icon>
-                            <name>Uninstall ${product_fullname}</name>
-                            <path>${installdir}</path>
-                            <platforms>all</platforms>
-                            <runAsAdmin>0</runAsAdmin>
-                            <runInTerminal>0</runInTerminal>
-                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
-                            <windowsExecArgs></windowsExecArgs>
-                            <windowsIcon></windowsIcon>
-                            <windowsPath>${installdir}</windowsPath>
-                        </shortcut>
-                    </shortcutList>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${installdir}</destination>
-                    <name>programfileslinux</name>
-                    <platforms>linux</platforms>
                 </folder>
                 <folder>
                     <description>Program Files</description>
@@ -103,6 +103,42 @@
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
                     <distributionFileList>
+                        <distributionFile>
+                            <origin>../source/bin/Release/flickr-downloadr.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/DotNetOpenAuth.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Bootstrap.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Logic.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Model.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.OAuth.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Presentation.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Repository.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/log4net.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/ServiceStack.Text.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/StructureMap.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../misc/icon.png</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>../misc/icon.ico</origin>
                         </distributionFile>
@@ -237,6 +273,97 @@
                     </actionList>
                     <ruleList>
                         <platformTest>
+                            <type>windows</type>
+                        </platformTest>
+                    </ruleList>
+                </actionGroup>
+            </readyToInstallActionList>
+        </component>
+        <component>
+            <name>monoinstaller</name>
+            <description>Mono &amp; GTK# Installer</description>
+            <canBeEdited>0</canBeEdited>
+            <downloadable>1</downloadable>
+            <selected>0</selected>
+            <show>0</show>
+            <folderList>
+                <folder>
+                    <description>Mono Installer</description>
+                    <destination>${installdir}</destination>
+                    <name>monoinstaller</name>
+                    <platforms>all</platforms>
+                </folder>
+            </folderList>
+            <readyToInstallActionList>
+                <actionGroup>
+                    <progressText>Installing Mono Framework</progressText>
+                    <actionList>
+                        <actionGroup>
+                            <progressText>Installing Mono Framework for Mac</progressText>
+                            <actionList>
+                                <showProgressDialog>
+                                    <title>Installing Mono Framework for Mac</title>
+                                    <actionList>
+                                        <httpGet>
+                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</filename>
+                                            <progressText>Downloading Mono Framework Installer</progressText>
+                                            <url>http://download.mono-project.com/archive/3.4.0/macos-10-x86/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</url>
+                                        </httpGet>
+                                        <runProgram>
+                                            <program>open</program>
+                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg"</programArguments>
+                                            <progressText>Installing Mono Framework</progressText>
+                                        </runProgram>
+                                    </actionList>
+                                    <ruleList>
+                                        <fileExists>
+                                            <negate>1</negate>
+                                            <path>/Library/Frameworks/Mono.framework</path>
+                                        </fileExists>
+                                    </ruleList>
+                                </showProgressDialog>
+                            </actionList>
+                            <ruleList>
+                                <platformTest>
+                                    <type>osx</type>
+                                </platformTest>
+                            </ruleList>
+                        </actionGroup>
+                        <actionGroup>
+                            <progressText>Installing Mono Framework...</progressText>
+                            <actionList>
+                                <showProgressDialog>
+                                    <title>Installing Mono Framework for Linux</title>
+                                    <actionList>
+                                        <httpGet>
+                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</filename>
+                                            <progressText>Downloading Mono Framework Installer</progressText>
+                                            <url>http://download.mono-project.com/archive/3.4.0/macos-10-x86/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</url>
+                                        </httpGet>
+                                        <runProgram>
+                                            <program>open</program>
+                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg"</programArguments>
+                                            <progressText>Installing GTK#</progressText>
+                                        </runProgram>
+                                    </actionList>
+                                    <ruleList>
+                                        <fileExists>
+                                            <negate>1</negate>
+                                            <path>/Library/Frameworks/Mono.framework</path>
+                                        </fileExists>
+                                    </ruleList>
+                                </showProgressDialog>
+                            </actionList>
+                            <ruleList>
+                                <platformTest>
+                                    <type>linux</type>
+                                </platformTest>
+                            </ruleList>
+                        </actionGroup>
+                    </actionList>
+                    <ruleList>
+                        <platformTest>
+                            <negate>1</negate>
                             <type>windows</type>
                         </platformTest>
                     </ruleList>
