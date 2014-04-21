@@ -29,7 +29,7 @@
   <target name="appveyor" depends="install, unitTestsOnly, createrelease"/>
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
-  <target name="createrelease" depends="createrelease-win, createrelease-mac">
+  <target name="createrelease" depends="createrelease-win, createrelease-mac" />
   
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
