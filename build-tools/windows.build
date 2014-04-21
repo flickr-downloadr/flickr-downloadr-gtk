@@ -30,7 +30,7 @@
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
   <target name="createrelease" depends="createrelease-win, createrelease-mac" />
-  
+
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
     <delete dir="${bin.dir}" failonerror="false"  if="${directory::exists(bin.dir)}"/>
@@ -45,41 +45,42 @@
   <target name="install">
     <echo message="Installing GTK# and BitRock Installer..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
-        <arg value="-noprofile"/>
-        <arg value="-nologo"/>
-        <arg value="-noninteractive"/>
-        <arg value="-command"/>
-        <arg value=".\install.ps1"/>
+      <arg value="-noprofile"/>
+      <arg value="-nologo"/>
+      <arg value="-noninteractive"/>
+      <arg value="-command"/>
+      <arg value=".\install.ps1"/>
     </exec>
   </target>
 
   <target name="createrelease-win" depends="unitTestsOnly">
     <echo message="Creating the release..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
-        <arg value="-noprofile"/>
-        <arg value="-nologo"/>
-        <arg value="-noninteractive"/>
-        <arg value="-command"/>
-        <arg value=".\create-release-win.ps1"/>
+      <arg value="-noprofile"/>
+      <arg value="-nologo"/>
+      <arg value="-noninteractive"/>
+      <arg value="-command"/>
+      <arg value=".\create-release-win.ps1"/>
     </exec>
   </target>
 
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
-        <arg value="-noprofile"/>
-        <arg value="-nologo"/>
-        <arg value="-noninteractive"/>
-        <arg value="-command"/>
-        <arg value=".\downloadNuget.ps1"/>
+      <arg value="-noprofile"/>
+      <arg value="-nologo"/>
+      <arg value="-noninteractive"/>
+      <arg value="-command"/>
+      <arg value=".\downloadNuget.ps1"/>
     </exec>
   </target>
 
   <target name="compilesolution" depends="cleanBin, createBin, increment-version, restorenugetpackages">
     <echo message="Compiling Solution:" />
 
-    <exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319"
-			  commandline='"${source.directory}\${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m' workingdir="." />
+    <exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319" 
+      commandline='"${source.directory}\${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m'
+      workingdir="." />
   </target>
 
   <target name="unitTests">

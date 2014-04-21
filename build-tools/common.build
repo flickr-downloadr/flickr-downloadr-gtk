@@ -38,49 +38,50 @@
       </attributes>
     </asminfo>
   </target>
-  
-  <target name="createmacappbundle" depends="increment-version">
-  	<echo message="Creating Mac OS X App bundle" />
-  	<mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
-  	<loadfile file="Info.plist" property="plist-token-file">
-  		<filterchain>
-  			<replacetokens>
-  				<token key="VERSION" value="${buildnumber.version}" />
-  			</replacetokens>
-  		</filterchain>
-  	</loadfile>
-  	<!-- Info.plist file with the correct version -->
-	<touch file="flickrdownloadr.app/Contents/Info.plist" />
-	<echo message="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
-	<echo append="true" message="&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
-	<echo append="true" message="&lt;plist version=&quot;1.0&quot;&gt;${environment::newline()}${plist-token-file}${environment::newline()}&lt;/plist&gt;" file="flickrdownloadr.app/Contents/Info.plist" />
-  	<!-- Icons -->
-	<mkdir dir="flickrdownloadr.app/Contents/Resources" />
-	<copy file="flickr-downloadr.icns" tofile="flickrdownloadr.app/Contents/Resources/flickr-downloadr.icns" />
-	<!-- Executable and DLLs -->
-	<copy todir="flickrdownloadr.app/Contents/MacOS/bin">
-		<fileset basedir="${bin.dir}">
-			<include name="DotNetOpenAuth.dll" />
-			<include name="flickr-downloadr.exe" />
-			<include name="FloydPink.Flickr.Downloadr.Bootstrap.dll" />
-			<include name="FloydPink.Flickr.Downloadr.Logic.dll" />
-			<include name="FloydPink.Flickr.Downloadr.Model.dll" />
-			<include name="FloydPink.Flickr.Downloadr.OAuth.dll" />
-			<include name="FloydPink.Flickr.Downloadr.Presentation.dll" />
-			<include name="FloydPink.Flickr.Downloadr.Repository.dll" />
-			<include name="log4net.dll" />
-			<include name="ServiceStack.Text.dll" />
-			<include name="StructureMap.dll" />
-		</fileset>
-	</copy>
+
+  <target name="createmacappbundle" depends="unitTestsOnly">
+    <echo message="Creating Mac OS X App bundle" />
+    <mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
+    <loadfile file="Info.plist" property="plist-token-file">
+      <filterchain>
+        <replacetokens>
+          <token key="VERSION" value="${buildnumber.version}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+    <!-- Info.plist file with the correct version -->
+    <touch file="flickrdownloadr.app/Contents/Info.plist" />
+    <echo message="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
+    <echo append="true" message="&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
+    <echo append="true" message="&lt;plist version=&quot;1.0&quot;&gt;${environment::newline()}${plist-token-file}${environment::newline()}&lt;/plist&gt;" file="flickrdownloadr.app/Contents/Info.plist" />
+    <!-- Icons -->
+    <mkdir dir="flickrdownloadr.app/Contents/Resources" />
+    <copy file="flickr-downloadr.icns" tofile="flickrdownloadr.app/Contents/Resources/flickr-downloadr.icns" />
+    <!-- Executable and DLLs -->
+    <copy todir="flickrdownloadr.app/Contents/MacOS/bin">
+      <fileset basedir="${bin.dir}">
+        <include name="DotNetOpenAuth.dll" />
+        <include name="flickr-downloadr.exe" />
+        <include name="FloydPink.Flickr.Downloadr.Bootstrap.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Logic.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Model.dll" />
+        <include name="FloydPink.Flickr.Downloadr.OAuth.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Presentation.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Repository.dll" />
+        <include name="log4net.dll" />
+        <include name="ServiceStack.Text.dll" />
+        <include name="StructureMap.dll" />
+      </fileset>
+    </copy>
+    <!-- Launcher Script -->
+    <copy file="flickrdownloadr_launch_mac.sh" tofile="flickrdownloadr.app/Contents/MacOS/flickrdownloadr" />
   </target>
 
   <target name="createrelease-mac" depends="unitTestsOnly, createmacappbundle">
-  	<echo message="Need to now create the shell file" />
-  	<mkdir dir="../dist/mac" />
-  	<move todir="../dist/mac/flickrdownloadr.app">
-		<fileset basedir="flickrdownloadr.app"/>
-	</move>
+    <echo message="Need to now create the shell file" />
+    <move todir="../source/bin/Release/flickrdownloadr.app">
+      <fileset basedir="flickrdownloadr.app"/>
+    </move>
   </target>
-  
+
 </project>
