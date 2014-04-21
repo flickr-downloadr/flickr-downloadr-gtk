@@ -64,13 +64,6 @@
     </exec>
   </target>
 
-  <target name="createrelease-mac" depends="createmacappbundle">
-  	<echo message="Need to now create the shell file" />
-  	<move tofile="../dist/mac/flickrdownlodr.app">
-		<fileset basedir="flickrdownlodr.app"/>
-	</move>
-  </target>
-  
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
