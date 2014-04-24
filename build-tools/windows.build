@@ -29,7 +29,7 @@
   <target name="appveyor" depends="install, unitTestsOnly, createrelease"/>
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
-  <target name="createrelease" depends="createrelease-win, createrelease-mac" />
+  <target name="createrelease" depends="createinstallbuilderlicense, createrelease-win, createrelease-mac" />
 
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
@@ -51,6 +51,19 @@
       <arg value="-command"/>
       <arg value=".\install.ps1"/>
     </exec>
+  </target>
+
+  <target name="createinstallbuilderlicense">
+    <echo message="Creating the Install Builder License File..." />
+    <loadfile file="license.xml.in" property="license-token-file">
+      <filterchain>
+        <replacetokens>
+          <token key="SIGNATURE" value="${environment::get-variable('INSTALL_BUILDER_LICENSE_SIGNATURE')}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+    <touch file="flickrdownloadrlicense.xml" />
+    <echo append="true" message="${license-token-file}" file="flickrdownloadrlicense.xml" />
   </target>
 
   <target name="createrelease-win" depends="unitTestsOnly">

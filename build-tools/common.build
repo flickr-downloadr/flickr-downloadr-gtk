@@ -42,7 +42,7 @@
   <target name="createmacappbundle" depends="unitTestsOnly">
     <echo message="Creating Mac OS X App bundle" />
     <mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
-    <loadfile file="Info.plist" property="plist-token-file">
+    <loadfile file="Info.plist.in" property="plist-token-file">
       <filterchain>
         <replacetokens>
           <token key="VERSION" value="${buildnumber.version}" />

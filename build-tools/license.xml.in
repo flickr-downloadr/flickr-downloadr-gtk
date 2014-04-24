@@ -1,0 +1,13 @@
+<license>
+    <issueDate>2014-04-15</issueDate>
+    <licenseSchemaVersion>1.2</licenseSchemaVersion>
+    <licenseType>standard</licenseType>
+    <majorVersion>8</majorVersion>
+    <minorVersion>6</minorVersion>
+    <organization>Haridas Pachuveetil - Open Source License</organization>
+    <patchVersion>0</patchVersion>
+    <product>BitRock InstallBuilder Multiplatform Enterprise</product>
+    <project>flickr downloadr</project>
+    <signature>@SIGNATURE@</signature>
+</license>
+
