@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="FlickrDownloadr-Common">
 
+  <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
+    <echo message="Clean bin directory" />
+    <delete dir="${bin.dir}" failonerror="false"  if="${directory::exists(bin.dir)}"/>
+  </target>
+
+  <target name="createBin" unless="${target::has-executed('createBin')}">
+    <echo message="Create bin directory" />
+    <mkdir dir="${bin.dir}" failonerror="true" unless="${directory::exists(bin.dir)}"/>
+    <mkdir dir="${nunit.results.dir}" failonerror="true" unless="${directory::exists(nunit.results.dir)}"/>
+  </target>
+
+  <target name="increment-version">
+    <echo message="Incrementing the version:" />
+    <version buildtype="NoIncrement" revisiontype="Increment" startdate="2012-04-02" verbose="true"/>
+    <call target="create-common-assemblyinfo" />
+  </target>
+
   <target name="create-common-assemblyinfo">
     <!-- ensure CommonAssemblyInfo.cs is writable if it already exists -->
     <attrib file="${common.assembly.info}" readonly="false" if="${file::exists('${common.assembly.info}')}" />
@@ -39,6 +56,18 @@
     </asminfo>
   </target>
 
+  <target name="unitTests">
+    <echo message="Running FloydPink.Flickr.Downloadr.UnitTests..." />
+    <property name="nunittest.testassemblypath" value="${unittests.assembly}" dynamic="true" />
+    <call target="nunittest" />
+  </target>
+
+  <target name="boundarycrossingTests">
+    <echo message="Running FloydPink.Flickr.Downloadr.BoundaryCrossingTests..." />
+    <property name="nunittest.testassemblypath" value="${boundarycrossingtests.assembly}" dynamic="true" />
+    <call target="nunittest" />
+  </target>
+
   <target name="createmacappbundle" depends="unitTestsOnly">
     <echo message="Creating Mac OS X App bundle" />
     <mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
@@ -75,14 +104,10 @@
     </copy>
     <!-- Launcher Script -->
     <copy file="flickrdownloadr_launch_mac.sh" tofile="flickrdownloadr.app/Contents/MacOS/flickrdownloadr" />
-  </target>
-
-  <target name="createrelease-mac" depends="unitTestsOnly, createmacappbundle">
-    <echo message="Need to now create the shell file" />
-    <mkdir dir="../dist/mac/" />
-    <move todir="../dist/mac/flickrdownloadr.app">
+    <!-- Move this .app folder to bin/Release -->
+    <move todir="${bin.dir}/flickrdownloadr.app">
       <fileset basedir="flickrdownloadr.app"/>
-    </move>
+    </move>    
   </target>
 
 </project>

@@ -149,6 +149,11 @@
                     <destination>${installdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../source/bin/Release/flickrdownloadr.app</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
                 </folder>
             </folderList>
             <startMenuShortcutList>
