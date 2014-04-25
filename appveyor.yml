@@ -30,6 +30,7 @@ environment:
 build_script:
   - cd ./build-tools
   - go appveyor Release
+  - echo 'Build (and Deploy) completed...'
 
 #---------------------------------#
 #       tests configuration       #
