@@ -79,7 +79,7 @@
 
   <target name="createrelease-mac" depends="unitTestsOnly, createmacappbundle">
     <echo message="Need to now create the shell file" />
-    <move todir="../source/bin/Release/flickrdownloadr.app">
+    <move todir="../dist/mac/flickrdownloadr.app">
       <fileset basedir="flickrdownloadr.app"/>
     </move>
   </target>
