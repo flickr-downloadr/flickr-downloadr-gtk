@@ -73,6 +73,19 @@
     <call target="nunittest" />
   </target>
 
+  <target name="createinstallbuilderlicense">
+    <echo message="Creating the Install Builder License File..." />
+    <loadfile file="license.xml.in" property="license-token-file">
+      <filterchain>
+        <replacetokens>
+          <token key="SIGNATURE" value="${environment::get-variable('INSTALL_BUILDER_LICENSE_SIGNATURE')}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+    <touch file="flickrdownloadrlicense.xml" />
+    <echo append="true" message="${license-token-file}" file="flickrdownloadrlicense.xml" />
+  </target>
+
   <target name="createmacappbundle" depends="unitTestsOnly">
     <echo message="Creating Mac OS X App bundle" />
     <mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
@@ -112,7 +125,7 @@
     <!-- Move this .app folder to bin/Release -->
     <move todir="${bin.dir}/flickrdownloadr.app">
       <fileset basedir="flickrdownloadr.app"/>
-    </move>    
+    </move>
   </target>
 
 </project>
