@@ -22,14 +22,12 @@
   <property name="boundarycrossingtests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
   <loadtasks assembly="${build.tools.dir}\nant\nantcontrib-0.92\bin\NAnt.Contrib.Tasks.dll" />
+
   <!-- Common Targets -->
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="appveyor" depends="install, unitTestsOnly, createrelease"/>
-  <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
-  <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
-  <target name="createrelease" depends="createinstallbuilderlicense, createrelease-win, createrelease-mac" />
+  <target name="appveyor" depends="install, unitTestsOnly, createinstallbuilderlicense, createrelease"/>
 
   <target name="install">
     <echo message="Installing GTK# and BitRock Installer..." />
@@ -62,18 +60,18 @@
       <arg value="-nologo"/>
       <arg value="-noninteractive"/>
       <arg value="-command"/>
-      <arg value=".\create-release.ps1 windows"/>
+      <arg value="&quot;.\create-release.ps1 windows&quot;"/>
     </exec>
   </target>
 
   <target name="createrelease-mac" depends="createmacappbundle">
-    <echo message="Creating the Mac installer for this release..." />
+    <echo message="Creating the Mac OS X installer for this release..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
       <arg value="-noprofile"/>
       <arg value="-nologo"/>
       <arg value="-noninteractive"/>
       <arg value="-command"/>
-      <arg value=".\create-release.ps1 mac"/>
+      <arg value="&quot;.\create-release.ps1 osx&quot;"/>
     </exec>
   </target>
 

@@ -8,4 +8,11 @@ If($args.Length -eq 1)
    $platform = $args[0]
  }
 
-& $installBuilderCli build $pathToBuildFile --license $pathToLicenseFile
+If(Test-Path $pathToLicenseFile)
+ {
+   & $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile
+ }
+Else
+ {
+   & $installBuilderCli build $pathToBuildFile $platform
+ }

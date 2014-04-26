@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="FlickrDownloadr-Common">
 
+  <!-- Build Targets -->
+  <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
+  <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
+  <target name="createrelease" depends="createrelease-win, createrelease-mac" />
+
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
     <delete dir="${bin.dir}" failonerror="false"  if="${directory::exists(bin.dir)}"/>

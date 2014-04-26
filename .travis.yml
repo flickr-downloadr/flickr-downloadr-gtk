@@ -10,5 +10,5 @@ before_install:
 
 script:
   - cd build-tools
-  - ./go.sh
+  - ./go.sh travis Release
 

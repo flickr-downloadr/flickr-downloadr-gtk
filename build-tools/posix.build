@@ -27,8 +27,27 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
-  <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
+  <target name="travis" depends="unitTestsOnly, createinstallbuilderlicense, createrelease"/>
+
+  <target name="createrelease-win" depends="unitTestsOnly">
+    <echo message="Creating the Windows installer for this release..." />
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg file="createRelease.sh windows" />
+    </exec>
+  </target>
+
+  <target name="createrelease-mac" depends="createmacappbundle">
+    <echo message="Creating the Mac OS X installer for this release..." />
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg file="createRelease.sh osx" />
+    </exec>
+  </target>
 
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
