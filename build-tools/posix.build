@@ -22,7 +22,7 @@
   <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
   <loadtasks assembly="${build.tools.dir}/nant/nantcontrib-0.92/bin/NAnt.Contrib.Tasks.dll" />
-  
+
   <!-- Common Targets -->
   <include buildfile="./common.build"/>
 
@@ -35,7 +35,8 @@
       <environment>
         <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
       </environment>
-      <arg file="createRelease.sh windows" />
+      <arg value="createRelease.sh" />
+      <arg value="windows" />
     </exec>
   </target>
 
@@ -45,7 +46,8 @@
       <environment>
         <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
       </environment>
-      <arg file="createRelease.sh osx" />
+      <arg value="createRelease.sh" />
+      <arg value="osx" />
     </exec>
   </target>
 
