@@ -231,6 +231,11 @@
                     </ruleList>
                 </actionGroup>
             </readyToInstallActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </shouldPackRuleList>
         </component>
         <component>
             <name>gtksharp</name>
