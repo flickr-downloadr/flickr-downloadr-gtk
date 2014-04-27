@@ -5,8 +5,13 @@ env:
   global:
     secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
 before_install:
-- wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
-- sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
+  # Mono Framework
+  - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
+  - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
+  # Bitrock Install Builder
+  - wget "http://installbuilder.bitrock.com/installbuilder-enterprise-8.6.0-osx-installer.dmg"
+  - hdiutil mount installbuilder-enterprise-8.6.0-osx-installer.dmg
+  - sudo cp -R "/Volumes/InstallBuilder Multiplatform Enterprise 8.6.0/installbuilder-enterprise-8.6.0-osx-installer.app" /Applications
 script:
-- cd build-tools
-- ./go.sh travis Release
+  - cd build-tools
+  - ./go.sh travis Release
