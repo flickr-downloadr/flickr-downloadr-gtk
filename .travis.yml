@@ -3,7 +3,31 @@ env:
   matrix:
   - MONO_VERSION="3.4.0"
   global:
-    secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
+    - REPO="git@github.com:flickr-downloadr/flickr-downloadr.github.io"
+    - secure: "BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8="
+    - secure: "k/me42N7wKmcNEdxD3NV/ka3c97L1N4UgYeAUvQXe8PB1EQ8f5Qv9rpm00PK2RUhZZTtP9jxz8/CDuFIiTasBouDzzPZpFNPQX0ZTF3Q1MqJP9nGPGhQoDSKdIX+zhyhKLuNZazCOZyg67M05kBeVAjI0pOVTW2DuIjXJRZY5OM="
+    - secure: "ktMufeD5j2k3l9OUhtRpsETf066x586VB88Bi7McMlvvB5wGUcHkatG5HCRuCh3x5F9Jt/w8juTE4kY22WXakDnWuflPw3t10M3aRaEBdjlDeiUVF5WpEQohhbQXtsYBLB3jQq64fcqI7M3t5DAF83bHYposizo3RCuyFHLU+t4="
+    - secure: "a6KKKVoDcBCHXSiR6QbKrVqGHOl4doBbPCg9wOa95jnW6kHoln/sDSxVwqk/Tc5oXu7eAXtGqJxe/XAUg5CiXOfsmSzFc3qlHA0lE4NgN3NmygvcAkbNRYOsSxkM2u+oUCYfBzopyt5uCxPwNN6YcCkKXijp7UnJFXufvV4UBq0="
+    - secure: "jPXm5QYWwUnKeSsEjlvBGHfBS73uKXi9F5o+GSr49pr3NQw2FakwW1LDLe7PYD42sO1rFGSvuSQ0BA9SPDs4ElBPGR+b9Rfc4KM0MYft+DfsfdO1q/0UXtTYBGcXYsKRZUfkF7+dbhnyPYMpB84KHZkcCWG7nEh8eB/id1V+JYA="
+    - secure: "dfreHcQVoOGGujiM2AtCT+2U9gSa9c7DoKhd9vqXbg1s4CuI4E6r80kQY8qUq107gohrTmO+/y9ZyAXzTndto7Bb2UQfT2nUxHxC12/XLHvEvpcXcUpasmIaPovDai82QhLJNbAa4ZweWolBlE3bBqWDVAuM/JDwiJYWluh7s1M="
+    - secure: "C1g2evhXVtfdmYix/gCljTcMEXOvMyubf1+jG++TdeG5F6Tc6cZRBdkJfzgcsNmQNpXwYAXp4dGE/zB/borDx7/sBcJwg/gJFsCjdEKreibTWatfE5mFGwZ+DZtoLv8DlBTs/f6Ri6DhcxljMEFG4geBNbnHvrmYJ4w/YNSKo/c="
+    - secure: "Lhajqw+h0xSh8tVH0+UoR0jSKvwAl8VD47w1ulbcbCVyj/AeEtFv8a7eHnksRucnVv3vHUAjNHi/SFF7XD3Cl98VIe8oHLUnCtdYAlWDfPOZAsahFAsCAhpxwyR5eli19zmNTms5OoTs7IDcWhAzdX9HnbG4SneMD+tSzZvG6GQ="
+    - secure: "QhVzoCvsHIBzRK6gRgkgfaiRcM3pFQb5jyBAta7k7UXT+kqWfFbsm1ZLt9ZrfREUDthtdrJc9nU3RipQQbe6i5/VwyKNCvX4EJYvssZUVacpdi5mfYQ5OFY93a8Qb5rBk8KiqmQAx5VooVVihguP2/0WG2MLPKy/Bq+ntxgT3ys="
+    - secure: "KcCIDk6FFFibfeZ6exbdMocoLKpz15BqCWzFsw+w31YVrh1gAcSMd0y9TX7s5j2tGfyiPlo2ntfw+bm6T+2TJLGfD8RSqor83f25Rrn8pC+3qJhWwXONJKrmPZDkLmdAR9uvmPbIoKVvFm3/4dafEQH92XW7ORwq5ZbQVN6+5jA="
+    - secure: "RmXMmy4u83kgbWS9mgboIN3JoAdAqj1teTlfePAJBxb9SR0pE2a8HLlLVkcZSrQ1GotbmTvAo/pERqi7snD5zhHKBSjskk8oAUDKkWviEld38s/DPt4JGL3IJfYJrJqYPz6aCSQU4XPWK+ESzeLl3kSgbptDPN2nKy8wIAn4L2Y="
+    - secure: "dsNqViQoYO1fGq2vUO2ZFin6RRuM4rIVhTwZ6Nd9Xm57bpabjy5BxbFqzkRwlNkc31tGsBzN3KoiMUOau9hx1F1FU5jl97QOVdFS3hZgHNlljBTg5rzzEjRf3HfwddriPvzgAfN1v9Y8wZaYP+ds2iSGStr+rOMlvEeSZpvcmwk="
+    - secure: "FT65+5YEB66PPB8EL60HLF3QuvHl+9+qwD4WJ+BTcNmXHr+kK4uNS26tmntrwl8ArgXFJXPh3jSUGGxvdIvN9m/tRsDzPxB5h4mzOdTHtKgKKA0u8j7AxUdf3EgvZ+m0LjDu77UgqJ144IDR8brCE4O2Xz8HSGlxTY4zdxwj8iM="
+    - secure: "MuAYw9xaFpr55s6YisMg/VBLeK3Lolxc6n0LUwDuxtmzx0tCVN1ivhHv1WGr3lKwXp2hag1z6+IlGPPWfnlRUzVrsHDMIbTEuVEKaikMTUOFl2haz7dDS/sJ7ex/S8/x4Dt7IEhMxupR0Qu2aazVDiLVu2wYEI9GegGOnlpS54U="
+    - secure: "OG1S8f7iC+vvC8oIsgrTG3ixGXqZIn+8zun5ka4DPYeCYZtZ2dlorjm+8j63+zMrJTB3rFjlJQaDyagtlwiuxkVz1JuY5rC1tU3YixuW70XvdCTAgkkIFN74zY3z4gUi3rG/NwKaqeO1OKv/LpN0aIeSSLVl4TaPODhwerLXduo="
+    - secure: "dkqp5pF8vm2ZA8ddZ5hWIMVdzDg5OlAgaE53P5RO9Z7qK4yiGQcoLL3gDVePNXgvbCLosf30MjzfgyvuyeHjw0ICjk2GeYebfeV1YB6H51da/RdoN2ctqqaJ/D4bUGnBxskHx8dERJaN2fze/K+UM5kQW6pqK6LD9/N5y31D0C8="
+    - secure: "XyoR1f3LvZhfYOs7JMSIFBX8cgbgzzUx/p6b9kockRBOnEPtRDdwbO4/oDO6ORGpdUrnK0FHCtkrjHvm2g5uyx+Z/iUpfTg6P8z8rgckAHrkaTqTxjqgTq8DSdkgpWEwINZAj9HY4An2KizEllzbrzqZjE/mcZJprmmW/PjW4vE="
+    - secure: "K/DFnh2ihhpcYTrJjAq1ZZVU+jgHx65/TvHVFpBeYeO9xcEieo4MB9i/FO58qfk2ZsN8azWv6xClwfHihJK98fI69+xyHSkeTcwjECaHUixLOL22Xsx60C0oDsLaTLInZWPAfzVgKqTKNSMRHtLFYTdNk4Ed0ee1uwAv00gFeps="
+    - secure: "aGm/UWckdWMz+7AWSPudeM1QJpCHgDEju9l56A9AxHvRUTZOC+2cUVJr1IFPWwfv6Tw8VMx282FnvJbo2hmPxNAiMdabeeWd67gr8olsNaYLwJv5oGylEtf8WQSyMdXsVRI6bEa4swauvQwZruD9oNeVnq9zTdmyx0XGRYHZhtk="
+    - secure: "JA8fcbzL7oWqtlRnQzG286GE1tHhfueZMN1nVZqb+xThCwVf/eu1HhCQzR57TvwT1WICBhhwcCVDItsrBzxr26/UEIyP74s6+AP2d6VUk2bY1LlQTJP00Guv+C4ZYC2QpG+WaeVoM5NGwb3XpOoAygF2DrsXac0jHvg6JW0P6zg="
+    - secure: "bl0KpswWgqwNnkZAHjyP92tOsWgOVk1yhKXisR+/4n1eHdkYl26lqdvv1KChuGUocsF40ChoNoUcrNRswUssX6dDI9i4mD5UUx0nYtQRYjCGUX4N5MUphgNHW4uyw4sH4frsNI9bFExlPGrycAjM5upskQmOVTLsJcvakJMd6Bk="
+    - secure: "Bifo84IlBjuzXzwCCgNsmgWHrYOqjDMBmMmBvRWX5OjDjpCDpybS2GsOfOpQuu5jWndppVj/aExD5zpePw6lr4dRudzfgZcfOj02N0mxMAi6aCGEl6YIOZoKL2CWv3e1sVMbT+hNTMhdQ9jQJlTV+8sWwWd6QxhJBIL1Axg1B/I="
+    - secure: "hdYd4uquXAN0ZuirnnDE79IrAvlWIcby5NgSOtH2Z/hsKHyCBBtJupVq+nzxO9VbhsrUP94oVmwPdRjMoc0I4aMz7646w8kt46Y9mBq4iuJg0/FXBlswEqoi3OEB6sje8P/s8/XID9coE06rngwF2FOgsnY8wssOx7srHpBPqAA="
+    - secure: "Gr9+ocIp7SQDHeCZ5nLO7zxI/iXEEursWHOS9pmuszo6ZUkGEv00iHn3sQ8UiMxV2EZB6v4fytCfMhdKhgL8dEuPkiaVsJKU6LDagaIOyydjWkbWxBTYTzFm1BewZvPm/rvThPCx0deDfCeAR5+hsyn6mINVFhMmV87DnRnhY10="
 before_install:
   # Mono Framework
   - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
@@ -12,6 +36,23 @@ before_install:
   - wget "http://installbuilder.bitrock.com/installbuilder-enterprise-8.6.0-osx-installer.dmg"
   - hdiutil mount installbuilder-enterprise-8.6.0-osx-installer.dmg
   - sudo '/Volumes/InstallBuilder Multiplatform Enterprise 8.6.0/installbuilder-enterprise-8.6.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+before_script:
+  # Unpack ssh key for git
+  - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
+  - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  # Disable SSH server fingerprint verification
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
   - cd build-tools
   - ./go.sh travis Release
+after_success:
+  # Commit the new installers
+  - cd .. && mkdir tmp-github.io && cd $_
+  - git clone -b master $REPO
+  - cd flickr-downloadr.github.io
+  - git config push.default tracking
+  - cp -r ../../dist/* ./installer
+  - cp ../../build-tools/build.number .
+  - git add -f .
+  - git commit -m "created release v${BUILDNUMBER}"
