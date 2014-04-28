@@ -28,6 +28,12 @@ env:
     - secure: "XRwikHzb3yBfAfgvFQ5RqzVH88lJeD1GopN1tW2eKDYsvauMghhMGbpDmWl95vE7tUBFlD5knXeEYMoIEOTL6DF5qDUF1QyZV7cGLmzMccMUlgNsT6iMt2OOHCBMfalJMFdARut8p9dJd1Vi4P3Qzdu9y/8PXIANXUf4n0AG5hE="
     - secure: "i1gO0RZHnCE2lAmHOK8ozlIKviwaAQVu/NVgycvIboXz4FaMGbleZt6gamyT5Mg4dD8wR9NszA3vWyUlhqCfYLpYIMpMRUP1CP6FfhhR7kMVsjphP+kZroPw9ACY8dyoESIaqflM0+usQFVxajoinqRVZP/LE/7tH6rn3x7+zc0="
     - secure: "fUljUsEgqzxVVg9pu6Wy3RB6/mmox9I5u6biH2HhteaKXkDMeCJDRdrWFPtHkjFEiT5XOzesorSDcXUVp257DUeGAN+EeQ5bsReQXprS45Jrde02Fla0Erplp2YsiNZdgKG9emGGRkYpNth6ZyuwXB3kNJ/s3w6adMsH0Nr6SHA="
+    - secure: "d4P56bgSEPTxr/d1nxKvBdUkS1F1VT0SVGW8lEVYolKvImScrgZPnrcBoYL9mnLs+apmM+iZfq+BXbhWGIXV4joSlu3KFG73n7XkHlHtS16XLKql7ZHTQXTc/RxdftU3tnGZCeYKxxByRXUPSiBnqDa3RiB/M2tBCDBft8b0Wx4="
+    - secure: "LBgzQ2zjgMcyi7JWhaemXKbIZYixdxC4MatXOw/nemW9OTtumZRO47UUeNETzFQLsJmLoyer/XuCCi+nhApW7O1RG0ZjOADvsvVNTrWvL7EpqQIyHZ1jM15eijxtSGAPudfeqjnDBi/QymjRhQReB/SaCTNSqi64xQXkjPfE9Cw="
+    - secure: "Ogqof9iBRdEloInDMS8ojRyi0iUx4A7e1/jCzriKZ6glFqffcipcVQOkISJjWhtDHYeNRdaNU+ANwXGhRzxXZGwP5JS1gSZOw/KQCC50PtjxCWQEU1O60wA7y42a9XVvfcVBdbBRBnlmk5JZMAGNfqSetyrJrH7G1+HgBQEdWDI="
+    - secure: "YGJ++1pfGOFuOKTzWDu/FLzf9BGYJFnqan/FbQJzdzzcI/HckYMKY7qgdhd6h189HZWoG8BkWMU0VhwDa9zOuCb7NahMz/uB+hOSo5EmVti0cPnrpteufc5xkyCgwkpmIXOcfHm1nm6thxpyOs34/TvKaZuCuWQCYnmieAaUEbo="
+    - secure: "SNjUccoHFjo2F23yxJ7LbCR5vnVg0n5Izd8yNg51nS+Uds5u0QPTZq+R0AT+02bGqetmIur/SM/W4XRELK3CjVbdScRoKsB4MergyJ5Z63mH0UEszIeX2qu950CPR/bmLWQi0UvDSlrLtw5J8k4FiWN4rMVL2QDR+rVD3IRVPus="
+    - secure: "K2dt6QTR7iLLIcfXdXDyAF36zqReX5PCR+RYqq+7pjw3TTbnCTKO0FQXTR8k0hXZ2Y2pNTvcqhs31z+ee8ziNxy3/7PaKTHImrG8FntFws2rH/scj17ETv84ViwG5EejQ8vKuuBiNHByifGgGhVm9kUAcQKAjfL6BV7KYOkIiOw="
 before_install:
   # Mono Framework
   - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
@@ -41,6 +47,9 @@ before_script:
   - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
   - base64 --decode ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
+  - echo -n $id_rsa_pub_{00..10} >> ~/.ssh/id_rsa_base64_pub
+  - base64 --decode ~/.ssh/id_rsa_base64_pub > ~/.ssh/id_rsa.pub
+  - chmod 600 ~/.ssh/id_rsa.pub
   # Disable SSH server fingerprint verification
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
