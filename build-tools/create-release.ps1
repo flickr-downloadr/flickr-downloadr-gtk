@@ -11,9 +11,11 @@ If($args.Length -eq 1)
 
 If(Test-Path $pathToLicenseFile)
  {
+   Write-Host "About to run: $installBuilderCli build $pathToBuildFile $platform $additionalVars --license $pathToLicenseFile"
    & $installBuilderCli build $pathToBuildFile $platform $additionalVars --license $pathToLicenseFile
  }
 Else
  {
+   Write-Host "About to run: $installBuilderCli build $pathToBuildFile $platform $additionalVars"
    & $installBuilderCli build $pathToBuildFile $platform $additionalVars
  }
