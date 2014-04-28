@@ -1,7 +1,6 @@
 INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise 8.6.0/bin/Builder.app/Contents/MacOS/installbuilder.sh"
 PATHTOBUILDFILE="flickrdownloadr.xml"
 PATHTOLICENSEFILE="flickrdownloadrlicense.xml"
-ADDITIONALVARS="--setvars project.version=$BUILDNUMBER"
 
 PLATFORM="mac"
 if [ $# = 1 ]; then
@@ -9,7 +8,7 @@ if [ $# = 1 ]; then
 fi
 
 if [ -f $PATHTOLICENSEFILE ]; then
-  eval "'$INSTALLBUILDERCLI' build $PATHTOBUILDFILE $PLATFORM $ADDITIONALVARS --license $PATHTOLICENSEFILE"
+  eval "'$INSTALLBUILDERCLI' build $PATHTOBUILDFILE $PLATFORM --license $PATHTOLICENSEFILE --setvars project.version=$BUILDNUMBER"
 else
-  eval "'$INSTALLBUILDERCLI' build $PATHTOBUILDFILE $PLATFORM $ADDITIONALVARS"
+  eval "'$INSTALLBUILDERCLI' build $PATHTOBUILDFILE $PLATFORM --setvars project.version=$BUILDNUMBER"
 fi
