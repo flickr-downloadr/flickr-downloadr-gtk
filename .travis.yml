@@ -16,16 +16,19 @@ script:
 - cd build-tools
 - ./go.sh travis Release
 after_success:
-- git config credential.helper "store --file=.git/credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git config credential.helper "store --file=~/.git-credentials"
+- echo "https://${GH_TOKEN}:@github.com" > ~/.git-credentials
+- git config --global user.name "flickr-downloadr CI"
+- git config --global user.email "contact.us@flickrdownloadr.org"
 - BUILDNUMBER=$(head -n 1 build.number)
 - cd .. && mkdir tmp-github.io && cd $_
 - git clone -b master $REPO
 - cd flickr-downloadr.github.io
 - git config push.default tracking
 - git checkout -b deploy-v${BUILDNUMBER}
-- cp -r ../../dist/* ./installer
-- cp ../../build-tools/build.number .
-- git add -f .
-- git commit -m "created release v${BUILDNUMBER}"
-- git push -u origin deploy-v${BUILDNUMBER}
+- pwd && ls -al && cd .. && pwd && ls -al && cd .. && pwd && ls -al
+#- cp -r ../../dist/* ./installer
+#- cp ../../build-tools/build.number .
+#- git add -f .
+#- git commit -m "created release v${BUILDNUMBER}"
+#- git push -u origin deploy-v${BUILDNUMBER}
