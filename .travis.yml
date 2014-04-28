@@ -3,9 +3,33 @@ env:
   matrix:
   - MONO_VERSION="3.4.0"
   global:
+    - REPO="git@github.com:flickr-downloadr/flickr-downloadr.github.io"
     - secure: "BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8="
-    - secure: "MbEXVzzpAhn4uQaZ7HL1OT/4pInWAtwjDQuaWyXZ7Kb5CE9LFStXfMn5meTc6i51SXNWf/yEvYhP+0PZW5z5V+GIjCSWl66yyUCdBV8caezDaURKBZZgRnsRlbFzDbey78mtbg8HOjCQQ+aWGXLoxG/7045irCWPaU+InO05IX8="
-    - REPO="https://$OAUTH_TOKEN:x-oauth-basic@github.com/flickr-downloadr/flickr-downloadr.github.io.git"
+    - secure: "Uy7HeXanLOy1HAwwT12dwllSrbOojKRvEuPDgeUzsz8P1GvWjeOYZV2i7BHgbbShlFcUWmKOst/m/Pl+l9sMRa185nxrTJxhOh6TMfLJk+toqntQuVJRnphcjNTLlnAcyc1LfFbRC+Ujf454rPeetGYXjqgfL9NWcIKIOGjYCFk="
+    - secure: "MWdzXcGDAU+pftpXqLseToHqetxdspFoFgZhmRY5NATLI83b0aPkJCGxYqJY8JvAapAuI8ceaFJkdIXHP1cge01ul0lTf2GL9BnbYV6v2+ot7Cm7fr28psinc9fko1fcjjMU34t/vTovsZ6DtFa32Hq2Dgv2g3/3PASSiWUE0EI="
+    - secure: "ZCcoq6per1Zk+bXSKMBhu2vF5ahRl/tz4/pzu5uVPMpCqPhhWF8/hUDZfL4wtTIA69dYLCttJLwrgl8iPi2ya01GnEcq5RNLYyiN60+DuxNXY49Lih3nfmpEs87l6hfgliDlkC7pdXM4kiW6UQHjc5fJyJt6M0skIaReFuCO+Aw="
+    - secure: "famAPBJDiDYd9MZzr8ywmec3t2/RA18aQ99OoZfF3tsqxBUnbkYQ3Qm6JJhNOucoH7DRYxCj0RgbT/JJ4isfKrlibsghmExGVEZ7nz5u+qcAYQJBNM5NDgflgzSeLHyTCo1UHsOw34VNf/oGvDzLTEIna2vdTbgjtmhPq+JKUTE="
+    - secure: "QQImlelcNrku8m0TnShAstdV4qPQTIm6ONusYC7ZURytHqGgFtxHwft5eeeD2/IbeP6C6FnO1W0KUE0GsdNYmA+VxYQNqNqjXXKJ8HyH51jTnuBvp/AKPAChQMjxTmwCXTldlbiA+g9Wajry2fTHS421UD2suzyZd6/AFkjrOvE="
+    - secure: "DHD6u7IkvPzAzqj3gir5QhFfHkxus1G3ethpQOAFsZ8rOWvGBdftt0T89K63qgwlKWP4TKXG+DNx3qwxiYFELs/1Z+pDQyEIEAXI04Job2laZvGmv7W7IoAek5vOY9ADHzDrVvB6c2zlIeHydfnFQIoRiyjISCNoCDSKG49QXp4="
+    - secure: "Mr2bhY/zopC0FpdaBmgxnbTGjx06YX8+qKuYBcFsJ9JKhpoDO8benQiD26Zaz6VdBoIjoo0oZs2gLJ8FGRtYZHBeHiLAHg9+Y8tRW7Uyd3guVFllCC80jgsWrmUfN02kH/aY9vMI5MPR7nYrA8bgPTqpUaoOZ3xp5CG57Zf2/tw="
+    - secure: "N7DQYf1KB6ScfsfK8eOTO5vTUd2QoZR/WSQQQN68UsGgbX2P4HzSVJYq+AcxFQHsj8Z076rslE/v9iEaKDpMyaGItfKG0Sedmaq4YQYGSWKaY5SblapgIKRRExdb/enjXfn7Bs4TPLqlmYepXJmKMPTd0FHfUFE1X4/vecAkZrY="
+    - secure: "Ecf2o4WcaQ14TT5CAVBwisVxPvJum51PO2AOQo+Ww7hIm46BzHDR29bkX9vdn+KAr4W0nymGizffgO1oA957Pj5+RkO6P93iceVuNR7jmbxReLgPu02Fcjz74FHUxkZaCLpBkxPwLrtSuGQXdCxFnqAYcABUOuztxvmI3u5dKyg="
+    - secure: "k7GsKku3TkRiKFpqorvfJTtq1csD20GcwoMzcLpud1VTaovE2SkVokie4/uO1v/10T2bQDakOVudiaLxCNX4CXi6GtcE7P4muJrKwGGEFef5Zql/tZqARXnWp4gv8rabqWuCQcOlMEuXtGT1DFfdgFCcs5a8zYfC8VvbjHtM7hI="
+    - secure: "GzvKCb9H6FDzzcvaPevbrIS2dV5uvK159rrA863RCxHYXFNrBx+yOOOLDiu/fNTE+PBCMpEDWNDAanCYvCFdTNHQ46p1yd33V0vKhSwdk3cPWP0kvLecq1645Qu1WEkfBcYwC5pob0DeEQBUtsZQFYK1M7cAwV+qaHnubjXIgXk="
+    - secure: "W2HvIHJRj4REVdQMAz9qCAXcASCEBcfepvXjLnro4ov2hqW2Mho8LXJVHjm23xyPKNG/tPM0c0fAcn1yvlQrVABBvzmUALWgLvjb3ck9TgEgWfal7Vm0Z+SncV+zYYDAQo07vbSz7ydSrC3JrrdHBFEKiBXrMFdT1kz+JjprNbI="
+    - secure: "C5g8YxXXISLYufwFeoBIgZG3lA/60Ygzz+3za9VwtdsuSQ0L9/Op38OrY+rRsjxKNEpB2QFlWhi+ko4IRu4Jd+c1zJIf1wNkobXedqgEg6MXI+FzNROhzJZDR/CmZyYCYhjCBH8iIichTxiArXOuV6UaQqsCFndMMAfs3P3814Y="
+    - secure: "ME/OnKIJldFJTD3v9gxo1zkgfu5L16NBr57+lhe1bifxXpVugDt3E5NmhdlD6nrNtaLAJ1f74YygF7B+5jgCv7zm/9NtZnm612RFjvMr+hqFnQSwczJlYS579DRnUz0imXg9HypdEyvzDBmbElZ6awnXGiwGrjYzoB/n9ivFVCU="
+    - secure: "NMoyjf9l0f0UZil06U4VjDnPx0qc6tix9LScwEQwu0WQJjjbsBhyma3AtIWRAskyb3rutSVENwuQtJsEX77Y6w5TmmkY2AqY7L5PJ0YAUleTJJQcGvDtP+7kX3OMaovcrJ5v1VEHRqjgqOtFvMSVPYK6kczillgx9skHfU7/e0I="
+    - secure: "DWbnaPc35dfGtnCZPHq7itPZ1My9e29uKcIAkIBnmd9I75+iacPe6tNcbKMsnYOh3+HASZ0PsS3iqAeOm8jtIKvaFZdiKgm5r5dy/xWcjTls1ub7EiJJj/pyi5hGf3a81AonN/EeX1f6V7d+wm/aN9YOzmGA62kjePD/HeUhrDM="
+    - secure: "IWUsJucsDjUGE8+uOfSbWnQDxyQSh6LTno5q9Nrt4/fRnzSQ+aGK+IyG1vIt8+fwFyY3rUQJ1YsqyZkiJzv3uNZ0CR2oo2rnPdlggK5T+nGjhBV2PmluZ85y8hnoy1Sa4fMau/Pzf6GSGAiCHzgR4rQeAf5u2+nHBgWd5McL9ws="
+    - secure: "J6+0uNxwY+NpTJOrjCO8qbMyka+w5XlC+T3HUg1jgYu51rCg87Xv9JNCDrvZkYKGZvkw52+UZ75mFAER/zO5PNlWHYWAx7S4xYI/hQP1f1dbBbPxutqkyA/iOBR7cDJW8vP3vI4AoTJsLUvXHBVRQW0E/6/lPHKOLXJN3+NhtVQ="
+    - secure: "ac69QMYhFtJONPxTwwOuyM/Uh7rmwt4al59CgQWsoSNLDx57gv2aEGIQgFrRRYELkVMpgPlLTCLwdUIABFN2MWSJjeBKHncbOBq5diZEd+hr+Tcaw9WFBWt4LVU+53qBDFjVuXmJ0Ju6CUUqm3x49DAzkT0IEmn+f32o5SALQIM="
+    - secure: "W3woV5fThy8FOuywTmQiR8cDTPC7vEk3XJlDsl2S7+FSS0XA4KTZn/uKqyAV4nOriKvySgrzG59hhvhyeqCrdz/k9Rs3u2ifgHGSbg64TvRwoSq7C7/2qbQ62aIpSBaIAHJfD7YTfLSB/xXx9d9AMofZi+m66W5FHj7sphkX4XI="
+    - secure: "b9HgnpggX/silQm429GvO2U8sBpR94s2FjaFcEJNd3nhAY7X/q5QVMECpkHE/lm1kZu4R59cCKO3b7nbjlZm8vhGRWfCeBaHCPGQvUsbOHyiDOMuOEfspzLIa/skVndGGGWpPc5li89j2pMAdEP/cYYwugbtK/sCrHwgmgVP3/I="
+    - secure: "DTKDgbBhlh/xATUq46OEuWbsPo14ESat14aFwk9SKuGd+PGw9ug9dLt32eaJdO60rSiddU1Qclh1EAuN+3EdUwqC5dw9joe1ibaZbpsKj5Ngnb9okgNJEakCoUQ6r7ujOd8W6H6fyXPK6VkFXK0A9ZQB27LdRv3rbrZ93LKnHnY="
+    - secure: "A/ZNCmz8fYKKnZcWhQgDvptWyTp9+sRRMRYLSzvZdO8REcz3hcxgaEp15H1YevZSA8+g/TH6ktNE6SA+WAlPPi/B4zyB/ToG6Q73WklhskKc7XukNvKwHHTDMkXJGGGtjKccZeNlI/0LhiiUEErzgHOktjeOVy8+PYRA5NvSywY="
+    - secure: "M43BxatfATVwPcbXrgjhytBQiZ+LzSSXYG3KQTnz/ZfjXgJqPm5FOUD7ZWBKD0kzWKZWOaKSzge8JdXZ94i6FkgUDgsZKsWpJ+vM1+tvaNnlHAcNYkXErhD6o9I9JVgAdBP6L5/WpdcIT15rhJD8pzQv3rRfaRi/6AIHN4FzMIs="
+    - secure: "D7j4gBaidWkmbH5pslagSK04VTH1APx3rvbi3rf9JxdgMxdF60wWpPS3Uti3bSNftBVts91yF/uCR9B09X80lq6xXuHG23EGRWl+c4nEPx1kENi8DjwPzQ4u8djFa47CIkTxYkYprR5O/qRby0rnhL4bnZsp2CP5MsGYY0X5pfg="
 before_install:
   # Mono Framework
   - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
@@ -19,9 +43,6 @@ before_script:
   - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
   - base64 --decode ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
-  - echo -n $id_rsa_pub_{00..10} >> ~/.ssh/id_rsa_base64_pub
-  - base64 --decode ~/.ssh/id_rsa_base64_pub > ~/.ssh/id_rsa.pub
-  - chmod 600 ~/.ssh/id_rsa.pub
   # Disable SSH server fingerprint verification
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
@@ -29,6 +50,7 @@ script:
   - ./go.sh travis Release
 after_success:
   # Commit the new installers
+  - BUILDNUMBER=$(head -n 1 build.number)
   - cd .. && mkdir tmp-github.io && cd $_
   - git clone -b master $REPO
   - cd flickr-downloadr.github.io
