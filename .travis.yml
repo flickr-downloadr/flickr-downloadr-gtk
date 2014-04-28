@@ -3,61 +3,29 @@ env:
   matrix:
   - MONO_VERSION="3.4.0"
   global:
-    - REPO="git@github.com:flickr-downloadr/flickr-downloadr.github.io"
-    - secure: "BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8="
-    - secure: "cFrtVfpYbgAkIJQk89UmxBsNmEkwfGC0I1vRznnMxyIq16c4q51FRF62RJObZ6IaQSNQAySLYb8loP/4WxjkjGPRS1a7Hp+TZApzudogmBTQYGBcFEWYGRi7OqPCj9ah4mU4WJ224qh2Hk1kkT7lcGfL7wTp5ZbzAXIkrQOAlLk="
-    - secure: "hWOwJNmvEfMHzOFK04p2UPnTrursYwccZimdaEopb1TqVGdeAcDz/axzyoGJc4qAPeaBsGFMSuISTnSze98UUO7943IANp6PHWkMFSQx8ec4bE625HsKasPC7Tenagql37OjP2wCkuVyDuH2NaUJCsfmRVD9b+BiqpNJSjwXX0I="
-    - secure: "V5N+W3SVAlYwlbH5FG2lhuGu1uZwfN2EYJnjhmRe1hrWsRwp89L5b8xanbmDUO5XkFvjSAlIudY18Qp5AndtEhciLYpPAH8jequVatm6X18GD4tLXRIziV3V+5DCtzm/VkO8+AoUL8kHO8y7FXiF6cpnO/Aj3m2mQZIz23O62sc="
-    - secure: "NoQXGaQh21Qun5AZo1zSL2L1pk1/pkkMxNtoSOXsyPPN2OOK9yMPW7JJb43vJBg9hcZcipCkY5EGAtUBZjaTvVnUfv5lTBx4tGRZka95/O1PLrgkWO3OojPLMOK0g8FlhJQaCM/lIW7IABanBG+RAQxh+Jxd3jYxLl3SGsil2so="
-    - secure: "JlpuqYTjdAQBR0/c3wRoMD1CnntbLn449HTwrSdsefWWpcbLms90p0OtYAkUDl0giiMoRCbDsXgcygxUck2ojMJ24KC6wIk7jWZf/QK3Q+CDQJCFAJRql9bp0dRxT/owqyzCgdSOYkEAOF3PlHxZb0Yhm3Tc1aQ5dZ8r7gKswgQ="
-    - secure: "XJLdvOZn3W3h9IKNDNJ779j7yf1XP+ZA8gwRKVK1/nf8Utj1lXLtIM7GbAwI9QWU0+H/BKHzKpR3v2Td5I//XsHDDVaIREuG02hUV/idzcEshrHtzgaH1TYf8mWOMTjuENdpiDOVTmVyYK2MKVyllpOTzWdHC4K/6Kc4VSevg5M="
-    - secure: "PU2qVX9HUQ6I3NEUOblfAbZxakXiC4tAnDs7BqUN3FoQHrJVhqEs+IMRHez2WrkDWe8jviD18OPyFZMjc/nJeOn27cFQolUIgXpQFGJvGxqZP9UJKHzYggPMnfaZFt4BY5Nbvu7pZDIZMy8WBtukIl4PynAyKpjTa+zg+4o8+M0="
-    - secure: "IhUDimWz/i/4051fGOmU79gQDpY/k7ZwQRTgE8uFRA14RzGHIIAcXEfYulHCR6W8ijZPVbglDxSRXLjZiI8oH4XU2tdRJD9owpF4IzG59C5k7j63OxH7q3f+taHiyLhVQeTpgrGBttiTYFVEigU/Ei6RbWIUzyPUCi01rvK40Ak="
-    - secure: "HokILJZZn0/Z88V+M1bQYVqUoJLk2RiyPSKVeCWAWJhkmchuAMUIHuFoE9Cm5am1SC6XxRlUbHR/haYiiPILLX+aQDAgQccQsbIzMJ1FKoSHG2uk8x/L7396+lSvsl3cpnlbE6jaI0bJ8TCNmVAGyxWp0wwn+94XANKCx24TawM="
-    - secure: "QOfIVH2+n+GqzsEfte2E4UjfvlZHlZQvoQxrMB7f2fd3ovHNVVj/Erimea1KSSnAikuLnQIO4n0YKZm6rYksV5dYfpKF0UHbLkwxvKD1AX2F1saXvcw/nqgDO5fVGPcL03tzNdFj0EPaEHbNKvRfCYd1MAiFnmogrSD0mOqr9xM="
-    - secure: "CfocgnBzQbsPfs2KkQ6KqVD+8qZj1gkkQH52siy6gLeoo//eJ76jZZY0g+bqMoGzDkRDzfTv1DYsSFpu/cq0NWZdNVQG9DS/A6/0nAUkihUIoLn5T4o+p3KKatZ4kXPEX4rgwqe8AMCyG8qz4lWBta1LN43mtNrisjjZtw7O9zE="
-    - secure: "DFTwa/t9VSyBRmrcUiYTjzmpAXqj7zq0OOLhopgZ9eModQ0EwF55aFMX/wt4OFv3+EVdbE5Sx0If/oP3v4uB6xuhJ1Q3AgUPhJLrs1Be1iaNBG73Gv30VbbGTVGSAF5BVgc5mS6Y7PYqjO0Z4TIUIbyJctl5OcwCc6zi6cVyuE8="
-    - secure: "MpmMQjmbuGNevYnUaUh37lyqBM10gHqaJy3gPcJaq+3IHPwqoBXOOllunoz7v0jLXZfyfCwX9vXWSH2ljyMLcrwHkhGnd69GR76WIYOLyLSZHFJD/ir5spSaNCvjRkxu1g0xpa60nOG1ipxEHh8tCbAMscPylFMp15v1JleRmWA="
-    - secure: "d+hqs/JLPECmTSkynRslcnrup4d73Loh2tKp5EEK3z8ZnDXnm4hR/x0kuT3KjT4leMCvvz5ZpEUiI2LoVlluL5S1EFBX7yYJ+Ca3t0sogsXQaVp5fnK043JdgoIDvCKrUDQRKVAvLlUP98uOXB9ElB2YGjtdpQH8OvsFCtks0AA="
-    - secure: "XK9R2Vh+T+/IqxIxyQ94iDzeaz0AEPOmVfSlguumr8pQ7MMatd1w4Iuk3prYGt2BPGD7/4zH6W0XfSadp9r5RaKptsKW9WqemS46WP5ihbo3ZYABIgoLoT0vGP+9e7pRthoURLEi6h+tGTvU31unQ7wpOFD9EZg1RAoLjVE30+Q="
-    - secure: "M3nsqsDcDBvHF3hFFKmSm5rhAuGh34DTjPVYqsNSItEBUN9wdolvl5F0wZoWybxiCb7C9v6gTr31r7hWuEnFbxcFVdSpuZkY8y71UfAbUzG5HeDG2yTG2We/5MHck5NL67h85iFTi9R2J+Vl1aH2l06vEhECK8XJr/xahX7BWXA="
-    - secure: "d7vwCFVr+bKa+Oqrdr0s7ssKRb7a2qlBVwuY/BWekzIuW2q+DXptk/3v7b0Kkz3c1NtXK/vqF0hhx5sSZiansZaLz8wOs2OJv/NPxqQiDb+zhTYa67Oge4B02pYZAwAtwgs+rhBP61fqF2OuGDquUpybjF7NX5f+0KXzkFZuLUg="
-    - secure: "Utue+V1BNgcVhUJO/bIyETlUuHpdq63hCfBcJqgylhZ5+4O+QuNnidC5NI3HNYPxseLzfS+wVmePs3Yit7y0ZVZtKVm3tzOHBm6pllkWxCcYvkP5ISriepUIAmZSPEaCrXbMvtKhLpIjT4Nue7EvfuAlt7hAFu8kgQhd8+Nhb3g="
-    - secure: "F3OvU6efqc+ovwVSTudSS6khwnR3NQG+mxwIFMORum98o5/ne7cp/YGUf9H+8W/WIvq45yPz6lIlCFArumh+NNpgoDKD89B4Heu31WlmXysXjDjMlY1NvAzfOY3lQjHtwl96ClvA2tnYjM9RjjVRMFq9LnRhEtPA9rfPGP4GC0A="
-    - secure: "QsZ6uQh3KJEGAt4jb8DQ/HY6Lr6U8SaEdEO6E1TtgRPkUCcC95jS3WOtHOcQLru7O2sihtokytj0W7iTQnTS7XCb4j1bcpF2/CYY0YvH0ESqMyifRAcbSSECtASyIhgWioZgwlsBHvW/S+yLHRVDxFFQY7bpUty0nrlsqWAgESo="
-    - secure: "DXD7J0A35kNyZFyJbqiktw6cR1f2a6twKGeZ6seQ4xaWXKenMU6tU2zAqEkF3gzfxCBlENCdhP7n4G0+hdjA6u3oOD3Uk1+ZzC4R1Ytq9GWPt42g6goZaPidrhjDCpQEsgluD5XFEov2JXQJ4R6Vjnx/u1O1+ivnOwGvBdgVoFo="
-    - secure: "a63X4i1Ta6NJs/oPcpwlrqVWE2MPL7U5AsfOM0dzskFi/sLXNcJ4xHoIrj1BU+g1YrR+lVbsfeo5odqQ3ASVomI3xc5RycKFTSFjbSh9vOWJTfcKYxdDnkzNR7zsfg2BdPLUkdqnAr1HOYmTbKEIVhMKUIuvS7uNJBz4PYTFzg4="
-    - secure: "c49ymAxTwKIfRDTTCiM428YluLoIl581YpZf0545BHuRgTtr7/29pJBCn1jJlBehJJX/vix0//1CNgJWdsTTYAdn2N+SlQkvA8sE5i17GWW8cxOUPiAI8bZgZYp64hoZoj1nJHEg+lvCz+uqKfWR6tTLmNZLOF18aKCq4Y9efGw="
+  - REPO="https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
+  - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
+  - secure: aNNjDler0hHuiPXBSNptNRAtH9ZFGZxiah8Oik3HKp4lVJm5eYZS4ZYXZPyy5HdBoDwQvzFuwQ5b9yJJ8AJmDApuQ/f3sZB7JarN+J2abVFEr8DQWRIIoh08MA3t68od0UYXr2rTQ0DnCdRHa0WfZHUf1RUQr16NzDwzn1b4SUc=
 before_install:
-  # Mono Framework
-  - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
-  - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
-  # Bitrock Install Builder
-  - wget "http://installbuilder.bitrock.com/installbuilder-enterprise-8.6.0-osx-installer.dmg"
-  - hdiutil mount installbuilder-enterprise-8.6.0-osx-installer.dmg
-  - sudo '/Volumes/InstallBuilder Multiplatform Enterprise 8.6.0/installbuilder-enterprise-8.6.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
-before_script:
-  # Unpack ssh key for git
-  - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
-  - base64 --decode ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - cat ~/.ssh/id_rsa
-  # Disable SSH server fingerprint verification
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
+- sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
+- wget "http://installbuilder.bitrock.com/installbuilder-enterprise-8.6.0-osx-installer.dmg"
+- hdiutil mount installbuilder-enterprise-8.6.0-osx-installer.dmg
+- sudo '/Volumes/InstallBuilder Multiplatform Enterprise 8.6.0/installbuilder-enterprise-8.6.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 script:
-  - cd build-tools
-  - ./go.sh travis Release
+- cd build-tools
+- ./go.sh travis Release
 after_success:
-  # Commit the new installers
-  - BUILDNUMBER=$(head -n 1 build.number)
-  - cd .. && mkdir tmp-github.io && cd $_
-  - git clone -b master $REPO
-  - cd flickr-downloadr.github.io
-  - git config push.default tracking
-  - git checkout -b deploy-v${BUILDNUMBER}
-  - cp -r ../../dist/* ./installer
-  - cp ../../build-tools/build.number .
-  - git add -f .
-  - git commit -m "created release v${BUILDNUMBER}"
-  - git push -u origin deploy-v${BUILDNUMBER}
-
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- BUILDNUMBER=$(head -n 1 build.number)
+- cd .. && mkdir tmp-github.io && cd $_
+- git clone -b master $REPO
+- cd flickr-downloadr.github.io
+- git config push.default tracking
+- git checkout -b deploy-v${BUILDNUMBER}
+- cp -r ../../dist/* ./installer
+- cp ../../build-tools/build.number .
+- git add -f .
+- git commit -m "created release v${BUILDNUMBER}"
+- git push -u origin deploy-v${BUILDNUMBER}
