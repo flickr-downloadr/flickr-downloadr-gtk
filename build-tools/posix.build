@@ -78,8 +78,6 @@
   <target name="deploy">
     <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
       <environment>
-        <variable name="HOME" value="${environment::get-variable('userprofile')}"/>
-        <variable name="ADDPATH" value=".:/usr/local/bin:/mingw/bin:/bin:/bin"/>
         <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
       </environment>
       <arg file="deploy.sh" />

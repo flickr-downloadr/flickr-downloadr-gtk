@@ -1,5 +1,3 @@
-PATH=$HOME/bin:$ADDPATH:$PATH
-
 env
 
 if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
