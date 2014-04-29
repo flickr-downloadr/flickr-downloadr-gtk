@@ -1,6 +1,8 @@
+CIENGINE="appveyor"
 if [[ $TRAVIS = true ]]
 then
-  brew update > brewinstall
+  CIENGINE="travis"
+  brew update
   brew install jq
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
 fi
@@ -28,7 +30,7 @@ cp -r ../flickr-downloadr-gtk/dist/* ./installer
 # TODO: Do the build.number later
 # cp ../flickr-downloadr-gtk/build-tools/build.number .
 git add -f .
-git commit -m "created release ${VERSION} (travis) [ci skip]" -s
+git commit -m "created release ${VERSION} ($CIENGINE) [ci skip]" -s
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOYVERSION} || git push -u origin ${DEPLOYVERSION}
 
