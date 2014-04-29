@@ -27,7 +27,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="travis" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-mac"/>
+  <target name="travis" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-mac, deploy"/>
 
   <target name="createrelease-win" depends="unitTestsOnly">
     <echo message="Creating the Windows installer for this release..." />
@@ -72,6 +72,17 @@
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
     <exec program="mono" verbose="true">
       <arg value="${nunit.dir}/nunit-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
+    </exec>
+  </target>
+
+  <target name="deploy">
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="HOME" value="${environment::get-variable('userprofile')}"/>
+        <variable name="ADDPATH" value=".:/usr/local/bin:/mingw/bin:/bin:/bin"/>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg file="deploy.sh" />
     </exec>
   </target>
 

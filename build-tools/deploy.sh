@@ -1,61 +1,50 @@
 PATH=$HOME/bin:$ADDPATH:$PATH
 
+env
+
 if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
 then
   echo 'There is nothing to deploy here. Moving on!';
   exit
 fi
 
-git config --global user.email "contact.us@flickrdownloadr.com"
 git config --global user.name "The CI Bot"
+git config --global user.email "contact.us@flickrdownloadr.com"
 
-cd ../source/bin/Release
-REPO=https://$OAUTH_TOKEN:x-oauth-basic@github.com/flickr-downloadr/flickr-downloadr.git
 VERSION="v${BUILDNUMBER}"
-MSG="application ($VERSION)"
+DEPLOYVERSION="deploy-${VERSION}"
 
-#clone repo in a tmp dir
-echo 'Cloning gh-pages branch'
-mkdir tmp-gh-pages
-cd tmp-gh-pages
-git clone -b gh-pages $REPO
-cd flickr-downloadr
+cd ../..
+git clone -b master $REPO
+cd flickr-downloadr.github.io
+git config credential.helper "store --file=.git/fd-credentials"
+echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
 git config push.default tracking
-
-#remove all files except index.html in downloads/latest
-echo 'Deleting the previous version artifacts'
-mv downloads/latest/index.html .
-cd downloads/latest/
-git rm -r .
-cd ../..
-mv index.html downloads/latest
-
-#add published files & build.number to gh-pages; commit; push
-echo 'Creating the correct changeset from built artifacts'
-cp -r ../../Deploy/* ./downloads/latest
-cp ../../../../../build/build.number .
+git checkout -b ${DEPLOYVERSION}
+cp -r ../flickr-downloadr-gtk/dist/* ./installer
+# TODO: Do the build.number later
+# cp ../flickr-downloadr-gtk/build-tools/build.number .
 git add -f .
-git commit -m "deploying $MSG" -s
-git push
+git commit -m "created release ${VERSION} (travis) [ci skip]" -s
+git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
+git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOYVERSION} || git push -u origin ${DEPLOYVERSION}
 
-#checkout master to add the modified build.number and CommonAssemblyInfo; commit; push
-echo 'Check out master branch and commit the changed Assembly Info and build.number'
-git checkout master
-cp ../../../../../build/build.number ./build
-cp ../../../../CommonAssemblyInfo.cs ./source
-git commit -a -m "deploying $MSG [ci skip]" -s
-git tag -a $VERSION -m "tagging version $VERSION"
-git push --tags origin master
+# Do the below script only from Travis - updates source to mark the current released version
+if [[ $TRAVIS = true ]]
+then
+  cd ..
+  git clone -b master $SOURCEREPO flickr-downloadr-gtk-new
+  cd flickr-downloadr-gtk-new
+  git config credential.helper "store --file=.git/fd-credentials"
+  echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
+  git config push.default tracking
+  cp -f ../flickr-downloadr-gtk/build-tools/build.number ./build-tools/
+  cp -f ../flickr-downloadr-gtk/source/CommonAssemblyInfo.cs ./source/
+  git add -f .
+  git commit -m "Released ${VERSION} [ci skip]" -s
+  git tag -a ${VERSION} -m "Creating release ${VERSION}"
+  git push --tags origin master
+fi
 
-#remove the tmp dir
-echo 'Cleaning up...'
-cd ../..
-rm -rf tmp-gh-pages
-
-#reset the modified build.number and CommonAssemblyInfo in the main (outer) repo
-cd ../../..
-git checkout -- build/build.number source/CommonAssemblyInfo.cs
-
-# done
-echo "deployed $MSG successfully"
+echo "Deployed $VERSION successfully"
 exit

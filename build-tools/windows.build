@@ -27,7 +27,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="appveyor" depends="install, unitTestsOnly, createinstallbuilderlicense, createrelease-win"/>
+  <target name="appveyor" depends="install, unitTestsOnly, createinstallbuilderlicense, createrelease-win, deploy"/>
 
   <target name="install">
     <echo message="Installing GTK# and BitRock Installer..." />
@@ -91,6 +91,17 @@
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
     <exec program="${nunit.dir}\nunit-console.exe">
       <arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${nunit.results.dir}\${nunittest.output.file.name}&quot;"/>
+    </exec>
+  </target>
+
+  <target name="deploy">
+    <exec program="bash.exe" basedir="C:\Program Files (x86)\Git\bin\" verbose="true">
+      <environment>
+        <variable name="HOME" value="${environment::get-variable('userprofile')}"/>
+        <variable name="ADDPATH" value=".:/usr/local/bin:/mingw/bin:/bin:/bin"/>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg file="deploy.sh" />
     </exec>
   </target>
 
