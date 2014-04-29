@@ -82,4 +82,4 @@ on_success:
 - git add -f .
 - git commit -m "created release %version% (appveyor) [ci skip]" -s
 - git ls-remote --heads origin | findstr %deployVersion% && git pull --rebase origin %deployVersion% || ver > nul
-- git push -u origin %deployVersion%
+- git ls-remote --heads origin | findstr %deployVersion% && git push origin %deployVersion% || git push -u origin %deployVersion%
