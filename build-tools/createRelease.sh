@@ -7,7 +7,7 @@ if [ $# = 1 ]; then
   PLATFORM=$1
 fi
 
-PACKVARIABLE="pack_$PLATFORM_platform_files"
+PACKVARIABLE="pack_${PLATFORM}_platform_files"
 
 if [ -f $PATHTOLICENSEFILE ]; then
   EXECCOMMAND="'$INSTALLBUILDERCLI' build $PATHTOBUILDFILE $PLATFORM --license $PATHTOLICENSEFILE --setvars project.version=$BUILDNUMBER $PACKVARIABLE=true"
