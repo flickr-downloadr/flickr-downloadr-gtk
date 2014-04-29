@@ -1,8 +1,8 @@
 if [[ $TRAVIS = true ]]
 then
-  curl -L http://github.com/micha/jsawk/raw/master/jsawk > jsawk
-  chmod 755 jsawk
-  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl http://github.com/api/v3/json/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jsawk -n -a this.commit.message)
+  brew update
+  brew install jq
+  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
 fi
 
 if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
