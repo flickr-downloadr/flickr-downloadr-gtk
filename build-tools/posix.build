@@ -27,7 +27,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="travis" depends="unitTestsOnly, createinstallbuilderlicense, createrelease"/>
+  <target name="travis" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-mac"/>
 
   <target name="createrelease-win" depends="unitTestsOnly">
     <echo message="Creating the Windows installer for this release..." />

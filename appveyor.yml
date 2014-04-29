@@ -18,10 +18,13 @@ init:
 
 #environment variables
 environment:
+  repo: "https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
   oauth_token:
     secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
   install_builder_license_signature:
     secure: 3j/EJAZzA8i/OfWyhmvLnzk7SZ8/KNaaTVfWyw0uVhe5gcZfhlGVPfgwrdnvEut3
+  gh_token:
+    secure: Nww9ToyuLy9Dam9uQ/gp60uD2fMNrdVyZ9zzAfgtOubVCItC2xcWMtvwaZQ8bRDF
 
 #---------------------------------#
 #       build configuration       #
@@ -57,3 +60,25 @@ artifacts:
 #---------------------------------#
 
 deploy: off
+
+#---------------------------------#
+#        global handlers          #
+#---------------------------------#
+
+on_success:
+- git config --global user.name "flickr-downloadr CI"
+- git config --global user.email "contact.us@flickrdownloadr.org"
+- set /p buildNumber= <build.number
+- cd ..\..
+- git clone -b master %REPO%
+- cd flickr-downloadr.github.io
+- git config credential.helper "store --file=.git\fd-credentials"
+- echo "https://%GH_TOKEN%:@github.com" > .git\fd-credentials
+- git config push.default tracking
+- git checkout -b deploy-v%buildNumber%
+- xcopy /E ..\flickr-downloadr-gtk\dist installer
+- xcopy ..\flickr-downloadr-gtk\build-tools\build.number .
+- git add -f .
+- git commit -m "created release v%buildNumber"
+- git pull --rebase origin deploy-v%buildNumber%
+- git push -u origin deploy-v%buildNumber%

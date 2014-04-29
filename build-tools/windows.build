@@ -27,7 +27,7 @@
   <include buildfile="./common.build"/>
 
   <!-- Build Targets -->
-  <target name="appveyor" depends="install, unitTestsOnly, createinstallbuilderlicense, createrelease"/>
+  <target name="appveyor" depends="install, unitTestsOnly, createinstallbuilderlicense, createrelease-win"/>
 
   <target name="install">
     <echo message="Installing GTK# and BitRock Installer..." />
