@@ -66,8 +66,8 @@ deploy: off
 #---------------------------------#
 
 on_success:
-- git config --global user.name "flickr-downloadr CI"
-- git config --global user.email "contact.us@flickrdownloadr.org"
+- git config --global user.name "The CI Bot"
+- git config --global user.email "contact.us@flickrdownloadr.com"
 - set /p buildNumber= <build.number
 - cd ..\..
 - git clone -b master %REPO%
@@ -77,8 +77,7 @@ on_success:
 - git config push.default tracking
 - git checkout -b deploy-v%buildNumber%
 - xcopy /E ..\flickr-downloadr-gtk\dist installer
-- xcopy ..\flickr-downloadr-gtk\build-tools\build.number .
 - git add -f .
-- git commit -m "created release v%buildNumber"
+- git commit -m "created release v%buildNumber" -s
 - git pull --rebase origin deploy-v%buildNumber%
 - git push -u origin deploy-v%buildNumber%

@@ -16,8 +16,8 @@ script:
 - cd build-tools
 - ./go.sh travis Release
 after_success:
-- git config --global user.name "flickr-downloadr CI"
-- git config --global user.email "contact.us@flickrdownloadr.org"
+- git config --global user.name "The CI Bot"
+- git config --global user.email "contact.us@flickrdownloadr.com"
 - BUILDNUMBER=$(head -n 1 build.number)
 - cd ../..
 - git clone -b master $REPO
@@ -29,6 +29,6 @@ after_success:
 - cp -r ../flickr-downloadr-gtk/dist/* ./installer
 - cp ../flickr-downloadr-gtk/build-tools/build.number .
 - git add -f .
-- git commit -m "created release v${BUILDNUMBER}"
+- git commit -m "created release v${BUILDNUMBER}" -s
 - git pull --rebase origin deploy-v${BUILDNUMBER}
 - git push -u origin deploy-v${BUILDNUMBER}
