@@ -69,8 +69,8 @@ on_success:
 - git config --global user.name "The CI Bot"
 - git config --global user.email "contact.us@flickrdownloadr.com"
 - set /p buildNumber= <build.number
-- set version = v%buildNumber%
-- set deployVersion = deploy-%version%
+- set version=v%buildNumber%
+- set deployVersion=deploy-%version%
 - cd ..\..
 - git clone -b master %REPO%
 - cd flickr-downloadr.github.io
