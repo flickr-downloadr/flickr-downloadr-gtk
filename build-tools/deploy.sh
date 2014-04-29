@@ -1,11 +1,15 @@
-env
-
-if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
+if [[ $TRAVIS = true ]]
 then
-  echo 'There is nothing to deploy here. Moving on!';
-  exit
+  curl -L http://github.com/micha/jsawk/raw/master/jsawk > jsawk
+  chmod 755 jsawk
+  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl http://github.com/api/v3/json/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jsawk -n -a this.commit.message)
 fi
 
+if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
+  then
+    echo 'There is nothing to deploy here. Moving on!';
+    exit
+  fi
 git config --global user.name "The CI Bot"
 git config --global user.email "contact.us@flickrdownloadr.com"
 
