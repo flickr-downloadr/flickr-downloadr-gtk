@@ -14,14 +14,13 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyTitleAttribute("flickrDownloadr")]
-[assembly: AssemblyDescriptionAttribute("A desktop application for Linux that would help download all (or selected) photos from the user's photostream (in one of the selected sizes) along with the tags, titles and descriptions.")]
-[assembly: AssemblyConfigurationAttribute("Debug")]
+[assembly: AssemblyDescriptionAttribute("A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.")]
+[assembly: AssemblyConfigurationAttribute("Release")]
 [assembly: AssemblyCompanyAttribute("http://flickrdownloadr.com")]
 [assembly: AssemblyProductAttribute("flickr downloadr")]
 [assembly: AssemblyCopyrightAttribute("Copyright © 2012-2014 Haridas Pachuveetil")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("0.9.0.13")]
-[assembly: AssemblyFileVersionAttribute("0.9.0.13")]
-[assembly: AssemblyInformationalVersionAttribute("0.9")]
+[assembly: AssemblyVersionAttribute("0.9.5.1")]
+[assembly: AssemblyFileVersionAttribute("0.9.5.1")]
 
