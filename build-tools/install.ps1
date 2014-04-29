@@ -2,7 +2,7 @@ try {
 	$buildToolsDir = "C:\projects\flickr-downloadr-gtk\build-tools\"
 
 	$gtkInstaller = "gtk-sharp-2.12.25.msi"
-	$gtkInstallerMsi = "http://flickrdownloadr.com/installer/win/dependencies/$($gtkInstaller)"
+	$gtkInstallerMsi = "http://flickrdownloadr.com/installer/windows/dependencies/$($gtkInstaller)"
 	$gtkInstallerMsiLocal = "$($buildToolsDir)$($gtkInstaller)"
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
