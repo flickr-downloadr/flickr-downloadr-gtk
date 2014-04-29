@@ -213,7 +213,7 @@
                         <httpGet>
                             <filename>${system_temp_directory}/dotnet45.exe</filename>
                             <progressText>Downloading GTK# installer</progressText>
-                            <url>http://flickrdownloadr.com/installer/win/dependencies/dotnet45.exe</url>
+                            <url>http://flickrdownloadr.com/installer/windows/dependencies/dotnet45.exe</url>
                         </httpGet>
                         <runProgram>
                             <program>${system_temp_directory}/dotnetfx.exe</program>
@@ -263,7 +263,7 @@
                                 <httpGet>
                                     <filename>${system_temp_directory}/gtk-sharp.msi</filename>
                                     <progressText>Downloading GTK# Installer</progressText>
-                                    <url>http://flickrdownloadr.com/installer/win/dependencies/gtk-sharp-2.12.25.msi</url>
+                                    <url>http://flickrdownloadr.com/installer/windows/dependencies/gtk-sharp-2.12.25.msi</url>
                                 </httpGet>
                                 <runProgram>
                                     <program>msiexec</program>
