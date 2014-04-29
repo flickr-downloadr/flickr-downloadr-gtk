@@ -30,4 +30,4 @@ after_success:
 - cp ../flickr-downloadr-gtk/build-tools/build.number .
 - git add -f .
 - git commit -m "created release v${BUILDNUMBER}"
-- git push -u origin deploy-v${BUILDNUMBER}
+- git push -f -u origin deploy-v${BUILDNUMBER}
