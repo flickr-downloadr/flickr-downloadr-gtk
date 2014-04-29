@@ -1,6 +1,6 @@
 if [[ $TRAVIS = true ]]
 then
-  brew update
+  brew update > brewinstall
   brew install jq
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
 fi
@@ -9,7 +9,8 @@ if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
   then
     echo 'There is nothing to deploy here. Moving on!';
     exit
-  fi
+fi
+
 git config --global user.name "The CI Bot"
 git config --global user.email "contact.us@flickrdownloadr.com"
 
