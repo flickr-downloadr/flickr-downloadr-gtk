@@ -8,11 +8,13 @@ If($args.Length -eq 1)
    $platform = $args[0]
  }
 
+$packVariable = "pack_$platform_platform_files"
+
 If(Test-Path $pathToLicenseFile)
  {
-   & $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile --setvars project.version=$env:BUILDNUMBER
+   & $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile --setvars project.version=$env:BUILDNUMBER $packVariable=true
  }
 Else
  {
-   & $installBuilderCli build $pathToBuildFile $platform --setvars project.version=$env:BUILDNUMBER
+   & $installBuilderCli build $pathToBuildFile $platform --setvars project.version=$env:BUILDNUMBER  $packVariable=true
  }
