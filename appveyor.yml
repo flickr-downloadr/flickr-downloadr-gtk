@@ -78,6 +78,6 @@ on_success:
 - git checkout -b deploy-v%buildNumber%
 - xcopy /E ..\flickr-downloadr-gtk\dist installer
 - git add -f .
-- git commit -m "created release v%buildNumber" -s
+- git commit -m "created release v%buildNumber% (appveyor) [ci skip]" -s
 - git pull --rebase origin deploy-v%buildNumber%
 - git push -u origin deploy-v%buildNumber%

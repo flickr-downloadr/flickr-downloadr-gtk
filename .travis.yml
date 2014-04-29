@@ -30,7 +30,7 @@ after_success:
 - cp -r ../flickr-downloadr-gtk/dist/* ./installer
 - cp ../flickr-downloadr-gtk/build-tools/build.number .
 - git add -f .
-- git commit -m "created release v${BUILDNUMBER}" -s
+- git commit -m "created release v${BUILDNUMBER} (travis) [ci skip]" -s
 - git pull --rebase origin deploy-v${BUILDNUMBER}
 - git push -u origin deploy-v${BUILDNUMBER}
 - cd ..
@@ -42,5 +42,6 @@ after_success:
 - cp -f ../flickr-downloadr-gtk/build-tools/build.number ./build-tools/
 - cp -f ../flickr-downloadr-gtk/source/CommonAssemblyInfo.cs ./source/
 - git add -f .
-- git commit -m "updated release v${BUILDNUMBER}" -s
-- git push origin master
+- git commit -m "Released v${BUILDNUMBER} [ci skip]" -s
+- git tag -a v${BUILDNUMBER} -m "Creating release v${BUILDNUMBER}"
+- git push --tags origin master
