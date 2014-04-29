@@ -20,19 +20,21 @@ after_success:
 - git config --global user.name "The CI Bot"
 - git config --global user.email "contact.us@flickrdownloadr.com"
 - BUILDNUMBER=$(head -n 1 build.number)
+- VERSION=v${BUILDNUMBER}
+- DEPLOYVERSION=deploy-${VERSION}
 - cd ../..
 - git clone -b master $REPO
 - cd flickr-downloadr.github.io
 - git config credential.helper "store --file=.git/fd-credentials"
 - echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
 - git config push.default tracking
-- git checkout -b deploy-v${BUILDNUMBER}
+- git checkout -b ${DEPLOYVERSION}
 - cp -r ../flickr-downloadr-gtk/dist/* ./installer
 - cp ../flickr-downloadr-gtk/build-tools/build.number .
 - git add -f .
-- git commit -m "created release v${BUILDNUMBER} (travis) [ci skip]" -s
-- git pull --rebase origin deploy-v${BUILDNUMBER}
-- git push -u origin deploy-v${BUILDNUMBER}
+- git commit -m "created release ${VERSION} (travis) [ci skip]" -s
+- git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
+- git push -u origin ${DEPLOYVERSION}
 - cd ..
 - git clone -b master $SOURCEREPO flickr-downloadr-gtk-new
 - cd flickr-downloadr-gtk-new
@@ -42,6 +44,6 @@ after_success:
 - cp -f ../flickr-downloadr-gtk/build-tools/build.number ./build-tools/
 - cp -f ../flickr-downloadr-gtk/source/CommonAssemblyInfo.cs ./source/
 - git add -f .
-- git commit -m "Released v${BUILDNUMBER} [ci skip]" -s
-- git tag -a v${BUILDNUMBER} -m "Creating release v${BUILDNUMBER}"
+- git commit -m "Released ${VERSION} [ci skip]" -s
+- git tag -a ${VERSION} -m "Creating release ${VERSION}"
 - git push --tags origin master

@@ -69,15 +69,17 @@ on_success:
 - git config --global user.name "The CI Bot"
 - git config --global user.email "contact.us@flickrdownloadr.com"
 - set /p buildNumber= <build.number
+- set version = v%buildNumber%
+- set deployVersion = deploy-%version%
 - cd ..\..
 - git clone -b master %REPO%
 - cd flickr-downloadr.github.io
 - git config credential.helper "store --file=.git\fd-credentials"
 - echo "https://%GH_TOKEN%:@github.com" > .git\fd-credentials
 - git config push.default tracking
-- git checkout -b deploy-v%buildNumber%
+- git checkout -b %deployVersion%
 - xcopy /E ..\flickr-downloadr-gtk\dist installer
 - git add -f .
-- git commit -m "created release v%buildNumber% (appveyor) [ci skip]" -s
-- git pull --rebase origin deploy-v%buildNumber%
-- git push -u origin deploy-v%buildNumber%
+- git commit -m "created release %version% (appveyor) [ci skip]" -s
+- git ls-remote --heads origin | findstr %deployVersion% && git pull --rebase origin %deployVersion%
+- git push -u origin %deployVersion%
