@@ -233,9 +233,9 @@
                 </actionGroup>
             </readyToInstallActionList>
             <shouldPackRuleList>
-                <platformTest>
-                    <type>windows</type>
-                </platformTest>
+                <isTrue>
+                    <value>${pack_windows_platform_files}</value>
+                </isTrue>
             </shouldPackRuleList>
         </component>
         <component>
@@ -289,6 +289,11 @@
                     </ruleList>
                 </actionGroup>
             </readyToInstallActionList>
+            <shouldPackRuleList>
+                <isTrue>
+                    <value>${pack_windows_platform_files}</value>
+                </isTrue>
+            </shouldPackRuleList>
         </component>
         <component>
             <name>monoinstaller</name>
@@ -380,8 +385,174 @@
                     </ruleList>
                 </actionGroup>
             </readyToInstallActionList>
+            <shouldPackRuleList>
+                <isTrue>
+                    <negate>1</negate>
+                    <value>${pack_windows_platform_files}</value>
+                </isTrue>
+            </shouldPackRuleList>
         </component>
     </componentList>
+    <postBuildActionList>
+        <actionGroup>
+            <explanation>Create Fancy DMG</explanation>
+            <actionList>
+                <createTimeStamp>
+                    <format>%Y%m%d%H%M%S</format>
+                    <variable>timestamp</variable>
+                </createTimeStamp>
+                <setInstallerVariable>
+                    <name>tempDir</name>
+                    <value>/tmp/.tmpDir${timestamp}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>dmgName</name>
+                    <value>${installbuilder_install_root}/output/${project.installerFilename}.dmg</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>tempDmgFile</name>
+                    <value>${tempDir}/tmp.dmg</value>
+                </setInstallerVariable>
+                <deleteFile>
+                    <path>${installbuilder_install_root}/output/${project.installerFilename}.dmg</path>
+                </deleteFile>
+                <deleteFile>
+                    <path>${tempDir}</path>
+                </deleteFile>
+                <createDirectory>
+                    <path>${tempDir}/output</path>
+                </createDirectory>
+                <createDirectory>
+                    <path>${tempDir}/mnt</path>
+                </createDirectory>
+                <copyFile>
+                    <destination>${tempDir}/output</destination>
+                    <origin>${installbuilder_install_root}/output/${project.installerFilename}</origin>
+                </copyFile>
+                <actionGroup>
+                    <actionList>
+                        <copyFile>
+                            <destination>${tempDir}/output/.VolumeIcon.icns</destination>
+                            <origin>${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns</origin>
+                        </copyFile>
+                        <runProgram>
+                            <program>SetFile</program>
+                            <programArguments>-c icnC "${tempDir}/output/.VolumeIcon.icns"</programArguments>
+                        </runProgram>
+                    </actionList>
+                    <ruleList>
+                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                    </ruleList>
+                </actionGroup>
+                <actionGroup>
+                    <actionList>
+                        <createDirectory>
+                            <path>${tempDir}/output/.background</path>
+                        </createDirectory>
+                        <copyFile>
+                            <destination>${tempDir}/output/.background/background.png</destination>
+                            <origin>${build_project_directory}/../misc/mac-osx-icon/dmg-background.png</origin>
+                        </copyFile>
+                    </actionList>
+                    <ruleList>
+                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/dmg-background.png"/>
+                    </ruleList>
+                </actionGroup>
+                <runProgram>
+                    <program>hdiutil</program>
+                    <programArguments>create -srcfolder "${tempDir}/output" -volname "${project.fullName}" -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW "${tempDmgFile}"</programArguments>
+                </runProgram>
+                <actionGroup>
+                    <actionList>
+                        <runProgram>
+                            <program>hdiutil</program>
+                            <programArguments>attach "${tempDmgFile}" -mountpoint "${tempDir}/mnt"</programArguments>
+                        </runProgram>
+                        <runProgram>
+                            <program>SetFile</program>
+                            <programArguments>-a C "${tempDir}/mnt"</programArguments>
+                        </runProgram>
+                        <runProgram>
+                            <program>hdiutil</program>
+                            <programArguments>detach "${tempDir}/mnt"</programArguments>
+                        </runProgram>
+                    </actionList>
+                    <ruleList>
+                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                    </ruleList>
+                </actionGroup>
+                <actionGroup>
+                    <actionList>
+                        <runProgram>
+                            <abortOnError>0</abortOnError>
+                            <program>hdiutil</program>
+                            <programArguments>detach "/Volumes/${project.fullName}"</programArguments>
+                            <showMessageOnError>0</showMessageOnError>
+                        </runProgram>
+                        <runProgram>
+                            <program>hdiutil</program>
+                            <programArguments>attach -readwrite -noverify -noautoopen "${tempDmgFile}"</programArguments>
+                        </runProgram>
+                        <runProgram>
+                            <program>osascript</program>
+                            <programArguments>-e 'tell application "Finder"
+tell disk "${project.fullName}"
+open
+set current view of container window to icon view
+set toolbar visible of container window to false
+set statusbar visible of container window to false
+set the bounds of container window to {${dmg_window_bounds}}
+set theViewOptions to the icon view options of container window
+set arrangement of theViewOptions to not arranged
+set icon size of theViewOptions to ${dmg_icon_size}
+set background picture of theViewOptions to file ".background:background.png"
+delay 5
+update without registering applications
+set position of item "${project.installerFilename}" of container window to {${dmg_icon_position}}
+update without registering applications
+delay 5
+end tell
+end tell'
+          </programArguments>
+                        </runProgram>
+                        <runProgram>
+                            <program>hdiutil</program>
+                            <programArguments>detach "/Volumes/${project.fullName}"</programArguments>
+                        </runProgram>
+                    </actionList>
+                    <ruleList>
+                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/dmg-background.png"/>
+                    </ruleList>
+                </actionGroup>
+                <runProgram>
+                    <program>hdiutil</program>
+                    <programArguments>convert "${tempDmgFile}" -format UDZO -imagekey zlib-level=9 -o "${dmgName}"</programArguments>
+                </runProgram>
+                <deleteFile>
+                    <path>${tempDir}</path>
+                </deleteFile>
+            </actionList>
+            <ruleList>
+                <isTrue>
+                    <value>${pack_osx_platform_files}</value>
+                </isTrue>
+            </ruleList>
+        </actionGroup>
+    </postBuildActionList>
+    <initializationActionList>
+        <setInstallerVariable>
+            <name>pack_windows_platform_files</name>
+            <value>false</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>pack_osx_platform_files</name>
+            <value>false</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>pack_linux_platform_files</name>
+            <value>false</value>
+        </setInstallerVariable>
+    </initializationActionList>
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -399,8 +570,8 @@
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>
     <width>640</width>
-    <windowsExecutableIcon>../misc/mac-osx-icon/icon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>../misc/mac-osx-icon/icon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>../misc/mac-osx-icon/installericon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>../misc/mac-osx-icon/installericon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
@@ -414,6 +585,27 @@
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
+        <stringParameter name="dmg_icon_position" value="300, 100" ask="0">
+            <description></description>
+            <explanation></explanation>
+            <default></default>
+            <allowEmptyValue>1</allowEmptyValue>
+            <width>40</width>
+        </stringParameter>
+        <stringParameter name="dmg_window_bounds" value="400, 100, 885, 430" ask="0">
+            <description></description>
+            <explanation></explanation>
+            <default></default>
+            <allowEmptyValue>1</allowEmptyValue>
+            <width>40</width>
+        </stringParameter>
+        <stringParameter name="dmg_icon_size" value="72" ask="0">
+            <description></description>
+            <explanation></explanation>
+            <default></default>
+            <allowEmptyValue>1</allowEmptyValue>
+            <width>40</width>
+        </stringParameter>
     </parameterList>
 </project>
 
