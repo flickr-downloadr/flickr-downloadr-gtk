@@ -407,14 +407,14 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>dmgName</name>
-                    <value>${installbuilder_install_root}/output/${project.installerFilename}.dmg</value>
+                    <value>../dist/${platform_name}/${project.installerFilename}.dmg</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>tempDmgFile</name>
                     <value>${tempDir}/tmp.dmg</value>
                 </setInstallerVariable>
                 <deleteFile>
-                    <path>${installbuilder_install_root}/output/${project.installerFilename}.dmg</path>
+                    <path>../dist/${platform_name}/${project.installerFilename}.dmg</path>
                 </deleteFile>
                 <deleteFile>
                     <path>${tempDir}</path>
@@ -427,13 +427,13 @@
                 </createDirectory>
                 <copyFile>
                     <destination>${tempDir}/output</destination>
-                    <origin>${installbuilder_install_root}/output/${project.installerFilename}</origin>
+                    <origin>../dist/${platform_name}/${project.installerFilename}</origin>
                 </copyFile>
                 <actionGroup>
                     <actionList>
                         <copyFile>
                             <destination>${tempDir}/output/.VolumeIcon.icns</destination>
-                            <origin>${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns</origin>
+                            <origin>../misc/mac-osx-icon/flickr-downloadr-new.icns</origin>
                         </copyFile>
                         <runProgram>
                             <program>SetFile</program>
@@ -441,7 +441,7 @@
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                        <fileExists path="../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
                     </ruleList>
                 </actionGroup>
                 <actionGroup>
@@ -451,11 +451,11 @@
                         </createDirectory>
                         <copyFile>
                             <destination>${tempDir}/output/.background/background.png</destination>
-                            <origin>${build_project_directory}/../misc/mac-osx-icon/dmg-background.png</origin>
+                            <origin>../misc/mac-osx-icon/dmg-background.png</origin>
                         </copyFile>
                     </actionList>
                     <ruleList>
-                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/dmg-background.png"/>
+                        <fileExists path="../misc/mac-osx-icon/dmg-background.png"/>
                     </ruleList>
                 </actionGroup>
                 <runProgram>
@@ -478,7 +478,7 @@
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                        <fileExists path="../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
                     </ruleList>
                 </actionGroup>
                 <actionGroup>
@@ -521,7 +521,7 @@ end tell'
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="${build_project_directory}/../misc/mac-osx-icon/dmg-background.png"/>
+                        <fileExists path="../misc/mac-osx-icon/dmg-background.png"/>
                     </ruleList>
                 </actionGroup>
                 <runProgram>
