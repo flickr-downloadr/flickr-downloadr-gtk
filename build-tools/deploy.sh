@@ -8,9 +8,9 @@ then
 fi
 
 if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
-  then
-    echo 'There is nothing to deploy here. Moving on!';
-    exit
+then
+  echo 'There is nothing to deploy here. Moving on!';
+  exit
 fi
 
 git config --global user.name "The CI Bot"

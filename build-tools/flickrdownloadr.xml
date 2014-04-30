@@ -1,12 +1,13 @@
 <project>
     <shortName>flickrdownloadr</shortName>
     <fullName>flickr downloadr</fullName>
-    <version>0.9</version>
+    <version>0.0.1</version>
     <licenseFile>../LICENSE</licenseFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <leftImage>../misc/icon.png</leftImage>
     <logoImage>../misc/logo-Small-About.png</logoImage>
     <splashImage>../misc/logo.png</splashImage>
+    <wmImage>../misc/mac-osx-icon/icon-48.png</wmImage>
     <componentList>
         <component>
             <name>core</name>
@@ -249,7 +250,7 @@
                     <description>GTK#</description>
                     <destination>${installdir}</destination>
                     <name>gtksharp</name>
-                    <platforms>all</platforms>
+                    <platforms>windows</platforms>
                 </folder>
             </folderList>
             <readyToInstallActionList>
@@ -385,7 +386,9 @@
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <height>480</height>
+    <osxApplicationBundleIcon>../misc/mac-osx-icon/flickr-downloadr-new.icns</osxApplicationBundleIcon>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
+    <osxUninstallerApplicationBundleIcon>../misc/mac-osx-icon/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
     <productContact>contact.us@flickrdownloadr.com</productContact>
@@ -396,17 +399,18 @@
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>
     <width>640</width>
+    <windowsExecutableIcon>../misc/mac-osx-icon/icon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>../misc/mac-osx-icon/icon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
             <explanation>Installer.Parameter.installdir.explanation</explanation>
             <value></value>
-            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <default>${platform_install_prefix}/${product_shortname}</default>
             <allowEmptyValue>0</allowEmptyValue>
-            <ask>yes</ask>
             <cliOptionName>prefix</cliOptionName>
-            <mustBeWritable>yes</mustBeWritable>
+            <mustBeWritable>1</mustBeWritable>
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
