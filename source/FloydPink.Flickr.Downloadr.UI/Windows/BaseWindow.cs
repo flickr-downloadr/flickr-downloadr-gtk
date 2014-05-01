@@ -2,7 +2,7 @@
 using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr
+namespace FloydPink.Flickr.Downloadr.UI.Windows
 {
 	public class BaseWindow : Gtk.Window
 	{

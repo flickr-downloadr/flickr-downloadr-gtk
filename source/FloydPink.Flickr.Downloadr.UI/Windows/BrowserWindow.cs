@@ -12,7 +12,7 @@ using FloydPink.Flickr.Downloadr.Presentation.Views;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr {
+namespace FloydPink.Flickr.Downloadr.UI.Windows {
 	public partial class BrowserWindow : BaseWindow, IBrowserView {
         private readonly IBrowserPresenter _presenter;
         private bool _doNotFireOnSelectionChanged;

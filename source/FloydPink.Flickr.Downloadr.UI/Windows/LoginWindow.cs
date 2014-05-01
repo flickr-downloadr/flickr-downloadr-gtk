@@ -8,7 +8,7 @@ using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 using Mono.Unix;
 
-namespace FloydPink.Flickr.Downloadr {
+namespace FloydPink.Flickr.Downloadr.UI.Windows {
 	public partial class LoginWindow : BaseWindow, ILoginView {
         private readonly ILoginPresenter _presenter;
         private User _user;

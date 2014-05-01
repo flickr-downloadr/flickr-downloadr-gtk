@@ -4,7 +4,7 @@ using System.Linq;
 using FloydPink.Flickr.Downloadr.Model;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr {
+namespace FloydPink.Flickr.Downloadr.UI.Windows {
     // This is another partial class module for the BrowserWindow class
     public partial class BrowserWindow {
         private const int NUMBER_OF_PHOTOS_IN_A_ROW = 5;

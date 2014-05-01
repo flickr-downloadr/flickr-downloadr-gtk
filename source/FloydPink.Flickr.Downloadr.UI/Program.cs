@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using FloydPink.Flickr.Downloadr.Bootstrap;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
+using FloydPink.Flickr.Downloadr.UI.Windows;
 using GLib;
 using Gtk;
 using Systhread = System.Threading;
