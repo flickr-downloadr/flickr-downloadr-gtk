@@ -20,7 +20,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.HeightRequest = 200;
 			this.Name = "FloydPink.Flickr.Downloadr.UI.Windows.FatalErrorWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Fatal Error - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			this.Resizable = false;
@@ -48,7 +48,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.image3 = new global::Gtk.Image ();
 			this.image3.Name = "image3";
-			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.fatal-error.png");
+			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.fatal-error.png");
 			this.hbox6.Add (this.image3);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.image3]));
 			w3.Position = 1;

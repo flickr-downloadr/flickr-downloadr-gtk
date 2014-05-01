@@ -12,7 +12,7 @@
     <property name="WidthRequest">495</property>
     <property name="HeightRequest">287</property>
     <property name="Title" translatable="yes">Welcome - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
@@ -51,7 +51,7 @@
                     <child>
                       <widget class="Gtk.Image" id="image5">
                         <property name="MemberName" />
-                        <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.Assets.logo-Small.png</property>
+                        <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.UI.Assets.logo-Small.png</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -429,7 +429,7 @@
     <property name="WidthRequest">360</property>
     <property name="HeightRequest">220</property>
     <property name="Title" translatable="yes">About - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
@@ -463,7 +463,7 @@
                 <child>
                   <widget class="Gtk.Image" id="image2">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.Assets.logo-Small-About.png</property>
+                    <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.UI.Assets.logo-Small-About.png</property>
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -628,7 +628,7 @@
     <property name="MemberName" />
     <property name="HeightRequest">510</property>
     <property name="Title" translatable="yes">Preferences - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
@@ -1256,7 +1256,7 @@ Restricted</property>
     <property name="WidthRequest">320</property>
     <property name="HeightRequest">200</property>
     <property name="Title" translatable="yes">Fatal Error - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">Center</property>
     <property name="Resizable">False</property>
@@ -1296,7 +1296,7 @@ Restricted</property>
             <child>
               <widget class="Gtk.Image" id="image3">
                 <property name="MemberName" />
-                <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.Assets.fatal-error.png</property>
+                <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.UI.Assets.fatal-error.png</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -1344,7 +1344,7 @@ Restricted</property>
     <property name="MemberName" />
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">Photo Browser - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
@@ -1815,7 +1815,7 @@ Restricted</property>
         <child>
           <widget class="Gtk.Image" id="imagePreview">
             <property name="MemberName" />
-            <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+            <property name="Pixbuf">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -2003,7 +2003,7 @@ Restricted</property>
     <property name="MemberName" />
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">Photo Browser - flickr downloadr</property>
-    <property name="Icon">resource:FloydPink.Flickr.Downloadr.Assets.icon.png</property>
+    <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>

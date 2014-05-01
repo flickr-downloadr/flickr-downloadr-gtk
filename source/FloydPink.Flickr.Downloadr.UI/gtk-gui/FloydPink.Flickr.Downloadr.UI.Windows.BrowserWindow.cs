@@ -39,7 +39,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.HeightRequest = 600;
 			this.Name = "FloydPink.Flickr.Downloadr.UI.Windows.BrowserWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Photo Browser - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;

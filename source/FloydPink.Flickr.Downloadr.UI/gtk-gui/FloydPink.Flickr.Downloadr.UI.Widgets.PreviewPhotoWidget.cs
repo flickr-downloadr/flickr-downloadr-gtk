@@ -22,7 +22,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.imagePreview = new global::Gtk.Image ();
 			this.imagePreview.Name = "imagePreview";
-			this.imagePreview.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
+			this.imagePreview.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.vbox1.Add (this.imagePreview);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.imagePreview]));
 			w1.Position = 0;

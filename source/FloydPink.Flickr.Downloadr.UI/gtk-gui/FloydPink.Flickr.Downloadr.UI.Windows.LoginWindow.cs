@@ -45,7 +45,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.HeightRequest = 287;
 			this.Name = "FloydPink.Flickr.Downloadr.UI.Windows.LoginWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Welcome - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
@@ -77,7 +77,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.image5 = new global::Gtk.Image ();
 			this.image5.Name = "image5";
-			this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.Assets.logo-Small.png");
+			this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.logo-Small.png");
 			this.hbox8.Add (this.image5);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.image5]));
 			w2.Position = 1;

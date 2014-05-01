@@ -16,7 +16,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets {
             Build();
 
             this.imageLoading.PixbufAnimation = new PixbufAnimation(Assembly.GetAssembly(typeof (SpinnerWidget)),
-                "FloydPink.Flickr.Downloadr.Assets.loading.gif");
+                "FloydPink.Flickr.Downloadr.UI.Assets.loading.gif");
 
             this.labelOperation.Visible = false;
             this.labelPercent.Visible = false;
