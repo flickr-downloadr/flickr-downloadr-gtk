@@ -832,7 +832,6 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo ID</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1089,7 +1088,6 @@ Original</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
-                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1747,7 +1745,7 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.PhotoWidget" design-size="466 300">
+  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.UI.Widgets.PhotoWidget" design-size="466 300">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -1807,7 +1805,7 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.PreviewPhotoWidget" design-size="500 395">
+  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.UI.Widgets.PreviewPhotoWidget" design-size="500 395">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -1850,7 +1848,7 @@ Restricted</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.SpinnerWidget" design-size="300 300">
+  <widget class="Gtk.Bin" id="FloydPink.Flickr.Downloadr.UI.Widgets.SpinnerWidget" design-size="300 300">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>

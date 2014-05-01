@@ -4,7 +4,7 @@ using System.Reflection;
 using Gdk;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr {
+namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     [ToolboxItem(true)]
     public partial class SpinnerWidget : Bin {
         private bool _cancellable;

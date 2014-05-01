@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FloydPink.Flickr.Downloadr.Model;
+using FloydPink.Flickr.Downloadr.UI.Widgets;
 using Gtk;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {

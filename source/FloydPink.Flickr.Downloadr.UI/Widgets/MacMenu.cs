@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace FloydPink.Flickr.Downloadr
+namespace FloydPink.Flickr.Downloadr.UI.Widgets
 {
 	public class MacMenu
 	{

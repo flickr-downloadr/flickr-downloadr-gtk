@@ -4,7 +4,7 @@ using FloydPink.Flickr.Downloadr.Model;
 using Gdk;
 using Gtk;
 
-namespace FloydPink.Flickr.Downloadr {
+namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     [ToolboxItem(true)]
     public partial class PhotoWidget : Bin {
         private string _imageUrl;

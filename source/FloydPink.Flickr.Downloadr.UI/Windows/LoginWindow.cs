@@ -5,6 +5,7 @@ using FloydPink.Flickr.Downloadr.Presentation;
 using FloydPink.Flickr.Downloadr.Presentation.Views;
 using FloydPink.Flickr.Downloadr.UI.CachedImage;
 using FloydPink.Flickr.Downloadr.UI.Helpers;
+using FloydPink.Flickr.Downloadr.UI.Widgets;
 using Gtk;
 using Mono.Unix;
 
