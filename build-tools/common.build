@@ -4,7 +4,7 @@
   <!-- Build Targets -->
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
-  <target name="createrelease" depends="createrelease-win, createrelease-mac" />
+  <target name="createrelease" depends="createrelease-win, createrelease-mac, createrelease-linux" />
 
   <target name="cleanBin" unless="${target::has-executed('cleanBin')}">
     <echo message="Clean bin directory" />
@@ -115,11 +115,33 @@
         <include name="StructureMap.dll" />
       </fileset>
     </copy>
-    <!-- Launcher Script -->
     <copy file="flickrdownloadr_launch_mac.sh" tofile="flickrdownloadr.app/Contents/MacOS/flickrdownloadr" />
-    <!-- Move this .app folder to bin/Release -->
     <move todir="${bin.dir}/flickrdownloadr.app">
       <fileset basedir="flickrdownloadr.app"/>
+    </move>
+  </target>
+
+  <target name="createlinuxbundle" depends="unitTestsOnly">
+    <echo message="Creating Linux bundle" />
+    <mkdir dir="flickrdownloadr/bin" />
+    <copy todir="flickrdownloadr/bin">
+      <fileset basedir="${bin.dir}">
+        <include name="DotNetOpenAuth.dll" />
+        <include name="flickr-downloadr.exe" />
+        <include name="FloydPink.Flickr.Downloadr.Bootstrap.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Logic.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Model.dll" />
+        <include name="FloydPink.Flickr.Downloadr.OAuth.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Presentation.dll" />
+        <include name="FloydPink.Flickr.Downloadr.Repository.dll" />
+        <include name="log4net.dll" />
+        <include name="ServiceStack.Text.dll" />
+        <include name="StructureMap.dll" />
+      </fileset>
+    </copy>
+    <copy file="flickrdownloadr_launch_linux.sh" tofile="flickrdownloadr/flickrdownloadr" />
+    <move todir="${bin.dir}/flickrdownloadr">
+      <fileset basedir="flickrdownloadr"/>
     </move>
   </target>
 

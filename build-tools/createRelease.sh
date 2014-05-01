@@ -1,4 +1,8 @@
-INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise 8.6.0/bin/Builder.app/Contents/MacOS/installbuilder.sh"
+if [ "$(uname)" == "Darwin" ]; then
+  INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise 8.6.0/bin/Builder.app/Contents/MacOS/installbuilder.sh"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  INSTALLBUILDERCLI="${HOME}/installbuilder-8.6.0/bin/builder"
+fi
 PATHTOBUILDFILE="flickrdownloadr.xml"
 PATHTOLICENSEFILE="flickrdownloadrlicense.xml"
 

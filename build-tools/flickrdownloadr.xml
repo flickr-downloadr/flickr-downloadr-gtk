@@ -18,10 +18,10 @@
             <desktopShortcutList>
                 <shortcut>
                     <comment>Batch download photos from flickr</comment>
-                    <exec>mono ${installdir}</exec>
+                    <exec>${installdir}/flickrdownloadr/flickrdownloadr</exec>
                     <icon>${installdir}/icon.png</icon>
                     <name>${product_fullname}-${product_version}</name>
-                    <path>${installdir}</path>
+                    <path>${installdir}/flickrdownloadr/</path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
@@ -60,39 +60,9 @@
                     <name>programfileslinux</name>
                     <platforms>linux</platforms>
                     <distributionFileList>
-                        <distributionFile>
-                            <origin>../source/bin/Release/flickr-downloadr.exe</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/DotNetOpenAuth.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Bootstrap.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Logic.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Model.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.OAuth.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Presentation.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/FloydPink.Flickr.Downloadr.Repository.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/log4net.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/ServiceStack.Text.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../source/bin/Release/StructureMap.dll</origin>
-                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>../source/bin/Release/flickrdownloadr</origin>
+                        </distributionDirectory>
                         <distributionFile>
                             <origin>../misc/icon.png</origin>
                         </distributionFile>

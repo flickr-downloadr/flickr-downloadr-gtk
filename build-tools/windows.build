@@ -68,6 +68,20 @@
     </exec>
   </target>
 
+  <target name="createrelease-linux" depends="createlinuxbundle">
+    <echo message="Creating the Linux installer for this release..." />
+    <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg value="-noprofile"/>
+      <arg value="-nologo"/>
+      <arg value="-noninteractive"/>
+      <arg value="-command"/>
+      <arg value="&quot;.\create-release.ps1 linux&quot;"/>
+    </exec>
+  </target>
+
   <target name="restorenugetpackages">
     <echo message="Downloading NuGet and restoring packages..." />
     <exec program="powershell" workingdir="${build.tools.dir}" verbose="true">
