@@ -9,7 +9,7 @@ using Gtk;
 using Mono.Unix;
 
 namespace FloydPink.Flickr.Downloadr {
-    public partial class LoginWindow : Window, ILoginView {
+	public partial class LoginWindow : BaseWindow, ILoginView {
         private readonly ILoginPresenter _presenter;
         private User _user;
 
@@ -18,8 +18,7 @@ namespace FloydPink.Flickr.Downloadr {
         public LoginWindow()
             : this(new User()) { }
 
-        public LoginWindow(User user) :
-            base(WindowType.Toplevel) {
+        public LoginWindow(User user) {
             Build();
 
             AddTooltips();

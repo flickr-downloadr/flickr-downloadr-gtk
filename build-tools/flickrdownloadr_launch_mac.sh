@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Thanks to the detailed guide by Michael J Hutchinson - https://mjhutchinson.com/journal/2010/01/24/creating_mac_app_bundle_for_gtk_app
+# Thanks to the detailed guide by Michael J Hutchinson
+#   - https://mjhutchinson.com/journal/2010/01/24/creating_mac_app_bundle_for_gtk_app
  
 #get the bundle's MacOS directory full path
 DIR=$(cd "$(dirname "$0")"; pwd)/bin

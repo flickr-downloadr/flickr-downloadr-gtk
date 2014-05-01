@@ -96,15 +96,10 @@
         </replacetokens>
       </filterchain>
     </loadfile>
-    <!-- Info.plist file with the correct version -->
     <touch file="flickrdownloadr.app/Contents/Info.plist" />
-    <echo message="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
-    <echo append="true" message="&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;${environment::newline()}" file="flickrdownloadr.app/Contents/Info.plist" />
-    <echo append="true" message="&lt;plist version=&quot;1.0&quot;&gt;${environment::newline()}${plist-token-file}${environment::newline()}&lt;/plist&gt;" file="flickrdownloadr.app/Contents/Info.plist" />
-    <!-- Icons -->
+    <echo message="${plist-token-file}" file="flickrdownloadr.app/Contents/Info.plist" />
     <mkdir dir="flickrdownloadr.app/Contents/Resources" />
     <copy file="flickr-downloadr.icns" tofile="flickrdownloadr.app/Contents/Resources/flickr-downloadr.icns" />
-    <!-- Executable and DLLs -->
     <copy todir="flickrdownloadr.app/Contents/MacOS/bin">
       <fileset basedir="${bin.dir}">
         <include name="DotNetOpenAuth.dll" />

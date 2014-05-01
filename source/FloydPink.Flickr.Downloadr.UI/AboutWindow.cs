@@ -4,9 +4,8 @@ using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 
 namespace FloydPink.Flickr.Downloadr {
-    public partial class AboutWindow : Window {
-        public AboutWindow() :
-            base(WindowType.Toplevel) {
+	public partial class AboutWindow : BaseWindow {
+        public AboutWindow() {
             Build();
 
             this.labelLink.TooltipText = "http://flickrdownloadr.com";

@@ -115,6 +115,10 @@
     <Compile Include="CachedImage\WebResponseExtension.cs" />
     <Compile Include="SpinnerWidget.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.SpinnerWidget.cs" />
+    <Compile Include="Helpers\PlatformDetection.cs" />
+    <Compile Include="MacMenu.cs" />
+    <Compile Include="MacMenuGroup.cs" />
+    <Compile Include="BaseWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

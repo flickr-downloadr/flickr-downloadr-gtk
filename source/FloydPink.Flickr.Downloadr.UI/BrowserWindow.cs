@@ -13,7 +13,7 @@ using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 
 namespace FloydPink.Flickr.Downloadr {
-    public partial class BrowserWindow : Window, IBrowserView {
+	public partial class BrowserWindow : BaseWindow, IBrowserView {
         private readonly IBrowserPresenter _presenter;
         private bool _doNotFireOnSelectionChanged;
         private string _page;
@@ -23,8 +23,7 @@ namespace FloydPink.Flickr.Downloadr {
         private string _total;
         private SpinnerWidget spinner;
 
-        public BrowserWindow(User user, Preferences preferences) :
-            base(WindowType.Toplevel) {
+        public BrowserWindow(User user, Preferences preferences) {
             Build();
 
             AddTooltips();
