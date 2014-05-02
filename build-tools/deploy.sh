@@ -1,11 +1,16 @@
 CIENGINE="appveyor"
 if [[ $TRAVIS = true ]]
 then
+  echo "The TRAVIS_COMMIT variable has a value of - ${TRAVIS_COMMIT}"
   CIENGINE="travis"
-  brew update
+  brew update 2>&1 1> "brewupdate.log"
   brew install jq
+  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | jq -r '.commit.message'"
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
+  echo "And the value of APPVEYOR_REPO_COMMIT_MESSAGE is ${APPVEYOR_REPO_COMMIT_MESSAGE}"
 fi
+
+echo "The CI engine is ${CIENGINE}"
 
 if [[ $APPVEYOR_REPO_COMMIT_MESSAGE != *\[deploy\]* ]]
 then
