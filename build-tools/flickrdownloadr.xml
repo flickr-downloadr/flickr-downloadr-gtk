@@ -341,29 +341,76 @@
                                 <showProgressDialog>
                                     <title>Installing Mono Framework for Linux</title>
                                     <actionList>
-                                        <httpGet>
-                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</filename>
-                                            <progressText>Downloading Mono Framework Installer</progressText>
-                                            <url>http://download.mono-project.com/archive/3.4.0/macos-10-x86/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</url>
-                                        </httpGet>
                                         <runProgram>
-                                            <program>open</program>
-                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg"</programArguments>
-                                            <progressText>Installing GTK#</progressText>
+                                            <program>dpkg-query</program>
+                                            <programArguments>-W libmono2.02.0-cil</programArguments>
+                                            <ruleList>
+                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                            </ruleList>
+                                        </runProgram>
+                                        <if>
+                                            <actionList>
+                                                <setInstallerVariable name="mono_installed" value="1"/>
+                                            </actionList>
+                                            <conditionRuleList>
+                                                <compareValues logic="equals" value1="1" value2="${program_exit_code}"/>
+                                            </conditionRuleList>
+                                            <elseActionList>
+                                                <setInstallerVariable name="mono_installed" value="0"/>
+                                            </elseActionList>
+                                            <ruleList>
+                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                            </ruleList>
+                                        </if>
+                                        <runProgram>
+                                            <program>rpm</program>
+                                            <programArguments>-q mono-core</programArguments>
+                                            <ruleList>
+                                                <programTest condition="is_in_path" name="rpm"/>
+                                            </ruleList>
+                                        </runProgram>
+                                        <if>
+                                            <actionList>
+                                                <setInstallerVariable name="mono_installed" value="1"/>
+                                            </actionList>
+                                            <conditionRuleList>
+                                                <compareValues logic="equals" value1="1" value2="${program_exit_code}"/>
+                                            </conditionRuleList>
+                                            <elseActionList>
+                                                <setInstallerVariable name="mono_installed" value="0"/>
+                                            </elseActionList>
+                                            <ruleList>
+                                                <programTest condition="is_in_path" name="rpm"/>
+                                            </ruleList>
+                                        </if>
+                                        <runProgram>
+                                            <program>apt-get</program>
+                                            <programArguments>-y install mono-runtime</programArguments>
+                                            <ruleList>
+                                                <isFalse>
+                                                    <value>${mono_installed}</value>
+                                                </isFalse>
+                                                <programTest>
+                                                    <condition>is_in_path</condition>
+                                                    <name>apt-get</name>
+                                                </programTest>
+                                            </ruleList>
                                         </runProgram>
                                     </actionList>
-                                    <ruleList>
-                                        <fileExists>
-                                            <negate>1</negate>
-                                            <path>/Library/Frameworks/Mono.framework</path>
-                                        </fileExists>
-                                    </ruleList>
                                 </showProgressDialog>
                             </actionList>
                             <ruleList>
-                                <platformTest>
-                                    <type>linux</type>
-                                </platformTest>
+                                <ruleGroup>
+                                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
+                                    <ruleList>
+                                        <platformTest>
+                                            <type>linux</type>
+                                        </platformTest>
+                                        <platformTest>
+                                            <type>linux-x64</type>
+                                        </platformTest>
+                                    </ruleList>
+                                </ruleGroup>
                             </ruleList>
                         </actionGroup>
                     </actionList>
