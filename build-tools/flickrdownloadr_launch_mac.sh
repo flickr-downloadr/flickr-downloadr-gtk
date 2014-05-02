@@ -8,7 +8,7 @@ DIR=$(cd "$(dirname "$0")"; pwd)/bin
  
 #change these values to match your app
 EXE_PATH="$DIR/flickr-downloadr.exe"
-PROCESS_NAME="flickr downloadr"
+PROCESS_NAME="flickr-downloadr"
 APPNAME="flickr downloadr"
  
 #set up environment
