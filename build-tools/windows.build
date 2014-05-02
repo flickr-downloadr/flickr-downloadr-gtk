@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="FlickrDownloadr" default="unitTestsOnly">
 
-  <property name="project.name" value="FlickrDownloadr" />
+  <property name="project.name" value="flickr-downloadr" />
   <property name="project.build.type" value="Release" />
 
   <!-- Folder references -->

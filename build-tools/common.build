@@ -88,7 +88,8 @@
 
   <target name="createmacappbundle" depends="unitTestsOnly">
     <echo message="Creating Mac OS X App bundle" />
-    <mkdir dir="flickrdownloadr.app/Contents/MacOS/bin" />
+    <property name="mac.app.name" value="flickr downloadr.app" />
+    <mkdir dir="${mac.app.name}/Contents/MacOS/bin" />
     <loadfile file="Info.plist.in" property="plist-token-file">
       <filterchain>
         <replacetokens>
@@ -96,11 +97,11 @@
         </replacetokens>
       </filterchain>
     </loadfile>
-    <touch file="flickrdownloadr.app/Contents/Info.plist" />
-    <echo message="${plist-token-file}" file="flickrdownloadr.app/Contents/Info.plist" />
-    <mkdir dir="flickrdownloadr.app/Contents/Resources" />
-    <copy file="flickr-downloadr.icns" tofile="flickrdownloadr.app/Contents/Resources/flickr-downloadr.icns" />
-    <copy todir="flickrdownloadr.app/Contents/MacOS/bin">
+    <touch file="${mac.app.name}/Contents/Info.plist" />
+    <echo message="${plist-token-file}" file="${mac.app.name}/Contents/Info.plist" />
+    <mkdir dir="${mac.app.name}/Contents/Resources" />
+    <copy file="flickr-downloadr.icns" tofile="${mac.app.name}/Contents/Resources/flickr-downloadr.icns" />
+    <copy todir="${mac.app.name}/Contents/MacOS/bin">
       <fileset basedir="${bin.dir}">
         <include name="DotNetOpenAuth.dll" />
         <include name="flickr-downloadr.exe" />
@@ -115,9 +116,9 @@
         <include name="StructureMap.dll" />
       </fileset>
     </copy>
-    <copy file="flickrdownloadr_launch_mac.sh" tofile="flickrdownloadr.app/Contents/MacOS/flickrdownloadr" />
-    <move todir="${bin.dir}/flickrdownloadr.app">
-      <fileset basedir="flickrdownloadr.app"/>
+    <copy file="flickrdownloadr_launch_mac.sh" tofile="${mac.app.name}/Contents/MacOS/flickrdownloadr" />
+    <move todir="${bin.dir}/${mac.app.name}">
+      <fileset basedir="${mac.app.name}"/>
     </move>
   </target>
 
