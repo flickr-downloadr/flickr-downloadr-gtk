@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleExecutable</key>
-    <string>flickr-downloadr</string>
+    <string>flickrdownloadr</string>
     <key>CFBundleIconFile</key>
     <string>flickr-downloadr.icns</string>
     <key>CFBundleIdentifier</key>
