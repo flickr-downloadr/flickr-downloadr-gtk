@@ -548,6 +548,10 @@ end tell'
             <name>pack_linux_platform_files</name>
             <value>false</value>
         </setInstallerVariable>
+        <setInstallerVariable>
+            <name>pack_linux-x64_platform_files</name>
+            <value>false</value>
+        </setInstallerVariable>
     </initializationActionList>
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
