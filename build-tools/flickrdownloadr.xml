@@ -18,10 +18,10 @@
             <desktopShortcutList>
                 <shortcut>
                     <comment>Batch download photos from flickr</comment>
-                    <exec>${installdir}/flickrdownloadr/flickrdownloadr</exec>
+                    <exec>${installdir}/flickrdownloadr</exec>
                     <icon>${installdir}/icon.png</icon>
                     <name>${product_fullname}-${product_version}</name>
-                    <path>${installdir}/flickrdownloadr/</path>
+                    <path>${installdir}/</path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
@@ -61,8 +61,11 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../source/bin/Release/flickrdownloadr</origin>
+                            <origin>../source/bin/Release/linux-bundle/bin</origin>
                         </distributionDirectory>
+                        <distributionFile>
+                            <origin>../source/bin/Release/linux-bundle/flickrdownloadr</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>../misc/icon.png</origin>
                         </distributionFile>
@@ -122,7 +125,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../source/bin/Release/flickrdownloadr.app</origin>
+                            <origin>../source/bin/Release/flickr downloadr.app</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -430,7 +433,7 @@
                 </actionGroup>
                 <runProgram>
                     <program>hdiutil</program>
-                    <programArguments>create -srcfolder "${tempDir}/output" -volname "${project.fullName}" -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW "${tempDmgFile}"</programArguments>
+                    <programArguments>create -srcfolder "${tempDir}/output" -volname "${project.fullName} Installer" -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW "${tempDmgFile}"</programArguments>
                 </runProgram>
                 <actionGroup>
                     <actionList>
@@ -456,7 +459,7 @@
                         <runProgram>
                             <abortOnError>0</abortOnError>
                             <program>hdiutil</program>
-                            <programArguments>detach "/Volumes/${project.fullName}"</programArguments>
+                            <programArguments>detach "/Volumes/${project.fullName} Installer"</programArguments>
                             <showMessageOnError>0</showMessageOnError>
                         </runProgram>
                         <runProgram>
@@ -466,7 +469,7 @@
                         <runProgram>
                             <program>osascript</program>
                             <programArguments>-e 'tell application "Finder"
-tell disk "${project.fullName}"
+tell disk "${project.fullName} Installer"
 open
 set current view of container window to icon view
 set toolbar visible of container window to false
@@ -487,7 +490,7 @@ end tell'
                         </runProgram>
                         <runProgram>
                             <program>hdiutil</program>
-                            <programArguments>detach "/Volumes/${project.fullName}"</programArguments>
+                            <programArguments>detach "/Volumes/${project.fullName} Installer"</programArguments>
                         </runProgram>
                     </actionList>
                     <ruleList>
@@ -501,11 +504,17 @@ end tell'
                 <deleteFile>
                     <path>${tempDir}</path>
                 </deleteFile>
+                <deleteFile>
+                    <path>../dist/${platform_name}/${project.installerFilename}</path>
+                </deleteFile>
             </actionList>
             <ruleList>
                 <isTrue>
                     <value>${pack_osx_platform_files}</value>
                 </isTrue>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
             </ruleList>
         </actionGroup>
     </postBuildActionList>
@@ -579,7 +588,7 @@ end tell'
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <installerFilename>Install flickr downloadr</installerFilename>
+            <installerFilename>Install flickr downloadr.app</installerFilename>
             <platform>osx</platform>
         </platformOptions>
     </platformOptionsList>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="FlickrDownloadr-Common">
 
+  <property name="mac.app.name" value="flickr downloadr.app" />
+  <property name="linux.bundle" value="linux-bundle" />
+
   <!-- Build Targets -->
   <target name="unitTestsOnly" depends="compilesolution, unitTests"/>
   <target name="allTests" depends="compilesolution, unitTests, boundarycrossingTests"/>
@@ -88,7 +91,6 @@
 
   <target name="createmacappbundle" depends="unitTestsOnly">
     <echo message="Creating Mac OS X App bundle" />
-    <property name="mac.app.name" value="flickr downloadr.app" />
     <mkdir dir="${mac.app.name}/Contents/MacOS/bin" />
     <loadfile file="Info.plist.in" property="plist-token-file">
       <filterchain>
@@ -124,8 +126,8 @@
 
   <target name="createlinuxbundle" depends="unitTestsOnly">
     <echo message="Creating Linux bundle" />
-    <mkdir dir="flickrdownloadr/bin" />
-    <copy todir="flickrdownloadr/bin">
+    <mkdir dir="${linux.bundle}/bin" />
+    <copy todir="${linux.bundle}/bin">
       <fileset basedir="${bin.dir}">
         <include name="DotNetOpenAuth.dll" />
         <include name="flickr-downloadr.exe" />
@@ -140,9 +142,9 @@
         <include name="StructureMap.dll" />
       </fileset>
     </copy>
-    <copy file="flickrdownloadr_launch_linux.sh" tofile="flickrdownloadr/flickrdownloadr" />
-    <move todir="${bin.dir}/flickrdownloadr">
-      <fileset basedir="flickrdownloadr"/>
+    <copy file="flickrdownloadr_launch_linux.sh" tofile="${linux.bundle}/flickrdownloadr" />
+    <move todir="${bin.dir}/${linux.bundle}">
+      <fileset basedir="${linux.bundle}"/>
     </move>
   </target>
 
