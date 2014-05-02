@@ -52,13 +52,20 @@
   </target>
 
   <target name="createrelease-linux" depends="createlinuxbundle">
-    <echo message="Creating the Linux installer for this release..." />
+    <echo message="Creating the Linux installers for this release..." />
     <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
       <environment>
         <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
       </environment>
       <arg value="createRelease.sh" />
       <arg value="linux" />
+    </exec>
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg value="createRelease.sh" />
+      <arg value="linux-x64" />
     </exec>
   </target>
 

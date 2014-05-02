@@ -2,6 +2,7 @@
     <shortName>flickrdownloadr</shortName>
     <fullName>flickr downloadr</fullName>
     <version>0.0.1</version>
+    <installerFilename>Install flickr downloadr.${platform_exec_suffix}</installerFilename>
     <licenseFile>../LICENSE</licenseFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <leftImage>../misc/icon.png</leftImage>

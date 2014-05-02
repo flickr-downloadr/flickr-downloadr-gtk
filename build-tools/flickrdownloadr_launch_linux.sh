@@ -12,7 +12,7 @@ export LIBOVERLAY_SCROLLBAR=0
 export OXYGEN_DISABLE_INNER_SHADOWS_HACK=1
 
 #this script should be in $PREFIX/bin
-MONO_EXEC="exec -a flickrdownloadr mono-sgen"
+MONO_EXEC="exec -a 'flickr downloadr' mono-sgen"
 EXE_PATH="${0%%/flickrdownloadr}/bin/flickr-downloadr.exe"
 
 _FD_REDIRECT_LOG="${FD_REDIRECT_LOG:-${XDG_CONFIG_HOME:-$HOME/.config}/flickr-downloadr/log}"
