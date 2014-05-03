@@ -1,1 +1,6 @@
-box: wercker/default
+box: floydpink/mono-installbuilder@0.0.2
+build:
+    steps:
+        - script:
+            name: build and test
+            code: env && cd build-tools && ./go.sh wercker Release
