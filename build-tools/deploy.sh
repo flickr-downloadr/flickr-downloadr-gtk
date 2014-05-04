@@ -1,3 +1,6 @@
+REPO="https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
+SOURCEREPO="https://github.com/flickr-downloadr/flickr-downloadr-gtk.git"
+
 CIENGINE="appveyor"
 if [[ $TRAVIS = true ]]
 then
@@ -7,6 +10,14 @@ then
   brew install jq 2>&1 1> "brewinstall.log"
   echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | jq -r '.commit.message'"
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
+elif [[ $WERCKER = true ]]
+then
+  echo "The WERCKER_GIT_COMMIT variable has a value of - ${WERCKER_GIT_COMMIT}"
+  CIENGINE="wercker"
+  wget "http://stedolan.github.io/jq/download/linux64/jq"
+  chmod +x jq
+  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${WERCKER_GIT_COMMIT} | jq -r '.commit.message'"
+  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$WERCKER_GIT_COMMIT | ./jq -r '.commit.message')
 fi
 
 echo "CI Server      : ${CIENGINE}."

@@ -18,7 +18,6 @@ init:
 
 #environment variables
 environment:
-  repo: "https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
   oauth_token:
     secure: lYR11R1tdRsM90UhyXCxCUf30lhL/OJ40Sb9pPzc4mFRSVhVRZw449MqLf+phNRT
   install_builder_license_signature:
