@@ -37,16 +37,27 @@ git config --global user.email "contact.us@flickrdownloadr.com"
 VERSION="v${BUILDNUMBER}"
 DEPLOYVERSION="deploy-${VERSION}"
 
+# wercker seems to be cloning to /pipeline/build
+THISREPOCLONEDIR="flickr-downloadr-gtk"
+if [[ $WERCKER = true ]]
+then
+  THISREPOCLONEDIR="build"
+fi
+
 cd ../..
 git clone -b master $REPO
 cd flickr-downloadr.github.io
 git config credential.helper "store --file=.git/fd-credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
+if [[ $WERCKER = true ]]
+then
+  cat .git/fd-credentials
+fi
 git config push.default tracking
 git checkout -b ${DEPLOYVERSION}
-cp -r ../flickr-downloadr-gtk/dist/* ./installer
+cp -r ../${THISREPOCLONEDIR}/dist/* ./installer
 # TODO: Do the build.number later
-# cp ../flickr-downloadr-gtk/build-tools/build.number .
+# cp ../${THISREPOCLONEDIR}/build-tools/build.number .
 git add -f .
 git commit -m "created release ${VERSION} ($CIENGINE) [ci skip]" -s
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
