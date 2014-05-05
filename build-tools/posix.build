@@ -68,6 +68,20 @@
       <arg value="createRelease.sh" />
       <arg value="linux-x64" />
     </exec>
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg value="createRelease.sh" />
+      <arg value="deb" />
+    </exec>
+    <exec program="bash" workingdir="${build.tools.dir}" verbose="true">
+      <environment>
+        <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
+      </environment>
+      <arg value="createRelease.sh" />
+      <arg value="rpm" />
+    </exec>
   </target>
 
   <target name="restorenugetpackages">

@@ -18,7 +18,7 @@ export PATH="$MONO_FRAMEWORK_PATH/bin:$PATH"
  
 #mono version check
 REQUIRED_MAJOR=3
-REQUIRED_MINOR=4
+REQUIRED_MINOR=2
  
 VERSION_TITLE="Cannot launch $APPNAME"
 VERSION_MSG="$APPNAME requires the Mono Framework version $REQUIRED_MAJOR.$REQUIRED_MINOR or later."

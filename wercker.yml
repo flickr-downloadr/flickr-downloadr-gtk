@@ -4,6 +4,8 @@ build:
         - script:
             name: build and test
             code: |-
+              sudo apt-get update
+              sudo apt-get install rpm -y
               sudo mozroots --import --machine --sync
               echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
               echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
