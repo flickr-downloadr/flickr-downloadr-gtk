@@ -613,6 +613,7 @@ end tell'
     <productDisplayIcon>${installdir}\icon.ico</productDisplayIcon>
     <productUrlHelpLink>https://github.com/flickr-downloadr/flickr-downloadr/issues</productUrlHelpLink>
     <productUrlInfoAbout>http://flickrdownloadr.com</productUrlInfoAbout>
+    <registerWithPackageDatabase>1</registerWithPackageDatabase>
     <saveRelativePaths>1</saveRelativePaths>
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>

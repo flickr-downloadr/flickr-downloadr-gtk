@@ -4,6 +4,10 @@ build:
         - script:
             name: build and test
             code: |-
+              sudo add-apt-repository ppa:git-core/ppa -y
+              sudo apt-get update
+              sudo apt-get install git -y
+              git --version
               sudo mozroots --import --machine --sync
               echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
               echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
