@@ -59,7 +59,7 @@ cp -r ../${THISREPOCLONEDIR}/dist/* ./installer
 # TODO: Do the build.number later
 # cp ../${THISREPOCLONEDIR}/build-tools/build.number .
 git add -f .
-git commit -m "created release ${VERSION} ($CIENGINE) [ci skip]" -s
+git commit -m "created release ${VERSION} ($CIENGINE) [skip ci]" -s
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOYVERSION} || git push -u origin ${DEPLOYVERSION}
 
@@ -75,7 +75,7 @@ then
   cp -f ../flickr-downloadr-gtk/build-tools/build.number ./build-tools/
   cp -f ../flickr-downloadr-gtk/source/CommonAssemblyInfo.cs ./source/
   git add -f .
-  git commit -m "Released ${VERSION} [ci skip]" -s
+  git commit -m "Released ${VERSION} [skip ci]" -s
   git tag -a ${VERSION} -m "Creating release ${VERSION}"
   git push --tags origin master
 fi
