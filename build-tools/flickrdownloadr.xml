@@ -290,8 +290,8 @@
             <description>Mono &amp; GTK# Installer</description>
             <canBeEdited>0</canBeEdited>
             <downloadable>1</downloadable>
-            <selected>0</selected>
-            <show>0</show>
+            <selected>1</selected>
+            <show>1</show>
             <folderList>
                 <folder>
                     <description>Mono Installer</description>
