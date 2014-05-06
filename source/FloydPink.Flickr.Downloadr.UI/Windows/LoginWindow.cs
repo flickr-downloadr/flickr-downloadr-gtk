@@ -144,7 +144,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             Application.Invoke(delegate {
                                    this.hboxLogin.Visible = true;
                                    this.labelMessage.LabelProp =
-                                       Catalog.GetString("Welcome to Flickr Downloadr. Click 'Login' to continue.");
+					Catalog.GetString("Welcome to flickr downloadr. Click 'Login' to continue.");
 
                                    this.buttonPrefs.Visible = false;
                                    this.hboxBottomButtons.Visible = false;
