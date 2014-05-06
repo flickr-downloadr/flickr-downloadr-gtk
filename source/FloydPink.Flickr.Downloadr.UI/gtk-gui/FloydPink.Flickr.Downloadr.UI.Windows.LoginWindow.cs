@@ -198,7 +198,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.labelMessage = new global::Gtk.Label ();
 			this.labelMessage.Name = "labelMessage";
-			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to Flickr Downloadr. Click \'Login\' to continue.");
+			this.labelMessage.LabelProp = global::Mono.Unix.Catalog.GetString ("Welcome to flickr downloadr. Click 'Login' to continue.");
 			this.vbox6.Add (this.labelMessage);
 			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.labelMessage]));
 			w17.Position = 2;

@@ -240,7 +240,7 @@
                 <child>
                   <widget class="Gtk.Label" id="labelMessage">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Welcome to Flickr Downloadr. Click 'Login' to continue.</property>
+                    <property name="LabelProp" translatable="yes">Welcome to flickr downloadr. Click 'Login' to continue.</property>
                   </widget>
                   <packing>
                     <property name="Position">2</property>
