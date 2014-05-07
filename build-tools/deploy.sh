@@ -49,10 +49,6 @@ git clone -b master $REPO
 cd flickr-downloadr.github.io
 git config credential.helper "store --file=.git/fd-credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
-if [[ $WERCKER = true ]]
-then
-  cat .git/fd-credentials
-fi
 git config push.default tracking
 git checkout -b ${DEPLOYVERSION}
 cp -r ../${THISREPOCLONEDIR}/dist/* ./installer
