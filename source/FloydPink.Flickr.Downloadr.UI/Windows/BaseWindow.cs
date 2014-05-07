@@ -12,7 +12,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			if (PlatformDetection.IsMac) {
 				MenuItem menuItemQuit = new MenuItem ();
 				menuItemQuit.ButtonPressEvent += (object o, ButtonPressEventArgs args) => {
-					Application.Quit ();
+					Application.Quit ();	
 					args.RetVal = true;
 				};
 
