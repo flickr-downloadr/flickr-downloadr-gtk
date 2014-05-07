@@ -555,21 +555,21 @@ end tell'
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
-        <stringParameter name="dmg_icon_position" value="300, 100" ask="0">
+        <stringParameter name="dmg_icon_position" value="320, 280" ask="0">
             <description></description>
             <explanation></explanation>
             <default></default>
             <allowEmptyValue>1</allowEmptyValue>
             <width>40</width>
         </stringParameter>
-        <stringParameter name="dmg_window_bounds" value="400, 100, 885, 430" ask="0">
+        <stringParameter name="dmg_window_bounds" value="300, 200, 940, 680" ask="0">
             <description></description>
             <explanation></explanation>
             <default></default>
             <allowEmptyValue>1</allowEmptyValue>
             <width>40</width>
         </stringParameter>
-        <stringParameter name="dmg_icon_size" value="72" ask="0">
+        <stringParameter name="dmg_icon_size" value="128" ask="0">
             <description></description>
             <explanation></explanation>
             <default></default>
