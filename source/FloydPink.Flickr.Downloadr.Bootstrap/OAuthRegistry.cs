@@ -34,7 +34,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
             };
 
         private static readonly MessageReceivingEndpoint FlickrServiceEndPoint =
-            new MessageReceivingEndpoint("http://api.flickr.com/services/rest", HttpDeliveryMethods.PostRequest);
+			new MessageReceivingEndpoint("https://api.flickr.com/services/rest", HttpDeliveryMethods.PostRequest);
 
         public OAuthRegistry() {
             For<IOAuthManager>()
