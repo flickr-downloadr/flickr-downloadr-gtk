@@ -21,7 +21,7 @@ environment:
   install_builder_license_signature:
     secure: 3j/EJAZzA8i/OfWyhmvLnzk7SZ8/KNaaTVfWyw0uVhe5gcZfhlGVPfgwrdnvEut3
   gh_token:
-    secure: Nww9ToyuLy9Dam9uQ/gp60uD2fMNrdVyZ9zzAfgtOubVCItC2xcWMtvwaZQ8bRDF
+    secure: K8R2b8g3A8zB4IFQ0/G/fU8IKhU3PoFaKZARKl0IbCUvVxfzzfVY9yKUVPjM4M4V
 
 #---------------------------------#
 #       build configuration       #
