@@ -546,7 +546,7 @@
                       <widget class="Gtk.Label" id="labelLink">
                         <property name="MemberName" />
                         <property name="Tooltip" translatable="yes" />
-                        <property name="LabelProp" translatable="yes">&lt;a href="http://flickrdownloadr.com"&gt;&lt;b&gt;&lt;big&gt;&lt;span color="blue"&gt;http://flickrdownloadr.com&lt;/span&gt;&lt;/big&gt;&lt;/b&gt;&lt;/a&gt;</property>
+                        <property name="LabelProp" translatable="yes">&lt;a href="#"&gt;&lt;b&gt;&lt;big&gt;&lt;span color="blue"&gt;http://flickrdownloadr.com&lt;/span&gt;&lt;/big&gt;&lt;/b&gt;&lt;/a&gt;</property>
                         <property name="UseMarkup">True</property>
                         <property name="UseUnderline">True</property>
                       </widget>
