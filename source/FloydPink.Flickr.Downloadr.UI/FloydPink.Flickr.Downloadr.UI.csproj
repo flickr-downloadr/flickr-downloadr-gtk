@@ -9,6 +9,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AssemblyName>flickr-downloadr</AssemblyName>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,8 +102,6 @@
     <Compile Include="Widgets\PhotoWidget.cs" />
     <Compile Include="Widgets\SpinnerWidget.cs" />
     <Compile Include="Widgets\PreviewPhotoWidget.cs" />
-    <Compile Include="Widgets\MacMenu.cs" />
-    <Compile Include="Widgets\MacMenuGroup.cs" />
     <Compile Include="Windows\AboutWindow.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="Windows\BrowserWindow.cs" />

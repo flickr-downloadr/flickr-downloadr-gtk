@@ -9,17 +9,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	{
 		public BaseWindow () : base (WindowType.Toplevel)
 		{
-			if (PlatformDetection.IsMac) {
-				MenuItem menuItemQuit = new MenuItem ();
-				menuItemQuit.ButtonPressEvent += (object o, ButtonPressEventArgs args) => {
-					Application.Quit ();	
-					args.RetVal = true;
-				};
-
-				MacMenu.GlobalKeyHandlerEnabled = true;
-
-				MacMenu.QuitMenuItem = menuItemQuit;
-			}
 		}
 	}
 }
