@@ -522,6 +522,7 @@ end tell'
             <value>false</value>
         </setInstallerVariable>
     </initializationActionList>
+    <debianCustomPackageDirectory>debian</debianCustomPackageDirectory>
     <description>Batch download photos from flickr</description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>

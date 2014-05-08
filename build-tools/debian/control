@@ -1,0 +1,15 @@
+Essential: no
+Architecture: ${bitrock_deb_architecture}
+Description: ${bitrock_deb_description}
+Provides: ${bitrock_deb_provides}
+Package: ${bitrock_deb_package}
+Source: flickrdownloadr
+Section: web
+Maintainer: "Floyd Pink" <imbleedingme@googlemail.com>
+Homepage: http://flickrdownloadr.com
+Vcs-Browser: https://github.com/flickr-downloadr/flickr-downloadr-gtk
+Vcs-Git: git@github.com:flickr-downloadr/flickr-downloadr-gtk.git
+Priority: optional
+Installed-Size: ${bitrock_deb_installedSize}
+Version: ${bitrock_deb_version}
+Depends : mono-complete, gtk-sharp3
