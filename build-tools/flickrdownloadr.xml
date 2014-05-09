@@ -299,6 +299,17 @@
                     <name>monoinstaller</name>
                     <platforms>all</platforms>
                 </folder>
+                <folder>
+                    <description>apt-get-install-script</description>
+                    <destination>${installdir}/aptgetscript</destination>
+                    <name>aptgetscript</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>apt-get-install.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
             </folderList>
             <readyToInstallActionList>
                 <actionGroup>
@@ -341,12 +352,17 @@
                                 <showProgressDialog>
                                     <title>Installing Mono Framework for Linux</title>
                                     <actionList>
+                                        <setInstallerVariable>
+                                            <name>packages_to_install</name>
+                                            <value></value>
+                                        </setInstallerVariable>
                                         <runProgram>
                                             <abortOnError>0</abortOnError>
-                                            <program>dpkg-query</program>
-                                            <programArguments>-W mono-complete</programArguments>
+                                            <program>dpkg</program>
+                                            <programArguments>-s mono-complete</programArguments>
+                                            <showMessageOnError>0</showMessageOnError>
                                             <ruleList>
-                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                                <programTest condition="is_in_path" name="dpkg"/>
                                             </ruleList>
                                         </runProgram>
                                         <if>
@@ -360,38 +376,36 @@
                                                 <setInstallerVariable name="mono_installed" value="1"/>
                                             </elseActionList>
                                             <ruleList>
-                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                                <programTest condition="is_in_path" name="dpkg"/>
                                             </ruleList>
                                         </if>
-                                        <runProgram>
-                                            <program>apt-get</program>
-                                            <programArguments>-y install mono-complete</programArguments>
+                                        <setInstallerVariable>
+                                            <name>packages_to_install</name>
+                                            <value>${packages_to_install} mono-complete</value>
                                             <ruleList>
                                                 <isFalse>
                                                     <value>${mono_installed}</value>
                                                 </isFalse>
-                                                <programTest>
-                                                    <condition>is_in_path</condition>
-                                                    <name>apt-get</name>
-                                                </programTest>
                                             </ruleList>
-                                        </runProgram>
+                                        </setInstallerVariable>
                                         <runProgram>
                                             <abortOnError>0</abortOnError>
-                                            <program>dpkg-query</program>
-                                            <programArguments>-W gtk-sharp3</programArguments>
+                                            <program>dpkg</program>
+                                            <programArguments>-s gtk-sharp3</programArguments>
+                                            <showMessageOnError>0</showMessageOnError>
                                             <ruleList>
-                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                                <programTest condition="is_in_path" name="dpkg"/>
                                             </ruleList>
                                         </runProgram>
                                         <if>
                                             <actionList>
                                                 <runProgram>
                                                     <abortOnError>0</abortOnError>
-                                                    <program>dpkg-query</program>
-                                                    <programArguments>-W gtk-sharp2</programArguments>
+                                                    <program>dpkg</program>
+                                                    <programArguments>-s gtk-sharp2</programArguments>
+                                                    <showMessageOnError>0</showMessageOnError>
                                                     <ruleList>
-                                                        <programTest condition="is_in_path" name="dpkg-query"/>
+                                                        <programTest condition="is_in_path" name="dpkg"/>
                                                     </ruleList>
                                                 </runProgram>
                                                 <if>
@@ -405,7 +419,7 @@
                                                         <setInstallerVariable name="gtk_sharp_installed" value="1"/>
                                                     </elseActionList>
                                                     <ruleList>
-                                                        <programTest condition="is_in_path" name="dpkg-query"/>
+                                                        <programTest condition="is_in_path" name="dpkg"/>
                                                     </ruleList>
                                                 </if>
                                             </actionList>
@@ -416,33 +430,54 @@
                                                 <setInstallerVariable name="gtk_sharp_installed" value="1"/>
                                             </elseActionList>
                                             <ruleList>
-                                                <programTest condition="is_in_path" name="dpkg-query"/>
+                                                <programTest condition="is_in_path" name="dpkg"/>
                                             </ruleList>
                                         </if>
-                                        <runProgram>
-                                            <abortOnError>0</abortOnError>
-                                            <program>apt-get</program>
-                                            <programArguments>-y install gtk-sharp3</programArguments>
+                                        <setInstallerVariable>
+                                            <name>packages_to_install</name>
+                                            <value>${packages_to_install} gtk-sharp3</value>
                                             <ruleList>
                                                 <isFalse>
                                                     <value>${gtk_sharp_installed}</value>
                                                 </isFalse>
-                                                <programTest>
-                                                    <condition>is_in_path</condition>
-                                                    <name>apt-get</name>
-                                                </programTest>
                                             </ruleList>
-                                        </runProgram>
-                                        <if>
+                                        </setInstallerVariable>
+                                        <actionGroup>
                                             <actionList>
+                                                <createTimeStamp>
+                                                    <format>%Y%m%d%H%M%S</format>
+                                                    <variable>timestamp</variable>
+                                                </createTimeStamp>
+                                                <setInstallerVariable>
+                                                    <name>tempDir</name>
+                                                    <value>/tmp/.tempDir${timestamp}</value>
+                                                </setInstallerVariable>
+                                                <createDirectory>
+                                                    <path>${tempDir}</path>
+                                                </createDirectory>
+                                                <unpackFile>
+                                                    <component>monoinstaller</component>
+                                                    <destination>${tempDir}/apt-get-install.sh</destination>
+                                                    <folder>aptgetscript</folder>
+                                                    <origin>apt-get-install.sh</origin>
+                                                </unpackFile>
                                                 <runProgram>
-                                                    <abortOnError>0</abortOnError>
-                                                    <program>apt-get</program>
-                                                    <programArguments>-y install gtk-sharp2</programArguments>
+                                                    <program>gksu</program>
+                                                    <programArguments>--preserve-env --sudo-mode --description "flickr downloadr Installer" "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
+                                                    <progressText>Installing packages '${packages_to_install}'</progressText>
                                                     <ruleList>
-                                                        <isFalse>
-                                                            <value>${gtk_sharp_installed}</value>
-                                                        </isFalse>
+                                                        <stringTest>
+                                                            <text>${packages_to_install}</text>
+                                                            <type>not_empty</type>
+                                                        </stringTest>
+                                                        <programTest>
+                                                            <condition>is_in_path</condition>
+                                                            <name>gksu</name>
+                                                        </programTest>
+                                                        <programTest>
+                                                            <condition>is_in_path</condition>
+                                                            <name>gnome-terminal</name>
+                                                        </programTest>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
                                                             <name>apt-get</name>
@@ -450,19 +485,13 @@
                                                     </ruleList>
                                                 </runProgram>
                                             </actionList>
-                                            <conditionRuleList>
-                                                <compareValues logic="equals" value1="1" value2="${program_exit_code}"/>
-                                            </conditionRuleList>
                                             <ruleList>
-                                                <isFalse>
-                                                    <value>${gtk_sharp_installed}</value>
-                                                </isFalse>
-                                                <programTest>
-                                                    <condition>is_in_path</condition>
-                                                    <name>apt-get</name>
-                                                </programTest>
+                                                <stringTest>
+                                                    <text>${packages_to_install}</text>
+                                                    <type>not_empty</type>
+                                                </stringTest>
                                             </ruleList>
-                                        </if>
+                                        </actionGroup>
                                     </actionList>
                                 </showProgressDialog>
                             </actionList>
@@ -667,9 +696,14 @@ end tell'
             <value>false</value>
         </setInstallerVariable>
     </initializationActionList>
+    <postInstallationActionList>
+        <deleteFile>
+            <path>${installdir}/aptgetscript</path>
+        </deleteFile>
+    </postInstallationActionList>
     <debianCustomPackageDirectory>debian</debianCustomPackageDirectory>
     <description>Batch download photos from flickr</description>
-    <enableRollback>1</enableRollback>
+    <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <height>480</height>
     <osxApplicationBundleIcon>../misc/mac-osx-icon/flickr-downloadr-new.icns</osxApplicationBundleIcon>
