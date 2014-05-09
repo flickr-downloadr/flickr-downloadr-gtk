@@ -435,7 +435,7 @@
                                         </if>
                                         <setInstallerVariable>
                                             <name>packages_to_install</name>
-                                            <value>${packages_to_install} gtk-sharp3</value>
+                                            <value>${packages_to_install} gtk-sharp2</value>
                                             <ruleList>
                                                 <isFalse>
                                                     <value>${gtk_sharp_installed}</value>
@@ -462,8 +462,8 @@
                                                     <origin>apt-get-install.sh</origin>
                                                 </unpackFile>
                                                 <runProgram>
-                                                    <program>gnome-terminal</program>
-                                                    <programArguments>-e "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
+                                                    <program>"${tempDir}/apt-get-install.sh '${packages_to_install}'"</program>
+                                                    <programArguments></programArguments>
                                                     <progressText>Installing packages '${packages_to_install}'</progressText>
                                                     <ruleList>
                                                         <programTest>
