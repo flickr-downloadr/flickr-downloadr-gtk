@@ -462,17 +462,13 @@
                                                     <origin>apt-get-install.sh</origin>
                                                 </unpackFile>
                                                 <runProgram>
-                                                    <program>gksudo</program>
-                                                    <programArguments>--preserve-env --sudo-mode --description "flickr downloadr Installer" "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
+                                                    <program>gnome-terminal</program>
+                                                    <programArguments>-e "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
                                                     <progressText>Installing packages '${packages_to_install}'</progressText>
                                                     <ruleList>
-                                                        <stringTest>
-                                                            <text>${packages_to_install}</text>
-                                                            <type>not_empty</type>
-                                                        </stringTest>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
-                                                            <name>gksudo</name>
+                                                            <name>gnome-terminal</name>
                                                         </programTest>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
