@@ -462,13 +462,13 @@
                                                     <origin>apt-get-install.sh</origin>
                                                 </unpackFile>
                                                 <runProgram>
-                                                    <program>"${tempDir}/apt-get-install.sh '${packages_to_install}'"</program>
-                                                    <programArguments></programArguments>
+                                                    <program>gksu</program>
+                                                    <programArguments>--preserve-env --sudo-mode --description "flickr downloadr Installer" "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
                                                     <progressText>Installing packages '${packages_to_install}'</progressText>
                                                     <ruleList>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
-                                                            <name>gnome-terminal</name>
+                                                            <name>gksu</name>
                                                         </programTest>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
@@ -476,6 +476,17 @@
                                                         </programTest>
                                                     </ruleList>
                                                 </runProgram>
+                                                <showWarning>
+                                                    <text>Cannot launch gksudo. Please install these packages manually - ${packages_to_install}</text>
+                                                    <title>${msg(MessageDialog.Warning)} - 'gksu' not found</title>
+                                                    <ruleList>
+                                                        <programTest>
+                                                            <condition>is_in_path</condition>
+                                                            <name>gksu</name>
+                                                            <negate>1</negate>
+                                                        </programTest>
+                                                    </ruleList>
+                                                </showWarning>
                                             </actionList>
                                             <ruleList>
                                                 <stringTest>
