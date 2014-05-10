@@ -350,7 +350,7 @@
                             <progressText>Installing Mono Framework...</progressText>
                             <actionList>
                                 <showProgressDialog>
-                                    <title>Installing Mono Framework for Linux</title>
+                                    <title>Installing Mono Framework</title>
                                     <actionList>
                                         <setInstallerVariable>
                                             <name>packages_to_install</name>
@@ -462,9 +462,10 @@
                                                     <origin>apt-get-install.sh</origin>
                                                 </unpackFile>
                                                 <runProgram>
+                                                    <explanation>Installing packages '${packages_to_install}'</explanation>
                                                     <program>gksu</program>
                                                     <programArguments>--preserve-env --sudo-mode --description "flickr downloadr Installer" "${tempDir}/apt-get-install.sh '${packages_to_install}'"</programArguments>
-                                                    <progressText>Installing packages '${packages_to_install}'</progressText>
+                                                    <progressText>Installing dependencies...</progressText>
                                                     <ruleList>
                                                         <programTest>
                                                             <condition>is_in_path</condition>
@@ -477,7 +478,7 @@
                                                     </ruleList>
                                                 </runProgram>
                                                 <showWarning>
-                                                    <text>Cannot launch gksudo. Please install these packages manually - ${packages_to_install}</text>
+                                                    <text>Cannot launch gksu. Install gksu (sudo apt-get install gksu) and rerun the installer. Or install these packages manually - ${packages_to_install}</text>
                                                     <title>${msg(MessageDialog.Warning)} - 'gksu' not found</title>
                                                     <ruleList>
                                                         <programTest>
