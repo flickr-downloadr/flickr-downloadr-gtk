@@ -1,3 +1,5 @@
+MERGE_READY_BRANCH="cross-platform"
+
 REPO="https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
 SOURCEREPO="https://github.com/flickr-downloadr/flickr-downloadr-gtk.git"
 
@@ -45,7 +47,7 @@ then
 fi
 
 cd ../..
-git clone -b master $REPO
+git clone -b $MERGE_READY_BRANCH $REPO
 cd flickr-downloadr.github.io
 git config credential.helper "store --file=.git/fd-credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
