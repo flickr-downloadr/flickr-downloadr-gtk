@@ -4,10 +4,10 @@
     <version>0.0.1</version>
     <licenseFile>../LICENSE</licenseFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
-    <leftImage>../misc/icon.png</leftImage>
-    <logoImage>../misc/logo-Small-About.png</logoImage>
-    <splashImage>../misc/logo.png</splashImage>
-    <wmImage>../misc/mac-osx-icon/icon-48.png</wmImage>
+    <leftImage>../misc/images/icons/icon.png</leftImage>
+    <logoImage>../misc/images/logo-Small-About.png</logoImage>
+    <splashImage>../misc/images/logo.png</splashImage>
+    <wmImage>../misc/images/icons/icon-48.png</wmImage>
     <componentList>
         <component>
             <name>core</name>
@@ -67,7 +67,7 @@
                             <origin>../source/bin/Release/linux-bundle/flickrdownloadr</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../misc/icon.png</origin>
+                            <origin>../misc/images/icons/icon.png</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -84,7 +84,7 @@
                             <origin>../source/bin/Release/linux-bundle/flickrdownloadr</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../misc/icon.png</origin>
+                            <origin>../misc/images/icons/icon.png</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -128,10 +128,10 @@
                             <origin>../source/bin/Release/StructureMap.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../misc/icon.png</origin>
+                            <origin>../misc/images/icons/icon.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../misc/icon.ico</origin>
+                            <origin>../misc/images/icons/icon.ico</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -570,7 +570,7 @@
                     <actionList>
                         <copyFile>
                             <destination>${tempDir}/output/.VolumeIcon.icns</destination>
-                            <origin>../misc/mac-osx-icon/flickr-downloadr-new.icns</origin>
+                            <origin>../misc/images/icons/flickr-downloadr-new.icns</origin>
                         </copyFile>
                         <runProgram>
                             <program>SetFile</program>
@@ -578,7 +578,7 @@
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                        <fileExists path="../misc/images/icons/flickr-downloadr-new.icns"/>
                     </ruleList>
                 </actionGroup>
                 <actionGroup>
@@ -588,11 +588,11 @@
                         </createDirectory>
                         <copyFile>
                             <destination>${tempDir}/output/.background/background.png</destination>
-                            <origin>../misc/mac-osx-icon/dmg-background.png</origin>
+                            <origin>../misc/images/icons/dmg-background.png</origin>
                         </copyFile>
                     </actionList>
                     <ruleList>
-                        <fileExists path="../misc/mac-osx-icon/dmg-background.png"/>
+                        <fileExists path="../misc/images/icons/dmg-background.png"/>
                     </ruleList>
                 </actionGroup>
                 <runProgram>
@@ -615,7 +615,7 @@
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="../misc/mac-osx-icon/flickr-downloadr-new.icns"/>
+                        <fileExists path="../misc/images/icons/flickr-downloadr-new.icns"/>
                     </ruleList>
                 </actionGroup>
                 <actionGroup>
@@ -658,7 +658,7 @@ end tell'
                         </runProgram>
                     </actionList>
                     <ruleList>
-                        <fileExists path="../misc/mac-osx-icon/dmg-background.png"/>
+                        <fileExists path="../misc/images/icons/dmg-background.png"/>
                     </ruleList>
                 </actionGroup>
                 <runProgram>
@@ -710,9 +710,9 @@ end tell'
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <height>480</height>
-    <osxApplicationBundleIcon>../misc/mac-osx-icon/flickr-downloadr-new.icns</osxApplicationBundleIcon>
+    <osxApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxApplicationBundleIcon>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
-    <osxUninstallerApplicationBundleIcon>../misc/mac-osx-icon/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
     <productContact>contact.us@flickrdownloadr.com</productContact>
@@ -724,8 +724,8 @@ end tell'
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
     <vendor>flickrdownloadr.com</vendor>
     <width>640</width>
-    <windowsExecutableIcon>../misc/mac-osx-icon/installericon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>../misc/mac-osx-icon/installericon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>../misc/images/icons/installericon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>../misc/images/icons/installericon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
