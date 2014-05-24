@@ -55,8 +55,6 @@ echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
 git config push.default tracking
 git checkout -b ${DEPLOYVERSION}
 cp -r ../${THISREPOCLONEDIR}/dist/* ./installer
-# TODO: Do the build.number later
-# cp ../${THISREPOCLONEDIR}/build-tools/build.number .
 git add -f .
 git commit -m "created release ${VERSION} ($CIENGINE) [skip ci]" -s
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
