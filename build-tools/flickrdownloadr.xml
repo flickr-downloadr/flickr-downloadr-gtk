@@ -544,7 +544,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>dmgName</name>
-                    <value>../dist/${platform_name}/${project.installerFilename}.dmg</value>
+                    <value>../dist/${platform_name}/${product_shortname}-${product_version}-${platform_name}-installer.${platform_exec_suffix}.dmg</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>tempDmgFile</name>
