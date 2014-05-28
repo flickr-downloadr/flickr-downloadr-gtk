@@ -1,15 +1,7 @@
-﻿using System;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using FloydPink.Flickr.Downloadr.UI.Widgets;
-using Gtk;
+﻿using Gtk;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows
-{
-	public class BaseWindow : Gtk.Window
-	{
-		public BaseWindow () : base (WindowType.Toplevel)
-		{
-		}
-	}
+namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    public class BaseWindow : Window {
+        public BaseWindow() : base(WindowType.Toplevel) { }
+    }
 }
-

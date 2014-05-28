@@ -129,26 +129,25 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         private async Task DownloadPhotos(IEnumerable<Photo> photos, bool handleSpinner = true) {
-			try {
-	            if (handleSpinner) {
-	                this._view.ShowSpinner(true);
-	            }
+            try {
+                if (handleSpinner) {
+                    this._view.ShowSpinner(true);
+                }
 
-	            IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
+                IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
 
-	            this._cancellationTokenSource = new CancellationTokenSource();
-	            await
-	                this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress,
-	                    this._view.Preferences);
-				this._view.DownloadComplete(this._downloadedLocation, true);
-
-			}
-			catch (OperationCanceledException) {
-				this._view.DownloadComplete(this._downloadedLocation, false);
-			}
-			if (handleSpinner) {
-				this._view.ShowSpinner(false);
-			}
+                this._cancellationTokenSource = new CancellationTokenSource();
+                await
+                    this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress,
+                        this._view.Preferences);
+                this._view.DownloadComplete(this._downloadedLocation, true);
+            }
+            catch (OperationCanceledException) {
+                this._view.DownloadComplete(this._downloadedLocation, false);
+            }
+            if (handleSpinner) {
+                this._view.ShowSpinner(false);
+            }
         }
 
         private async Task GetAndSetPhotos(int page) {

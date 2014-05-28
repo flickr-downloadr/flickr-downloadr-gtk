@@ -79,7 +79,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 progressUpdate.PercentDone = doneCount * 100 / totalCount;
                 progressUpdate.DownloadedPath = imageDirectory.FullName;
                 progress.Report(progressUpdate);
-				if (doneCount != totalCount) {
+                if (doneCount != totalCount) {
                     cancellationToken.ThrowIfCancellationRequested();
                 }
             }

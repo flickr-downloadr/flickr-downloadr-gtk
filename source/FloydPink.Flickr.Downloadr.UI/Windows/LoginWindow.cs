@@ -10,7 +10,7 @@ using Gtk;
 using Mono.Unix;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
-	public partial class LoginWindow : BaseWindow, ILoginView {
+    public partial class LoginWindow : BaseWindow, ILoginView {
         private readonly ILoginPresenter _presenter;
         private User _user;
 
@@ -144,7 +144,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             Application.Invoke(delegate {
                                    this.hboxLogin.Visible = true;
                                    this.labelMessage.LabelProp =
-					Catalog.GetString("Welcome to flickr downloadr. Click 'Login' to continue.");
+                                       Catalog.GetString("Welcome to flickr downloadr. Click 'Login' to continue.");
 
                                    this.buttonPrefs.Visible = false;
                                    this.hboxBottomButtons.Visible = false;

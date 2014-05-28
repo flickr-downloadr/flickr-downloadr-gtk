@@ -9,7 +9,7 @@ using FloydPink.Flickr.Downloadr.UI.Helpers;
 using Gtk;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
-	public partial class PreferencesWindow : BaseWindow, IPreferencesView {
+    public partial class PreferencesWindow : BaseWindow, IPreferencesView {
         private readonly IPreferencesPresenter _presenter;
         private Preferences _preferences;
 
