@@ -16,7 +16,6 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         private readonly Progress<ProgressUpdate> _progress = new Progress<ProgressUpdate>();
         private readonly IBrowserView _view;
         private CancellationTokenSource _cancellationTokenSource;
-        private bool _downloadComplete;
         private string _downloadedLocation;
 
         public BrowserPresenter(IBrowserLogic logic, IBrowserView view) {
@@ -31,7 +30,6 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
                                                           : string.Empty,
                                                       progress.OperationText, progress.Cancellable);
                                                   this._downloadedLocation = progress.DownloadedPath;
-                                                  this._downloadComplete = progress.PercentDone == 100;
                                               };
         }
 
@@ -131,22 +129,26 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         private async Task DownloadPhotos(IEnumerable<Photo> photos, bool handleSpinner = true) {
-            if (handleSpinner) {
-                this._view.ShowSpinner(true);
-            }
+			try {
+	            if (handleSpinner) {
+	                this._view.ShowSpinner(true);
+	            }
 
-            IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
+	            IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
 
-            this._cancellationTokenSource = new CancellationTokenSource();
-            await
-                this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress,
-                    this._view.Preferences);
-            Thread.Yield(); // To allow the final ProgressChanged event to fire and update the _downloadComplete flag
-            this._view.DownloadComplete(this._downloadedLocation, this._downloadComplete);
+	            this._cancellationTokenSource = new CancellationTokenSource();
+	            await
+	                this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress,
+	                    this._view.Preferences);
+				this._view.DownloadComplete(this._downloadedLocation, true);
 
-            if (handleSpinner) {
-                this._view.ShowSpinner(false);
-            }
+			}
+			catch (OperationCanceledException) {
+				this._view.DownloadComplete(this._downloadedLocation, false);
+			}
+			if (handleSpinner) {
+				this._view.ShowSpinner(false);
+			}
         }
 
         private async Task GetAndSetPhotos(int page) {

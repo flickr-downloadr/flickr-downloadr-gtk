@@ -28,64 +28,61 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
         private async Task DownloadPhotos(IEnumerable<Photo> photos, CancellationToken cancellationToken,
                                           IProgress<ProgressUpdate> progress, Preferences preferences) {
-            try {
-                var progressUpdate = new ProgressUpdate {
-                    Cancellable = true,
-                    OperationText = "Downloading photos...",
-                    PercentDone = 0,
-                    ShowPercent = true
-                };
+            var progressUpdate = new ProgressUpdate {
+                Cancellable = true,
+                OperationText = "Downloading photos...",
+                PercentDone = 0,
+                ShowPercent = true
+            };
+            progress.Report(progressUpdate);
+
+            int doneCount = 0;
+            IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
+            int totalCount = photosList.Count();
+
+            DirectoryInfo imageDirectory = CreateDownloadFolder(preferences.DownloadLocation);
+
+            foreach (Photo photo in photosList) {
+                string photoUrl = photo.OriginalUrl;
+                string photoExtension = "jpg";
+                switch (preferences.DownloadSize) {
+                    case PhotoDownloadSize.Medium:
+                        photoUrl = photo.Medium800Url;
+                        break;
+                    case PhotoDownloadSize.Large:
+                        photoUrl = photo.Large1024Url;
+                        break;
+                    case PhotoDownloadSize.Original:
+                        photoUrl = photo.OriginalUrl;
+                        photoExtension = photo.DownloadFormat;
+                        break;
+                }
+
+                Photo photoWithPreferredTags = photo;
+
+                if (preferences.NeedOriginalTags) {
+                    photoWithPreferredTags = await this._originalTagsLogic.GetOriginalTagsTask(photo);
+                }
+
+                string photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
+                string targetFileName = Path.Combine(imageDirectory.FullName,
+                    string.Format("{0}.{1}", photoName, photoExtension));
+                WriteMetaDataFile(photoWithPreferredTags, targetFileName, preferences);
+
+                WebRequest request = WebRequest.Create(photoUrl);
+
+                var buffer = new byte[4096];
+
+                await DownloadAndSavePhoto(targetFileName, request, buffer);
+
+                doneCount++;
+                progressUpdate.PercentDone = doneCount * 100 / totalCount;
+                progressUpdate.DownloadedPath = imageDirectory.FullName;
                 progress.Report(progressUpdate);
-
-                int doneCount = 0;
-                IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
-                int totalCount = photosList.Count();
-
-                DirectoryInfo imageDirectory = CreateDownloadFolder(preferences.DownloadLocation);
-
-                foreach (Photo photo in photosList) {
-                    string photoUrl = photo.OriginalUrl;
-                    string photoExtension = "jpg";
-                    switch (preferences.DownloadSize) {
-                        case PhotoDownloadSize.Medium:
-                            photoUrl = photo.Medium800Url;
-                            break;
-                        case PhotoDownloadSize.Large:
-                            photoUrl = photo.Large1024Url;
-                            break;
-                        case PhotoDownloadSize.Original:
-                            photoUrl = photo.OriginalUrl;
-                            photoExtension = photo.DownloadFormat;
-                            break;
-                    }
-
-                    Photo photoWithPreferredTags = photo;
-
-                    if (preferences.NeedOriginalTags) {
-                        photoWithPreferredTags = await this._originalTagsLogic.GetOriginalTagsTask(photo);
-                    }
-
-                    string photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
-                    string targetFileName = Path.Combine(imageDirectory.FullName,
-                        string.Format("{0}.{1}", photoName, photoExtension));
-                    WriteMetaDataFile(photoWithPreferredTags, targetFileName, preferences);
-
-                    WebRequest request = WebRequest.Create(photoUrl);
-
-                    var buffer = new byte[4096];
-
-                    await DownloadAndSavePhoto(targetFileName, request, buffer);
-
-                    doneCount++;
-                    progressUpdate.PercentDone = doneCount * 100 / totalCount;
-                    progressUpdate.DownloadedPath = imageDirectory.FullName;
-                    progress.Report(progressUpdate);
-                    if (progressUpdate.PercentDone != 100) {
-                        cancellationToken.ThrowIfCancellationRequested();
-                    }
+				if (doneCount != totalCount) {
+                    cancellationToken.ThrowIfCancellationRequested();
                 }
             }
-            catch (OperationCanceledException) { }
         }
 
         private static async Task DownloadAndSavePhoto(string targetFileName, WebRequest request, byte [] buffer) {
