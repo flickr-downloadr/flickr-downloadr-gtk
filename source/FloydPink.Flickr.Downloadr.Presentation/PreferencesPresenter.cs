@@ -27,13 +27,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public void EmptyCacheDirectory(string cacheLocation) {
-            var directory = new DirectoryInfo(cacheLocation);
-            foreach (FileInfo file in directory.GetFiles()) {
-                file.Delete();
-            }
-            foreach (DirectoryInfo subDirectory in directory.GetDirectories()) {
-                subDirectory.Delete(true);
-            }
+            this._logic.EmptyCacheDirectory(cacheLocation);
         }
 
         // Thank you, humbads - http://stackoverflow.com/a/11124118/218882

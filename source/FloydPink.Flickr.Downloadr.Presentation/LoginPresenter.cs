@@ -30,8 +30,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public void Logout() {
-            this._preferences = null;
             this._logic.Logout();
+            this._preferencesLogic.EmptyCacheDirectory(this._preferences.CacheLocation);
+            this._preferences = null;
             this._view.ShowSpinner(false);
             this._view.ShowLoggedOutControl();
         }
