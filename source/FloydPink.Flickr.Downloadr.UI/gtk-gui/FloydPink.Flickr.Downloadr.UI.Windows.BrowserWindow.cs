@@ -5,31 +5,57 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	public partial class BrowserWindow
 	{
 		private global::Gtk.VBox vboxRoot;
+		
 		private global::Gtk.HBox hboxSpinner;
+		
 		private global::Gtk.HBox hbox6;
+		
 		private global::Gtk.ScrolledWindow scrolledwindowPhotos;
+		
 		private global::Gtk.VBox vboxPhotos;
+		
 		private global::Gtk.HBox hboxBottom;
+		
 		private global::Gtk.HBox hboxButtons;
+		
 		private global::Gtk.HBox hboxLeft;
+		
 		private global::Gtk.Button buttonBack;
+		
 		private global::Gtk.ToggleButton togglebuttonShowAllPhotos;
+		
 		private global::Gtk.HBox hbox5;
+		
 		private global::Gtk.Button buttonSelectAll;
+		
 		private global::Gtk.Button buttonUnSelectAll;
+		
 		private global::Gtk.Alignment alignment1;
+		
 		private global::Gtk.HBox hboxCenter;
+		
 		private global::Gtk.Button buttonFirstPage;
+		
 		private global::Gtk.Button buttonPreviousPage;
+		
 		private global::Gtk.VBox vbox4;
+		
 		private global::Gtk.Label labelPhotos;
+		
 		private global::Gtk.Label labelPages;
+		
 		private global::Gtk.Button buttonNextPage;
+		
 		private global::Gtk.Button buttonLastPage;
+		
 		private global::Gtk.HBox hboxRight;
+		
 		private global::Gtk.Label label1;
+		
 		private global::Gtk.Button buttonDownloadSelection;
+		
 		private global::Gtk.Button buttonDownloadThisPage;
+		
 		private global::Gtk.Button buttonDownloadAllPages;
 
 		protected virtual void Build ()

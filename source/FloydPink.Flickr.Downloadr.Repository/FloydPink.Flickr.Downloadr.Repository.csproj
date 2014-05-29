@@ -11,8 +11,6 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +48,7 @@
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="TokenRepository.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="UpdateRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FloydPink.Flickr.Downloadr.Model\FloydPink.Flickr.Downloadr.Model.csproj">

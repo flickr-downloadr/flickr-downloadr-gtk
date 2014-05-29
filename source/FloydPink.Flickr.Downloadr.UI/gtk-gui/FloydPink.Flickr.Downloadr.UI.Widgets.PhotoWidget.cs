@@ -5,11 +5,17 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets
 	public partial class PhotoWidget
 	{
 		private global::Gtk.VBox vboxContainer;
+		
 		private global::Gtk.HBox hboxContainer;
+		
 		private global::Gtk.Frame frameMain;
+		
 		private global::Gtk.Alignment GtkAlignment;
+		
 		private global::Gtk.EventBox eventboxMain;
+		
 		private global::Gtk.Image imageMain;
+		
 		private global::Gtk.Label frameLabel;
 
 		protected virtual void Build ()

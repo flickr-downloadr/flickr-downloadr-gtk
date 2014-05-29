@@ -8,6 +8,7 @@ using FloydPink.Flickr.Downloadr.Model.Extensions;
 namespace FloydPink.Flickr.Downloadr.Model {
     public class Preferences : INotifyPropertyChanged {
         private string _cacheLocation;
+        private bool _checkForUpdates;
         private string _downloadLocation;
         private PhotoDownloadSize _downloadSize;
         private bool _needOriginalTags;
@@ -73,6 +74,14 @@ namespace FloydPink.Flickr.Downloadr.Model {
             }
         }
 
+        public bool CheckForUpdates {
+            get { return this._checkForUpdates; }
+            set {
+                this._checkForUpdates = value;
+                PropertyChanged.Notify(() => CheckForUpdates);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static Preferences GetDefault() {
@@ -90,7 +99,8 @@ namespace FloydPink.Flickr.Downloadr.Model {
                 SafetyLevel = SafeSearch.Safe,
                 NeedOriginalTags = false,
                 CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    "flickr-downloadr", "Cache")
+                    "flickr-downloadr", "Cache"),
+                CheckForUpdates = true
             };
         }
     }

@@ -11,5 +11,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Helpers {
             return string.Format("http://flickrdownloadr.com/?utm_source=gtkapp&utm_medium=about&utm_campaign={0}",
                 HttpUtility.UrlEncode(GetVersionString()));
         }
+
+        public static string GetUpdateUrl() {
+            return
+                string.Format(
+                    "http://flickrdownloadr.com/downloads?utm_source=gtkapp&utm_medium=update&utm_campaign={0}",
+                    HttpUtility.UrlEncode(GetVersionString()));
+        }
     }
 }

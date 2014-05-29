@@ -5,19 +5,33 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	public partial class AboutWindow
 	{
 		private global::Gtk.VBox vbox3;
+		
 		private global::Gtk.VBox vbox4;
+		
 		private global::Gtk.HBox hbox7;
+		
 		private global::Gtk.Alignment alignment6;
+		
 		private global::Gtk.Image image2;
+		
 		private global::Gtk.Alignment alignment7;
+		
 		private global::Gtk.Label labelVersion;
+		
 		private global::Gtk.VBox vbox5;
+		
 		private global::Gtk.HBox hbox6;
+		
 		private global::Gtk.Alignment alignment1;
+		
 		private global::Gtk.EventBox eventboxHyperlink;
+		
 		private global::Gtk.Label labelLink;
+		
 		private global::Gtk.Alignment alignment2;
+		
 		private global::Gtk.HBox hbox5;
+		
 		private global::Gtk.Button buttonClose;
 
 		protected virtual void Build ()
@@ -107,7 +121,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			// Container child eventboxHyperlink.Gtk.Container+ContainerChild
 			this.labelLink = new global::Gtk.Label ();
 			this.labelLink.Name = "labelLink";
-			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString ("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b></a>");
+			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString ("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b" +
+			"></a>");
 			this.labelLink.UseMarkup = true;
 			this.labelLink.UseUnderline = true;
 			this.eventboxHyperlink.Add (this.labelLink);

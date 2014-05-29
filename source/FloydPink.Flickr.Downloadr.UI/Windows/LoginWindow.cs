@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using FloydPink.Flickr.Downloadr.Bootstrap;
 using FloydPink.Flickr.Downloadr.Model;
 using FloydPink.Flickr.Downloadr.Presentation;
@@ -149,6 +150,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                                    this.buttonPrefs.Visible = false;
                                    this.hboxBottomButtons.Visible = false;
                                    this.hboxAvatar.Visible = false;
+                                   this.hboxUpdate.Visible = true;
                                });
         }
 
@@ -169,6 +171,24 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             var preferencesWindow = new PreferencesWindow(User, preferences);
             preferencesWindow.Show();
             Destroy();
+        }
+
+        public void ShowUpdateAvailableNotification(string latestVersion) {
+            Application.Invoke(delegate {
+                                   this.labelUpdate.LabelProp =
+                                       string.Format(
+                                           "<a href=\"#\"><span color=\"red\">Update Available ( v{0} )</span></a>",
+                                           latestVersion);
+                                   this.labelUpdate.TooltipText =
+                                       "Click here to download the latest version of the application";
+                                   this.hboxUpdate.Visible = true;
+                               });
+        }
+
+
+        protected void UpdateNotificationClick(object o, ButtonPressEventArgs args) {
+            Process.Start(VersionHelper.GetUpdateUrl());
+            Application.Quit();
         }
 
         #endregion

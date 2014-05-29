@@ -14,15 +14,18 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IOAuthManager _oAuthManager;
         private readonly IRepository<Preferences> _preferencesRepository;
         private readonly IRepository<Token> _tokenRepository;
+        private readonly IRepository<Update> _updateRepository;
         private readonly IRepository<User> _userRepository;
         private Action<User> _applyUser;
 
         public LoginLogic(IOAuthManager oAuthManager, IRepository<Token> tokenRepository,
-                          IRepository<User> userRepository, IRepository<Preferences> preferencesRepository) {
+                          IRepository<User> userRepository, IRepository<Preferences> preferencesRepository,
+                          IRepository<Update> updateRepository) {
             this._oAuthManager = oAuthManager;
             this._tokenRepository = tokenRepository;
             this._userRepository = userRepository;
             this._preferencesRepository = preferencesRepository;
+            this._updateRepository = updateRepository;
         }
 
         #region ILoginLogic Members
@@ -39,6 +42,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             this._tokenRepository.Delete();
             this._userRepository.Delete();
             this._preferencesRepository.Delete();
+            this._updateRepository.Delete();
         }
 
         public async Task<bool> IsUserLoggedInAsync(Action<User> applyUser) {

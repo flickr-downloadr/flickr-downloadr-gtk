@@ -5,16 +5,27 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets
 	public partial class SpinnerWidget
 	{
 		private global::Gtk.VBox vboxRoot;
+		
 		private global::Gtk.HBox hboxSpinner;
+		
 		private global::Gtk.Alignment alignment12;
+		
 		private global::Gtk.Image imageLoading;
+		
 		private global::Gtk.Label labelOperation;
+		
 		private global::Gtk.Alignment alignment11;
+		
 		private global::Gtk.HBox hboxPercent;
+		
 		private global::Gtk.Alignment alignment6;
+		
 		private global::Gtk.Label labelPercent;
+		
 		private global::Gtk.VBox vbox8;
+		
 		private global::Gtk.Button buttonCancel;
+		
 		private global::Gtk.Alignment alignment5;
 
 		protected virtual void Build ()

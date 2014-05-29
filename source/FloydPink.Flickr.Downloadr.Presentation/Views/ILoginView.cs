@@ -8,5 +8,6 @@ namespace FloydPink.Flickr.Downloadr.Presentation.Views {
         void ShowLoggedOutControl();
         void OpenBrowserWindow();
         void OpenPreferencesWindow(Preferences preferences);
+        void ShowUpdateAvailableNotification(string latestVersion);
     }
 }

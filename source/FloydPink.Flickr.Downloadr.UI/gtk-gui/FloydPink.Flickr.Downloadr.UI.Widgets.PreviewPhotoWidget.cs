@@ -5,8 +5,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets
 	public partial class PreviewPhotoWidget
 	{
 		private global::Gtk.VBox vbox1;
+		
 		private global::Gtk.Image imagePreview;
+		
 		private global::Gtk.HBox hbox1;
+		
 		private global::Gtk.Label labelCaption;
 
 		protected virtual void Build ()

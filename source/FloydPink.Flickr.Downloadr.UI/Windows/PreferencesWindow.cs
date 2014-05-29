@@ -75,6 +75,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                 "Revert all the settings to their last saved values and go back to the login window";
             this.buttonDefaults.TooltipText = "Reset all the settings to their default values";
             this.buttonSave.TooltipText = "Save all the settings and continue to the browser window";
+            this.labelUpdate.TooltipText =
+                this.checkbuttonUpdate.TooltipText =
+                    "Get notified automatically when there is an updated version available";
         }
 
         private void SetCacheSize() {
@@ -122,6 +125,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
             // Cache location
             this.entryCacheLocation.Text = preferences.CacheLocation;
+
+            // Check for Update
+            this.checkbuttonUpdate.Active = preferences.CheckForUpdates;
         }
 
         private Preferences getModelFromFields() {
@@ -144,7 +150,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                 PhotosPerPage = int.Parse(this.comboboxPhotosPerPage.ActiveText),
                 SafetyLevel = (this.comboboxSafetyLevel.Active + 1).ToString(),
                 NeedOriginalTags = this.radioTagsOriginal.Active,
-                CacheLocation = this.entryCacheLocation.Text
+                CacheLocation = this.entryCacheLocation.Text,
+                CheckForUpdates = this.checkbuttonUpdate.Active
             };
         }
 

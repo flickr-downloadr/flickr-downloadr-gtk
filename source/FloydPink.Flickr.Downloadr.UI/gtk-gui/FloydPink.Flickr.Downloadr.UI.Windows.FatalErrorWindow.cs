@@ -5,11 +5,17 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	public partial class FatalErrorWindow
 	{
 		private global::Gtk.VBox vbox4;
+		
 		private global::Gtk.Alignment alignment5;
+		
 		private global::Gtk.HBox hbox6;
+		
 		private global::Gtk.Alignment alignment8;
+		
 		private global::Gtk.Image image3;
+		
 		private global::Gtk.Alignment alignment7;
+		
 		private global::Gtk.Alignment alignment6;
 
 		protected virtual void Build ()

@@ -6,13 +6,16 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
     public class LoginPresenter : PresenterBase, ILoginPresenter {
         private readonly ILoginLogic _logic;
         private readonly IPreferencesLogic _preferencesLogic;
+        private readonly IUpdateCheckLogic _updateCheckLogic;
         private readonly ILoginView _view;
         private Preferences _preferences;
 
-        public LoginPresenter(ILoginView view, ILoginLogic logic, IPreferencesLogic preferencesLogic) {
+        public LoginPresenter(ILoginView view, ILoginLogic logic, IPreferencesLogic preferencesLogic,
+                              IUpdateCheckLogic updateCheckLogic) {
             this._view = view;
             this._logic = logic;
             this._preferencesLogic = preferencesLogic;
+            this._updateCheckLogic = updateCheckLogic;
         }
 
         public async void InitializeScreen() {
@@ -31,7 +34,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
 
         public void Logout() {
             this._logic.Logout();
-            this._preferencesLogic.EmptyCacheDirectory(this._preferences.CacheLocation);
+            if (this._preferences != null) {
+                this._preferencesLogic.EmptyCacheDirectory(this._preferences.CacheLocation);
+            }
             this._preferences = null;
             this._view.ShowSpinner(false);
             this._view.ShowLoggedOutControl();
@@ -46,6 +51,14 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         private void ApplyUser(User user) {
+            if (this._preferences != null) {
+                if (this._preferences.CheckForUpdates) {
+                    Update update = this._updateCheckLogic.UpdateAvailable(this._preferences);
+                    if (update.Available) {
+                        this._view.ShowUpdateAvailableNotification(update.LatestVersion);
+                    }
+                }
+            }
             this._view.ShowLoggedInControl(this._preferences);
             this._view.User = user;
             this._view.ShowSpinner(false);
