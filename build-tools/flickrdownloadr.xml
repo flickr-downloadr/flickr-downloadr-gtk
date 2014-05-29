@@ -700,11 +700,121 @@ end tell'
             <value>false</value>
         </setInstallerVariable>
     </initializationActionList>
+    <preInstallationActionList>
+        <setInstallerVariable>
+            <name>flickr-downloadr-installation</name>
+            <value>${env(HOME)}/.flickr-downloadr</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>flickr-downloadr-installation-properties</name>
+            <value>${flickr-downloadr-installation}/installation.properties</value>
+        </setInstallerVariable>
+        <actionGroup>
+            <explanation>Handle Existing Installation</explanation>
+            <progressText>Checking for existing installations</progressText>
+            <actionList>
+                <propertiesFileGet>
+                    <file>${flickr-downloadr-installation-properties}</file>
+                    <key>version</key>
+                    <variable>fd-previous-version</variable>
+                </propertiesFileGet>
+                <propertiesFileGet>
+                    <file>${flickr-downloadr-installation-properties}</file>
+                    <key>install-directory</key>
+                    <variable>fd-previous-installdir</variable>
+                </propertiesFileGet>
+                <setInstallerVariable>
+                    <name>fd-previous-uninstaller</name>
+                    <value>${fd-previous-installdir}/${uninstallerName}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>fd-previous-uninstaller</name>
+                    <value>${fd-previous-uninstaller}.exe</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>windows</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <if>
+                    <progressText>Checking Existing Installation</progressText>
+                    <actionList>
+                        <showInfo>
+                            <text>Uninstalling the currently installed version (${fd-previous-version}) before installing the current version (${product_version}).</text>
+                            <title>Uninstallation Required</title>
+                        </showInfo>
+                        <showProgressDialog>
+                            <title>Uninstalling v${fd-previous-version}</title>
+                            <actionList>
+                                <runProgram>
+                                    <program>${fd-previous-uninstaller}</program>
+                                    <programArguments></programArguments>
+                                    <progressText>Uninstalling v${fd-previous-version}</progressText>
+                                </runProgram>
+                            </actionList>
+                        </showProgressDialog>
+                    </actionList>
+                    <conditionRuleList>
+                        <compareVersions>
+                            <logic>greater</logic>
+                            <version1>${product_version}</version1>
+                            <version2>${fd-previous-version}</version2>
+                        </compareVersions>
+                    </conditionRuleList>
+                    <elseActionList>
+                        <showWarning>
+                            <text>The currently installed version is the same or newer than 
+the current. Exiting the installer...</text>
+                            <title>Current/Newer Installation Exists</title>
+                        </showWarning>
+                        <exit>
+                            <progressText>Exiting Installer</progressText>
+                        </exit>
+                    </elseActionList>
+                </if>
+            </actionList>
+            <ruleList>
+                <fileExists>
+                    <path>${flickr-downloadr-installation-properties}</path>
+                </fileExists>
+            </ruleList>
+        </actionGroup>
+    </preInstallationActionList>
     <postInstallationActionList>
         <deleteFile>
             <path>${installdir}/aptgetscript</path>
         </deleteFile>
+        <createDirectory>
+            <path>${flickr-downloadr-installation}</path>
+            <ruleList>
+                <fileExists>
+                    <negate>1</negate>
+                    <path>${flickr-downloadr-installation}</path>
+                </fileExists>
+            </ruleList>
+        </createDirectory>
+        <propertiesFileSet>
+            <file>${flickr-downloadr-installation-properties}</file>
+            <key>version</key>
+            <value>${product_version}</value>
+        </propertiesFileSet>
+        <propertiesFileSet>
+            <file>${flickr-downloadr-installation-properties}</file>
+            <key>install-directory</key>
+            <value>${installdir}</value>
+        </propertiesFileSet>
     </postInstallationActionList>
+    <preUninstallationActionList>
+        <setInstallerVariable>
+            <name>flickr-downloadr-installation</name>
+            <value>${env(HOME)}/.flickr-downloadr</value>
+        </setInstallerVariable>
+    </preUninstallationActionList>
+    <postUninstallationActionList>
+        <deleteFile>
+            <path>${flickr-downloadr-installation}</path>
+        </deleteFile>
+    </postUninstallationActionList>
     <debianCustomPackageDirectory>debian</debianCustomPackageDirectory>
     <description>Batch download photos from flickr</description>
     <enableRollback>0</enableRollback>
