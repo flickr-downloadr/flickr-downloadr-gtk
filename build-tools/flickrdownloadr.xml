@@ -729,6 +729,15 @@ end tell'
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>fd-previous-uninstaller</name>
+                    <value>${fd-previous-uninstaller}.app</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>fd-previous-uninstaller</name>
                     <value>${fd-previous-uninstaller}.exe</value>
                     <ruleList>
                         <platformTest>
