@@ -729,7 +729,7 @@ end tell'
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>fd-previous-uninstaller</name>
-                    <value>${fd-previous-uninstaller}.app</value>
+                    <value>${fd-previous-uninstaller}.app/Contents/MacOS/installbuilder.sh</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -749,7 +749,7 @@ end tell'
                     <progressText>Checking Existing Installation</progressText>
                     <actionList>
                         <showInfo>
-                            <text>Uninstalling the currently installed version (${fd-previous-version}) before installing the current version (${product_version}).</text>
+                            <text>Uninstalling previous version (${fd-previous-version}) before installing the latest - ${product_version}.</text>
                             <title>Uninstallation Required</title>
                         </showInfo>
                         <showProgressDialog>
@@ -882,7 +882,7 @@ the current. Exiting the installer...</text>
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <installerFilename>Install flickr downloadr.app</installerFilename>
+            <installerFilename>Install flickr downloadr (v${product_version}).app</installerFilename>
             <platform>osx</platform>
         </platformOptions>
     </platformOptionsList>
