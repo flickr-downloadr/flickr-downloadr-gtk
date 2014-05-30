@@ -17,20 +17,22 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         #region IUpdateCheckLogic implementation
 
         public Update UpdateAvailable(Preferences preferences) {
+            Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            Version latestVersion;
             Update update = this._repository.Get();
             if (DateTime.Now.Subtract(TimeSpan.FromDays(1.0)) > update.LastChecked) {
-                Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
-                Version latestVersion;
                 WebRequest request = WebRequest.Create("http://flickrdownloadr.com/build.number");
                 var response = (HttpWebResponse) request.GetResponse();
                 using (var reader = new StreamReader(response.GetResponseStream())) {
                     latestVersion = new Version(reader.ReadToEnd());
                 }
-                update.Available = latestVersion.CompareTo(currentVersion) > 0;
                 update.LastChecked = DateTime.Now;
                 update.LatestVersion = latestVersion.ToString();
-                this._repository.Save(update);
+            } else {
+                latestVersion = new Version(update.LatestVersion);
             }
+            update.Available = latestVersion.CompareTo(currentVersion) > 0;
+            this._repository.Save(update);
             return update;
         }
 
