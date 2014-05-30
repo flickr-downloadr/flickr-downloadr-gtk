@@ -5,7 +5,7 @@ namespace FloydPink.Flickr.Downloadr.Model.Constants {
         public const string AuthenticatedMessage =
             "<html><head><title>flickr downloadr Authenticated</title></head>" +
             "<body style=\"font-family: 'Arial Rounded MT Bold', sans-serif; color: #666;\"><div style=\"text-align:center;\">" +
-            "<img alt=\"flickr downloadr\" src=\"http://flickrdownloadr.com/img/logo.png\" />" +
+            "<img alt=\"flickr downloadr\" src=\"http://flickrdownloadr.com/static/images/logo.png\" />" +
             "<h1>You have been authenticated.</h1><div><span>You could close this window and return to the flickr downloadr application " +
             "now.</span></div></div></body></html>";
 
