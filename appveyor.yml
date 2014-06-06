@@ -23,7 +23,7 @@ environment:
   gh_token:
     secure: K8R2b8g3A8zB4IFQ0/G/fU8IKhU3PoFaKZARKl0IbCUvVxfzzfVY9yKUVPjM4M4V
   FD_CERT_PWD:
-    secure: L/AukSGIeEiIO4UrrwH+6RKBgPMqdHKAWQU1h++JlcI=
+    secure: /coieV+mdRLPxJv+2So5pTCFVjSDxUmiVFOar0DWIJM=
 
 #---------------------------------#
 #       build configuration       #
