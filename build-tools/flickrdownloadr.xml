@@ -530,6 +530,49 @@
             </shouldPackRuleList>
         </component>
     </componentList>
+    <preBuildActionList>
+        <actionGroup>
+            <explanation>Sign the Windows exe</explanation>
+            <actionList>
+                <setInstallerVariable>
+                    <name>signtool</name>
+                    <value>C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>signtool</name>
+                    <value>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin\signtool.exe</value>
+                    <ruleList>
+                        <compareText>
+                            <logic>equals</logic>
+                            <text>${env(APPVEYOR)}</text>
+                            <value>True</value>
+                        </compareText>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>signing-certificate-file</name>
+                    <value>${build_project_directory}/3aaf9c32632bca9f38ccd314a20c88f4.pfx</value>
+                </setInstallerVariable>
+                <runProgram>
+                    <program>${signtool}</program>
+                    <programArguments>sign /d "${project.fullName}" /t http://timestamp.verisign.com/scripts/timstamp.dll /f ${signing-certificate-file} /p ${env(FD_CERT_PWD)} "${build_project_directory}/../source/bin/Release/flickr-downloadr.exe"</programArguments>
+                    <ruleList>
+                        <isTrue>
+                            <value>${runSignTool}</value>
+                        </isTrue>
+                    </ruleList>
+                </runProgram>
+            </actionList>
+            <ruleList>
+                <isTrue>
+                    <value>${pack_windows_platform_files}</value>
+                </isTrue>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </actionGroup>
+    </preBuildActionList>
     <postBuildActionList>
         <actionGroup>
             <explanation>Create Fancy DMG</explanation>
@@ -681,6 +724,28 @@ end tell'
                 </platformTest>
             </ruleList>
         </actionGroup>
+        <actionGroup>
+            <explanation>Signing the Windows Installer</explanation>
+            <actionList>
+                <runProgram>
+                    <program>${signtool}</program>
+                    <programArguments>sign /d "${project.fullName}" /t http://timestamp.verisign.com/scripts/timstamp.dll /f ${signing-certificate-file} /p ${env(FD_CERT_PWD)} "${installbuilder_output_directory}/${project.installerFilename}"</programArguments>
+                    <ruleList>
+                        <isTrue>
+                            <value>${runSignTool}</value>
+                        </isTrue>
+                    </ruleList>
+                </runProgram>
+            </actionList>
+            <ruleList>
+                <isTrue>
+                    <value>${pack_windows_platform_files}</value>
+                </isTrue>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </actionGroup>
     </postBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
@@ -697,6 +762,10 @@ end tell'
         </setInstallerVariable>
         <setInstallerVariable>
             <name>pack_linux-x64_platform_files</name>
+            <value>false</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>runSignTool</name>
             <value>false</value>
         </setInstallerVariable>
     </initializationActionList>

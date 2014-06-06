@@ -16,6 +16,8 @@ try {
 
 	(new-object System.Net.WebClient).DownloadFile($installBuilderExe,$installBuilderExeLocal)
 	& $installBuilderExeLocal --mode unattended --unattendedmodeui none --debuglevel 4 --debugtrace $installBuilderInstallLog
+
+	(new-object System.Net.WebClient).DownloadFile((Get-Item env:\FD_CERT_URL).value,"$($buildToolsDir)3aaf9c32632bca9f38ccd314a20c88f4.pfx")
 }
 catch {
 	throw

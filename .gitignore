@@ -195,3 +195,4 @@ $RECYCLE.BIN/
 
 source/.nuget/NuGet.exe
 build-tools/flickrdownloadr.xml.backup
+build-tools/*.pfx
