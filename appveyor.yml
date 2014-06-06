@@ -24,8 +24,6 @@ environment:
     secure: K8R2b8g3A8zB4IFQ0/G/fU8IKhU3PoFaKZARKl0IbCUvVxfzzfVY9yKUVPjM4M4V
   FD_CERT_PWD:
     secure: L/AukSGIeEiIO4UrrwH+6RKBgPMqdHKAWQU1h++JlcI=
-  FD_CERT_URL:
-    secure: HsUlRYdK4uz7P1KFzPEWFcteY7kF5MzTwbzvPBu0hCze7Dv9BzMjnejGXg3tDvBJaZfXhhwhJItQCVMJSHuUL2hfG+u4UQR0xFJaoWhCr7M=
 
 #---------------------------------#
 #       build configuration       #
