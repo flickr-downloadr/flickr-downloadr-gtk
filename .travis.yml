@@ -13,7 +13,7 @@ before_install:
 - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
 - wget "http://installbuilder.bitrock.com/installbuilder-enterprise-9.0.1-osx-installer.dmg"
 - hdiutil mount installbuilder-enterprise-9.0.1-osx-installer.dmg
-- sudo '/Volumes/InstallBuilder Multiplatform Enterprise 9.0.1/installbuilder-enterprise-9.0.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+- sudo '/Volumes/InstallBuilder Multiplatform Enterprise 9.0.1/installbuilder-enterprise-9.0.1-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 script:
 - cd build-tools
 - ./go.sh travis Release
