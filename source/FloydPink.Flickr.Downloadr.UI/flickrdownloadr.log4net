@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<log4net debug="false">
+  <appender name="XmlSchemaFileAppender" type="log4net.Appender.FileAppender">
+    <file type="log4net.Util.PatternString" value="flickrdownloadr.log" />
+    <appendToFile value="false" />
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    <layout type="log4net.Layout.XmlLayoutSchemaLog4j">
+      <locationInfo value="true" />
+    </layout>
+  </appender>
+
+  <root>
+    <level value="ALL" />
+    <appender-ref ref="XmlSchemaFileAppender" />
+  </root>
+</log4net>

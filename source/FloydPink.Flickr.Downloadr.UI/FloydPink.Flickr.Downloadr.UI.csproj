@@ -9,8 +9,6 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AssemblyName>flickr-downloadr</AssemblyName>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -76,6 +74,9 @@
     <Reference Include="Mono.Posix" />
     <Reference Include="System.Web" />
     <Reference Include="System.Net" />
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -137,6 +138,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="icon.ico" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -148,5 +150,10 @@
   <ItemGroup>
     <Folder Include="Widgets\" />
     <Folder Include="Windows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="flickrdownloadr.log4net">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
