@@ -1,4 +1,4 @@
-$installBuilderCli = "C:\Program Files (x86)\BitRock InstallBuilder Enterprise 9.0.1\bin\builder-cli.exe"
+$installBuilderCli = "C:\Program Files (x86)\BitRock InstallBuilder Enterprise 9.5.3\bin\builder-cli.exe"
 $pathToBuildFile = "flickrdownloadr.xml"
 $pathToLicenseFile = "flickrdownloadrlicense.xml"
 

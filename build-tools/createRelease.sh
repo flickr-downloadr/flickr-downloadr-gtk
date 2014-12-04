@@ -1,10 +1,10 @@
 if [ "$(uname)" == "Darwin" ]; then
-  INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise 9.0.1/bin/Builder.app/Contents/MacOS/installbuilder.sh"
+  INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise 9.5.3/bin/Builder.app/Contents/MacOS/installbuilder.sh"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if [[ $WERCKER = true ]]; then
-    INSTALLBUILDERCLI="/opt/installbuilder-9.0.1/bin/builder"
+    INSTALLBUILDERCLI="/opt/installbuilder-9.5.3/bin/builder"
   else
-    INSTALLBUILDERCLI="${HOME}/installbuilder-9.0.1/bin/builder"
+    INSTALLBUILDERCLI="${HOME}/installbuilder-9.5.3/bin/builder"
   fi
 fi
 PATHTOBUILDFILE="flickrdownloadr.xml"
