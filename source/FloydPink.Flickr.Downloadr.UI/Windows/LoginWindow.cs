@@ -21,6 +21,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             : this(new User()) { }
 
         public LoginWindow(User user) {
+            Log.Debug("ctor");
             Build();
 
             AddTooltips();
@@ -35,11 +36,13 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
-            Application.Quit();
+            Log.Debug("OnDeleteEvent");
+            MainClass.Quit();
             args.RetVal = true;
         }
 
         private void SetWelcomeLabel(User user) {
+            Log.Debug("SetWelcomeLabel");
             Application.Invoke(delegate {
                                    string welcomeMessage = string.IsNullOrEmpty(user.UserNsId)
                                        ? string.Empty
@@ -54,6 +57,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void AddTooltips() {
+            Log.Debug("AddTooltips");
             this.buttonLogin.TooltipText = "Log in to flickr using OAuth";
             this.buttonPrefs.TooltipText = "Update the Preferences";
             this.buttonLogout.TooltipText = "Log out from the currently logged in account";
@@ -61,6 +65,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void AddSpinnerControl() {
+            Log.Debug("AddSpinnerControl");
             this.spinner = new SpinnerWidget {
                 Name = "loginSpinner",
                 Cancellable = true,
@@ -92,23 +97,28 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         //		}
         //
         protected void buttonLoginClick(object sender, EventArgs e) {
+            Log.Debug("buttonLoginClick");
             this._presenter.Login();
         }
 
         protected void buttonLogoutClick(object sender, EventArgs e) {
+            Log.Debug("buttonLogoutClick");
             this._presenter.Logout();
         }
 
         protected void buttonContinueClick(object sender, EventArgs e) {
+            Log.Debug("buttonContinueClick");
             this._presenter.Continue();
         }
 
         protected void buttonAboutClick(object sender, EventArgs e) {
+            Log.Debug("buttonAboutClick");
             var aboutWindow = new AboutWindow();
             aboutWindow.ShowAll();
         }
 
         protected void buttonPrefsClick(object sender, EventArgs e) {
+            Log.Debug("buttonPrefsClick");
             OpenPreferencesWindow(Preferences);
         }
 
@@ -125,6 +135,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void ShowLoggedInControl(Preferences preferences) {
+            Log.Debug("ShowLoggedInControl");
             Application.Invoke(delegate {
                                    Preferences = preferences;
                                    FileCache.AppCacheDirectory = Preferences != null
@@ -142,6 +153,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void ShowLoggedOutControl() {
+            Log.Debug("ShowLoggedOutControl");
             Application.Invoke(delegate {
                                    this.hboxLogin.Visible = true;
                                    this.labelMessage.LabelProp =
@@ -155,6 +167,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void ShowSpinner(bool show) {
+            Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
                                    this.hboxLogin.Sensitive = !show;
                                    this.spinner.Visible = show;
@@ -162,18 +175,21 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void OpenBrowserWindow() {
+            Log.Debug("OpenBrowserWindow");
             var browserWindow = new BrowserWindow(User, Preferences);
             browserWindow.Show();
             Destroy();
         }
 
         public void OpenPreferencesWindow(Preferences preferences) {
+            Log.Debug("OpenPreferencesWindow");
             var preferencesWindow = new PreferencesWindow(User, preferences);
             preferencesWindow.Show();
             Destroy();
         }
 
         public void ShowUpdateAvailableNotification(string latestVersion) {
+            Log.Debug("ShowUpdateAvailableNotification");
             Application.Invoke(delegate {
                                    this.labelUpdate.LabelProp =
                                        string.Format(
@@ -187,8 +203,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
 
         protected void UpdateNotificationClick(object o, ButtonPressEventArgs args) {
+            Log.Debug("UpdateNotificationClick");
             Process.Start(VersionHelper.GetUpdateUrl());
-            Application.Quit();
+            MainClass.Quit();
         }
 
         #endregion

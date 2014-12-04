@@ -1,6 +1,7 @@
 branches:
   only:
     - master
+    - dynamic-proxy
 language: objective-c
 env:
   matrix:

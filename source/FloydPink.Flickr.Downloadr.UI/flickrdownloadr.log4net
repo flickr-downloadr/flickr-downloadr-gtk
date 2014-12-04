@@ -11,7 +11,7 @@
   </appender>
 
   <root>
-    <level value="ALL" />
+    <level value="INFO" />
     <appender-ref ref="XmlSchemaFileAppender" />
   </root>
 </log4net>

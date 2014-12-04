@@ -73,32 +73,18 @@ namespace FloydPink.Flickr.Downloadr.Model {
 
         public string Small240Url { get; private set; }
 
-        public string Small320Url {
-            get { return string.IsNullOrWhiteSpace(this._small320Url) ? Small240Url : this._small320Url; }
-        }
+        public string Small320Url { get { return string.IsNullOrWhiteSpace(this._small320Url) ? Small240Url : this._small320Url; } }
 
-        public string Medium500Url {
-            get { return string.IsNullOrWhiteSpace(this._medium500Url) ? Small320Url : this._medium500Url; }
-        }
+        public string Medium500Url { get { return string.IsNullOrWhiteSpace(this._medium500Url) ? Small320Url : this._medium500Url; } }
 
-        public string Medium640Url {
-            get { return string.IsNullOrWhiteSpace(this._medium640Url) ? Medium500Url : this._medium640Url; }
-        }
+        public string Medium640Url { get { return string.IsNullOrWhiteSpace(this._medium640Url) ? Medium500Url : this._medium640Url; } }
 
-        public string Medium800Url {
-            get { return string.IsNullOrWhiteSpace(this._medium800Url) ? Medium640Url : this._medium800Url; }
-        }
+        public string Medium800Url { get { return string.IsNullOrWhiteSpace(this._medium800Url) ? Medium640Url : this._medium800Url; } }
 
-        public string Large1024Url {
-            get { return string.IsNullOrWhiteSpace(this._large1024Url) ? Medium800Url : this._large1024Url; }
-        }
+        public string Large1024Url { get { return string.IsNullOrWhiteSpace(this._large1024Url) ? Medium800Url : this._large1024Url; } }
 
-        public string OriginalUrl {
-            get { return string.IsNullOrWhiteSpace(this._originalUrl) ? Large1024Url : this._originalUrl; }
-        }
+        public string OriginalUrl { get { return string.IsNullOrWhiteSpace(this._originalUrl) ? Large1024Url : this._originalUrl; } }
 
-        public string DownloadFormat {
-            get { return string.IsNullOrWhiteSpace(OriginalFormat) ? "jpg" : OriginalFormat; }
-        }
+        public string DownloadFormat { get { return string.IsNullOrWhiteSpace(OriginalFormat) ? "jpg" : OriginalFormat; } }
     }
 }

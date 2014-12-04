@@ -6,6 +6,7 @@ using Gtk;
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class AboutWindow : BaseWindow {
         public AboutWindow() {
+            Log.Debug("ctor");
             Build();
 
             this.labelLink.TooltipText = "http://flickrdownloadr.com";
@@ -16,10 +17,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         protected void buttonCloseClick(object sender, EventArgs e) {
+            Log.Debug("buttonCloseClick");
             Destroy();
         }
 
         protected void eventboxHyperlinkClicked(object o, ButtonPressEventArgs args) {
+            Log.Debug("eventboxHyperlinkClicked");
             Process.Start(VersionHelper.GetAboutUrl());
         }
     }

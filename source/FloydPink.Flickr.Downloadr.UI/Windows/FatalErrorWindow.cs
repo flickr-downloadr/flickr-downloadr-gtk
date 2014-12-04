@@ -1,10 +1,9 @@
 ﻿using FloydPink.Flickr.Downloadr.UI.Helpers;
-using Gtk;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
-    public partial class FatalErrorWindow : Window {
-        public FatalErrorWindow() :
-            base(WindowType.Toplevel) {
+    public partial class FatalErrorWindow : BaseWindow {
+        public FatalErrorWindow() {
+            Log.Debug("ctor");
             Build();
             Title += VersionHelper.GetVersionString();
         }

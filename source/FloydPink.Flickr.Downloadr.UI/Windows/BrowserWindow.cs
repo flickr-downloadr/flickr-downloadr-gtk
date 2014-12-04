@@ -25,6 +25,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private SpinnerWidget spinner;
 
         public BrowserWindow(User user, Preferences preferences) {
+            Log.Debug("ctor");
             Build();
 
             AddTooltips();
@@ -138,6 +139,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void ShowSpinner(bool show) {
+            Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
                                    this.hboxButtons.Sensitive = !show;
                                    this.scrolledwindowPhotos.Visible = !show;
@@ -146,6 +148,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public void UpdateProgress(string percentDone, string operationText, bool cancellable) {
+            Log.Debug("UpdateProgress");
             Application.Invoke(delegate {
                                    this.spinner.Cancellable = cancellable;
                                    this.spinner.Operation = operationText;
@@ -154,11 +157,13 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public bool ShowWarning(string warningMessage) {
+            Log.Debug("ShowWarning");
             ResponseType result = MessageBox.Show(this, warningMessage, ButtonsType.YesNo, MessageType.Question);
             return result != ResponseType.Yes;
         }
 
         public void DownloadComplete(string downloadedLocation, bool downloadComplete) {
+            Log.Debug("DownloadComplete");
             Application.Invoke(delegate {
                                    string message = downloadComplete
                                        ? "Download completed to the directory"
@@ -179,11 +184,13 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         #endregion
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
-            Application.Quit();
+            Log.Debug("OnDeleteEvent");
+            MainClass.Quit();
             args.RetVal = true;
         }
 
         private void AddTooltips() {
+            Log.Debug("AddTooltips");
             this.buttonBack.TooltipText = "Close this window and go back to the login window";
             this.togglebuttonShowAllPhotos.TooltipText =
                 "Click to toggle seeing all the photos (including those marked private) or only the public ones";
@@ -199,6 +206,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void AddSpinnerWidget() {
+            Log.Debug("AddSpinnerWidget");
             this.spinner = new SpinnerWidget {
                 Name = "browserSpinner",
                 Cancellable = true,
@@ -217,6 +225,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SelectAlreadySelectedPhotos() {
+            Log.Debug("SelectAlreadySelectedPhotos");
             if (!AllSelectedPhotos.ContainsKey(Page) || AllSelectedPhotos[Page].Count <= 0) {
                 return;
             }
@@ -226,12 +235,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void LoseFocus(Button element) {
+            Log.Debug("LoseFocus");
             if (element.HasFocus) {
                 Focus = this.buttonBack;
             }
         }
 
         private void ClearSelectedPhotos() {
+            Log.Debug("ClearSelectedPhotos");
             AllSelectedPhotos.Clear();
             SetSelectionOnAllImages(false);
             PropertyChanged.Notify(() => SelectedPhotosExist);
@@ -239,6 +250,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void UpdateSelectionButtons() {
+            Log.Debug("UpdateSelectionButtons");
             this.buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
             this.buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
 
@@ -247,6 +259,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void UpdateUI() {
+            Log.Debug("UpdateUI");
             Application.Invoke(delegate {
                                    UpdateSelectionButtons();
 
@@ -265,6 +278,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         #region "Button Events"
 
         protected void buttonBackClick(object sender, EventArgs e) {
+            Log.Debug("buttonBackClick");
             var loginWindow = new LoginWindow {
                 User = User
             };
@@ -273,36 +287,43 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         protected async void buttonNextPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonNextPageClick");
             LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoPage.Next);
         }
 
         protected async void buttonLastPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonLastPageClick");
             LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoPage.Last);
         }
 
         protected async void buttonFirstPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonFirstPageClick");
             LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoPage.First);
         }
 
         protected async void buttonPreviousPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonPreviousPageClick");
             LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoPage.Previous);
         }
 
         protected void buttonSelectAllClick(object sender, EventArgs e) {
+            Log.Debug("buttonSelectAllClick");
             LoseFocus((Button) sender);
             SetSelectionOnAllImages(true);
         }
 
         protected void buttonUnSelectAllClick(object sender, EventArgs e) {
+            Log.Debug("buttonUnSelectAllClick");
             LoseFocus((Button) sender);
             SetSelectionOnAllImages(false);
         }
 
         protected async void togglebuttonShowAllPhotosClick(object sender, EventArgs e) {
+            Log.Debug("togglebuttonShowAllPhotosClick");
             var toggleButton = (ToggleButton) sender;
             toggleButton.Label = toggleButton.Active ? "Show Only Public Photos" : "Show All Photos";
 
@@ -312,16 +333,19 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         protected async void buttonDownloadSelectionClick(object sender, EventArgs e) {
+            Log.Debug("buttonDownloadSelectionClick");
             LoseFocus((Button) sender);
             await this._presenter.DownloadSelection();
         }
 
         protected async void buttonDownloadThisPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonDownloadThisPageClick");
             LoseFocus((Button) sender);
             await this._presenter.DownloadThisPage();
         }
 
         protected async void buttonDownloadAllPagesClick(object sender, EventArgs e) {
+            Log.Debug("buttonDownloadAllPagesClick");
             LoseFocus((Button) sender);
             await this._presenter.DownloadAllPages();
         }

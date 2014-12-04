@@ -14,6 +14,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private Preferences _preferences;
 
         public PreferencesWindow(User user, Preferences preferences) {
+            Log.Debug("ctor");
             Build();
 
             AddTooltips();
@@ -27,7 +28,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             SetCacheSize();
         }
 
-        protected User User { get; set; }
+        private User User { get; set; }
 
         public Preferences Preferences {
             get { return this._preferences; }
@@ -42,12 +43,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             //			Spinner.Dispatch(s => s.Visibility = visibility);
         }
 
-        protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
-            Application.Quit();
+        private void OnDeleteEvent(object sender, DeleteEventArgs args) {
+            Log.Debug("OnDeleteEvent");
+            MainClass.Quit();
             args.RetVal = true;
         }
 
         private void AddTooltips() {
+            Log.Debug("AddTooltips");
             this.labelFilename.TooltipText = this.radioPhotoId.TooltipText = this.radioPhotoTitle.TooltipText =
                 "Choose to name the downloaded photos with its internal photo id (a unique number) or its title (Untitled images will be assigned random unique names)";
             this.labelDownloadLocation.TooltipText =
@@ -81,12 +84,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SetCacheSize() {
+            Log.Debug("SetCacheSize");
             this.labelCacheSizeValue.Text = this._presenter.GetCacheFolderSize(Preferences.CacheLocation);
             this.buttonEmptyCache.Visible =
                 !(this.labelCacheSizeValue.Text == "0 B" || this.labelCacheSizeValue.Text == "-");
         }
 
         private void setFieldsFromModel(Preferences preferences) {
+            Log.Debug("setFieldsFromModel");
             // Filename
             this.radioPhotoId.Active = !preferences.TitleAsFilename;
             this.radioPhotoTitle.Active = preferences.TitleAsFilename;
@@ -131,6 +136,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private Preferences getModelFromFields() {
+            Log.Debug("getModelFromFields");
             var metadata = new List<string>();
             if (this.checkbuttonTags.Active) {
                 metadata.Add(PhotoMetadata.Tags);
@@ -155,17 +161,20 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             };
         }
 
-        protected void buttonCancelClick(object sender, EventArgs e) {
+        private void buttonCancelClick(object sender, EventArgs e) {
+            Log.Debug("buttonCancelClick");
             var loginWindow = new LoginWindow(User);
             loginWindow.Show();
             Destroy();
         }
 
-        protected void buttonDefaultsClick(object sender, EventArgs e) {
+        private void buttonDefaultsClick(object sender, EventArgs e) {
+            Log.Debug("buttonDefaultsClick");
             Preferences = Preferences.GetDefault();
         }
 
-        protected void buttonSaveClick(object sender, EventArgs e) {
+        private void buttonSaveClick(object sender, EventArgs e) {
+            Log.Debug("buttonSaveClick");
             Preferences preferences = getModelFromFields();
             this._presenter.Save(preferences);
             var browserWindow = new BrowserWindow(User, preferences);
@@ -173,7 +182,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             Destroy();
         }
 
-        protected void buttonDownloadLocationClick(object sender, EventArgs e) {
+        private void buttonDownloadLocationClick(object sender, EventArgs e) {
+            Log.Debug("buttonDownloadLocationClick");
             // Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
             var dialog = new FileChooserDialog("Select folder to save downloaded photos:",
                 null, FileChooserAction.SelectFolder);
@@ -194,7 +204,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             dialog.Destroy();
         }
 
-        protected void buttonCacheLocationClick(object sender, EventArgs e) {
+        private void buttonCacheLocationClick(object sender, EventArgs e) {
+            Log.Debug("buttonCacheLocationClick");
             // Thanks Petteri Kautonen - http://mono.1490590.n4.nabble.com/Gtk-sharp-list-FileOpenDialog-td1544553.html
             var dialog = new FileChooserDialog("Select folder to save the cached thumbnails:",
                 null, FileChooserAction.SelectFolder);
@@ -216,7 +227,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             dialog.Destroy();
         }
 
-        protected void buttonEmptyCacheClick(object sender, EventArgs e) {
+        private void buttonEmptyCacheClick(object sender, EventArgs e) {
+            Log.Debug("buttonEmptyCacheClick");
             ResponseType result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
                 ButtonsType.YesNo, MessageType.Question);
             if (result == ResponseType.Yes) {

@@ -11,6 +11,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private const int NUMBER_OF_PHOTOS_IN_A_ROW = 5;
 
         private void OnSelectionChanged(object sender, EventArgs e) {
+            Log.Debug("OnSelectionChanged");
             if (this._doNotFireOnSelectionChanged) {
                 return;
             }
@@ -30,6 +31,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private HBox AddImageToRow(HBox hboxPhotoRow, int j, Photo photo, string rowId) {
+            Log.Debug("AddImageToRow");
             Box.BoxChild hboxChild;
             if (photo != null) {
                 var imageCell = new PhotoWidget();
@@ -51,6 +53,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SetupTheImageRow(int i, IEnumerable<Photo> rowPhotos) {
+            Log.Debug("SetupTheImageRow");
             int rowPhotosCount = rowPhotos.Count();
 
             string rowId = string.Format("hboxPhotoRow{0}", i);
@@ -76,6 +79,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SetupTheImageGrid(IEnumerable<Photo> photos) {
+            Log.Debug("SetupTheImageGrid");
             int numberOfRows = photos.Count() / NUMBER_OF_PHOTOS_IN_A_ROW;
             if (photos.Count() % NUMBER_OF_PHOTOS_IN_A_ROW > 0) {
                 numberOfRows += 1; // add an additional row for remainder of the images that won't reach full row
@@ -93,6 +97,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SetSelectionOnAllImages(bool selected) {
+            Log.Debug("SetSelectionOnAllImages");
             foreach (object box in this.vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
@@ -108,6 +113,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void FindAndSelectPhoto(Photo photo) {
+            Log.Debug("FindAndSelectPhoto");
             foreach (object box in this.vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
@@ -124,6 +130,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         private void SelectPhotos(List<Photo> photos) {
+            Log.Debug("SelectPhotos");
             foreach (Photo photo in photos) {
                 FindAndSelectPhoto(photo);
             }
