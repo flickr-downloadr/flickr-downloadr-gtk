@@ -9,9 +9,7 @@ namespace FloydPink.Flickr.Downloadr.Model {
         }
 
         public DateTime LastChecked { get; set; }
-
         public bool Available { get; set; }
-
         public string LatestVersion { get; set; }
     }
 }

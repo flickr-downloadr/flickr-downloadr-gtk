@@ -3,7 +3,7 @@ using FloydPink.Flickr.Downloadr.Repository.Extensions;
 
 namespace FloydPink.Flickr.Downloadr.Repository {
     public class UserRepository : RepositoryBase, IRepository<User> {
-        internal override string RepoFileName { get { return "user.repo"; } }
+        protected override string RepoFileName { get { return "user.repo"; } }
 
         #region IRepository<User> Members
 

@@ -9,32 +9,32 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         private readonly IPreferencesLogic _logic;
 
         public PreferencesPresenter(IPreferencesView view, IPreferencesLogic logic) {
-            this._logic = logic;
+            _logic = logic;
         }
 
         public void Save(Preferences preferences) {
-            this._logic.SavePreferences(preferences);
+            _logic.SavePreferences(preferences);
         }
 
         public string GetCacheFolderSize(string cacheLocation) {
-            string folderSize = "-";
+            var folderSize = "-";
             if (Directory.Exists(cacheLocation)) {
                 var cacheDirectory = new DirectoryInfo(cacheLocation);
-                long bytes = cacheDirectory.EnumerateFiles("*", SearchOption.AllDirectories).Sum(x => x.Length);
+                var bytes = cacheDirectory.EnumerateFiles("*", SearchOption.AllDirectories).Sum(x => x.Length);
                 folderSize = GetBytesReadable(bytes);
             }
             return folderSize;
         }
 
         public void EmptyCacheDirectory(string cacheLocation) {
-            this._logic.EmptyCacheDirectory(cacheLocation);
+            _logic.EmptyCacheDirectory(cacheLocation);
         }
 
         // Thank you, humbads - http://stackoverflow.com/a/11124118/218882
         // Returns the human-readable file size for an arbitrary, 64-bit file size
         // The default format is "0.### XB", e.g. "4.2 KB" or "1.434 GB"
         private static string GetBytesReadable(long bytes) {
-            string sign = (bytes < 0 ? "-" : "");
+            var sign = (bytes < 0 ? "-" : "");
             double readable = (bytes < 0 ? -bytes : bytes);
             string suffix;
             if (bytes >= 0x1000000000000000) // Exabyte

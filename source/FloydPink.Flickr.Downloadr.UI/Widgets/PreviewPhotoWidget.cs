@@ -9,10 +9,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     public partial class PreviewPhotoWidget : Bin {
         public PreviewPhotoWidget(Photo photo) {
             Build();
-            this.labelCaption.LabelProp =
+            labelCaption.LabelProp =
                 string.Format("<span color=\"white\" bgcolor=\"black\"><big><b>      {0}      </b></big></span>",
                     HttpUtility.HtmlEncode(photo.Title));
-            this.imagePreview.SetCachedImage(FileCache.FromUrl(photo.Medium500Url));
+            imagePreview.SetCachedImage(FileCache.FromUrl(photo.Medium500Url));
         }
     }
 }

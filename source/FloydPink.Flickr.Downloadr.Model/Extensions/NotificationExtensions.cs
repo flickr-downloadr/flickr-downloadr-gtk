@@ -41,14 +41,10 @@ namespace FloydPink.Flickr.Downloadr.Model.Extensions {
             var propertyInfo = memberExpression.Member as PropertyInfo;
 
             // Invoke event
-            foreach (Delegate del in EventHandler.GetInvocationList()) {
-                del.DynamicInvoke(new [] {
-                    constantExpression.Value,
-                    new PropertyChangedEventArgs(propertyInfo.Name)
-                });
+            foreach (var del in EventHandler.GetInvocationList()) {
+                del.DynamicInvoke(constantExpression.Value, new PropertyChangedEventArgs(propertyInfo.Name));
             }
         }
-
 
         /// <summary>
         ///     Subscribe to changes in an object implementing INotifiyPropertyChanged.

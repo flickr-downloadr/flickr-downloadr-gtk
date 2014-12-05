@@ -8,40 +8,39 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     [ToolboxItem(true)]
     public partial class PhotoWidget : Bin {
         private string _imageUrl;
-
         private bool _isSelected;
 
         public PhotoWidget() {
             Build();
             HasTooltip = true;
             QueryTooltip += (object o, QueryTooltipArgs args) => {
-                                Photo photo = ((PhotoWidget) o).Photo;
+                                var photo = ((PhotoWidget) o).Photo;
                                 SetupOnHoverImage(args, photo);
                             };
         }
 
         public string ImageUrl {
-            get { return this._imageUrl; }
+            get { return _imageUrl; }
             set {
-                this._imageUrl = value;
-                if (!string.IsNullOrEmpty(this._imageUrl)) {
-                    this.imageMain.SetCachedImage(value);
+                _imageUrl = value;
+                if (!string.IsNullOrEmpty(_imageUrl)) {
+                    imageMain.SetCachedImage(value);
                 }
             }
         }
 
         public bool IsSelected {
-            get { return this._isSelected; }
+            get { return _isSelected; }
             set {
-                if (this._isSelected != value) {
-                    this._isSelected = value;
-                    this.frameLabel.LabelProp = this._isSelected
+                if (_isSelected != value) {
+                    _isSelected = value;
+                    frameLabel.LabelProp = _isSelected
                         ? "<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>"
                         : "<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>";
-                    if (this._isSelected) {
-                        this.frameMain.ModifyBg(StateType.Normal, new Color(0, 255, 0));
+                    if (_isSelected) {
+                        frameMain.ModifyBg(StateType.Normal, new Color(0, 255, 0));
                     } else {
-                        this.frameMain.ModifyBg(StateType.Normal);
+                        frameMain.ModifyBg(StateType.Normal);
                     }
                     if (SelectionChanged != null) {
                         SelectionChanged(this, new EventArgs());
@@ -51,7 +50,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets {
         }
 
         public Photo Photo { get; set; }
-
         public event EventHandler SelectionChanged;
 
         protected void imageClick(object o, ButtonPressEventArgs args) {

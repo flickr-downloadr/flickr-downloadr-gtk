@@ -15,7 +15,6 @@ using Gtk;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class BrowserWindow : BaseWindow, IBrowserView {
-        private readonly IBrowserPresenter _presenter;
         private bool _doNotFireOnSelectionChanged;
         private string _page;
         private string _pages;
@@ -23,6 +22,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private IEnumerable<Photo> _photos;
         private string _total;
         private SpinnerWidget spinner;
+        private readonly IBrowserPresenter _presenter;
 
         public BrowserWindow(User user, Preferences preferences) {
             Log.Debug("ctor");
@@ -37,15 +37,15 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
             AddSpinnerWidget();
 
-            this._presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter>(this);
-            this._presenter.InitializePhotoset();
+            _presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter>(this);
+            _presenter.InitializePhotoset();
         }
 
         public int SelectedPhotosCount { get { return AllSelectedPhotos.Values.SelectMany(d => d.Values).Count(); } }
 
         public string SelectedPhotosCountText {
             get {
-                string selectionCount = SelectedPhotosExist
+                var selectionCount = SelectedPhotosExist
                     ? SelectedPhotosCount.ToString(CultureInfo.InvariantCulture)
                     : string.Empty;
                 return string.IsNullOrEmpty(selectionCount)
@@ -76,19 +76,18 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         public string LastPhoto {
             get {
-                int maxLast = Convert.ToInt32(Page) * Convert.ToInt32(PerPage);
+                var maxLast = Convert.ToInt32(Page) * Convert.ToInt32(PerPage);
                 return maxLast > Convert.ToInt32(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
             }
         }
 
         public User User { get; set; }
-
         public Preferences Preferences { get; set; }
 
         public IEnumerable<Photo> Photos {
-            get { return this._photos; }
+            get { return _photos; }
             set {
-                this._photos = value;
+                _photos = value;
                 PropertyChanged.Notify(() => AreAllPagePhotosSelected);
                 UpdateUI();
                 Application.Invoke(delegate {
@@ -100,38 +99,37 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
-
-        public bool ShowAllPhotos { get { return this.togglebuttonShowAllPhotos.Active; } }
+        public bool ShowAllPhotos { get { return togglebuttonShowAllPhotos.Active; } }
 
         public string Page {
-            get { return this._page; }
+            get { return _page; }
             set {
-                this._page = value;
+                _page = value;
                 PropertyChanged.Notify(() => Page);
                 PropertyChanged.Notify(() => AreAnyPagePhotosSelected);
             }
         }
 
         public string Pages {
-            get { return this._pages; }
+            get { return _pages; }
             set {
-                this._pages = value;
+                _pages = value;
                 PropertyChanged.Notify(() => Pages);
             }
         }
 
         public string PerPage {
-            get { return this._perPage; }
+            get { return _perPage; }
             set {
-                this._perPage = value;
+                _perPage = value;
                 PropertyChanged.Notify(() => PerPage);
             }
         }
 
         public string Total {
-            get { return this._total; }
+            get { return _total; }
             set {
-                this._total = value;
+                _total = value;
                 PropertyChanged.Notify(() => Total);
                 PropertyChanged.Notify(() => FirstPhoto);
                 PropertyChanged.Notify(() => LastPhoto);
@@ -158,14 +156,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         public bool ShowWarning(string warningMessage) {
             Log.Debug("ShowWarning");
-            ResponseType result = MessageBox.Show(this, warningMessage, ButtonsType.YesNo, MessageType.Question);
+            var result = MessageBox.Show(this, warningMessage, ButtonsType.YesNo, MessageType.Question);
             return result != ResponseType.Yes;
         }
 
         public void DownloadComplete(string downloadedLocation, bool downloadComplete) {
             Log.Debug("DownloadComplete");
             Application.Invoke(delegate {
-                                   string message = downloadComplete
+                                   var message = downloadComplete
                                        ? "Download completed to the directory"
                                        : "Incomplete download could be found at";
                                    if (downloadComplete) {
@@ -191,35 +189,35 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            this.buttonBack.TooltipText = "Close this window and go back to the login window";
-            this.togglebuttonShowAllPhotos.TooltipText =
+            buttonBack.TooltipText = "Close this window and go back to the login window";
+            togglebuttonShowAllPhotos.TooltipText =
                 "Click to toggle seeing all the photos (including those marked private) or only the public ones";
-            this.buttonSelectAll.TooltipText = "Select all the photos on this page";
-            this.buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
-            this.buttonFirstPage.TooltipText = "Go to the first page of photos";
-            this.buttonPreviousPage.TooltipText = "Go to the previous page of photos";
-            this.buttonNextPage.TooltipText = "Go to the next page of photos";
-            this.buttonLastPage.TooltipText = "Go the last page of photos";
-            this.buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";
-            this.buttonDownloadThisPage.TooltipText = "Download all the photos from this page";
-            this.buttonDownloadAllPages.TooltipText = "Download all the photos from all the pages";
+            buttonSelectAll.TooltipText = "Select all the photos on this page";
+            buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
+            buttonFirstPage.TooltipText = "Go to the first page of photos";
+            buttonPreviousPage.TooltipText = "Go to the previous page of photos";
+            buttonNextPage.TooltipText = "Go to the next page of photos";
+            buttonLastPage.TooltipText = "Go the last page of photos";
+            buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";
+            buttonDownloadThisPage.TooltipText = "Download all the photos from this page";
+            buttonDownloadAllPages.TooltipText = "Download all the photos from all the pages";
         }
 
         private void AddSpinnerWidget() {
             Log.Debug("AddSpinnerWidget");
-            this.spinner = new SpinnerWidget {
+            spinner = new SpinnerWidget {
                 Name = "browserSpinner",
                 Cancellable = true,
                 Operation = "Please wait...",
                 Visible = false
             };
-            this.spinner.SpinnerCanceled += (object sender, EventArgs e) => {
-                                                this.scrolledwindowPhotos.Visible = true;
-                                                this.hboxButtons.Sensitive = true;
-                                                this._presenter.CancelDownload();
-                                            };
-            this.hboxSpinner.Add(this.spinner);
-            var spinnerSlot = ((Box.BoxChild) (this.hboxSpinner[this.spinner]));
+            spinner.SpinnerCanceled += (object sender, EventArgs e) => {
+                                           scrolledwindowPhotos.Visible = true;
+                                           hboxButtons.Sensitive = true;
+                                           _presenter.CancelDownload();
+                                       };
+            hboxSpinner.Add(spinner);
+            var spinnerSlot = ((Box.BoxChild) (hboxSpinner[spinner]));
             spinnerSlot.Position = 0;
             spinnerSlot.Expand = true;
         }
@@ -230,14 +228,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                 return;
             }
 
-            List<Photo> photos = Photos.Where(photo => AllSelectedPhotos[Page].ContainsKey(photo.Id)).ToList();
+            var photos = Photos.Where(photo => AllSelectedPhotos[Page].ContainsKey(photo.Id)).ToList();
             SelectPhotos(photos);
         }
 
         private void LoseFocus(Button element) {
             Log.Debug("LoseFocus");
             if (element.HasFocus) {
-                Focus = this.buttonBack;
+                Focus = buttonBack;
             }
         }
 
@@ -251,11 +249,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void UpdateSelectionButtons() {
             Log.Debug("UpdateSelectionButtons");
-            this.buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
-            this.buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
+            buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
+            buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
 
-            this.buttonDownloadSelection.Label = SelectedPhotosCountText;
-            this.buttonDownloadSelection.Sensitive = SelectedPhotosExist;
+            buttonDownloadSelection.Label = SelectedPhotosCountText;
+            buttonDownloadSelection.Sensitive = SelectedPhotosExist;
         }
 
         private void UpdateUI() {
@@ -289,25 +287,25 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         protected async void buttonNextPageClick(object sender, EventArgs e) {
             Log.Debug("buttonNextPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Next);
+            await _presenter.NavigateTo(PhotoPage.Next);
         }
 
         protected async void buttonLastPageClick(object sender, EventArgs e) {
             Log.Debug("buttonLastPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Last);
+            await _presenter.NavigateTo(PhotoPage.Last);
         }
 
         protected async void buttonFirstPageClick(object sender, EventArgs e) {
             Log.Debug("buttonFirstPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.First);
+            await _presenter.NavigateTo(PhotoPage.First);
         }
 
         protected async void buttonPreviousPageClick(object sender, EventArgs e) {
             Log.Debug("buttonPreviousPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Previous);
+            await _presenter.NavigateTo(PhotoPage.Previous);
         }
 
         protected void buttonSelectAllClick(object sender, EventArgs e) {
@@ -329,25 +327,25 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
             LoseFocus((Button) sender);
             ClearSelectedPhotos();
-            await this._presenter.InitializePhotoset();
+            await _presenter.InitializePhotoset();
         }
 
         protected async void buttonDownloadSelectionClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadSelectionClick");
             LoseFocus((Button) sender);
-            await this._presenter.DownloadSelection();
+            await _presenter.DownloadSelection();
         }
 
         protected async void buttonDownloadThisPageClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadThisPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.DownloadThisPage();
+            await _presenter.DownloadThisPage();
         }
 
         protected async void buttonDownloadAllPagesClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadAllPagesClick");
             LoseFocus((Button) sender);
-            await this._presenter.DownloadAllPages();
+            await _presenter.DownloadAllPages();
         }
 
         #endregion

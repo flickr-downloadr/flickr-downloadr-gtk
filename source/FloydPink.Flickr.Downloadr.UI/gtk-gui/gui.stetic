@@ -648,7 +648,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="612 534">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="643 589">
     <property name="MemberName" />
     <property name="HeightRequest">510</property>
     <property name="Title" translatable="yes">Preferences - flickr downloadr</property>
@@ -768,6 +768,42 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Fixed" id="fixed1">
+                        <property name="MemberName" />
+                        <property name="HasWindow">False</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">5</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="labelLogLocation">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Log Location: &lt;span color="red"&gt;*&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">6</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="labelLogLevel">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Log Level:</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">7</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Label" id="labelUpdate">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
@@ -775,7 +811,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">5</property>
+                        <property name="Position">8</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -787,7 +823,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">6</property>
+                        <property name="Position">9</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -795,11 +831,12 @@
                       <widget class="Gtk.Label" id="labelCacheLocation">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
-                        <property name="LabelProp" translatable="yes">Cache Location:</property>
+                        <property name="LabelProp" translatable="yes">Cache Location: &lt;span color="red"&gt;*&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">7</property>
+                        <property name="Position">10</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -811,7 +848,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">8</property>
+                        <property name="Position">11</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -823,7 +860,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">9</property>
+                        <property name="Position">12</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -835,7 +872,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">10</property>
+                        <property name="Position">13</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -868,6 +905,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo ID</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1030,6 +1068,80 @@ Original</property>
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.Label" id="labelRestartRequired">
+                    <property name="MemberName" />
+                    <property name="Xalign">1</property>
+                    <property name="LabelProp" translatable="yes">&lt;span color="red"&gt;*&lt;/span&gt; Requires restarting the app</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">5</property>
+                    <property name="AutoSize">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.HBox" id="hbox11">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Entry" id="entryLogLocation">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="IsEditable">False</property>
+                        <property name="InvisibleChar">●</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonLogLocation">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">...</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="buttonLogLocationClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">6</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.ComboBox" id="comboboxLogLevel">
+                    <property name="MemberName" />
+                    <property name="IsTextCombo">True</property>
+                    <property name="Items" translatable="yes">Off
+Fatal
+Error
+Warn
+Info
+Debug
+All</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">7</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.HBox" id="hbox10">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
@@ -1050,7 +1162,7 @@ Original</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">5</property>
+                    <property name="Position">8</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1094,7 +1206,7 @@ Original</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">6</property>
+                    <property name="Position">9</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1135,7 +1247,7 @@ Original</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">7</property>
+                    <property name="Position">10</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1151,6 +1263,7 @@ Original</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1179,7 +1292,7 @@ Original</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">8</property>
+                    <property name="Position">11</property>
                     <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                   </packing>
@@ -1194,7 +1307,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">9</property>
+                    <property name="Position">12</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1211,7 +1324,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">10</property>
+                    <property name="Position">13</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>

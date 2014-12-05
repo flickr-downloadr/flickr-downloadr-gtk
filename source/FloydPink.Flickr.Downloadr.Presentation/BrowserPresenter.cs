@@ -12,25 +12,25 @@ using FloydPink.Flickr.Downloadr.Presentation.Views;
 
 namespace FloydPink.Flickr.Downloadr.Presentation {
     public class BrowserPresenter : PresenterBase, IBrowserPresenter {
+        private CancellationTokenSource _cancellationTokenSource;
+        private string _downloadedLocation;
         private readonly IBrowserLogic _logic;
         private readonly Progress<ProgressUpdate> _progress = new Progress<ProgressUpdate>();
         private readonly IBrowserView _view;
-        private CancellationTokenSource _cancellationTokenSource;
-        private string _downloadedLocation;
 
         public BrowserPresenter(IBrowserLogic logic, IBrowserView view) {
-            this._logic = logic;
-            this._view = view;
-            this._progress.ProgressChanged += (sender, progress) => {
-                                                  this._view.UpdateProgress(
-                                                      progress.ShowPercent
-                                                          ? string.Format("{0}%",
-                                                              progress.PercentDone.ToString(
-                                                                  CultureInfo.InvariantCulture))
-                                                          : string.Empty,
-                                                      progress.OperationText, progress.Cancellable);
-                                                  this._downloadedLocation = progress.DownloadedPath;
-                                              };
+            _logic = logic;
+            _view = view;
+            _progress.ProgressChanged += (sender, progress) => {
+                                             _view.UpdateProgress(
+                                                 progress.ShowPercent
+                                                     ? string.Format("{0}%",
+                                                         progress.PercentDone.ToString(
+                                                             CultureInfo.InvariantCulture))
+                                                     : string.Empty,
+                                                 progress.OperationText, progress.Cancellable);
+                                             _downloadedLocation = progress.DownloadedPath;
+                                         };
         }
 
         public async Task InitializePhotoset() {
@@ -38,9 +38,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public async Task NavigateTo(PhotoPage page) {
-            int targetPage = 0;
-            int currentPage = Convert.ToInt32(this._view.Page);
-            int totalPages = Convert.ToInt32(this._view.Pages);
+            var targetPage = 0;
+            var currentPage = Convert.ToInt32(_view.Page);
+            var totalPages = Convert.ToInt32(_view.Pages);
             switch (page) {
                 case PhotoPage.First:
                     if (currentPage != 1) {
@@ -69,39 +69,39 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public void CancelDownload() {
-            if (!this._cancellationTokenSource.IsCancellationRequested) {
-                this._cancellationTokenSource.Cancel();
+            if (!_cancellationTokenSource.IsCancellationRequested) {
+                _cancellationTokenSource.Cancel();
             }
         }
 
         public async Task DownloadSelection() {
-            List<Photo> selectedPhotosList = this._view.AllSelectedPhotos.Values.SelectMany(d => d.Values).ToList();
+            var selectedPhotosList = _view.AllSelectedPhotos.Values.SelectMany(d => d.Values).ToList();
             if (UserAcceptedAppropriateWarning(selectedPhotosList.Count)) {
                 await DownloadPhotos(selectedPhotosList);
             }
         }
 
         public async Task DownloadThisPage() {
-            if (UserAcceptedAppropriateWarning(this._view.Photos.Count())) {
-                await DownloadPhotos(this._view.Photos);
+            if (UserAcceptedAppropriateWarning(_view.Photos.Count())) {
+                await DownloadPhotos(_view.Photos);
             }
         }
 
         public async Task DownloadAllPages() {
-            if (UserAcceptedAppropriateWarning(int.Parse(this._view.Total))) {
-                this._view.ShowSpinner(true);
+            if (UserAcceptedAppropriateWarning(int.Parse(_view.Total))) {
+                _view.ShowSpinner(true);
 
-                IEnumerable<Photo> photos = await GetAllPhotos();
+                var photos = await GetAllPhotos();
 
                 await DownloadPhotos(photos, false);
 
-                this._view.ShowSpinner(false);
+                _view.ShowSpinner(false);
             }
         }
 
         private bool UserAcceptedAppropriateWarning(int photosCount) {
-            bool lotOfPhotosWarningFailed = false;
-            string warningFormat = string.Empty;
+            var lotOfPhotosWarningFailed = false;
+            var warningFormat = string.Empty;
 
             if (photosCount > 1000) {
                 warningFormat = AppConstants.MoreThan1000PhotosWarningFormat;
@@ -112,7 +112,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
             }
 
             if (!string.IsNullOrWhiteSpace(warningFormat)) {
-                lotOfPhotosWarningFailed = this._view.ShowWarning(string.Format(warningFormat,
+                lotOfPhotosWarningFailed = _view.ShowWarning(string.Format(warningFormat,
                     photosCount.ToString(CultureInfo.InvariantCulture)));
             }
 
@@ -120,9 +120,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         private async Task<IEnumerable<Photo>> GetAllPhotos() {
-            int pages = Convert.ToInt32(this._view.Pages);
+            var pages = Convert.ToInt32(_view.Pages);
             var photos = new List<Photo>();
-            for (int page = 1; page <= pages; page++) {
+            for (var page = 1; page <= pages; page++) {
                 photos.AddRange((await GetPhotosResponse(page)).Photos);
             }
             return photos;
@@ -131,46 +131,46 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         private async Task DownloadPhotos(IEnumerable<Photo> photos, bool handleSpinner = true) {
             try {
                 if (handleSpinner) {
-                    this._view.ShowSpinner(true);
+                    _view.ShowSpinner(true);
                 }
 
-                IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
+                var photosList = photos as IList<Photo> ?? photos.ToList();
 
-                this._cancellationTokenSource = new CancellationTokenSource();
+                _cancellationTokenSource = new CancellationTokenSource();
                 await
-                    this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress,
-                        this._view.Preferences);
-                this._view.DownloadComplete(this._downloadedLocation, true);
+                    _logic.Download(photosList, _cancellationTokenSource.Token, _progress,
+                        _view.Preferences);
+                _view.DownloadComplete(_downloadedLocation, true);
             }
             catch (OperationCanceledException) {
-                this._view.DownloadComplete(this._downloadedLocation, false);
+                _view.DownloadComplete(_downloadedLocation, false);
             }
             if (handleSpinner) {
-                this._view.ShowSpinner(false);
+                _view.ShowSpinner(false);
             }
         }
 
         private async Task GetAndSetPhotos(int page) {
-            this._view.ShowSpinner(true);
+            _view.ShowSpinner(true);
 
             SetPhotoResponse(await GetPhotosResponse(page));
 
-            this._view.ShowSpinner(false);
+            _view.ShowSpinner(false);
         }
 
         private async Task<PhotosResponse> GetPhotosResponse(int page) {
-            string methodName = this._view.ShowAllPhotos ? Methods.PeopleGetPhotos : Methods.PeopleGetPublicPhotos;
+            var methodName = _view.ShowAllPhotos ? Methods.PeopleGetPhotos : Methods.PeopleGetPublicPhotos;
             return
                 await
-                    this._logic.GetPhotosAsync(methodName, this._view.User, this._view.Preferences, page, this._progress);
+                    _logic.GetPhotosAsync(methodName, _view.User, _view.Preferences, page, _progress);
         }
 
         private void SetPhotoResponse(PhotosResponse photosResponse) {
-            this._view.Page = photosResponse.Page.ToString(CultureInfo.InvariantCulture);
-            this._view.Pages = photosResponse.Pages.ToString(CultureInfo.InvariantCulture);
-            this._view.PerPage = photosResponse.PerPage.ToString(CultureInfo.InvariantCulture);
-            this._view.Total = photosResponse.Total.ToString(CultureInfo.InvariantCulture);
-            this._view.Photos = photosResponse.Photos;
+            _view.Page = photosResponse.Page.ToString(CultureInfo.InvariantCulture);
+            _view.Pages = photosResponse.Pages.ToString(CultureInfo.InvariantCulture);
+            _view.PerPage = photosResponse.PerPage.ToString(CultureInfo.InvariantCulture);
+            _view.Total = photosResponse.Total.ToString(CultureInfo.InvariantCulture);
+            _view.Photos = photosResponse.Photos;
         }
     }
 }

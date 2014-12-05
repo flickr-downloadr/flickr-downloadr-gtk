@@ -8,33 +8,33 @@ using NUnit.Framework;
 namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
     [TestFixture]
     public class BrowserLogicTests {
+        private bool _asynchronouslyLoggedIn;
+        private IBrowserLogic _logic;
+        private ILoginLogic _loginLogic;
+        private User _user;
+
         [SetUp]
         public async void SetupTest() {
             // do everything to take us to the browser window...
-            if (! (await this._loginLogic.IsUserLoggedInAsync(ApplyLoggedInUser))) {
-                this._loginLogic.Login(ApplyLoggedInUser);
+            if (!(await _loginLogic.IsUserLoggedInAsync(ApplyLoggedInUser))) {
+                _loginLogic.Login(ApplyLoggedInUser);
             }
         }
-
-        private ILoginLogic _loginLogic;
-        private IBrowserLogic _logic;
-        private User _user;
-        private bool _asynchronouslyLoggedIn;
 
         [TestFixtureSetUp]
         public void SetupTestFixture() {
             Bootstrapper.Initialize();
-            this._loginLogic = Bootstrapper.GetInstance<ILoginLogic>();
-            this._logic = Bootstrapper.GetInstance<IBrowserLogic>();
+            _loginLogic = Bootstrapper.GetInstance<ILoginLogic>();
+            _logic = Bootstrapper.GetInstance<IBrowserLogic>();
         }
 
         private void ApplyLoggedInUser(User user) {
-            this._user = user;
-            this._asynchronouslyLoggedIn = true;
+            _user = user;
+            _asynchronouslyLoggedIn = true;
         }
 
         private void WaitTillLoggedIn() {
-            while (!this._asynchronouslyLoggedIn) {
+            while (!_asynchronouslyLoggedIn) {
                 Thread.Sleep(1000);
             }
         }
@@ -42,9 +42,9 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         [Test]
         public async void GetPublicPhotos_WillGetPublicPhotos() {
             WaitTillLoggedIn();
-            PhotosResponse photosResponse =
+            var photosResponse =
                 await
-                    this._logic.GetPhotosAsync(Methods.PeopleGetPublicPhotos, this._user, Preferences.GetDefault(), 1,
+                    _logic.GetPhotosAsync(Methods.PeopleGetPublicPhotos, _user, Preferences.GetDefault(), 1,
                         null);
             Assert.IsNotNull(photosResponse.Photos);
         }
@@ -52,7 +52,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         [Test]
         public void ProofOfConceptFor_AsynchronousTesting() {
             WaitTillLoggedIn();
-            Assert.IsNotNull(this._user);
+            Assert.IsNotNull(_user);
         }
     }
 }

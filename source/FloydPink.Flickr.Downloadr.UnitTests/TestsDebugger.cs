@@ -21,11 +21,8 @@ namespace FloydPink.Flickr.Downloadr.UnitTests {
                  *                  * 
                  */
                 const string nUnitPath = "nunit-console.exe";
-                AssemblyName asmName = AssemblyName.GetAssemblyName(nUnitPath);
-                AppDomain.CurrentDomain.ExecuteAssemblyByName(asmName, new [] {
-                    Assembly.GetExecutingAssembly().Location,
-                    "-framework:4.0"
-                });
+                var asmName = AssemblyName.GetAssemblyName(nUnitPath);
+                AppDomain.CurrentDomain.ExecuteAssemblyByName(asmName, Assembly.GetExecutingAssembly().Location, "-framework:4.0");
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);

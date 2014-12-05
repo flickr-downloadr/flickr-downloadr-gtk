@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OAuth;
-using DotNetOpenAuth.OAuth.Messages;
 using FloydPink.Flickr.Downloadr.Model;
 using FloydPink.Flickr.Downloadr.Model.Constants;
 using FloydPink.Flickr.Downloadr.OAuth.Listener;
 
 namespace FloydPink.Flickr.Downloadr.OAuth {
     public class OAuthManager : IOAuthManager {
+        private string _requestToken = string.Empty;
         private readonly DesktopConsumer _consumer;
 
         private readonly Dictionary<string, string> _defaultParameters = new Dictionary<string, string> {
@@ -29,13 +29,30 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         private readonly IHttpListenerManager _listenerManager;
         private readonly MessageReceivingEndpoint _serviceEndPoint;
 
-        private string _requestToken = string.Empty;
-
         public OAuthManager(IHttpListenerManager listenerManager, DesktopConsumer consumer,
                             MessageReceivingEndpoint serviceEndPoint) {
-            this._listenerManager = listenerManager;
-            this._consumer = consumer;
-            this._serviceEndPoint = serviceEndPoint;
+            _listenerManager = listenerManager;
+            _consumer = consumer;
+            _serviceEndPoint = serviceEndPoint;
+        }
+
+        private string CompleteAuthorization(string verifier) {
+            var response = _consumer.ProcessUserAuthorization(_requestToken, verifier);
+            AccessToken = response.AccessToken;
+
+            var extraData = response.ExtraData;
+            var authenticatedUser = new User(extraData["fullname"], extraData["username"], extraData["user_nsid"]);
+            Authenticated(this, new AuthenticatedEventArgs(authenticatedUser));
+
+            return response.AccessToken;
+        }
+
+        private void callbackManager_OnRequestReceived(object sender, HttpListenerCallbackEventArgs e) {
+            var token = e.QueryStrings["oauth_token"];
+            var verifier = e.QueryStrings["oauth_verifier"];
+            if (token == _requestToken) {
+                CompleteAuthorization(verifier);
+            }
         }
 
         #region IOAuthManager Members
@@ -45,14 +62,14 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         public event EventHandler<AuthenticatedEventArgs> Authenticated;
 
         public string BeginAuthorization() {
-            if (!this._listenerManager.RequestReceivedHandlerExists) {
-                this._listenerManager.RequestReceived += callbackManager_OnRequestReceived;
+            if (!_listenerManager.RequestReceivedHandlerExists) {
+                _listenerManager.RequestReceived += callbackManager_OnRequestReceived;
             }
-            this._listenerManager.ResponseString = AppConstants.AuthenticatedMessage;
-            this._listenerManager.SetupCallback();
+            _listenerManager.ResponseString = AppConstants.AuthenticatedMessage;
+            _listenerManager.SetupCallback();
             var requestArgs = new Dictionary<string, string> {
                 {
-                    ParameterNames.OAuthCallback, this._listenerManager.ListenerAddress
+                    ParameterNames.OAuthCallback, _listenerManager.ListenerAddress
                 }
             };
             var redirectArgs = new Dictionary<string, string> {
@@ -62,16 +79,16 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
             };
 
             return
-                this._consumer.RequestUserAuthorization(requestArgs, redirectArgs, out this._requestToken).AbsoluteUri;
+                _consumer.RequestUserAuthorization(requestArgs, redirectArgs, out _requestToken).AbsoluteUri;
         }
 
         public HttpWebRequest PrepareAuthorizedRequest(IDictionary<string, string> parameters) {
-            return this._consumer.PrepareAuthorizedRequest(this._serviceEndPoint, AccessToken, parameters);
+            return _consumer.PrepareAuthorizedRequest(_serviceEndPoint, AccessToken, parameters);
         }
 
         public async Task<dynamic> MakeAuthenticatedRequestAsync(string methodName,
                                                                  IDictionary<string, string> parameters = null) {
-            HttpWebRequest request = PrepareAuthorizedRequest(AddRequestParameters(methodName, parameters));
+            var request = PrepareAuthorizedRequest(AddRequestParameters(methodName, parameters));
             var response = (HttpWebResponse) await request.GetResponseAsync();
             using (var reader = new StreamReader(response.GetResponseStream())) {
                 return (new JavaScriptSerializer()).Deserialize<dynamic>(reader.ReadToEnd());
@@ -82,7 +99,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
                                                                 IDictionary<string, string> parameters = null) {
             parameters = parameters ?? new Dictionary<string, string>();
             var allParameters = new Dictionary<string, string>(parameters);
-            foreach (var kvp in this._defaultParameters) {
+            foreach (var kvp in _defaultParameters) {
                 allParameters.Add(kvp.Key, kvp.Value);
             }
             allParameters.Add(ParameterNames.Method, methodName);
@@ -91,24 +108,5 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         }
 
         #endregion
-
-        private string CompleteAuthorization(string verifier) {
-            AuthorizedTokenResponse response = this._consumer.ProcessUserAuthorization(this._requestToken, verifier);
-            AccessToken = response.AccessToken;
-
-            IDictionary<string, string> extraData = response.ExtraData;
-            var authenticatedUser = new User(extraData["fullname"], extraData["username"], extraData["user_nsid"]);
-            Authenticated(this, new AuthenticatedEventArgs(authenticatedUser));
-
-            return response.AccessToken;
-        }
-
-        private void callbackManager_OnRequestReceived(object sender, HttpListenerCallbackEventArgs e) {
-            string token = e.QueryStrings["oauth_token"];
-            string verifier = e.QueryStrings["oauth_verifier"];
-            if (token == this._requestToken) {
-                CompleteAuthorization(verifier);
-            }
-        }
     }
 }

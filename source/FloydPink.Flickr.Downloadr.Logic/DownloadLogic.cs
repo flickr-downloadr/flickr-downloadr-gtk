@@ -14,11 +14,11 @@ using FloydPink.Flickr.Downloadr.Repository.Extensions;
 namespace FloydPink.Flickr.Downloadr.Logic {
     public class DownloadLogic : IDownloadLogic {
         private static readonly Random Random = new Random((int) DateTime.Now.Ticks);
-        private readonly IOriginalTagsLogic _originalTagsLogic;
         private string _currentTimestampFolder;
+        private readonly IOriginalTagsLogic _originalTagsLogic;
 
         public DownloadLogic(IOriginalTagsLogic originalTagsLogic) {
-            this._originalTagsLogic = originalTagsLogic;
+            _originalTagsLogic = originalTagsLogic;
         }
 
         public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken,
@@ -36,15 +36,15 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             };
             progress.Report(progressUpdate);
 
-            int doneCount = 0;
-            IList<Photo> photosList = photos as IList<Photo> ?? photos.ToList();
-            int totalCount = photosList.Count();
+            var doneCount = 0;
+            var photosList = photos as IList<Photo> ?? photos.ToList();
+            var totalCount = photosList.Count();
 
-            DirectoryInfo imageDirectory = CreateDownloadFolder(preferences.DownloadLocation);
+            var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation);
 
-            foreach (Photo photo in photosList) {
-                string photoUrl = photo.OriginalUrl;
-                string photoExtension = "jpg";
+            foreach (var photo in photosList) {
+                var photoUrl = photo.OriginalUrl;
+                var photoExtension = "jpg";
                 switch (preferences.DownloadSize) {
                     case PhotoDownloadSize.Medium:
                         photoUrl = photo.Medium800Url;
@@ -58,18 +58,18 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                         break;
                 }
 
-                Photo photoWithPreferredTags = photo;
+                var photoWithPreferredTags = photo;
 
                 if (preferences.NeedOriginalTags) {
-                    photoWithPreferredTags = await this._originalTagsLogic.GetOriginalTagsTask(photo);
+                    photoWithPreferredTags = await _originalTagsLogic.GetOriginalTagsTask(photo);
                 }
 
-                string photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
-                string targetFileName = Path.Combine(imageDirectory.FullName,
+                var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
+                var targetFileName = Path.Combine(imageDirectory.FullName,
                     string.Format("{0}.{1}", photoName, photoExtension));
                 WriteMetaDataFile(photoWithPreferredTags, targetFileName, preferences);
 
-                WebRequest request = WebRequest.Create(photoUrl);
+                var request = WebRequest.Create(photoUrl);
 
                 var buffer = new byte[4096];
 
@@ -87,8 +87,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
         private static async Task DownloadAndSavePhoto(string targetFileName, WebRequest request, byte [] buffer) {
             using (var target = new FileStream(targetFileName, FileMode.Create, FileAccess.Write)) {
-                using (WebResponse response = await request.GetResponseAsync()) {
-                    using (Stream stream = response.GetResponseStream()) {
+                using (var response = await request.GetResponseAsync()) {
+                    using (var stream = response.GetResponseStream()) {
                         int read;
                         while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0) {
                             await target.WriteAsync(buffer, 0, read);
@@ -99,18 +99,18 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         }
 
         private DirectoryInfo CreateDownloadFolder(string downloadLocation) {
-            this._currentTimestampFolder = string.Format("flickr-downloadr-{0}",
+            _currentTimestampFolder = string.Format("flickr-downloadr-{0}",
                 GetSafeFilename(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")));
-            DirectoryInfo imageDirectory =
-                Directory.CreateDirectory(Path.Combine(downloadLocation, this._currentTimestampFolder));
+            var imageDirectory =
+                Directory.CreateDirectory(Path.Combine(downloadLocation, _currentTimestampFolder));
             return imageDirectory;
         }
 
         private static string RandomString(int size) {
             // http://stackoverflow.com/a/1122519/218882
             var builder = new StringBuilder();
-            for (int i = 0; i < size; i++) {
-                char ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * Random.NextDouble() + 65)));
+            for (var i = 0; i < size; i++) {
+                var ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * Random.NextDouble() + 65)));
                 builder.Append(ch);
             }
 
@@ -119,13 +119,13 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
         private static string GetSafeFilename(string path) {
             // http://stackoverflow.com/a/333297/218882
-            string safeFilename = Path.GetInvalidFileNameChars()
-                                      .Aggregate(path, (current, c) => current.Replace(c, '-'));
+            var safeFilename = Path.GetInvalidFileNameChars()
+                                   .Aggregate(path, (current, c) => current.Replace(c, '-'));
             return string.IsNullOrWhiteSpace(safeFilename) ? RandomString(8) : safeFilename;
         }
 
         private static void WriteMetaDataFile(Photo photo, string targetFileName, Preferences preferences) {
-            Dictionary<string, string> metadata = preferences.Metadata.ToDictionary(metadatum => metadatum,
+            var metadata = preferences.Metadata.ToDictionary(metadatum => metadatum,
                 metadatum =>
                     photo.GetType()
                          .GetProperty(metadatum)

@@ -204,6 +204,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			w11.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7.Name = "alignment7";
 			this.vbox1.Add (this.alignment7);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment7]));
 			w12.Position = 2;

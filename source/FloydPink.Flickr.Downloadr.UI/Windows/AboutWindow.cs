@@ -9,10 +9,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             Log.Debug("ctor");
             Build();
 
-            this.labelLink.TooltipText = "http://flickrdownloadr.com";
+            labelLink.TooltipText = "http://flickrdownloadr.com";
 
             Title += VersionHelper.GetVersionString();
-            this.labelVersion.LabelProp = string.Format("<big><big>flickr downloadr {0}</big></big>",
+            labelVersion.LabelProp = string.Format("<big><big>flickr downloadr {0}</big></big>",
                 VersionHelper.GetVersionString());
         }
 

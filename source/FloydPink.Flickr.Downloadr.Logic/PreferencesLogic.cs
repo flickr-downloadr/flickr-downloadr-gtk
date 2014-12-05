@@ -8,26 +8,33 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IRepository<Preferences> _repository;
 
         public PreferencesLogic(IRepository<Preferences> repository) {
-            this._repository = repository;
+            _repository = repository;
         }
 
         public Preferences GetPreferences() {
-            Preferences preferences = this._repository.Get();
+            var preferences = _repository.Get();
+            preferences = Validate(preferences);
             return preferences.PhotosPerPage == 0 ? null : preferences;
         }
 
         public void SavePreferences(Preferences preferences) {
-            this._repository.Save(preferences);
+            _repository.Save(preferences);
         }
 
         public void EmptyCacheDirectory(string cacheLocation) {
             var directory = new DirectoryInfo(cacheLocation);
-            foreach (FileInfo file in directory.GetFiles()) {
+            foreach (var file in directory.GetFiles()) {
                 file.Delete();
             }
-            foreach (DirectoryInfo subDirectory in directory.GetDirectories()) {
+            foreach (var subDirectory in directory.GetDirectories()) {
                 subDirectory.Delete(true);
             }
+        }
+
+        private Preferences Validate(Preferences preferences) {
+            var defaults = Preferences.GetDefault();
+            preferences.LogLocation = preferences.LogLocation ?? defaults.LogLocation;
+            return preferences;
         }
     }
 }

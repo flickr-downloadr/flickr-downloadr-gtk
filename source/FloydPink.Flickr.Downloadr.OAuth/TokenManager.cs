@@ -17,12 +17,19 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
                 throw new ArgumentNullException("consumerKey");
             }
 
-            this._tokenRepository = tokenRepository;
+            _tokenRepository = tokenRepository;
 
             ConsumerKey = consumerKey;
             ConsumerSecret = consumerSecret;
 
             GetStoredAccessToken();
+        }
+
+        private void GetStoredAccessToken() {
+            var token = _tokenRepository.Get();
+            if (!string.IsNullOrEmpty(token.TokenString)) {
+                _tokens[token.TokenString] = new Tuple<string, TokenType>(token.Secret, TokenType.AccessToken);
+            }
         }
 
         #region IConsumerTokenManager Members
@@ -33,30 +40,23 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
 
         public void ExpireRequestTokenAndStoreNewAccessToken(string consumerKey, string requestToken, string accessToken,
                                                              string accessTokenSecret) {
-            this._tokens.Remove(requestToken);
-            this._tokens[accessToken] = new Tuple<string, TokenType>(accessTokenSecret, TokenType.AccessToken);
-            this._tokenRepository.Save(new Token(accessToken, accessTokenSecret));
+            _tokens.Remove(requestToken);
+            _tokens[accessToken] = new Tuple<string, TokenType>(accessTokenSecret, TokenType.AccessToken);
+            _tokenRepository.Save(new Token(accessToken, accessTokenSecret));
         }
 
         public string GetTokenSecret(string token) {
-            return this._tokens[token].Item1;
+            return _tokens[token].Item1;
         }
 
         public TokenType GetTokenType(string token) {
-            return this._tokens[token].Item2;
+            return _tokens[token].Item2;
         }
 
         public void StoreNewRequestToken(UnauthorizedTokenRequest request, ITokenSecretContainingMessage response) {
-            this._tokens[response.Token] = new Tuple<string, TokenType>(response.TokenSecret, TokenType.RequestToken);
+            _tokens[response.Token] = new Tuple<string, TokenType>(response.TokenSecret, TokenType.RequestToken);
         }
 
         #endregion
-
-        private void GetStoredAccessToken() {
-            Token token = this._tokenRepository.Get();
-            if (!string.IsNullOrEmpty(token.TokenString)) {
-                this._tokens[token.TokenString] = new Tuple<string, TokenType>(token.Secret, TokenType.AccessToken);
-            }
-        }
     }
 }

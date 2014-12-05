@@ -34,7 +34,7 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers {
                 aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
 
                 // Create a decrytor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
                 // Create the streams used for encryption.
                 using (var msEncrypt = new MemoryStream()) {
@@ -88,7 +88,7 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers {
                 var key = new Rfc2898DeriveBytes(sharedSecret, Salt);
 
                 // Create the streams used for decryption.                
-                byte [] bytes = Convert.FromBase64String(cipherText);
+                var bytes = Convert.FromBase64String(cipherText);
                 using (var msDecrypt = new MemoryStream(bytes)) {
                     // Create a RijndaelManaged object
                     // with the specified key and IV.
@@ -97,7 +97,7 @@ namespace FloydPink.Flickr.Downloadr.Repository.Helpers {
                     // Get the initialization vector from the encrypted stream
                     aesAlg.IV = ReadByteArray(msDecrypt);
                     // Create a decrytor to perform the stream transform.
-                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                    var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
                     using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {
                         using (var srDecrypt = new StreamReader(csDecrypt)) {
                             // Read the decrypted bytes from the decrypting stream

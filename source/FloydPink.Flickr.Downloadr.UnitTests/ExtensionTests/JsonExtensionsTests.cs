@@ -7,7 +7,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
     public class JsonExtensionsTests {
         [Test]
         public void WillConvertEmptyJsonStringToNewInstance() {
-            string userAsJson = string.Empty;
+            var userAsJson = string.Empty;
             var user = userAsJson.FromJson<User>();
             Assert.IsNotNull(user);
             Assert.AreEqual(string.Empty, user.Name);
@@ -18,13 +18,13 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
         [Test]
         public void WillConvertInstanceToJson() {
             var token = new Token("token", "secret");
-            string tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
+            var tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
             Assert.AreEqual(tokenJson, token.ToJson());
         }
 
         [Test]
         public void WillConvertJsonToInstance() {
-            string tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
+            var tokenJson = "{\"TokenString\":\"token\",\"Secret\":\"secret\"}";
             var token = tokenJson.FromJson<Token>();
             Assert.AreEqual("token", token.TokenString);
             Assert.AreEqual("secret", token.Secret);
@@ -32,7 +32,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
 
         [Test]
         public void WillConvertJsonToUserInstance() {
-            string userAsJson = "{\"Name\":\"name\",\"Username\":\"username\",\"UserNSId\":\"usernsid\"}";
+            var userAsJson = "{\"Name\":\"name\",\"Username\":\"username\",\"UserNSId\":\"usernsid\"}";
             var user = userAsJson.FromJson<User>();
             Assert.AreEqual("name", user.Name);
             Assert.AreEqual("username", user.Username);
@@ -42,7 +42,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
         [Test]
         public void WillConvertUserInstanceToJson() {
             var user = new User("name", "username", "usernsid");
-            string userAsJson =
+            var userAsJson =
                 "{\"Name\":\"name\",\"Username\":\"username\",\"UserNsId\":\"usernsid\",\"WelcomeMessage\":\"Welcome, name!\"}";
             Assert.AreEqual(userAsJson, user.ToJson());
         }

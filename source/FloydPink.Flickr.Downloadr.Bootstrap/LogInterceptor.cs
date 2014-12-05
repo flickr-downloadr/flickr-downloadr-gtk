@@ -11,10 +11,10 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
         private readonly ILog _log;
 
         public LogInterceptor(ILog log) {
-            this._log = log;
+            _log = log;
         }
 
-        public ILog Log { get { return this._log; } }
+        public ILog Log { get { return _log; } }
 
         public void Intercept(IInvocation invocation) {
             if (Log.IsDebugEnabled) {
@@ -24,18 +24,18 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
                 invocation.Proceed();
 
                 if (Log.IsDebugEnabled) {
-                    Type returnType = invocation.Method.ReturnType;
+                    var returnType = invocation.Method.ReturnType;
                     if (returnType != typeof (void)) {
-                        object returnValue = invocation.ReturnValue;
+                        var returnValue = invocation.ReturnValue;
                         if (returnType == typeof (Task)) {
                             Log.Debug("Returning with a task.");
                         } else if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof (Task<>)) {
                             Log.Debug("Returning with a generic task.");
                             var task = (Task) returnValue;
                             task.ContinueWith(antecedent => {
-                                                  string taskDescriptor = CreateInvocationLogString("Task from",
+                                                  var taskDescriptor = CreateInvocationLogString("Task from",
                                                       invocation);
-                                                  object result =
+                                                  var result =
                                                       antecedent.GetType()
                                                                 .GetProperty("Result")
                                                                 .GetValue(antecedent, null);
@@ -59,8 +59,8 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
         private static string CreateInvocationLogString(string operation, IInvocation invocation) {
             var sb = new StringBuilder(100);
             sb.AppendFormat("{0}: {1}.{2}(", operation, invocation.TargetType.Name, invocation.Method.Name);
-            foreach (object argument in invocation.Arguments) {
-                String argumentDescription = argument == null ? "null" : DumpObject(argument);
+            foreach (var argument in invocation.Arguments) {
+                var argumentDescription = argument == null ? "null" : DumpObject(argument);
                 sb.Append(argumentDescription).Append(",");
             }
             if (invocation.Arguments.Any()) {
@@ -74,7 +74,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
             if (argument == null) {
                 return "<null>";
             }
-            Type objtype = argument.GetType();
+            var objtype = argument.GetType();
             if (objtype == typeof (String) || objtype.IsPrimitive || !objtype.IsClass) {
                 return argument.ToString();
             }

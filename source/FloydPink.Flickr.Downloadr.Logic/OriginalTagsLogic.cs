@@ -11,7 +11,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IOAuthManager _oAuthManager;
 
         public OriginalTagsLogic(IOAuthManager oAuthManager) {
-            this._oAuthManager = oAuthManager;
+            _oAuthManager = oAuthManager;
         }
 
         public async Task<Photo> GetOriginalTagsTask(Photo photo) {
@@ -25,7 +25,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
             var photoResponse =
                 (Dictionary<string, object>)
-                    await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.PhotosGetInfo, extraParams);
+                    await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PhotosGetInfo, extraParams);
 
             // Override the internal tags with the original ones
             photo.Tags = string.Join(", ", photoResponse.ExtractOriginalTags());

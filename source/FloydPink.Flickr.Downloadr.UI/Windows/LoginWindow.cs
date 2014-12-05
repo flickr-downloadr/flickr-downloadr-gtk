@@ -12,10 +12,9 @@ using Mono.Unix;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class LoginWindow : BaseWindow, ILoginView {
-        private readonly ILoginPresenter _presenter;
         private User _user;
-
         private SpinnerWidget spinner;
+        private readonly ILoginPresenter _presenter;
 
         public LoginWindow()
             : this(new User()) { }
@@ -31,8 +30,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
             AddSpinnerControl();
 
-            this._presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter>(this);
-            this._presenter.InitializeScreen();
+            _presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter>(this);
+            _presenter.InitializeScreen();
         }
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
@@ -44,7 +43,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private void SetWelcomeLabel(User user) {
             Log.Debug("SetWelcomeLabel");
             Application.Invoke(delegate {
-                                   string welcomeMessage = string.IsNullOrEmpty(user.UserNsId)
+                                   var welcomeMessage = string.IsNullOrEmpty(user.UserNsId)
                                        ? string.Empty
                                        : user.WelcomeMessage;
                                    this.labelWelcomeUsername.LabelProp = string.Format("<b><big>{0}</big></b>",
@@ -58,25 +57,25 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            this.buttonLogin.TooltipText = "Log in to flickr using OAuth";
-            this.buttonPrefs.TooltipText = "Update the Preferences";
-            this.buttonLogout.TooltipText = "Log out from the currently logged in account";
-            this.buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
+            buttonLogin.TooltipText = "Log in to flickr using OAuth";
+            buttonPrefs.TooltipText = "Update the Preferences";
+            buttonLogout.TooltipText = "Log out from the currently logged in account";
+            buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
         }
 
         private void AddSpinnerControl() {
             Log.Debug("AddSpinnerControl");
-            this.spinner = new SpinnerWidget {
+            spinner = new SpinnerWidget {
                 Name = "loginSpinner",
                 Cancellable = true,
                 Operation = "Please wait...",
                 Visible = false
             };
-            this.spinner.SpinnerCanceled +=
+            spinner.SpinnerCanceled +=
                 (object sender, EventArgs e) => { Application.Invoke(delegate { this.hboxLogin.Sensitive = true; }); };
-            this.vbox2.Add(this.spinner);
+            vbox2.Add(spinner);
 
-            var spinnerSlot = ((Box.BoxChild) (this.vbox2[this.spinner]));
+            var spinnerSlot = ((Box.BoxChild) (vbox2[spinner]));
             spinnerSlot.Position = 0;
             spinnerSlot.Expand = true;
         }
@@ -98,17 +97,17 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         //
         protected void buttonLoginClick(object sender, EventArgs e) {
             Log.Debug("buttonLoginClick");
-            this._presenter.Login();
+            _presenter.Login();
         }
 
         protected void buttonLogoutClick(object sender, EventArgs e) {
             Log.Debug("buttonLogoutClick");
-            this._presenter.Logout();
+            _presenter.Logout();
         }
 
         protected void buttonContinueClick(object sender, EventArgs e) {
             Log.Debug("buttonContinueClick");
-            this._presenter.Continue();
+            _presenter.Continue();
         }
 
         protected void buttonAboutClick(object sender, EventArgs e) {
@@ -127,15 +126,18 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         protected Preferences Preferences { get; set; }
 
         public User User {
-            get { return this._user; }
+            get { return _user; }
             set {
-                this._user = value;
+                _user = value;
                 SetWelcomeLabel(value);
             }
         }
 
         public void ShowLoggedInControl(Preferences preferences) {
             Log.Debug("ShowLoggedInControl");
+
+            Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
+
             Application.Invoke(delegate {
                                    Preferences = preferences;
                                    FileCache.AppCacheDirectory = Preferences != null

@@ -10,53 +10,53 @@ namespace FloydPink.Flickr.Downloadr.Model {
         private string _userNsId;
 
         public User() {
-            this._name = string.Empty;
-            this._userName = string.Empty;
-            this._userNsId = string.Empty;
+            _name = string.Empty;
+            _userName = string.Empty;
+            _userNsId = string.Empty;
         }
 
         public User(string name, string userName, string userNsId) {
-            this._name = name;
-            this._userName = userName;
-            this._userNsId = userNsId;
+            _name = name;
+            _userName = userName;
+            _userNsId = userNsId;
         }
 
         public string Name {
-            get { return this._name; }
+            get { return _name; }
             set {
-                this._name = value;
+                _name = value;
                 PropertyChanged.Notify(() => Name);
             }
         }
 
         public string Username {
-            get { return this._userName; }
+            get { return _userName; }
             set {
-                this._userName = value;
+                _userName = value;
                 PropertyChanged.Notify(() => Username);
             }
         }
 
         public string UserNsId {
-            get { return this._userNsId; }
+            get { return _userNsId; }
             set {
-                this._userNsId = value;
+                _userNsId = value;
                 PropertyChanged.Notify(() => UserNsId);
             }
         }
 
         [ScriptIgnore]
         public UserInfo Info {
-            get { return this._info; }
+            get { return _info; }
             set {
-                this._info = value;
+                _info = value;
                 PropertyChanged.Notify(() => Info);
             }
         }
 
         public string WelcomeMessage {
             get {
-                string userNameString = string.IsNullOrEmpty(Name)
+                var userNameString = string.IsNullOrEmpty(Name)
                     ? (string.IsNullOrEmpty(Username) ? string.Empty : Username)
                     : Name;
                 return string.IsNullOrEmpty(userNameString)

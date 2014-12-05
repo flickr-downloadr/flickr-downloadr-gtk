@@ -9,45 +9,44 @@ namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     public partial class SpinnerWidget : Bin {
         private bool _cancellable;
         private string _operation;
-
         private string _percentDone;
 
         public SpinnerWidget() {
             Build();
 
-            this.imageLoading.PixbufAnimation = new PixbufAnimation(Assembly.GetAssembly(typeof (SpinnerWidget)),
+            imageLoading.PixbufAnimation = new PixbufAnimation(Assembly.GetAssembly(typeof (SpinnerWidget)),
                 "FloydPink.Flickr.Downloadr.UI.Assets.loading.gif");
 
-            this.labelOperation.Visible = false;
-            this.labelPercent.Visible = false;
-            this.buttonCancel.Visible = false;
+            labelOperation.Visible = false;
+            labelPercent.Visible = false;
+            buttonCancel.Visible = false;
 
-            this.buttonCancel.TooltipText = "Cancel the operation";
+            buttonCancel.TooltipText = "Cancel the operation";
         }
 
         public bool Cancellable {
-            get { return this._cancellable; }
+            get { return _cancellable; }
             set {
-                this._cancellable = value;
-                this.buttonCancel.Visible = this._cancellable;
+                _cancellable = value;
+                buttonCancel.Visible = _cancellable;
             }
         }
 
         public string PercentDone {
-            get { return this._percentDone; }
+            get { return _percentDone; }
             set {
-                this._percentDone = value;
-                this.labelPercent.LabelProp = this._percentDone;
-                this.labelPercent.Visible = !string.IsNullOrEmpty(this._percentDone);
+                _percentDone = value;
+                labelPercent.LabelProp = _percentDone;
+                labelPercent.Visible = !string.IsNullOrEmpty(_percentDone);
             }
         }
 
         public string Operation {
-            get { return this._operation; }
+            get { return _operation; }
             set {
-                this._operation = value;
-                this.labelOperation.LabelProp = this._operation;
-                this.labelOperation.Visible = !string.IsNullOrEmpty(this._operation);
+                _operation = value;
+                labelOperation.LabelProp = _operation;
+                labelOperation.Visible = !string.IsNullOrEmpty(_operation);
             }
         }
 

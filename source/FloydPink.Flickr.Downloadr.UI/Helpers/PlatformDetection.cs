@@ -14,12 +14,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Helpers {
 
         //From Managed.Windows.Forms/XplatUI
         private static bool IsRunningOnMac() {
-            IntPtr buf = IntPtr.Zero;
+            var buf = IntPtr.Zero;
             try {
                 buf = Marshal.AllocHGlobal(8192);
                 // This is a hacktastic way of getting sysname from uname ()
                 if (uname(buf) == 0) {
-                    string os = Marshal.PtrToStringAnsi(buf);
+                    var os = Marshal.PtrToStringAnsi(buf);
                     if (os == "Darwin") {
                         return true;
                     }

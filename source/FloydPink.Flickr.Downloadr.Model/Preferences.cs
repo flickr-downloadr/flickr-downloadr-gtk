@@ -11,47 +11,49 @@ namespace FloydPink.Flickr.Downloadr.Model {
         private bool _checkForUpdates;
         private string _downloadLocation;
         private PhotoDownloadSize _downloadSize;
+        private LogLevel _logLevel;
+        private string _logLocation;
         private bool _needOriginalTags;
         private int _photosPerPage;
         private string _safetyLevel;
         private bool _titleAsFilename;
 
         public bool TitleAsFilename {
-            get { return this._titleAsFilename; }
+            get { return _titleAsFilename; }
             set {
-                this._titleAsFilename = value;
+                _titleAsFilename = value;
                 PropertyChanged.Notify(() => TitleAsFilename);
             }
         }
 
         public string DownloadLocation {
-            get { return this._downloadLocation; }
+            get { return _downloadLocation; }
             set {
-                this._downloadLocation = value;
+                _downloadLocation = value;
                 PropertyChanged.Notify(() => DownloadLocation);
             }
         }
 
         public PhotoDownloadSize DownloadSize {
-            get { return this._downloadSize; }
+            get { return _downloadSize; }
             set {
-                this._downloadSize = value;
+                _downloadSize = value;
                 PropertyChanged.Notify(() => DownloadSize);
             }
         }
 
         public int PhotosPerPage {
-            get { return this._photosPerPage; }
+            get { return _photosPerPage; }
             set {
-                this._photosPerPage = value;
+                _photosPerPage = value;
                 PropertyChanged.Notify(() => PhotosPerPage);
             }
         }
 
         public string SafetyLevel {
-            get { return this._safetyLevel; }
+            get { return _safetyLevel; }
             set {
-                this._safetyLevel = value;
+                _safetyLevel = value;
                 PropertyChanged.Notify(() => SafetyLevel);
             }
         }
@@ -59,26 +61,42 @@ namespace FloydPink.Flickr.Downloadr.Model {
         public List<string> Metadata { get; set; }
 
         public bool NeedOriginalTags {
-            get { return this._needOriginalTags; }
+            get { return _needOriginalTags; }
             set {
-                this._needOriginalTags = value;
+                _needOriginalTags = value;
                 PropertyChanged.Notify(() => NeedOriginalTags);
             }
         }
 
         public string CacheLocation {
-            get { return this._cacheLocation; }
+            get { return _cacheLocation; }
             set {
-                this._cacheLocation = value;
+                _cacheLocation = value;
                 PropertyChanged.Notify(() => CacheLocation);
             }
         }
 
         public bool CheckForUpdates {
-            get { return this._checkForUpdates; }
+            get { return _checkForUpdates; }
             set {
-                this._checkForUpdates = value;
+                _checkForUpdates = value;
                 PropertyChanged.Notify(() => CheckForUpdates);
+            }
+        }
+
+        public LogLevel LogLevel {
+            get { return _logLevel; }
+            set {
+                _logLevel = value;
+                PropertyChanged.Notify(() => LogLevel);
+            }
+        }
+
+        public string LogLocation {
+            get { return _logLocation; }
+            set {
+                _logLocation = value;
+                PropertyChanged.Notify(() => LogLocation);
             }
         }
 
@@ -100,7 +118,10 @@ namespace FloydPink.Flickr.Downloadr.Model {
                 NeedOriginalTags = false,
                 CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     "flickr-downloadr", "Cache"),
-                CheckForUpdates = true
+                CheckForUpdates = true,
+                LogLevel = LogLevel.Off,
+                LogLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "flickr-downloadr", "Logs")
             };
         }
     }

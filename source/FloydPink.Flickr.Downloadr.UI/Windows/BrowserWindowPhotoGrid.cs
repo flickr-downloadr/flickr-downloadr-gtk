@@ -8,11 +8,11 @@ using Gtk;
 namespace FloydPink.Flickr.Downloadr.UI.Windows {
     // This is another partial class module for the BrowserWindow class
     public partial class BrowserWindow {
-        private const int NUMBER_OF_PHOTOS_IN_A_ROW = 5;
+        private const int NumberOfPhotosInARow = 5;
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-            if (this._doNotFireOnSelectionChanged) {
+            if (_doNotFireOnSelectionChanged) {
                 return;
             }
             var cachedImage = (PhotoWidget) sender;
@@ -54,14 +54,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void SetupTheImageRow(int i, IEnumerable<Photo> rowPhotos) {
             Log.Debug("SetupTheImageRow");
-            int rowPhotosCount = rowPhotos.Count();
+            var rowPhotosCount = rowPhotos.Count();
 
-            string rowId = string.Format("hboxPhotoRow{0}", i);
+            var rowId = string.Format("hboxPhotoRow{0}", i);
             var hboxPhotoRow = new HBox();
             hboxPhotoRow.Name = rowId;
             hboxPhotoRow.Spacing = 6;
 
-            for (int j = 0; j < NUMBER_OF_PHOTOS_IN_A_ROW; j++) {
+            for (var j = 0; j < NumberOfPhotosInARow; j++) {
                 if (j < rowPhotosCount) {
                     hboxPhotoRow = AddImageToRow(hboxPhotoRow, j, rowPhotos.ElementAt(j), rowId);
                 } else {
@@ -80,30 +80,30 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void SetupTheImageGrid(IEnumerable<Photo> photos) {
             Log.Debug("SetupTheImageGrid");
-            int numberOfRows = photos.Count() / NUMBER_OF_PHOTOS_IN_A_ROW;
-            if (photos.Count() % NUMBER_OF_PHOTOS_IN_A_ROW > 0) {
+            var numberOfRows = photos.Count() / NumberOfPhotosInARow;
+            if (photos.Count() % NumberOfPhotosInARow > 0) {
                 numberOfRows += 1; // add an additional row for remainder of the images that won't reach full row
             }
             numberOfRows = numberOfRows < 3 ? 3 : numberOfRows; // render a minimum of 3 rows
 
-            foreach (Widget child in this.vboxPhotos.Children) {
+            foreach (var child in vboxPhotos.Children) {
                 Application.Invoke(delegate { this.vboxPhotos.Remove(child); });
             }
 
-            for (int i = 0; i < numberOfRows; i++) {
-                IEnumerable<Photo> rowPhotos = photos.Skip(i * NUMBER_OF_PHOTOS_IN_A_ROW).Take(NUMBER_OF_PHOTOS_IN_A_ROW);
+            for (var i = 0; i < numberOfRows; i++) {
+                var rowPhotos = photos.Skip(i * NumberOfPhotosInARow).Take(NumberOfPhotosInARow);
                 SetupTheImageRow(i, rowPhotos);
             }
         }
 
         private void SetSelectionOnAllImages(bool selected) {
             Log.Debug("SetSelectionOnAllImages");
-            foreach (object box in this.vboxPhotos.AllChildren) {
+            foreach (var box in vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
                 }
-                foreach (object image in hbox.AllChildren) {
+                foreach (var image in hbox.AllChildren) {
                     var cachedImage = image as PhotoWidget;
                     if (cachedImage != null) {
                         cachedImage.IsSelected = selected;
@@ -114,12 +114,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void FindAndSelectPhoto(Photo photo) {
             Log.Debug("FindAndSelectPhoto");
-            foreach (object box in this.vboxPhotos.AllChildren) {
+            foreach (var box in vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
                 }
-                foreach (object image in hbox.AllChildren) {
+                foreach (var image in hbox.AllChildren) {
                     var cachedImage = image as PhotoWidget;
                     if (cachedImage != null && cachedImage.Photo.Id == photo.Id) {
                         cachedImage.IsSelected = true;
@@ -131,7 +131,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void SelectPhotos(List<Photo> photos) {
             Log.Debug("SelectPhotos");
-            foreach (Photo photo in photos) {
+            foreach (var photo in photos) {
                 FindAndSelectPhoto(photo);
             }
         }

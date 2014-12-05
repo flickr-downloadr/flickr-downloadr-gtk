@@ -11,13 +11,9 @@ namespace FloydPink.Flickr.Downloadr.Model {
         }
 
         public int Page { get; private set; }
-
         public int Pages { get; private set; }
-
         public int PerPage { get; private set; }
-
         public int Total { get; private set; }
-
         public IEnumerable<Photo> Photos { get; private set; }
     }
 }

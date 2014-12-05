@@ -6,7 +6,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         protected readonly ILog Log;
 
         protected BaseWindow() : base(WindowType.Toplevel) {
-            this.Log = LogManager.GetLogger(GetType());
+            Log = LogManager.GetLogger(GetType());
         }
     }
 }

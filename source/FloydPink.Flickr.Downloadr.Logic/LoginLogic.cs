@@ -11,64 +11,26 @@ using FloydPink.Flickr.Downloadr.Repository;
 
 namespace FloydPink.Flickr.Downloadr.Logic {
     public class LoginLogic : ILoginLogic {
+        private Action<User> _applyUser;
         private readonly IOAuthManager _oAuthManager;
         private readonly IRepository<Preferences> _preferencesRepository;
         private readonly IRepository<Token> _tokenRepository;
         private readonly IRepository<Update> _updateRepository;
         private readonly IRepository<User> _userRepository;
-        private Action<User> _applyUser;
 
         public LoginLogic(IOAuthManager oAuthManager, IRepository<Token> tokenRepository,
                           IRepository<User> userRepository, IRepository<Preferences> preferencesRepository,
                           IRepository<Update> updateRepository) {
-            this._oAuthManager = oAuthManager;
-            this._tokenRepository = tokenRepository;
-            this._userRepository = userRepository;
-            this._preferencesRepository = preferencesRepository;
-            this._updateRepository = updateRepository;
+            _oAuthManager = oAuthManager;
+            _tokenRepository = tokenRepository;
+            _userRepository = userRepository;
+            _preferencesRepository = preferencesRepository;
+            _updateRepository = updateRepository;
         }
-
-        #region ILoginLogic Members
-
-        public void Login(Action<User> applyUser) {
-            this._applyUser = applyUser;
-            this._oAuthManager.Authenticated += OAuthManagerAuthenticated;
-            Process.Start(new ProcessStartInfo {
-                FileName = this._oAuthManager.BeginAuthorization()
-            });
-        }
-
-        public void Logout() {
-            this._tokenRepository.Delete();
-            this._userRepository.Delete();
-            this._preferencesRepository.Delete();
-            this._updateRepository.Delete();
-        }
-
-        public async Task<bool> IsUserLoggedInAsync(Action<User> applyUser) {
-            this._applyUser = applyUser;
-            Token token = this._tokenRepository.Get();
-            User user = this._userRepository.Get();
-            if (string.IsNullOrEmpty(token.TokenString)) {
-                return false;
-            }
-
-            this._oAuthManager.AccessToken = token.TokenString;
-            var testLogin =
-                (Dictionary<string, object>) await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.TestLogin);
-            bool userIsLoggedIn = (string) testLogin.GetSubValue("user", "id") == user.UserNsId;
-
-            if (userIsLoggedIn) {
-                CallApplyUser(user);
-            }
-            return userIsLoggedIn;
-        }
-
-        #endregion
 
         private void OAuthManagerAuthenticated(object sender, AuthenticatedEventArgs e) {
-            User authenticatedUser = e.AuthenticatedUser;
-            this._userRepository.Save(authenticatedUser);
+            var authenticatedUser = e.AuthenticatedUser;
+            _userRepository.Save(authenticatedUser);
             CallApplyUser(authenticatedUser);
         }
 
@@ -79,7 +41,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 }
             };
             var userInfo = (Dictionary<string, object>)
-                (await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams))[
+                (await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams))[
                     "person"];
             authenticatedUser.Info = new UserInfo {
                 Id = authenticatedUser.UserNsId,
@@ -99,7 +61,45 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                         ((Dictionary<string, object>) userInfo["photos"]).GetSubValue(
                             "count"))
             };
-            this._applyUser(authenticatedUser);
+            _applyUser(authenticatedUser);
         }
+
+        #region ILoginLogic Members
+
+        public void Login(Action<User> applyUser) {
+            _applyUser = applyUser;
+            _oAuthManager.Authenticated += OAuthManagerAuthenticated;
+            Process.Start(new ProcessStartInfo {
+                FileName = _oAuthManager.BeginAuthorization()
+            });
+        }
+
+        public void Logout() {
+            _tokenRepository.Delete();
+            _userRepository.Delete();
+            _preferencesRepository.Delete();
+            _updateRepository.Delete();
+        }
+
+        public async Task<bool> IsUserLoggedInAsync(Action<User> applyUser) {
+            _applyUser = applyUser;
+            var token = _tokenRepository.Get();
+            var user = _userRepository.Get();
+            if (string.IsNullOrEmpty(token.TokenString)) {
+                return false;
+            }
+
+            _oAuthManager.AccessToken = token.TokenString;
+            var testLogin =
+                (Dictionary<string, object>) await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.TestLogin);
+            var userIsLoggedIn = (string) testLogin.GetSubValue("user", "id") == user.UserNsId;
+
+            if (userIsLoggedIn) {
+                CallApplyUser(user);
+            }
+            return userIsLoggedIn;
+        }
+
+        #endregion
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="User.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Update.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

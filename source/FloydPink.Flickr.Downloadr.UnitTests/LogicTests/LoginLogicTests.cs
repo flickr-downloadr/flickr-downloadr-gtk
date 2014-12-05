@@ -7,27 +7,27 @@ using Rhino.Mocks;
 namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
     [TestFixture]
     public class LoginLogicTests {
-        private IRepository<Token> _tokenRepository;
-        private IRepository<User> _userRepository;
         private IRepository<Preferences> _preferencesRepository;
+        private IRepository<Token> _tokenRepository;
         private IRepository<Update> _updateRepository;
+        private IRepository<User> _userRepository;
 
         [TestFixtureSetUp]
         public void Setup() {
-            this._tokenRepository = MockRepository.GenerateStub<IRepository<Token>>();
-            this._userRepository = MockRepository.GenerateStub<IRepository<User>>();
-            this._preferencesRepository = MockRepository.GenerateStub<IRepository<Preferences>>();
-            this._updateRepository = MockRepository.GenerateStub<IRepository<Update>>();
+            _tokenRepository = MockRepository.GenerateStub<IRepository<Token>>();
+            _userRepository = MockRepository.GenerateStub<IRepository<User>>();
+            _preferencesRepository = MockRepository.GenerateStub<IRepository<Preferences>>();
+            _updateRepository = MockRepository.GenerateStub<IRepository<Update>>();
         }
 
         [Test]
         public void WillCallDeleteOnBothRepositoriesOnLogout() {
-            var logic = new LoginLogic(null, this._tokenRepository, this._userRepository, this._preferencesRepository,
-                this._updateRepository);
+            var logic = new LoginLogic(null, _tokenRepository, _userRepository, _preferencesRepository,
+                _updateRepository);
             logic.Logout();
 
-            this._tokenRepository.AssertWasCalled(t => t.Delete());
-            this._userRepository.AssertWasCalled(u => u.Delete());
+            _tokenRepository.AssertWasCalled(t => t.Delete());
+            _userRepository.AssertWasCalled(u => u.Delete());
         }
     }
 }
