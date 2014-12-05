@@ -6,7 +6,6 @@
 branches:
   only:
     - master
-    - dynamic-proxy
 
 #---------------------------------#
 #    environment configuration    #

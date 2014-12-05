@@ -119,7 +119,7 @@ namespace FloydPink.Flickr.Downloadr.Model {
                 CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     "flickr-downloadr", "Cache"),
                 CheckForUpdates = true,
-                LogLevel = LogLevel.Off,
+                LogLevel = LogLevel.Info,
                 LogLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     "flickr-downloadr", "Logs")
             };

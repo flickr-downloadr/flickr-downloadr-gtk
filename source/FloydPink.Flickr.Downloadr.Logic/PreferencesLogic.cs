@@ -33,7 +33,10 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
         private Preferences Validate(Preferences preferences) {
             var defaults = Preferences.GetDefault();
-            preferences.LogLocation = preferences.LogLocation ?? defaults.LogLocation;
+            if (preferences.LogLocation == null) {
+                preferences.LogLevel = defaults.LogLevel;
+                preferences.LogLocation = defaults.LogLocation;
+            }
             return preferences;
         }
     }

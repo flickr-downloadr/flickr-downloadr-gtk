@@ -6,7 +6,9 @@ using log4net;
 namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class DynamicProxy {
         public static Expression<Func<T, T>> LoggingInterceptorFor<T>() {
-            return s => CreateInterfaceProxyWithTargetInterface(typeof (T), s);
+            // TODO: Uncomment the below line when the issue with Dynamic Proxy crashing Mono is fixed: https://github.com/castleproject/Core/issues/72
+            // return s => CreateInterfaceProxyWithTargetInterface(typeof (T), s);
+            return s => s;
         }
 
         private static T CreateInterfaceProxyWithTargetInterface<T>(Type interfaceType, T concreteObject) {
