@@ -82,8 +82,10 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
 
         private static FileInfo GetAppDataDirectoryFile(string filename) {
             Log.Debug("GetAppDataDirectoryFile");
-            return new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            var appDataDirectoryFile = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "flickr-downloadr", filename));
+            appDataDirectoryFile.Directory.Create();
+            return appDataDirectoryFile;
         }
 
         private static void ReadLoggingConfiguration() {
