@@ -11,6 +11,8 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Bootstrapper));
         private static Container _container;
         private const string AppenderName = "XmlSchemaFileAppender";
+        private const string LogFileName = "flickrdownloadr.log";
+        private const string LogConfigFileName = "flickrdownloadr.log4net";
         private static string _logLevel;
         private static string _logFile;
 
@@ -38,18 +40,22 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
 
         public static FileInfo GetLogFile() {
             Log.Debug("GetLogFile");
-            return GetAppDirectoryFile("flickrdownloadr.log");
+            return GetAppDirectoryFile(LogFileName);
         }
 
         public static FileInfo GetLogConfigFile() {
             Log.Debug("GetLogConfigFile");
-            return GetAppDirectoryFile("flickrdownloadr.log4net");
+            var writableLogConfigFile = GetAppDataDirectoryFile(LogConfigFileName);
+            if (!writableLogConfigFile.Exists) {
+                GetAppDirectoryFile(LogConfigFileName).CopyTo(writableLogConfigFile.FullName);
+            }
+            return writableLogConfigFile;
         }
 
         public static void ReconfigureLogging(string level, string logFolder) {
             Log.Debug("ReconfigureLogging");
             var logLevel = level.ToUpperInvariant();
-            var logFile = Path.Combine(logFolder, "flickrdownloadr.log");
+            var logFile = Path.Combine(logFolder, LogFileName);
 
             if (logLevel != _logLevel || logFile != _logFile) {
                 _logLevel = logLevel;
@@ -72,6 +78,12 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
         private static FileInfo GetAppDirectoryFile(string filename) {
             Log.Debug("GetAppDirectoryFile");
             return new FileInfo(Path.Combine(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), filename));
+        }
+
+        private static FileInfo GetAppDataDirectoryFile(string filename) {
+            Log.Debug("GetAppDataDirectoryFile");
+            return new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "flickr-downloadr", filename));
         }
 
         private static void ReadLoggingConfiguration() {
