@@ -136,7 +136,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         public void ShowLoggedInControl(Preferences preferences) {
             Log.Debug("ShowLoggedInControl");
 
-            Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
+            if (preferences != null) {
+                Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
+            }
 
             Application.Invoke(delegate {
                                    Preferences = preferences;

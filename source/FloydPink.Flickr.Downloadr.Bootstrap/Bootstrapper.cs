@@ -10,7 +10,6 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public static class Bootstrapper {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Bootstrapper));
         private static Container _container;
-        private const string LogConfigFileName = "flickrdownloadr.log4net";
         private const string AppenderName = "XmlSchemaFileAppender";
         private static string _logLevel;
         private static string _logFile;
@@ -56,7 +55,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
                 _logLevel = logLevel;
                 _logFile = logFile;
 
-                var log4NetConfig = XDocument.Load(LogConfigFileName);
+                var log4NetConfig = XDocument.Load(GetLogConfigFile().FullName);
 
                 var fileElement = log4NetConfig.Root.Element("appender").Element("file");
                 fileElement.Attribute("value").SetValue(logFile);
@@ -64,7 +63,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
                 var levelElement = log4NetConfig.Root.Element("root").Element("level");
                 levelElement.Attribute("value").SetValue(logLevel);
 
-                log4NetConfig.Save(LogConfigFileName);
+                log4NetConfig.Save(GetLogConfigFile().FullName);
 
                 Log.Debug(string.Format("Reconfigured log4net to the level '{0}' and the file '{1}'", logLevel, logFile));
             }
