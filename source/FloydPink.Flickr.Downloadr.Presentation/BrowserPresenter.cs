@@ -68,6 +68,10 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
             }
         }
 
+        public async Task NavigateTo(int page) {
+            await GetAndSetPhotos(page);
+        }
+
         public void CancelDownload() {
             if (!_cancellationTokenSource.IsCancellationRequested) {
                 _cancellationTokenSource.Cancel();

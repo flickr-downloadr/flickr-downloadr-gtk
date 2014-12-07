@@ -318,7 +318,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioPhotoId = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Photo ID"));
 			this.radioPhotoId.CanFocus = true;
 			this.radioPhotoId.Name = "radioPhotoId";
-			this.radioPhotoId.Active = true;
 			this.radioPhotoId.DrawIndicator = true;
 			this.radioPhotoId.UseUnderline = true;
 			this.radioPhotoId.Group = new global::GLib.SList (global::System.IntPtr.Zero);
@@ -436,7 +435,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.labelRestartRequired = new global::Gtk.Label ();
 			this.labelRestartRequired.Name = "labelRestartRequired";
 			this.labelRestartRequired.Xalign = 1F;
-			this.labelRestartRequired.LabelProp = global::Mono.Unix.Catalog.GetString ("<span color=\"red\">*</span> Requires restarting the app");
+			this.labelRestartRequired.LabelProp = global::Mono.Unix.Catalog.GetString ("<span color=\"red\">*</span> Requires Restart");
 			this.labelRestartRequired.UseMarkup = true;
 			this.vbox13.Add (this.labelRestartRequired);
 			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.labelRestartRequired]));
@@ -580,7 +579,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioTagsInternal = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Internal"));
 			this.radioTagsInternal.CanFocus = true;
 			this.radioTagsInternal.Name = "radioTagsInternal";
-			this.radioTagsInternal.Active = true;
 			this.radioTagsInternal.DrawIndicator = true;
 			this.radioTagsInternal.UseUnderline = true;
 			this.radioTagsInternal.Group = new global::GLib.SList (global::System.IntPtr.Zero);

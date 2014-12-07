@@ -107,7 +107,6 @@
     <Compile Include="Windows\AboutWindow.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="Windows\BrowserWindow.cs" />
-    <Compile Include="Windows\BrowserWindowPhotoGrid.cs" />
     <Compile Include="Windows\FatalErrorWindow.cs" />
     <Compile Include="Windows\LoginWindow.cs" />
     <Compile Include="Windows\PreferencesWindow.cs" />
