@@ -196,6 +196,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
             buttonFirstPage.TooltipText = "Go to the first page of photos";
             buttonPreviousPage.TooltipText = "Go to the previous page of photos";
+            comboboxPage.TooltipText = "Select a page to quickly jump there";
             buttonNextPage.TooltipText = "Go to the next page of photos";
             buttonLastPage.TooltipText = "Go the last page of photos";
             buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";

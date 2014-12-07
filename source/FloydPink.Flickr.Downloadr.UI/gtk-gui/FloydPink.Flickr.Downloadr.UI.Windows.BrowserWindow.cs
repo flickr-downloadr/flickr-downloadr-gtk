@@ -225,7 +225,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			w15.Fill = false;
 			// Container child hboxCenter.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
-			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.vbox2 = new global::Gtk.VBox ();

@@ -115,5 +115,13 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = FloydPink.Flickr.Downloadr.UI\FloydPink.Flickr.Downloadr.UI.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.NoTabsAfterNonTabs = True
+		$1.EolMarker = Unix
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/plain
 	EndGlobalSection
 EndGlobal
