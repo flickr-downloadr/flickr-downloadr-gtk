@@ -98,6 +98,9 @@
                             <origin>../source/bin/Release/flickr-downloadr.exe</origin>
                         </distributionFile>
                         <distributionFile>
+                            <origin>../source/bin/Release/Castle.Core.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
                             <origin>../source/bin/Release/DotNetOpenAuth.dll</origin>
                         </distributionFile>
                         <distributionFile>
@@ -126,6 +129,9 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>../source/bin/Release/StructureMap.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../source/bin/Release/flickrdownloadr.log4net</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>../misc/images/icons/icon.png</origin>
@@ -841,8 +847,7 @@ end tell'
                     </conditionRuleList>
                     <elseActionList>
                         <showWarning>
-                            <text>The currently installed version is the same or newer than 
-the current. Exiting the installer...</text>
+                            <text>The currently installed version is the same or newer than the current. Exiting the installer...</text>
                             <title>Current/Newer Installation Exists</title>
                         </showWarning>
                         <exit>

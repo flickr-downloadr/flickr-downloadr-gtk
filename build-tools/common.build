@@ -105,6 +105,7 @@
     <copy file="flickr-downloadr.icns" tofile="${mac.app.name}/Contents/Resources/flickr-downloadr.icns" />
     <copy todir="${mac.app.name}/Contents/MacOS/bin">
       <fileset basedir="${bin.dir}">
+        <include name="Castle.Core.dll" />
         <include name="DotNetOpenAuth.dll" />
         <include name="flickr-downloadr.exe" />
         <include name="FloydPink.Flickr.Downloadr.Bootstrap.dll" />
@@ -116,6 +117,7 @@
         <include name="log4net.dll" />
         <include name="ServiceStack.Text.dll" />
         <include name="StructureMap.dll" />
+        <include name="flickrdownloadr.log" />
       </fileset>
     </copy>
     <copy file="flickrdownloadr_launch_mac.sh" tofile="${mac.app.name}/Contents/MacOS/flickrdownloadr" />
@@ -129,6 +131,7 @@
     <mkdir dir="${linux.bundle}/bin" />
     <copy todir="${linux.bundle}/bin">
       <fileset basedir="${bin.dir}">
+        <include name="Castle.Core.dll" />
         <include name="DotNetOpenAuth.dll" />
         <include name="flickr-downloadr.exe" />
         <include name="FloydPink.Flickr.Downloadr.Bootstrap.dll" />
@@ -140,6 +143,7 @@
         <include name="log4net.dll" />
         <include name="ServiceStack.Text.dll" />
         <include name="StructureMap.dll" />
+        <include name="flickrdownloadr.log" />
       </fileset>
     </copy>
     <copy file="flickrdownloadr_launch_linux.sh" tofile="${linux.bundle}/flickrdownloadr" />
