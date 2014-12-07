@@ -117,7 +117,7 @@
         <include name="log4net.dll" />
         <include name="ServiceStack.Text.dll" />
         <include name="StructureMap.dll" />
-        <include name="flickrdownloadr.log" />
+        <include name="flickrdownloadr.log4net" />
       </fileset>
     </copy>
     <copy file="flickrdownloadr_launch_mac.sh" tofile="${mac.app.name}/Contents/MacOS/flickrdownloadr" />
@@ -143,7 +143,7 @@
         <include name="log4net.dll" />
         <include name="ServiceStack.Text.dll" />
         <include name="StructureMap.dll" />
-        <include name="flickrdownloadr.log" />
+        <include name="flickrdownloadr.log4net" />
       </fileset>
     </copy>
     <copy file="flickrdownloadr_launch_linux.sh" tofile="${linux.bundle}/flickrdownloadr" />
