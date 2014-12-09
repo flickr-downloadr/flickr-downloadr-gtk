@@ -20,6 +20,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private string _pages;
         private string _perPage;
         private IEnumerable<Photo> _photos;
+        private bool _photosListIsEmpty;
         private string _total;
         private SpinnerWidget spinner;
         private readonly IBrowserPresenter _presenter;
@@ -275,6 +276,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                                    this.buttonNextPage.Sensitive = this.buttonLastPage.Sensitive = Page != Pages;
 
                                    this.scrolledwindowPhotos.Vadjustment.Value = 0;
+
+                                   var hasPhotos = Photos.Any();
+                                   hbox5.Sensitive = hasPhotos;
+                                   hboxCenter.Sensitive = hasPhotos;
+                                   hboxRight.Sensitive = hasPhotos;
                                });
             SetupTheImageGrid(Photos);
         }
@@ -327,7 +333,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void SetupTheImageRow(int i, IEnumerable<Photo> rowPhotos) {
             Log.Debug("SetupTheImageRow");
-            var rowPhotosCount = rowPhotos.Count();
+            var rowPhotosAsList = rowPhotos as IList<Photo> ?? rowPhotos.ToList();
+            var rowPhotosCount = rowPhotosAsList.Count();
 
             var rowId = string.Format("hboxPhotoRow{0}", i);
             var hboxPhotoRow = new HBox();
@@ -336,7 +343,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
             for (var j = 0; j < NumberOfPhotosInARow; j++) {
                 if (j < rowPhotosCount) {
-                    hboxPhotoRow = AddImageToRow(hboxPhotoRow, j, rowPhotos.ElementAt(j), rowId);
+                    hboxPhotoRow = AddImageToRow(hboxPhotoRow, j, rowPhotosAsList.ElementAt(j), rowId);
                 } else {
                     hboxPhotoRow = AddImageToRow(hboxPhotoRow, j, null, rowId);
                 }
@@ -353,8 +360,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         private void SetupTheImageGrid(IEnumerable<Photo> photos) {
             Log.Debug("SetupTheImageGrid");
-            var numberOfRows = photos.Count() / NumberOfPhotosInARow;
-            if (photos.Count() % NumberOfPhotosInARow > 0) {
+            var photosAsList = photos as IList<Photo> ?? photos.ToList();
+            var photosCount = photosAsList.Count();
+            var numberOfRows = photosCount / NumberOfPhotosInARow;
+            if (photosCount % NumberOfPhotosInARow > 0) {
                 numberOfRows += 1; // add an additional row for remainder of the images that won't reach full row
             }
             numberOfRows = numberOfRows < 3 ? 3 : numberOfRows; // render a minimum of 3 rows
@@ -363,8 +372,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
                 Application.Invoke(delegate { this.vboxPhotos.Remove(child); });
             }
 
+            if (photosCount == 0) {
+                return;
+            }
+
             for (var i = 0; i < numberOfRows; i++) {
-                var rowPhotos = photos.Skip(i * NumberOfPhotosInARow).Take(NumberOfPhotosInARow);
+                var rowPhotos = photosAsList.Skip(i * NumberOfPhotosInARow).Take(NumberOfPhotosInARow);
                 SetupTheImageRow(i, rowPhotos);
             }
         }
@@ -488,7 +501,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         protected async void comboboxPageChange(object sender, EventArgs e) {
             var jumpToPage = ((ComboBox) sender).ActiveText;
-            if (jumpToPage != Page) {
+            if (jumpToPage != null && jumpToPage != Page) {
                 await _presenter.NavigateTo(int.Parse(jumpToPage));
             }
         }

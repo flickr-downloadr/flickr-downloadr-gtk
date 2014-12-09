@@ -8,6 +8,9 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
             For<ILoginLogic>()
                 .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<ILoginLogic>())
                 .Use<LoginLogic>();
+            For<IUserInfoLogic>()
+                .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IUserInfoLogic>())
+                .Use<UserInfoLogic>();
             For<IBrowserLogic>()
                 .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IBrowserLogic>())
                 .Use<BrowserLogic>();

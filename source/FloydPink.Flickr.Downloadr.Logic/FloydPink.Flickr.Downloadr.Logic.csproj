@@ -49,11 +49,13 @@
     <Compile Include="Interfaces\ILoginLogic.cs" />
     <Compile Include="Interfaces\IOriginalTagsLogic.cs" />
     <Compile Include="Interfaces\IPreferencesLogic.cs" />
+    <Compile Include="Interfaces\IUserInfoLogic.cs" />
     <Compile Include="LoginLogic.cs" />
     <Compile Include="OriginalTagsLogic.cs" />
     <Compile Include="PreferencesLogic.cs" />
     <Compile Include="Interfaces\IUpdateCheckLogic.cs" />
     <Compile Include="UpdateCheckLogic.cs" />
+    <Compile Include="UserInfoLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FloydPink.Flickr.Downloadr.Model\FloydPink.Flickr.Downloadr.Model.csproj">

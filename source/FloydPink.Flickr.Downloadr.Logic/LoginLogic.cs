@@ -17,11 +17,13 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IRepository<Token> _tokenRepository;
         private readonly IRepository<Update> _updateRepository;
         private readonly IRepository<User> _userRepository;
+        private readonly IUserInfoLogic _userInfoLogic;
 
-        public LoginLogic(IOAuthManager oAuthManager, IRepository<Token> tokenRepository,
+        public LoginLogic(IOAuthManager oAuthManager, IUserInfoLogic userInfoLogic, IRepository<Token> tokenRepository,
                           IRepository<User> userRepository, IRepository<Preferences> preferencesRepository,
                           IRepository<Update> updateRepository) {
             _oAuthManager = oAuthManager;
+            _userInfoLogic = userInfoLogic;
             _tokenRepository = tokenRepository;
             _userRepository = userRepository;
             _preferencesRepository = preferencesRepository;
@@ -35,33 +37,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         }
 
         private async void CallApplyUser(User authenticatedUser) {
-            var exraParams = new Dictionary<string, string> {
-                {
-                    ParameterNames.UserId, authenticatedUser.UserNsId
-                }
-            };
-            var userInfo = (Dictionary<string, object>)
-                (await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams))[
-                    "person"];
-            authenticatedUser.Info = new UserInfo {
-                Id = authenticatedUser.UserNsId,
-                IsPro = Convert.ToBoolean(userInfo["ispro"]),
-                IconServer = userInfo["iconserver"].ToString(),
-                IconFarm = Convert.ToInt32(userInfo["iconfarm"]),
-                PathAlias =
-                    userInfo["path_alias"] == null
-                        ? string.Empty
-                        : userInfo["path_alias"].ToString(),
-                Description = userInfo.GetSubValue("description").ToString(),
-                PhotosUrl = userInfo.GetSubValue("photosurl").ToString(),
-                ProfileUrl = userInfo.GetSubValue("profileurl").ToString(),
-                MobileUrl = userInfo.GetSubValue("mobileurl").ToString(),
-                PhotosCount =
-                    Convert.ToInt32(
-                        ((Dictionary<string, object>) userInfo["photos"]).GetSubValue(
-                            "count"))
-            };
-            _applyUser(authenticatedUser);
+            _applyUser(await _userInfoLogic.PopulateUserInfo(authenticatedUser));
         }
 
         #region ILoginLogic Members
