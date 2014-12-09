@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using FloydPink.Flickr.Downloadr.Logic;
@@ -14,10 +13,10 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
     [TestFixture]
     public class LoginLogicTests {
         private IOAuthManager _oAuthManager;
-        private IUserInfoLogic _userInfoLogic;
         private IRepository<Preferences> _preferencesRepository;
         private IRepository<Token> _tokenRepository;
         private IRepository<Update> _updateRepository;
+        private IUserInfoLogic _userInfoLogic;
         private IRepository<User> _userRepository;
 
         [SetUp]
@@ -102,7 +101,8 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
                                             "\"}},\"stat\":\"ok\"}";
             dynamic deserializedJson = (new JavaScriptSerializer()).Deserialize<dynamic>(mockJsonResponse);
 
-            var logic = new LoginLogic(_oAuthManager, _userInfoLogic, _tokenRepository, _userRepository, _preferencesRepository, _updateRepository);
+            var logic = new LoginLogic(_oAuthManager, _userInfoLogic, _tokenRepository, _userRepository, _preferencesRepository,
+                _updateRepository);
 
             _tokenRepository.Expect(t => t.Get()).Return(new Token {
                 TokenString = "Some String",
@@ -119,7 +119,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
                          .IgnoreArguments()
                          .Return(Task.FromResult<dynamic>(deserializedJson));
 
-            var applyUser = new Action<User>(delegate(User u) { });
+            var applyUser = new Action<User>(delegate { });
 
             Assert.IsTrue(await logic.IsUserLoggedInAsync(applyUser));
 
