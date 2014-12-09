@@ -4,10 +4,11 @@ using FloydPink.Flickr.Downloadr.Repository.Helpers;
 
 namespace FloydPink.Flickr.Downloadr.Repository {
     public abstract class RepositoryBase {
+        private const string CryptKey = "SomeEncryPtionKey123";
+
         private readonly string _appDataFolder =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "flickr-downloadr");
 
-        private const string CryptKey = "SomeEncryPtionKey123";
         protected abstract string RepoFileName { get; }
         private string AbsoluteFilePath { get { return Path.Combine(_appDataFolder, RepoFileName); } }
 

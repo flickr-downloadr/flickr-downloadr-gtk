@@ -8,11 +8,11 @@ using StructureMap;
 
 namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public static class Bootstrapper {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (Bootstrapper));
-        private static Container _container;
         private const string AppenderName = "XmlSchemaFileAppender";
         private const string LogFileName = "flickrdownloadr.log";
         private const string LogConfigFileName = "flickrdownloadr.log4net";
+        private static readonly ILog Log = LogManager.GetLogger(typeof (Bootstrapper));
+        private static Container _container;
         private static string _logLevel;
         private static string _logFile;
 
