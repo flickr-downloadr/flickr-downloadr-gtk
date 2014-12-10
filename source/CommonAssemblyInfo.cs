@@ -21,6 +21,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyrightAttribute("Copyright © 2012-2014 Haridas Pachuveetil")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("1.0.2.5")]
-[assembly: AssemblyFileVersionAttribute("1.0.2.5")]
+[assembly: AssemblyVersionAttribute("1.0.3.1")]
+[assembly: AssemblyFileVersionAttribute("1.0.3.1")]
 
