@@ -83,6 +83,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         }
 
         public HttpWebRequest PrepareAuthorizedRequest(IDictionary<string, string> parameters) {
+            ((HttpWebRequest) WebRequest.Create(_serviceEndPoint.Location)).ServicePoint.Expect100Continue = false;
             return _consumer.PrepareAuthorizedRequest(_serviceEndPoint, AccessToken, parameters);
         }
 
