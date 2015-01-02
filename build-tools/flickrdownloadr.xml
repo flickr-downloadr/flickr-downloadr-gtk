@@ -209,13 +209,13 @@
                     <actionList>
                         <httpGet>
                             <filename>${system_temp_directory}/dotnet45.exe</filename>
-                            <progressText>Downloading GTK# installer</progressText>
+                            <progressText>Downloading .NET installer</progressText>
                             <url>http://flickrdownloadr.com/installer/windows/dependencies/dotnet45.exe</url>
                         </httpGet>
                         <runProgram>
                             <program>${system_temp_directory}/dotnetfx.exe</program>
                             <programArguments>/q:a "/c:install.exe /qb"</programArguments>
-                            <progressText>Installing GTK# Framework</progressText>
+                            <progressText>Installing .NET framework</progressText>
                         </runProgram>
                         <deleteFile>
                             <path>${system_temp_directory}/dotnetfx.exe</path>
@@ -328,13 +328,13 @@
                                     <title>Installing Mono Framework for Mac</title>
                                     <actionList>
                                         <httpGet>
-                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</filename>
+                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg</filename>
                                             <progressText>Downloading Mono Framework Installer</progressText>
-                                            <url>http://download.mono-project.com/archive/3.4.0/macos-10-x86/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg</url>
+                                            <url>http://download.mono-project.com/archive/3.10.0/macos-10-x86/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg</url>
                                         </httpGet>
                                         <runProgram>
                                             <program>open</program>
-                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.4.0.macos10.xamarin.x86.pkg"</programArguments>
+                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg"</programArguments>
                                             <progressText>Installing Mono Framework</progressText>
                                         </runProgram>
                                     </actionList>
