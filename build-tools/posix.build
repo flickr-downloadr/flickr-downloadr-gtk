@@ -10,7 +10,6 @@
   <property name="source.directory" value="${working.dir}/source" />
   <property name="bin.dir" value="${working.dir}/source/bin/${project.build.type}" />
   <property name="nunit.results.dir" value="${working.dir}/source/bin/NUnit" />
-  <property name="secrets.in.file" value="${source.directory}/Secrets.cs.in" />
   <property name="secrets.out.file" value="${source.directory}/Secrets.cs" />
 
   <!-- Compilation settings -->

@@ -78,7 +78,7 @@
 
   <target name="createsecretconstantsclass">
     <echo message="Creating the Secrets.cs file..." />
-    <loadfile file="${secrets.in.file}" property="secrets-token-file">
+    <loadfile file="Secrets.cs.in" property="secrets-token-file">
       <filterchain>
         <replacetokens>
           <token key="SHAREDSECRET" value="${environment::get-variable('FLICKR_DOWNLOADR_SHARED_SECRET')}" />
