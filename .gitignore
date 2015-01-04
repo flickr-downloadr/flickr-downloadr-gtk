@@ -195,3 +195,5 @@ $RECYCLE.BIN/
 
 source/.nuget/NuGet.exe
 build-tools/flickrdownloadr.xml.backup
+source/Secrets.cs
+

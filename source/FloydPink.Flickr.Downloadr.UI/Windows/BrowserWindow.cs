@@ -20,7 +20,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
         private string _pages;
         private string _perPage;
         private IEnumerable<Photo> _photos;
-        private bool _photosListIsEmpty;
         private string _total;
         private SpinnerWidget spinner;
         private readonly IBrowserPresenter _presenter;

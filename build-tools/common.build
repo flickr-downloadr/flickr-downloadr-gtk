@@ -76,7 +76,22 @@
     <call target="nunittest" />
   </target>
 
-  <target name="createinstallbuilderlicense">
+  <target name="createsecretconstantsclass">
+    <echo message="Creating the Secrets.cs file..." />
+    <loadfile file="${secrets.in.file}" property="secrets-token-file">
+      <filterchain>
+        <replacetokens>
+          <token key="SHAREDSECRET" value="${environment::get-variable('FLICKR_DOWNLOADR_SHARED_SECRET')}" />
+          <token key="CONSUMERKEY" value="${environment::get-variable('FLICKR_DOWNLOADR_CONSUMER_KEY')}" />
+          <token key="CONSUMERSECRET" value="${environment::get-variable('FLICKR_DOWNLOADR_CONSUMER_SECRET')}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+    <touch file="${secrets.out.file}" />
+    <echo append="true" message="${secrets-token-file}" file="${secrets.out.file}" />
+  </target>
+
+  <target name="createinstallbuilderlicense" depends="createsecretconstantsclass">
     <echo message="Creating the Install Builder License File..." />
     <loadfile file="license.xml.in" property="license-token-file">
       <filterchain>

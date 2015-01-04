@@ -8,13 +8,6 @@ using StructureMap.Configuration.DSL;
 
 namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class OAuthRegistry : Registry {
-        private const string SharedSecret = "kn98nkgg90sknka2038234(&9883!@%^";
-
-        private const string ConsumerKey =
-            "EAAAABumLz7N4IfZ9hH2YCoRjttqgG3QQEpPUhHC4EUnXl/JOE9Zl90MwGZh2KtuUzIpJz/9s0BX9q3DVBrPUP00g9E=";
-
-        private const string ConsumerSecret = "EAAAAEsjQ3vGqYjtqsHqE+unh1gtlK6usoX2+65UUOW83RHCAC+/n0EPnCaPbaXUAvPs9w==";
-
         private static readonly ServiceProviderDescription FlickrServiceDescription =
             new ServiceProviderDescription {
                 ProtocolVersion = ProtocolVersion.V10a,
@@ -49,9 +42,9 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
             For<IConsumerTokenManager>()
                 .Use<TokenManager>()
                 .Ctor<string>("consumerKey")
-                .Is(Crypt.Decrypt(ConsumerKey, SharedSecret))
+                .Is(Crypt.Decrypt(Secrets.ConsumerKey, Secrets.SharedSecret))
                 .Ctor<string>("consumerSecret")
-                .Is(Crypt.Decrypt(ConsumerSecret, SharedSecret));
+                .Is(Crypt.Decrypt(Secrets.ConsumerSecret, Secrets.SharedSecret));
             For<IHttpListenerManager>()
                 .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IHttpListenerManager>())
                 .Use<HttpListenerManager>();
