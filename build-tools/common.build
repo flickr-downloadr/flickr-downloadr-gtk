@@ -20,7 +20,7 @@
     <mkdir dir="${nunit.results.dir}" failonerror="true" unless="${directory::exists(nunit.results.dir)}"/>
   </target>
 
-  <target name="increment-version">
+  <target name="increment-version" depends="createsecretconstantsclass">
     <echo message="Incrementing the version:" />
     <version buildtype="NoIncrement" revisiontype="Increment" startdate="2012-04-02" verbose="true"/>
     <call target="create-common-assemblyinfo" />
@@ -91,7 +91,7 @@
     <echo append="true" message="${secrets-token-file}" file="${secrets.out.file}" />
   </target>
 
-  <target name="createinstallbuilderlicense" depends="createsecretconstantsclass">
+  <target name="createinstallbuilderlicense">
     <echo message="Creating the Install Builder License File..." />
     <loadfile file="license.xml.in" property="license-token-file">
       <filterchain>
