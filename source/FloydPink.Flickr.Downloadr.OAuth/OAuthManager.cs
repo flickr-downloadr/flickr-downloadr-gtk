@@ -34,6 +34,10 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
             _listenerManager = listenerManager;
             _consumer = consumer;
             _serviceEndPoint = serviceEndPoint;
+            // Trying to fix https://github.com/flickr-downloadr/flickr-downloadr-gtk/issues/15
+            // From the comment in this SO answer:
+            // http://stackoverflow.com/questions/1186682/expectation-failed-when-trying-to-update-twitter-status/2025073#2025073
+            ServicePointManager.FindServicePoint(_serviceEndPoint.Location).Expect100Continue = false;
         }
 
         private string CompleteAuthorization(string verifier) {
@@ -83,7 +87,6 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         }
 
         public HttpWebRequest PrepareAuthorizedRequest(IDictionary<string, string> parameters) {
-            ((HttpWebRequest) WebRequest.Create(_serviceEndPoint.Location)).ServicePoint.Expect100Continue = false;
             return _consumer.PrepareAuthorizedRequest(_serviceEndPoint, AccessToken, parameters);
         }
 
