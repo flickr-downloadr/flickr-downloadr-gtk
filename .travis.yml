@@ -8,7 +8,7 @@ env:
   global:
   - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
   - secure: aNNjDler0hHuiPXBSNptNRAtH9ZFGZxiah8Oik3HKp4lVJm5eYZS4ZYXZPyy5HdBoDwQvzFuwQ5b9yJJ8AJmDApuQ/f3sZB7JarN+J2abVFEr8DQWRIIoh08MA3t68od0UYXr2rTQ0DnCdRHa0WfZHUf1RUQr16NzDwzn1b4SUc=
-  - secure: Piq6Rk3UMSz0O4hd3PJly45nWKZAz0cCFVeul8uhpztDdFYZk/KlZms5j47tNXsGpAU9TBoRcYvnAYVC5VmxGz2YsUowoIMLjdpQeCBOKyhJl+FU6B1+fKTN2GA6Jpy8tYCdn6J3JO2/BxVTgmyXGykNOAkWa5v3xeafrXGMeHs=
+  - secure: LmahwAAWH+HKVQA6g3ATT6rQ1551VTI0mRJ/DaTTIUYbyezPQNkTmsXlBiv/ms72pI29MQVH6pOVN65KaPoSEsUu8SF9H4KMLua0p3zcSjF429fPfmkCDjRhC+Js6FT135JFSZ2Q2KUVAlRfmJQ2jgO4juhM2yL1oelahauNQh4=
 before_install:
 - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
 - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
