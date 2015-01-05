@@ -1,8 +1,8 @@
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
-
 namespace FloydPink.Flickr.Downloadr.Presentation {
+    using Logic.Interfaces;
+    using Model;
+    using Views;
+
     public class LoginPresenter : PresenterBase, ILoginPresenter {
         private Preferences _preferences;
         private readonly ILoginLogic _logic;

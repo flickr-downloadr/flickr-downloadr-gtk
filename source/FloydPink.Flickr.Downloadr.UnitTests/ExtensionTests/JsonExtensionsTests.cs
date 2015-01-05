@@ -1,8 +1,8 @@
-﻿using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository.Extensions;
-using NUnit.Framework;
+﻿namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
+    using Model;
+    using NUnit.Framework;
+    using Repository.Extensions;
 
-namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
     [TestFixture]
     public class JsonExtensionsTests {
         [Test]

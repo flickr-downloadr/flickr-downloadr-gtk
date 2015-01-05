@@ -1,7 +1,7 @@
-﻿using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository.Extensions;
+﻿namespace FloydPink.Flickr.Downloadr.Repository {
+    using Extensions;
+    using Model;
 
-namespace FloydPink.Flickr.Downloadr.Repository {
     public class PreferencesRepository : RepositoryBase, IRepository<Preferences> {
         protected override string RepoFileName { get { return "prefs.repo"; } }
 

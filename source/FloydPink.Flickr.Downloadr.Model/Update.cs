@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace FloydPink.Flickr.Downloadr.Model {
+    using System;
 
-namespace FloydPink.Flickr.Downloadr.Model {
     public class Update {
         public Update() {
             LastChecked = DateTime.MinValue;

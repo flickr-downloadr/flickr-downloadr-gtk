@@ -1,10 +1,10 @@
-﻿using System.ComponentModel;
-using System.Web;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.UI.CachedImage;
-using Gtk;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Widgets {
+    using System.ComponentModel;
+    using System.Web;
+    using CachedImage;
+    using Gtk;
+    using Model;
 
-namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     [ToolboxItem(true)]
     public partial class PreviewPhotoWidget : Bin {
         public PreviewPhotoWidget(Photo photo) {

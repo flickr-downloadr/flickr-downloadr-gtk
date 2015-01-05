@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
 namespace FloydPink.Flickr.Downloadr.Model.Enums {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     public static class SafeSearch {
         public static readonly string Safe = "1";
         public static readonly string Moderate = "2";

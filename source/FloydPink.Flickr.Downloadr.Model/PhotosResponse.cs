@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace FloydPink.Flickr.Downloadr.Model {
+    using System.Collections.Generic;
 
-namespace FloydPink.Flickr.Downloadr.Model {
     public class PhotosResponse {
         public PhotosResponse(int page, int pages, int perPage, int total, IEnumerable<Photo> photos) {
             Page = page;

@@ -1,8 +1,8 @@
-using System.ComponentModel;
-using System.Web.Script.Serialization;
-using FloydPink.Flickr.Downloadr.Model.Extensions;
-
 namespace FloydPink.Flickr.Downloadr.Model {
+    using System.ComponentModel;
+    using System.Web.Script.Serialization;
+    using Extensions;
+
     public class User : INotifyPropertyChanged {
         [ScriptIgnore] private UserInfo _info;
         private string _name;

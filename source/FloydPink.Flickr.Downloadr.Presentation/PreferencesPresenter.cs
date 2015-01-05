@@ -1,10 +1,10 @@
-﻿using System.IO;
-using System.Linq;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
+﻿namespace FloydPink.Flickr.Downloadr.Presentation {
+    using System.IO;
+    using System.Linq;
+    using Logic.Interfaces;
+    using Model;
+    using Views;
 
-namespace FloydPink.Flickr.Downloadr.Presentation {
     public class PreferencesPresenter : PresenterBase, IPreferencesPresenter {
         private readonly IPreferencesLogic _logic;
 

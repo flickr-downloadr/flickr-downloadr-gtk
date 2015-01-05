@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Reflection;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository;
+﻿namespace FloydPink.Flickr.Downloadr.Logic {
+    using System;
+    using System.IO;
+    using System.Net;
+    using System.Reflection;
+    using Interfaces;
+    using Model;
+    using Repository;
 
-namespace FloydPink.Flickr.Downloadr.Logic {
     public class UpdateCheckLogic : IUpdateCheckLogic {
         private readonly IRepository<Update> _repository;
 

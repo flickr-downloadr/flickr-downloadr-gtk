@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using System.Web;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Helpers {
+    using System.Reflection;
+    using System.Web;
 
-namespace FloydPink.Flickr.Downloadr.UI.Helpers {
     public class VersionHelper {
         private const string CampaignUrlFormat = "http://flickrdownloadr.com/{0}?utm_source=gtkapp&utm_medium={1}&utm_campaign={2}";
 

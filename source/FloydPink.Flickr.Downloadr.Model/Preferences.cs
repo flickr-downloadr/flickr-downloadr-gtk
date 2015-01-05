@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using FloydPink.Flickr.Downloadr.Model.Enums;
-using FloydPink.Flickr.Downloadr.Model.Extensions;
+﻿namespace FloydPink.Flickr.Downloadr.Model {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using Enums;
+    using Extensions;
 
-namespace FloydPink.Flickr.Downloadr.Model {
     public class Preferences : INotifyPropertyChanged {
         private string _cacheLocation;
         private bool _checkForUpdates;

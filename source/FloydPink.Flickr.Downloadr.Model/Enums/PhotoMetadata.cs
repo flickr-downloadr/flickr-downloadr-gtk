@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿namespace FloydPink.Flickr.Downloadr.Model.Enums {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
 
-namespace FloydPink.Flickr.Downloadr.Model.Enums {
     public static class PhotoMetadata {
         public static readonly string Tags = "Tags";
         public static readonly string Description = "Description";

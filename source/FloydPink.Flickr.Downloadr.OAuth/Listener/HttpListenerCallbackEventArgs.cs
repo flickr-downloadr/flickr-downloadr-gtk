@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Specialized;
-
 namespace FloydPink.Flickr.Downloadr.OAuth.Listener {
+    using System;
+    using System.Collections.Specialized;
+
     public class HttpListenerCallbackEventArgs : EventArgs {
         public HttpListenerCallbackEventArgs(NameValueCollection queryStrings) {
             QueryStrings = queryStrings;

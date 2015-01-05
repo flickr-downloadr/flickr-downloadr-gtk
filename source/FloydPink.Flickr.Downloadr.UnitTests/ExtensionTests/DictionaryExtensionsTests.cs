@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using FloydPink.Flickr.Downloadr.Logic.Extensions;
-using NUnit.Framework;
+﻿namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
+    using System.Collections.Generic;
+    using Logic.Extensions;
+    using NUnit.Framework;
 
-namespace FloydPink.Flickr.Downloadr.UnitTests.ExtensionTests {
     [TestFixture]
     public class DictionaryExtensionsTests {
         [Test]

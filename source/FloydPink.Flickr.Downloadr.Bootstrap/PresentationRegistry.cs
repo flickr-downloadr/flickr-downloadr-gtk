@@ -1,7 +1,7 @@
-﻿using FloydPink.Flickr.Downloadr.Presentation;
-using StructureMap.Configuration.DSL;
+﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using Presentation;
+    using StructureMap.Configuration.DSL;
 
-namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class PresentationRegistry : Registry {
         public PresentationRegistry() {
             For<ILoginPresenter>()

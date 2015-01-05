@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq.Expressions;
-using Castle.DynamicProxy;
-using log4net;
+﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using System;
+    using System.Linq.Expressions;
+    using Castle.DynamicProxy;
+    using log4net;
 
-namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class DynamicProxy {
         public static Expression<Func<T, T>> LoggingInterceptorFor<T>() {
             // TODO: Uncomment the below line when the issue with Dynamic Proxy crashing Mono is fixed: https://github.com/castleproject/Core/issues/72

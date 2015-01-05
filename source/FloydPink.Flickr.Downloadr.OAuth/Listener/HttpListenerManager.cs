@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-
 namespace FloydPink.Flickr.Downloadr.OAuth.Listener {
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Text;
+
     public class HttpListenerManager : IHttpListenerManager {
         private static readonly Random Random = new Random();
         private static readonly List<string> ActiveListeners = new List<string>();

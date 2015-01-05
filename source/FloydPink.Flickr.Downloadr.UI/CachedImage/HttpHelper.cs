@@ -1,7 +1,7 @@
-﻿using System.IO;
-using System.Net;
+﻿namespace FloydPink.Flickr.Downloadr.UI.CachedImage {
+    using System.IO;
+    using System.Net;
 
-namespace FloydPink.Flickr.Downloadr.UI.CachedImage {
     public class HttpHelper {
         private static byte [] Get(string url) {
             var request = WebRequest.Create(url);

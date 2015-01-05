@@ -1,8 +1,8 @@
-﻿using FloydPink.Flickr.Downloadr.Logic;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using StructureMap.Configuration.DSL;
+﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using Logic;
+    using Logic.Interfaces;
+    using StructureMap.Configuration.DSL;
 
-namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class LogicRegistry : Registry {
         public LogicRegistry() {
             For<ILoginLogic>()

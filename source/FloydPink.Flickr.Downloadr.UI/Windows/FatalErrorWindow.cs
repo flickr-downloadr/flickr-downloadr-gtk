@@ -1,6 +1,6 @@
-﻿using FloydPink.Flickr.Downloadr.UI.Helpers;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using Helpers;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class FatalErrorWindow : BaseWindow {
         public FatalErrorWindow() {
             Log.Debug("ctor");

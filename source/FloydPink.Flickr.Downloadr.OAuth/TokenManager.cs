@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using DotNetOpenAuth.OAuth.ChannelElements;
-using DotNetOpenAuth.OAuth.Messages;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository;
-
 namespace FloydPink.Flickr.Downloadr.OAuth {
+    using System;
+    using System.Collections.Generic;
+    using DotNetOpenAuth.OAuth.ChannelElements;
+    using DotNetOpenAuth.OAuth.Messages;
+    using Model;
+    using Repository;
+
     public class TokenManager : IConsumerTokenManager {
         private readonly IRepository<Token> _tokenRepository;
 

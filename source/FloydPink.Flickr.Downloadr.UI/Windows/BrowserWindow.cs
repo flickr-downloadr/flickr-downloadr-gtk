@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using FloydPink.Flickr.Downloadr.Bootstrap;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Enums;
-using FloydPink.Flickr.Downloadr.Model.Extensions;
-using FloydPink.Flickr.Downloadr.Presentation;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using FloydPink.Flickr.Downloadr.UI.Widgets;
-using Gtk;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Linq;
+    using Bootstrap;
+    using Gtk;
+    using Helpers;
+    using Model;
+    using Model.Enums;
+    using Model.Extensions;
+    using Presentation;
+    using Presentation.Views;
+    using Widgets;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class BrowserWindow : BaseWindow, IBrowserView {
         private bool _doNotFireOnSelectionChanged;
         private string _page;

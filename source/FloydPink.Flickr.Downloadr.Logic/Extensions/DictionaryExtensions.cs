@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Constants;
+﻿namespace FloydPink.Flickr.Downloadr.Logic.Extensions {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Model;
+    using Model.Constants;
 
-namespace FloydPink.Flickr.Downloadr.Logic.Extensions {
     public static class DictionaryExtensions {
         private static readonly bool runningOnMono = Type.GetType("Mono.Runtime") != null;
 

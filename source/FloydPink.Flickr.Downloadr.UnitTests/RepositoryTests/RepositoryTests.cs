@@ -1,8 +1,8 @@
-﻿using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository;
-using NUnit.Framework;
+﻿namespace FloydPink.Flickr.Downloadr.UnitTests.RepositoryTests {
+    using Model;
+    using NUnit.Framework;
+    using Repository;
 
-namespace FloydPink.Flickr.Downloadr.UnitTests.RepositoryTests {
     [TestFixture]
     public class RepositoryTests {
         private TokenRepository _repository;

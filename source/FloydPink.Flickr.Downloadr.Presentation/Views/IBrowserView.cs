@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using FloydPink.Flickr.Downloadr.Model;
+﻿namespace FloydPink.Flickr.Downloadr.Presentation.Views {
+    using System.Collections.Generic;
+    using Model;
 
-namespace FloydPink.Flickr.Downloadr.Presentation.Views {
     public interface IBrowserView : IBaseView {
         User User { get; set; }
         Preferences Preferences { get; set; }

@@ -1,12 +1,12 @@
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Castle.DynamicProxy;
-using log4net;
-using ServiceStack.Text;
-
 namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Castle.DynamicProxy;
+    using log4net;
+    using ServiceStack.Text;
+
     public class LogInterceptor : IInterceptor {
         private readonly ILog _log;
 

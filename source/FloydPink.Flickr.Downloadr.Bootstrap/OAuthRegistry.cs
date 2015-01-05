@@ -1,12 +1,12 @@
-﻿using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OAuth;
-using DotNetOpenAuth.OAuth.ChannelElements;
-using FloydPink.Flickr.Downloadr.OAuth;
-using FloydPink.Flickr.Downloadr.OAuth.Listener;
-using FloydPink.Flickr.Downloadr.Repository.Helpers;
-using StructureMap.Configuration.DSL;
+﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using DotNetOpenAuth.Messaging;
+    using DotNetOpenAuth.OAuth;
+    using DotNetOpenAuth.OAuth.ChannelElements;
+    using OAuth;
+    using OAuth.Listener;
+    using Repository.Helpers;
+    using StructureMap.Configuration.DSL;
 
-namespace FloydPink.Flickr.Downloadr.Bootstrap {
     public class OAuthRegistry : Registry {
         private static readonly ServiceProviderDescription FlickrServiceDescription =
             new ServiceProviderDescription {

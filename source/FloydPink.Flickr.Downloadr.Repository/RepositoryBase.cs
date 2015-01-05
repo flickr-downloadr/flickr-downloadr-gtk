@@ -1,8 +1,8 @@
-using System;
-using System.IO;
-using FloydPink.Flickr.Downloadr.Repository.Helpers;
-
 namespace FloydPink.Flickr.Downloadr.Repository {
+    using System;
+    using System.IO;
+    using Helpers;
+
     public abstract class RepositoryBase {
         private const string CryptKey = "SomeEncryPtionKey123";
 

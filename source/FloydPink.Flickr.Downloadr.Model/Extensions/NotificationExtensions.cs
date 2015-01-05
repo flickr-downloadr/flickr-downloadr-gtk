@@ -1,9 +1,9 @@
-using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
-
 namespace FloydPink.Flickr.Downloadr.Model.Extensions {
+    using System;
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using System.Reflection;
+
     // http://stackoverflow.com/a/527840/218882
     public static class NotificationExtensions {
         #region Delegates

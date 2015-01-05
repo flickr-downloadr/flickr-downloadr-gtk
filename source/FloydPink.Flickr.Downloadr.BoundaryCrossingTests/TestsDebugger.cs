@@ -1,7 +1,7 @@
-﻿using System;
-using System.Reflection;
+﻿namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests {
+    using System;
+    using System.Reflection;
 
-namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests {
     public static class TestsDebugger {
         private static void Main() {
             try {

@@ -1,7 +1,7 @@
-﻿using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository.Extensions;
+﻿namespace FloydPink.Flickr.Downloadr.Repository {
+    using Extensions;
+    using Model;
 
-namespace FloydPink.Flickr.Downloadr.Repository {
     public class UpdateRepository : RepositoryBase, IRepository<Update> {
         protected override string RepoFileName { get { return "update.repo"; } }
 

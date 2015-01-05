@@ -1,11 +1,11 @@
-using System.Threading;
-using FloydPink.Flickr.Downloadr.Bootstrap;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Constants;
-using NUnit.Framework;
-
 namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
+    using System.Threading;
+    using Bootstrap;
+    using Logic.Interfaces;
+    using Model;
+    using Model.Constants;
+    using NUnit.Framework;
+
     [TestFixture]
     public class BrowserLogicTests {
         private bool _asynchronouslyLoggedIn;

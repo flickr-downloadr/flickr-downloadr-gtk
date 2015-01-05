@@ -1,16 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using FloydPink.Flickr.Downloadr.Bootstrap;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Presentation;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
-using FloydPink.Flickr.Downloadr.UI.CachedImage;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using FloydPink.Flickr.Downloadr.UI.Widgets;
-using Gtk;
-using Mono.Unix;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using System;
+    using System.Diagnostics;
+    using Bootstrap;
+    using CachedImage;
+    using Gtk;
+    using Helpers;
+    using Model;
+    using Mono.Unix;
+    using Presentation;
+    using Presentation.Views;
+    using Widgets;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class LoginWindow : BaseWindow, ILoginView {
         private User _user;
         private SpinnerWidget spinner;

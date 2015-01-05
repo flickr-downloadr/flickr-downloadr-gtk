@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Constants;
-using FloydPink.Flickr.Downloadr.Model.Enums;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
+﻿namespace FloydPink.Flickr.Downloadr.Presentation {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Logic.Interfaces;
+    using Model;
+    using Model.Constants;
+    using Model.Enums;
+    using Views;
 
-namespace FloydPink.Flickr.Downloadr.Presentation {
     public class BrowserPresenter : PresenterBase, IBrowserPresenter {
         private CancellationTokenSource _cancellationTokenSource;
         private string _downloadedLocation;

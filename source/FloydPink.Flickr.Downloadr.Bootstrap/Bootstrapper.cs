@@ -1,12 +1,12 @@
-using System;
-using System.IO;
-using System.Xml.Linq;
-using log4net;
-using log4net.Appender;
-using log4net.Repository.Hierarchy;
-using StructureMap;
-
 namespace FloydPink.Flickr.Downloadr.Bootstrap {
+    using System;
+    using System.IO;
+    using System.Xml.Linq;
+    using log4net;
+    using log4net.Appender;
+    using log4net.Repository.Hierarchy;
+    using StructureMap;
+
     public static class Bootstrapper {
         private const string AppenderName = "XmlSchemaFileAppender";
         private const string LogFileName = "flickrdownloadr.log";

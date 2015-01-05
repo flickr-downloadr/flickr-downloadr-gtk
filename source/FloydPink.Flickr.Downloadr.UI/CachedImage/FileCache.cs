@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿namespace FloydPink.Flickr.Downloadr.UI.CachedImage {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
 
-namespace FloydPink.Flickr.Downloadr.UI.CachedImage {
     public class FileCache {
         static FileCache() {
             // default cache directory - can be changed if needed from App.xaml

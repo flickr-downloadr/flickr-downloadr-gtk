@@ -1,15 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
-using FloydPink.Flickr.Downloadr.Logic;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.OAuth;
-using FloydPink.Flickr.Downloadr.Repository;
-using NUnit.Framework;
-using Rhino.Mocks;
+﻿namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
+    using System;
+    using System.Threading.Tasks;
+    using System.Web.Script.Serialization;
+    using Logic;
+    using Logic.Interfaces;
+    using Model;
+    using NUnit.Framework;
+    using OAuth;
+    using Repository;
+    using Rhino.Mocks;
 
-namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests {
     [TestFixture]
     public class LoginLogicTests {
         private IOAuthManager _oAuthManager;

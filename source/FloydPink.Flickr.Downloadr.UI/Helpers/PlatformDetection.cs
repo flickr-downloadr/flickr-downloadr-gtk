@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Helpers {
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
 
-namespace FloydPink.Flickr.Downloadr.UI.Helpers {
     public static class PlatformDetection {
         public static readonly bool IsWindows;
         public static readonly bool IsMac;

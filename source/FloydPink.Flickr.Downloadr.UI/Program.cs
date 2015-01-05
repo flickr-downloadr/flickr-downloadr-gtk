@@ -1,13 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-using FloydPink.Flickr.Downloadr.Bootstrap;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using FloydPink.Flickr.Downloadr.UI.Windows;
-using GLib;
-using Gtk;
-using log4net;
+﻿namespace FloydPink.Flickr.Downloadr.UI {
+    using System;
+    using System.Diagnostics;
+    using Windows;
+    using Bootstrap;
+    using GLib;
+    using Gtk;
+    using Helpers;
+    using log4net;
 
-namespace FloydPink.Flickr.Downloadr.UI {
     internal class MainClass {
         private static readonly ILog Log = LogManager.GetLogger(typeof (MainClass));
 

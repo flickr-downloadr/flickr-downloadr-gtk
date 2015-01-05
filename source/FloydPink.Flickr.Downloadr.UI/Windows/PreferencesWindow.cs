@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using FloydPink.Flickr.Downloadr.Bootstrap;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Enums;
-using FloydPink.Flickr.Downloadr.Presentation;
-using FloydPink.Flickr.Downloadr.Presentation.Views;
-using FloydPink.Flickr.Downloadr.UI.CachedImage;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using Gtk;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using System;
+    using System.Collections.Generic;
+    using Bootstrap;
+    using CachedImage;
+    using Gtk;
+    using Helpers;
+    using Model;
+    using Model.Enums;
+    using Presentation;
+    using Presentation.Views;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class PreferencesWindow : BaseWindow, IPreferencesView {
         private Preferences _preferences;
         private readonly IPreferencesPresenter _presenter;

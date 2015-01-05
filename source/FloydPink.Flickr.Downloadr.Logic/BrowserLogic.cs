@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FloydPink.Flickr.Downloadr.Logic.Extensions;
-using FloydPink.Flickr.Downloadr.Logic.Interfaces;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Constants;
-using FloydPink.Flickr.Downloadr.OAuth;
-
 namespace FloydPink.Flickr.Downloadr.Logic {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Extensions;
+    using Interfaces;
+    using Model;
+    using Model.Constants;
+    using OAuth;
+
     public class BrowserLogic : IBrowserLogic {
         private readonly IDownloadLogic _downloadLogic;
         private readonly IOAuthManager _oAuthManager;

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using FloydPink.Flickr.Downloadr.UI.Helpers;
-using Gtk;
+﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using System;
+    using System.Diagnostics;
+    using Gtk;
+    using Helpers;
 
-namespace FloydPink.Flickr.Downloadr.UI.Windows {
     public partial class AboutWindow : BaseWindow {
         public AboutWindow() {
             Log.Debug("ctor");

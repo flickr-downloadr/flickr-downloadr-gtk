@@ -1,7 +1,7 @@
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Repository.Extensions;
-
 namespace FloydPink.Flickr.Downloadr.Repository {
+    using Extensions;
+    using Model;
+
     public class TokenRepository : RepositoryBase, IRepository<Token> {
         protected override string RepoFileName { get { return "token.repo"; } }
 

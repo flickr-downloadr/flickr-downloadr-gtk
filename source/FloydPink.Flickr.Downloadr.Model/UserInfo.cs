@@ -1,7 +1,7 @@
-using System.Globalization;
-using FloydPink.Flickr.Downloadr.Model.Constants;
-
 namespace FloydPink.Flickr.Downloadr.Model {
+    using System.Globalization;
+    using Constants;
+
     public class UserInfo {
         public string Id { get; set; }
         public bool IsPro { get; set; }

@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using FloydPink.Flickr.Downloadr.Model.Enums;
+﻿namespace FloydPink.Flickr.Downloadr.Presentation {
+    using System.Threading.Tasks;
+    using Model.Enums;
 
-namespace FloydPink.Flickr.Downloadr.Presentation {
     public interface IBrowserPresenter {
         Task InitializePhotoset();
         Task NavigateTo(PhotoPage page);
