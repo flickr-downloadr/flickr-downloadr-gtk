@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
-using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OAuth;
-using FloydPink.Flickr.Downloadr.Model;
-using FloydPink.Flickr.Downloadr.Model.Constants;
-using FloydPink.Flickr.Downloadr.OAuth.Listener;
-
 namespace FloydPink.Flickr.Downloadr.OAuth {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Script.Serialization;
+    using DotNetOpenAuth.Messaging;
+    using DotNetOpenAuth.OAuth;
+    using Listener;
+    using Model;
+    using Model.Constants;
+
     public class OAuthManager : IOAuthManager {
         private string _requestToken = string.Empty;
         private readonly DesktopConsumer _consumer;
@@ -94,9 +96,22 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
                                                                  IDictionary<string, string> parameters = null) {
             var request = PrepareAuthorizedRequest(AddRequestParameters(methodName, parameters));
             var response = (HttpWebResponse) await request.GetResponseAsync();
-            using (var reader = new StreamReader(response.GetResponseStream())) {
-                return (new JavaScriptSerializer()).Deserialize<dynamic>(reader.ReadToEnd());
+
+            dynamic deserialized;
+
+            var before = Thread.CurrentThread.CurrentCulture;
+            try {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                using (var reader = new StreamReader(response.GetResponseStream())) {
+                    var responseString = reader.ReadToEnd();
+                    deserialized = (new JavaScriptSerializer()).Deserialize<dynamic>(responseString);
+                }
             }
+
+            finally {
+                Thread.CurrentThread.CurrentUICulture = before;
+            }
+            return deserialized;
         }
 
         private Dictionary<string, string> AddRequestParameters(string methodName,
