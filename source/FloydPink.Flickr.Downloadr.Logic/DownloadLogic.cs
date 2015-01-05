@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -110,7 +111,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             // http://stackoverflow.com/a/1122519/218882
             var builder = new StringBuilder();
             for (var i = 0; i < size; i++) {
-                var ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * Random.NextDouble() + 65)));
+                var ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * Random.NextDouble() + 65), CultureInfo.InvariantCulture));
                 builder.Append(ch);
             }
 

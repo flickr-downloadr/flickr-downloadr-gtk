@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using FloydPink.Flickr.Downloadr.Model.Constants;
 
@@ -17,7 +16,7 @@ namespace FloydPink.Flickr.Downloadr.Model {
 
         public string BuddyIconUrl {
             get {
-                return Convert.ToInt32(IconServer) > 0
+                return int.Parse(IconServer) > 0
                     ? string.Format(AppConstants.BuddyIconUrlFormat,
                         IconFarm.ToString(CultureInfo.InvariantCulture), IconServer, Id)
                     : AppConstants.DefaultBuddyIconUrl;

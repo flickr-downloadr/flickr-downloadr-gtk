@@ -16,8 +16,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IRepository<Preferences> _preferencesRepository;
         private readonly IRepository<Token> _tokenRepository;
         private readonly IRepository<Update> _updateRepository;
-        private readonly IRepository<User> _userRepository;
         private readonly IUserInfoLogic _userInfoLogic;
+        private readonly IRepository<User> _userRepository;
 
         public LoginLogic(IOAuthManager oAuthManager, IUserInfoLogic userInfoLogic, IRepository<Token> tokenRepository,
                           IRepository<User> userRepository, IRepository<Preferences> preferencesRepository,

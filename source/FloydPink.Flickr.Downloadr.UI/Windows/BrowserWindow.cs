@@ -69,15 +69,15 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
 
         public string FirstPhoto {
             get {
-                return (((Convert.ToInt32(Page) - 1) * Convert.ToInt32(PerPage)) + 1).
+                return (((int.Parse(Page) - 1) * int.Parse(PerPage)) + 1).
                     ToString(CultureInfo.InvariantCulture);
             }
         }
 
         public string LastPhoto {
             get {
-                var maxLast = Convert.ToInt32(Page) * Convert.ToInt32(PerPage);
-                return maxLast > Convert.ToInt32(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
+                var maxLast = int.Parse(Page) * int.Parse(PerPage);
+                return maxLast > int.Parse(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
             }
         }
 

@@ -37,10 +37,10 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions {
             photos.AddRange(photoDictionary.Select(BuildPhoto));
 
             return new PhotosResponse(
-                Convert.ToInt32(dictionary.GetSubValue("photos", "page")),
-                Convert.ToInt32(dictionary.GetSubValue("photos", "pages")),
-                Convert.ToInt32(dictionary.GetSubValue("photos", "perpage")),
-                Convert.ToInt32(dictionary.GetSubValue("photos", "total")),
+                int.Parse(dictionary.GetSubValue("photos", "page").ToString()),
+                int.Parse(dictionary.GetSubValue("photos", "pages").ToString()),
+                int.Parse(dictionary.GetSubValue("photos", "perpage").ToString()),
+                int.Parse(dictionary.GetSubValue("photos", "total").ToString()),
                 photos);
         }
 
@@ -67,7 +67,7 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions {
                 dictionary.GetValue("owner").ToString(),
                 dictionary.GetValue("secret").ToString(),
                 dictionary.GetValue("server").ToString(),
-                Convert.ToInt32(dictionary.GetValue("farm")),
+                int.Parse(dictionary.GetValue("farm").ToString()),
                 dictionary.GetValue("title").ToString(),
                 Convert.ToBoolean(dictionary.GetValue("ispublic")),
                 Convert.ToBoolean(dictionary.GetValue("isfriend")),

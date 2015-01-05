@@ -80,21 +80,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows {
             spinnerSlot.Expand = true;
         }
 
-        //		private void EditLogConfigClick(object sender, RoutedEventArgs e)
-        //		{
-        //			OpenInNotepad(Bootstrapper.GetLogConfigFile().FullName);
-        //		}
-        //
-        //		private void ViewLogClick(object sender, RoutedEventArgs e)
-        //		{
-        //			OpenInNotepad(Bootstrapper.GetLogFile().FullName);
-        //		}
-        //
-        //		private static void OpenInNotepad(string filepath)
-        //		{
-        //			Process.Start("notepad.exe", filepath);
-        //		}
-        //
         protected void buttonLoginClick(object sender, EventArgs e) {
             Log.Debug("buttonLoginClick");
             _presenter.Login();

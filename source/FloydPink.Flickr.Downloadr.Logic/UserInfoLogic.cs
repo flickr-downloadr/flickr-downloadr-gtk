@@ -24,14 +24,13 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
             dynamic userWithUserInfo = await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams);
 
-            var userInfo = (Dictionary<string, object>)userWithUserInfo["person"];
+            var userInfo = (Dictionary<string, object>) userWithUserInfo["person"];
 
-            user.Info = new UserInfo
-            {
+            user.Info = new UserInfo {
                 Id = user.UserNsId,
                 IsPro = Convert.ToBoolean(userInfo["ispro"]),
                 IconServer = userInfo["iconserver"].ToString(),
-                IconFarm = Convert.ToInt32(userInfo["iconfarm"]),
+                IconFarm = int.Parse(userInfo["iconfarm"].ToString()),
                 PathAlias =
                     userInfo["path_alias"] == null
                         ? string.Empty
@@ -40,10 +39,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 PhotosUrl = userInfo.GetSubValue("photosurl").ToString(),
                 ProfileUrl = userInfo.GetSubValue("profileurl").ToString(),
                 MobileUrl = userInfo.GetSubValue("mobileurl").ToString(),
-                PhotosCount =
-                    Convert.ToInt32(
-                        ((Dictionary<string, object>)userInfo["photos"]).GetSubValue(
-                            "count"))
+                PhotosCount = int.Parse(((Dictionary<string, object>) userInfo["photos"]).GetSubValue("count").ToString())
             };
 
             return user;

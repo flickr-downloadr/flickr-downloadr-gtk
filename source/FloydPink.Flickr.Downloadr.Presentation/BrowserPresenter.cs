@@ -39,8 +39,8 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
 
         public async Task NavigateTo(PhotoPage page) {
             var targetPage = 0;
-            var currentPage = Convert.ToInt32(_view.Page);
-            var totalPages = Convert.ToInt32(_view.Pages);
+            var currentPage = int.Parse(_view.Page);
+            var totalPages = int.Parse(_view.Pages);
             switch (page) {
                 case PhotoPage.First:
                     if (currentPage != 1) {
@@ -124,7 +124,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         private async Task<IEnumerable<Photo>> GetAllPhotos() {
-            var pages = Convert.ToInt32(_view.Pages);
+            var pages = int.Parse(_view.Pages);
             var photos = new List<Photo>();
             for (var page = 1; page <= pages; page++) {
                 photos.AddRange((await GetPhotosResponse(page)).Photos);
