@@ -1,20 +1,11 @@
 namespace FloydPink.Flickr.Downloadr.Repository.Extensions {
-    using System.Globalization;
-    using System.Threading;
     using System.Web.Script.Serialization;
+    using Model.Helpers;
 
     public static class JsonExtensions {
         public static string ToJson(this object value) {
-            string serialized;
-            var before = Thread.CurrentThread.CurrentCulture;
-            try {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                serialized = (new JavaScriptSerializer()).Serialize(value);
-            }
-
-            finally {
-                Thread.CurrentThread.CurrentUICulture = before;
-            }
+            var serialized = string.Empty;
+            InvariantCultureHelper.PerformInInvariantCulture(delegate { serialized = (new JavaScriptSerializer()).Serialize(value); });
             return serialized;
         }
 
@@ -22,16 +13,8 @@ namespace FloydPink.Flickr.Downloadr.Repository.Extensions {
             if (string.IsNullOrEmpty(json)) {
                 return new T();
             }
-            T deserialized;
-            var before = Thread.CurrentThread.CurrentCulture;
-            try {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                deserialized = (new JavaScriptSerializer()).Deserialize<T>(json);
-            }
-
-            finally {
-                Thread.CurrentThread.CurrentUICulture = before;
-            }
+            var deserialized = new T();
+            InvariantCultureHelper.PerformInInvariantCulture(delegate { deserialized = (new JavaScriptSerializer()).Deserialize<T>(json); });
             return deserialized;
         }
     }

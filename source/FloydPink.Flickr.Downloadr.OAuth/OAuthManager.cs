@@ -1,10 +1,8 @@
 namespace FloydPink.Flickr.Downloadr.OAuth {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Net;
-    using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Script.Serialization;
     using DotNetOpenAuth.Messaging;
@@ -12,6 +10,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
     using Listener;
     using Model;
     using Model.Constants;
+    using Model.Helpers;
 
     public class OAuthManager : IOAuthManager {
         private string _requestToken = string.Empty;
@@ -97,20 +96,14 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
             var request = PrepareAuthorizedRequest(AddRequestParameters(methodName, parameters));
             var response = (HttpWebResponse) await request.GetResponseAsync();
 
-            dynamic deserialized;
-
-            var before = Thread.CurrentThread.CurrentCulture;
-            try {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                using (var reader = new StreamReader(response.GetResponseStream())) {
-                    var responseString = reader.ReadToEnd();
-                    deserialized = (new JavaScriptSerializer()).Deserialize<dynamic>(responseString);
-                }
-            }
-
-            finally {
-                Thread.CurrentThread.CurrentUICulture = before;
-            }
+            dynamic deserialized = new Dictionary<string, object>();
+            InvariantCultureHelper.PerformInInvariantCulture(delegate {
+                                                                 using (var reader = new StreamReader(response.GetResponseStream())) {
+                                                                     var responseString = reader.ReadToEnd();
+                                                                     deserialized =
+                                                                         (new JavaScriptSerializer()).Deserialize<dynamic>(responseString);
+                                                                 }
+                                                             });
             return deserialized;
         }
 

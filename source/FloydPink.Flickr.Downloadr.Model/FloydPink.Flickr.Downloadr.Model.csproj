@@ -50,6 +50,7 @@
     <Compile Include="Enums\PhotoPage.cs" />
     <Compile Include="Enums\SafeSearch.cs" />
     <Compile Include="Extensions\NotificationExtensions.cs" />
+    <Compile Include="Helpers\InvariantCultureHelper.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="PhotosResponse.cs" />
     <Compile Include="Preferences.cs" />
