@@ -1,4 +1,4 @@
-box: floydpink/mono-installbuilder@0.0.8
+box: floydpink/mono-installbuilder@0.0.9
 build:
     steps:
         - script:

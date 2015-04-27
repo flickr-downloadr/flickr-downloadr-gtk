@@ -1,12 +1,12 @@
 try {
 	$buildToolsDir = "C:\projects\flickr-downloadr-gtk\build-tools\"
 
-	$gtkInstaller = "gtk-sharp-2.12.25.msi"
+	$gtkInstaller = "gtk-sharp-2.12.26.msi"
 	$gtkInstallerMsi = "http://flickrdownloadr.com/installer/windows/dependencies/$($gtkInstaller)"
 	$gtkInstallerMsiLocal = "$($buildToolsDir)$($gtkInstaller)"
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
-	$installBuilder = "installbuilder-enterprise-9.5.3-windows-installer.exe"
+	$installBuilder = "installbuilder-enterprise-15.1.0-windows-installer.exe"
 	$installBuilderExe = "http://installbuilder.bitrock.com/$($installBuilder)"
 	$installBuilderExeLocal = "$($buildToolsDir)$($installBuilder)"
 	$installBuilderInstallLog = "$($buildToolsDir)installbuilder.log"

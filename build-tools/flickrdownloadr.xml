@@ -260,7 +260,7 @@
                                 <httpGet>
                                     <filename>${system_temp_directory}/gtk-sharp.msi</filename>
                                     <progressText>Downloading GTK# Installer</progressText>
-                                    <url>http://flickrdownloadr.com/installer/windows/dependencies/gtk-sharp-2.12.25.msi</url>
+                                    <url>http://download.xamarin.com/GTKforWindows/Windows/gtk-sharp-2.12.26.msi</url>
                                 </httpGet>
                                 <runProgram>
                                     <program>msiexec</program>
@@ -328,13 +328,13 @@
                                     <title>Installing Mono Framework for Mac</title>
                                     <actionList>
                                         <httpGet>
-                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg</filename>
+                                            <filename>${system_temp_directory}/MonoFramework-MRE-3.12.1.macos10.xamarin.x86.pkg</filename>
                                             <progressText>Downloading Mono Framework Installer</progressText>
-                                            <url>http://download.mono-project.com/archive/3.10.0/macos-10-x86/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg</url>
+                                            <url>http://download.mono-project.com/archive/3.12.1/macos-10-x86/MonoFramework-MDK-3.12.1.macos10.xamarin.x86.pkg</url>
                                         </httpGet>
                                         <runProgram>
                                             <program>open</program>
-                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.10.0.macos10.xamarin.x86.pkg"</programArguments>
+                                            <programArguments>-W "${system_temp_directory}/MonoFramework-MRE-3.12.1.macos10.xamarin.x86.pkg"</programArguments>
                                             <progressText>Installing Mono Framework</progressText>
                                         </runProgram>
                                     </actionList>
