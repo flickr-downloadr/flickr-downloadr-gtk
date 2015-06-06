@@ -557,7 +557,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>signing-certificate-file</name>
-                    <value>${build_project_directory}/3aaf9c32632bca9f38ccd314a20c88f4.pfx</value>
+                    <value>${build_project_directory}/7a2a2296acceb2a76f89d69e827c4fe6.pfx</value>
                 </setInstallerVariable>
                 <runProgram>
                     <program>${signtool}</program>
@@ -961,4 +961,3 @@ end tell'
         </platformOptions>
     </platformOptionsList>
 </project>
-
