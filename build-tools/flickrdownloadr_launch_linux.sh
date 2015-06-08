@@ -42,7 +42,15 @@ then
 	exit 1
 fi
 
-#this script should be in $PREFIX/bin
+# If this is the first run, ensure that the `mozroots --import --sync` is run prior to launching the app
+FD_FIRST_RUN="${XDG_CONFIG_HOME:-$HOME/.config}/flickr-downloadr/firstrun"
+if [ ! -f "$FD_FIRST_RUN" ]; then
+  mkdir -p `dirname "$FD_FIRST_RUN"`
+  echo $(date +"%Y-%m-%d_%H-%M-%S") > ${FD_FIRST_RUN}
+  mozroots --import --sync
+fi
+
+# this script should be in $PREFIX/bin
 MONO_EXEC="exec -a flickrdownloadr mono-sgen"
 EXE_PATH="${0%%/flickrdownloadr}/bin/flickr-downloadr.exe"
 
@@ -52,5 +60,5 @@ if [ -n "$_FD_REDIRECT_LOG" ]; then
 	mkdir -p `dirname "$_FD_REDIRECT_LOG"`
 	$MONO_EXEC $MONO_OPTIONS "$EXE_PATH" $* 2>&1 | tee "$_FD_REDIRECT_LOG"
 else
-	$MONO_EXEC $MONO_OPTIONS "$EXE_PATH" $* 
+	$MONO_EXEC $MONO_OPTIONS "$EXE_PATH" $*
 fi
