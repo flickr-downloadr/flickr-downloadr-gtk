@@ -12,4 +12,4 @@ security unlock-keychain -p travis ${KEY_CHAIN}
 security set-keychain-settings -t 3600 -u ${KEY_CHAIN}
 
 # Add certificates to keychain and allow codesign to access them
-security import "./X47E7X2X6J-code-signing-certificate.p12" -k ${KEY_CHAIN} -P ${TRAVIS_COMMIT} -T /usr/bin/codesign
+security import "./X47E7X2X6J-code-signing-certificate.p12" -k ${KEY_CHAIN} -P ${FD_CERT_PWD} -T /usr/bin/codesign
