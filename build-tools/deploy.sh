@@ -53,6 +53,7 @@ git config credential.helper "store --file=.git/fd-credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
 git config push.default tracking
 git checkout -b ${DEPLOYVERSION}
+rm -rf "../${THISREPOCLONEDIR}/dist/Install flickr downloadr (${VERSION}).app"
 cp -r ../${THISREPOCLONEDIR}/dist/* ./app/installer
 git add -f .
 git commit -m "created release ${VERSION} ($CIENGINE) [skip ci]" -s
