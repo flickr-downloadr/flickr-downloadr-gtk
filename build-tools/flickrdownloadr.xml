@@ -906,10 +906,10 @@ end tell'
     <osxApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxApplicationBundleIcon>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
     <osxSigningIdentity>Developer ID Application: Haridas Pachuveetil (X47E7X2X6J)</osxSigningIdentity>
-    <osxSigningKeychainFile>flickr-downloadr.keychain</osxSigningKeychainFile>
-    <osxSigningPkcs12File>X47E7X2X6J -code-signing-certificate.p12</osxSigningPkcs12File>
+    <!--<osxSigningKeychainFile>flickr-downloadr.keychain</osxSigningKeychainFile>-->
+    <osxSigningPkcs12File>X47E7X2X6J-code-signing-certificate.p12</osxSigningPkcs12File>
     <osxSigningPkcs12Password>${env(FD_CERT_PWD)}</osxSigningPkcs12Password>
-    <osxSigningResourceRulesFile>resource-rules.plist</osxSigningResourceRulesFile>
+    <!--<osxSigningResourceRulesFile>resource-rules.plist</osxSigningResourceRulesFile>-->
     <osxUninstallerApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
