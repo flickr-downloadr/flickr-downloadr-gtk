@@ -538,6 +538,23 @@
     </componentList>
     <preBuildActionList>
         <actionGroup>
+            <explanation>Open the flickr-downloadr.keychain</explanation>
+            <actionList>
+                <runProgram>
+                    <program>security</program>
+                    <programArguments>unlock-keychain -p '${env(FD_CERT_PWD)}' "${project.osxSigningKeychainFile}"</programArguments>
+                </runProgram>
+            </actionList>
+            <ruleList>
+                <isTrue>
+                    <value>${pack_osx_platform_files}</value>
+                </isTrue>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </actionGroup>
+        <actionGroup>
             <explanation>Sign the Windows exe</explanation>
             <actionList>
                 <setInstallerVariable>
@@ -682,24 +699,24 @@
                         <runProgram>
                             <program>osascript</program>
                             <programArguments>-e 'tell application "Finder"
-tell disk "${project.fullName} Installer"
-open
-set current view of container window to icon view
-set toolbar visible of container window to false
-set statusbar visible of container window to false
-set the bounds of container window to {${dmg_window_bounds}}
-set theViewOptions to the icon view options of container window
-set arrangement of theViewOptions to not arranged
-set icon size of theViewOptions to ${dmg_icon_size}
-set background picture of theViewOptions to file ".background:background.png"
-delay 5
-update without registering applications
-set position of item "${project.installerFilename}" of container window to {${dmg_icon_position}}
-update without registering applications
-delay 5
-end tell
-end tell'
-          </programArguments>
+                                tell disk "${project.fullName} Installer"
+                                open
+                                set current view of container window to icon view
+                                set toolbar visible of container window to false
+                                set statusbar visible of container window to false
+                                set the bounds of container window to {${dmg_window_bounds}}
+                                set theViewOptions to the icon view options of container window
+                                set arrangement of theViewOptions to not arranged
+                                set icon size of theViewOptions to ${dmg_icon_size}
+                                set background picture of theViewOptions to file ".background:background.png"
+                                delay 5
+                                update without registering applications
+                                set position of item "${project.installerFilename}" of container window to {${dmg_icon_position}}
+                                update without registering applications
+                                delay 5
+                                end tell
+                                end tell'
+                            </programArguments>
                         </runProgram>
                         <runProgram>
                             <program>hdiutil</program>
@@ -905,6 +922,10 @@ end tell'
     <height>480</height>
     <osxApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxApplicationBundleIcon>
     <osxApplicationBundleIdentifier>com.floydpink.mac.flickrdownloadr</osxApplicationBundleIdentifier>
+    <osxSigningIdentity>Developer ID Application: Haridas Pachuveetil (X47E7X2X6J)</osxSigningIdentity>
+    <osxSigningKeychainFile>flickr-downloadr.keychain</osxSigningKeychainFile>
+    <osxSigningPkcs12File>X47E7X2X6J -code-signing-certificate.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>${env(FD_CERT_PWD)}</osxSigningPkcs12Password>
     <osxUninstallerApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
@@ -961,3 +982,4 @@ end tell'
         </platformOptions>
     </platformOptionsList>
 </project>
+

@@ -11,3 +11,8 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
+
+[build-tools/flickrdownloadr.xml]
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
