@@ -538,23 +538,6 @@
     </componentList>
     <preBuildActionList>
         <actionGroup>
-            <explanation>Open the flickr-downloadr.keychain</explanation>
-            <actionList>
-                <runProgram>
-                    <program>security</program>
-                    <programArguments>unlock-keychain -p '${env(FD_CERT_PWD)}' "${project.osxSigningKeychainFile}"</programArguments>
-                </runProgram>
-            </actionList>
-            <ruleList>
-                <isTrue>
-                    <value>${pack_osx_platform_files}</value>
-                </isTrue>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </actionGroup>
-        <actionGroup>
             <explanation>Sign the Windows exe</explanation>
             <actionList>
                 <setInstallerVariable>

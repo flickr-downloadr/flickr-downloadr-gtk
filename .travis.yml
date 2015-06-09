@@ -17,4 +17,5 @@ before_install:
 - sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-15.1.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 script:
 - cd build-tools
+- ./unlock-keychain.sh
 - ./go.sh travis Release
