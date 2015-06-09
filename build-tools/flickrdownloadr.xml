@@ -542,7 +542,7 @@
             <actionList>
                 <runProgram>
                     <program>security</program>
-                    <programArguments>unlock-keychain -p '${password.password}' "${project.osxSigningKeychainFile}"</programArguments>
+                    <programArguments>unlock-keychain -p '${env(FD_CERT_PWD)}' "${project.osxSigningKeychainFile}"</programArguments>
                 </runProgram>
             </actionList>
             <ruleList>
