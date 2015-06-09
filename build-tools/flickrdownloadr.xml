@@ -542,7 +542,7 @@
             <actionList>
                 <runProgram>
                     <program>security</program>
-                    <programArguments>unlock-keychain -p '${env(FD_CERT_PWD)}' "${project.osxSigningKeychainFile}"</programArguments>
+                    <programArguments>unlock-keychain -p '${password.password}' "${project.osxSigningKeychainFile}"</programArguments>
                 </runProgram>
             </actionList>
             <ruleList>
@@ -699,23 +699,23 @@
                         <runProgram>
                             <program>osascript</program>
                             <programArguments>-e 'tell application "Finder"
-                                tell disk "${project.fullName} Installer"
-                                open
-                                set current view of container window to icon view
-                                set toolbar visible of container window to false
-                                set statusbar visible of container window to false
-                                set the bounds of container window to {${dmg_window_bounds}}
-                                set theViewOptions to the icon view options of container window
-                                set arrangement of theViewOptions to not arranged
-                                set icon size of theViewOptions to ${dmg_icon_size}
-                                set background picture of theViewOptions to file ".background:background.png"
-                                delay 5
-                                update without registering applications
-                                set position of item "${project.installerFilename}" of container window to {${dmg_icon_position}}
-                                update without registering applications
-                                delay 5
-                                end tell
-                                end tell'
+tell disk "${project.fullName} Installer"
+open
+set current view of container window to icon view
+set toolbar visible of container window to false
+set statusbar visible of container window to false
+set the bounds of container window to {${dmg_window_bounds}}
+set theViewOptions to the icon view options of container window
+set arrangement of theViewOptions to not arranged
+set icon size of theViewOptions to ${dmg_icon_size}
+set background picture of theViewOptions to file ".background:background.png"
+delay 5
+update without registering applications
+set position of item "${project.installerFilename}" of container window to {${dmg_icon_position}}
+update without registering applications
+delay 5
+end tell
+end tell'
                             </programArguments>
                         </runProgram>
                         <runProgram>
@@ -926,6 +926,7 @@
     <osxSigningKeychainFile>flickr-downloadr.keychain</osxSigningKeychainFile>
     <osxSigningPkcs12File>X47E7X2X6J -code-signing-certificate.p12</osxSigningPkcs12File>
     <osxSigningPkcs12Password>${env(FD_CERT_PWD)}</osxSigningPkcs12Password>
+    <osxSigningResourceRulesFile>resource-rules.plist</osxSigningResourceRulesFile>
     <osxUninstallerApplicationBundleIcon>../misc/images/icons/flickr-downloadr-new.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>../dist/${platform_name}</outputDirectory>
     <productComments>Batch download photos from flickr</productComments>
