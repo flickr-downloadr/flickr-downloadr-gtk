@@ -2,7 +2,7 @@
 
 # Thanks to http://docs.travis-ci.com/user/common-build-problems/#Mac%3A-Code-Signing-Errors
 
-KEY_CHAIN="flickr-downloadr.keychain"
+KEY_CHAIN="./flickr-downloadr.keychain"
 # Make the keychain the default so identities are found
 security default-keychain -s ${KEY_CHAIN}
 # Unlock the keychain
