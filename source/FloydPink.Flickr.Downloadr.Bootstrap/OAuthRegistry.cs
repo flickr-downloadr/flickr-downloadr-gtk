@@ -12,13 +12,13 @@
             new ServiceProviderDescription {
                 ProtocolVersion = ProtocolVersion.V10a,
                 RequestTokenEndpoint =
-                    new MessageReceivingEndpoint("http://www.flickr.com/services/oauth/request_token",
+                    new MessageReceivingEndpoint("https://www.flickr.com/services/oauth/request_token",
                         HttpDeliveryMethods.PostRequest),
                 UserAuthorizationEndpoint =
-                    new MessageReceivingEndpoint("http://www.flickr.com/services/oauth/authorize",
+                    new MessageReceivingEndpoint("https://www.flickr.com/services/oauth/authorize",
                         HttpDeliveryMethods.GetRequest),
                 AccessTokenEndpoint =
-                    new MessageReceivingEndpoint("http://www.flickr.com/services/oauth/access_token",
+                    new MessageReceivingEndpoint("https://www.flickr.com/services/oauth/access_token",
                         HttpDeliveryMethods.GetRequest),
                 TamperProtectionElements =
                     new ITamperProtectionChannelBindingElement [] {

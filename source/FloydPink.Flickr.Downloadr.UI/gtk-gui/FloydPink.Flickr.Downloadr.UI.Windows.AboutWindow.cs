@@ -121,8 +121,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			// Container child eventboxHyperlink.Gtk.Container+ContainerChild
 			this.labelLink = new global::Gtk.Label ();
 			this.labelLink.Name = "labelLink";
-			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString ("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b" +
-			"></a>");
+			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString ("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b></a>");
 			this.labelLink.UseMarkup = true;
 			this.labelLink.UseUnderline = true;
 			this.eventboxHyperlink.Add (this.labelLink);
