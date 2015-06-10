@@ -88,7 +88,7 @@
       </filterchain>
     </loadfile>
     <touch file="${secrets.out.file}" />
-    <echo append="true" message="${secrets-token-file}" file="${secrets.out.file}" />
+    <echo message="${secrets-token-file}" file="${secrets.out.file}" />
   </target>
 
   <target name="createinstallbuilderlicense">
