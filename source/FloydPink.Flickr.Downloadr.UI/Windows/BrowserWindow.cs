@@ -24,15 +24,15 @@
         private string _total;
         private SpinnerWidget spinner;
 
-        public BrowserWindow(User user, Preferences preferences) {
+        public BrowserWindow(Session session) {
             Log.Debug("ctor");
             Build();
 
             AddTooltips();
 
             Title += VersionHelper.GetVersionString();
-            Preferences = preferences;
-            User = user;
+            Preferences = session.Preferences;
+            User = session.User;
             AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>>();
 
             AddSpinnerWidget();
@@ -444,7 +444,7 @@
 
         protected void buttonBackClick(object sender, EventArgs e) {
             Log.Debug("buttonBackClick");
-            var landingWindow = new LandingWindow(User, Preferences);
+            var landingWindow = new LandingWindow(new Session(User, Preferences));
             landingWindow.Show();
             Destroy();
         }

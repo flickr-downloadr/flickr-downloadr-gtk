@@ -165,14 +165,14 @@
 
         public void OpenLandingWindow() {
             Log.Debug("OpenBrowserWindow");
-            var landingWindow = new LandingWindow(User, Preferences);
+            var landingWindow = new LandingWindow(new Session(User, Preferences));
             landingWindow.Show();
             Destroy();
         }
 
         public void OpenPreferencesWindow(Preferences preferences) {
             Log.Debug("OpenPreferencesWindow");
-            var preferencesWindow = new PreferencesWindow(User, preferences);
+            var preferencesWindow = new PreferencesWindow(new Session(User, preferences));
             preferencesWindow.Show();
             Destroy();
         }

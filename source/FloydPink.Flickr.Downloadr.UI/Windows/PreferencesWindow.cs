@@ -14,15 +14,15 @@
         private Preferences _preferences;
         private readonly IPreferencesPresenter _presenter;
 
-        public PreferencesWindow(User user, Preferences preferences) {
+        public PreferencesWindow(Session session) {
             Log.Debug("ctor");
             Build();
 
             AddTooltips();
 
             Title += VersionHelper.GetVersionString();
-            Preferences = preferences;
-            User = user;
+            Preferences = session.Preferences;
+            User = session.User;
 
             _presenter = Bootstrapper.GetPresenter<IPreferencesView, IPreferencesPresenter>(this);
 
@@ -198,7 +198,7 @@
             Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
 
             _presenter.Save(preferences);
-            var landingWindow = new LandingWindow(User, preferences);
+            var landingWindow = new LandingWindow(new Session(User, preferences));
             landingWindow.Show();
             Destroy();
         }

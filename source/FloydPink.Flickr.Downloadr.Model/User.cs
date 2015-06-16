@@ -7,7 +7,6 @@ namespace FloydPink.Flickr.Downloadr.Model {
     public class User : INotifyPropertyChanged {
         [ScriptIgnore] private UserInfo _info;
         private string _name;
-        [ScriptIgnore] private List<Photoset> _photosets;
         private string _userName;
         private string _userNsId;
 
@@ -61,17 +60,6 @@ namespace FloydPink.Flickr.Downloadr.Model {
             {
                 this._info = value;
                 PropertyChanged.Notify(() => Info);
-            }
-        }
-
-        [ScriptIgnore]
-        public List<Photoset> Photosets
-        {
-            get { return this._photosets; }
-            set
-            {
-                this._photosets = value;
-                PropertyChanged.Notify(() => Photosets);
             }
         }
 

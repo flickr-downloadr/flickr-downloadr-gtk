@@ -12,15 +12,15 @@
         private readonly ILandingPresenter _presenter;
         private SpinnerWidget spinner;
 
-        public LandingWindow(User user, Preferences preferences) {
+        public LandingWindow(Session session) {
             Log.Debug("ctor");
             Build();
 
             AddTooltips();
 
             Title += VersionHelper.GetVersionString();
-            Preferences = preferences;
-            User = user;
+            Preferences = session.Preferences;
+            User = session.User;
 
             AddSpinnerWidget();
 
@@ -87,7 +87,7 @@
 
         protected void buttonContinueClick(object sender, EventArgs e) {
             Log.Debug("buttonContinueClick");
-            var browserWindow = new BrowserWindow(User, Preferences);
+            var browserWindow = new BrowserWindow(new Session(User, Preferences));
             browserWindow.Show();
             Destroy();
         }
