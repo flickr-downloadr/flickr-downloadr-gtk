@@ -15,15 +15,14 @@
     using Widgets;
 
     public partial class BrowserWindow : BaseWindow, IBrowserView {
+        private readonly IBrowserPresenter _presenter;
         private bool _doNotFireOnSelectionChanged;
-        private PhotosetType _photosetType;
         private string _page;
         private string _pages;
         private string _perPage;
         private IEnumerable<Photo> _photos;
         private string _total;
         private SpinnerWidget spinner;
-        private readonly IBrowserPresenter _presenter;
 
         public BrowserWindow(User user, Preferences preferences) {
             Log.Debug("ctor");
@@ -38,14 +37,16 @@
 
             AddSpinnerWidget();
 
-            _presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter>(this);
-            _presenter.InitializePhotoset();
+            this._presenter = Bootstrapper.GetPresenter<IBrowserView, IBrowserPresenter>(this);
+            this._presenter.InitializePhotoset();
         }
 
         public int SelectedPhotosCount { get { return AllSelectedPhotos.Values.SelectMany(d => d.Values).Count(); } }
 
-        public string SelectedPhotosCountText {
-            get {
+        public string SelectedPhotosCountText
+        {
+            get
+            {
                 var selectionCount = SelectedPhotosExist
                     ? SelectedPhotosCount.ToString(CultureInfo.InvariantCulture)
                     : string.Empty;
@@ -57,26 +58,33 @@
 
         public bool SelectedPhotosExist { get { return SelectedPhotosCount != 0; } }
 
-        public bool AreAnyPagePhotosSelected {
+        public bool AreAnyPagePhotosSelected
+        {
             get { return Page != null && AllSelectedPhotos.ContainsKey(Page) && AllSelectedPhotos[Page].Count != 0; }
         }
 
-        public bool AreAllPagePhotosSelected {
-            get {
+        public bool AreAllPagePhotosSelected
+        {
+            get
+            {
                 return Photos != null &&
                        (!AllSelectedPhotos.ContainsKey(Page) || Photos.Count() != AllSelectedPhotos[Page].Count);
             }
         }
 
-        public string FirstPhoto {
-            get {
+        public string FirstPhoto
+        {
+            get
+            {
                 return (((int.Parse(Page) - 1) * int.Parse(PerPage)) + 1).
                     ToString(CultureInfo.InvariantCulture);
             }
         }
 
-        public string LastPhoto {
-            get {
+        public string LastPhoto
+        {
+            get
+            {
                 var maxLast = int.Parse(Page) * int.Parse(PerPage);
                 return maxLast > int.Parse(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
             }
@@ -85,10 +93,12 @@
         public User User { get; set; }
         public Preferences Preferences { get; set; }
 
-        public IEnumerable<Photo> Photos {
-            get { return _photos; }
-            set {
-                _photos = value;
+        public IEnumerable<Photo> Photos
+        {
+            get { return this._photos; }
+            set
+            {
+                this._photos = value;
                 PropertyChanged.Notify(() => AreAllPagePhotosSelected);
                 UpdateUI();
                 Application.Invoke(delegate {
@@ -100,43 +110,45 @@
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
+        public PhotosetType PhotosetType { get; set; }
 
-        public PhotosetType PhotosetType {
-            get { return _photosetType; }
-            set {
-                _photosetType = value;
-            }
-        }
-
-        public string Page {
-            get { return _page; }
-            set {
-                _page = value;
+        public string Page
+        {
+            get { return this._page; }
+            set
+            {
+                this._page = value;
                 PropertyChanged.Notify(() => Page);
                 PropertyChanged.Notify(() => AreAnyPagePhotosSelected);
             }
         }
 
-        public string Pages {
-            get { return _pages; }
-            set {
-                _pages = value;
+        public string Pages
+        {
+            get { return this._pages; }
+            set
+            {
+                this._pages = value;
                 PropertyChanged.Notify(() => Pages);
             }
         }
 
-        public string PerPage {
-            get { return _perPage; }
-            set {
-                _perPage = value;
+        public string PerPage
+        {
+            get { return this._perPage; }
+            set
+            {
+                this._perPage = value;
                 PropertyChanged.Notify(() => PerPage);
             }
         }
 
-        public string Total {
-            get { return _total; }
-            set {
-                _total = value;
+        public string Total
+        {
+            get { return this._total; }
+            set
+            {
+                this._total = value;
                 PropertyChanged.Notify(() => Total);
                 PropertyChanged.Notify(() => FirstPhoto);
                 PropertyChanged.Notify(() => LastPhoto);
@@ -196,34 +208,34 @@
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            buttonBack.TooltipText = "Close this window and go back to the photoset selection window";
-            buttonSelectAll.TooltipText = "Select all the photos on this page";
-            buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
-            buttonFirstPage.TooltipText = "Go to the first page of photos";
-            buttonPreviousPage.TooltipText = "Go to the previous page of photos";
-            comboboxPage.TooltipText = "Select a page to quickly jump there";
-            buttonNextPage.TooltipText = "Go to the next page of photos";
-            buttonLastPage.TooltipText = "Go the last page of photos";
-            buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";
-            buttonDownloadThisPage.TooltipText = "Download all the photos from this page";
-            buttonDownloadAllPages.TooltipText = "Download all the photos from all the pages";
+            this.buttonBack.TooltipText = "Close this window and go back to the photoset selection window";
+            this.buttonSelectAll.TooltipText = "Select all the photos on this page";
+            this.buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
+            this.buttonFirstPage.TooltipText = "Go to the first page of photos";
+            this.buttonPreviousPage.TooltipText = "Go to the previous page of photos";
+            this.comboboxPage.TooltipText = "Select a page to quickly jump there";
+            this.buttonNextPage.TooltipText = "Go to the next page of photos";
+            this.buttonLastPage.TooltipText = "Go the last page of photos";
+            this.buttonDownloadSelection.TooltipText = "Download the selected photos from all pages";
+            this.buttonDownloadThisPage.TooltipText = "Download all the photos from this page";
+            this.buttonDownloadAllPages.TooltipText = "Download all the photos from all the pages";
         }
 
         private void AddSpinnerWidget() {
             Log.Debug("AddSpinnerWidget");
-            spinner = new SpinnerWidget {
+            this.spinner = new SpinnerWidget {
                 Name = "browserSpinner",
                 Cancellable = true,
                 Operation = "Please wait...",
                 Visible = false
             };
-            spinner.SpinnerCanceled += (object sender, EventArgs e) => {
-                                           scrolledwindowPhotos.Visible = true;
-                                           hboxButtons.Sensitive = true;
-                                           _presenter.CancelDownload();
-                                       };
-            hboxSpinner.Add(spinner);
-            var spinnerSlot = ((Box.BoxChild) (hboxSpinner[spinner]));
+            this.spinner.SpinnerCanceled += (object sender, EventArgs e) => {
+                                                this.scrolledwindowPhotos.Visible = true;
+                                                this.hboxButtons.Sensitive = true;
+                                                this._presenter.CancelDownload();
+                                            };
+            this.hboxSpinner.Add(this.spinner);
+            var spinnerSlot = ((Box.BoxChild) (this.hboxSpinner[this.spinner]));
             spinnerSlot.Position = 0;
             spinnerSlot.Expand = true;
         }
@@ -241,7 +253,7 @@
         private void LoseFocus(Button element) {
             Log.Debug("LoseFocus");
             if (element.HasFocus) {
-                Focus = buttonBack;
+                Focus = this.buttonBack;
             }
         }
 
@@ -255,11 +267,11 @@
 
         private void UpdateSelectionButtons() {
             Log.Debug("UpdateSelectionButtons");
-            buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
-            buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
+            this.buttonSelectAll.Sensitive = AreAllPagePhotosSelected;
+            this.buttonUnSelectAll.Sensitive = AreAnyPagePhotosSelected;
 
-            buttonDownloadSelection.Label = SelectedPhotosCountText;
-            buttonDownloadSelection.Sensitive = SelectedPhotosExist;
+            this.buttonDownloadSelection.Label = SelectedPhotosCountText;
+            this.buttonDownloadSelection.Sensitive = SelectedPhotosExist;
         }
 
         private void UpdateUI() {
@@ -295,7 +307,7 @@
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-            if (_doNotFireOnSelectionChanged) {
+            if (this._doNotFireOnSelectionChanged) {
                 return;
             }
             var cachedImage = (PhotoWidget) sender;
@@ -372,7 +384,7 @@
             }
             numberOfRows = numberOfRows < 3 ? 3 : numberOfRows; // render a minimum of 3 rows
 
-            foreach (var child in vboxPhotos.Children) {
+            foreach (var child in this.vboxPhotos.Children) {
                 Application.Invoke(delegate { this.vboxPhotos.Remove(child); });
             }
 
@@ -388,7 +400,7 @@
 
         private void SetSelectionOnAllImages(bool selected) {
             Log.Debug("SetSelectionOnAllImages");
-            foreach (var box in vboxPhotos.AllChildren) {
+            foreach (var box in this.vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
@@ -404,7 +416,7 @@
 
         private void FindAndSelectPhoto(Photo photo) {
             Log.Debug("FindAndSelectPhoto");
-            foreach (var box in vboxPhotos.AllChildren) {
+            foreach (var box in this.vboxPhotos.AllChildren) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
@@ -440,25 +452,25 @@
         protected async void buttonNextPageClick(object sender, EventArgs e) {
             Log.Debug("buttonNextPageClick");
             LoseFocus((Button) sender);
-            await _presenter.NavigateTo(PhotoPage.Next);
+            await this._presenter.NavigateTo(PhotoPage.Next);
         }
 
         protected async void buttonLastPageClick(object sender, EventArgs e) {
             Log.Debug("buttonLastPageClick");
             LoseFocus((Button) sender);
-            await _presenter.NavigateTo(PhotoPage.Last);
+            await this._presenter.NavigateTo(PhotoPage.Last);
         }
 
         protected async void buttonFirstPageClick(object sender, EventArgs e) {
             Log.Debug("buttonFirstPageClick");
             LoseFocus((Button) sender);
-            await _presenter.NavigateTo(PhotoPage.First);
+            await this._presenter.NavigateTo(PhotoPage.First);
         }
 
         protected async void buttonPreviousPageClick(object sender, EventArgs e) {
             Log.Debug("buttonPreviousPageClick");
             LoseFocus((Button) sender);
-            await _presenter.NavigateTo(PhotoPage.Previous);
+            await this._presenter.NavigateTo(PhotoPage.Previous);
         }
 
         protected void buttonSelectAllClick(object sender, EventArgs e) {
@@ -480,31 +492,31 @@
 
             LoseFocus((Button) sender);
             ClearSelectedPhotos();
-            await _presenter.InitializePhotoset();
+            await this._presenter.InitializePhotoset();
         }
 
         protected async void buttonDownloadSelectionClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadSelectionClick");
             LoseFocus((Button) sender);
-            await _presenter.DownloadSelection();
+            await this._presenter.DownloadSelection();
         }
 
         protected async void buttonDownloadThisPageClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadThisPageClick");
             LoseFocus((Button) sender);
-            await _presenter.DownloadThisPage();
+            await this._presenter.DownloadThisPage();
         }
 
         protected async void buttonDownloadAllPagesClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadAllPagesClick");
             LoseFocus((Button) sender);
-            await _presenter.DownloadAllPages();
+            await this._presenter.DownloadAllPages();
         }
 
         protected async void comboboxPageChange(object sender, EventArgs e) {
             var jumpToPage = ((ComboBox) sender).ActiveText;
             if (jumpToPage != null && jumpToPage != Page) {
-                await _presenter.NavigateTo(int.Parse(jumpToPage));
+                await this._presenter.NavigateTo(int.Parse(jumpToPage));
             }
         }
 
