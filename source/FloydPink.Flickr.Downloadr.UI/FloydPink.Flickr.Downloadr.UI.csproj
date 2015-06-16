@@ -118,6 +118,8 @@
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Widgets.PhotoWidget.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Widgets.PreviewPhotoWidget.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Widgets.SpinnerWidget.cs" />
+    <Compile Include="Windows\LandingWindow.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Windows.LandingWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

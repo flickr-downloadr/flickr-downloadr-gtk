@@ -51,6 +51,9 @@
     <Compile Include="Views\IBrowserView.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IPreferencesView.cs" />
+    <Compile Include="Views\ILandingView.cs" />
+    <Compile Include="ILandingPresenter.cs" />
+    <Compile Include="LandingPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FloydPink.Flickr.Downloadr.Logic\FloydPink.Flickr.Downloadr.Logic.csproj">

@@ -197,8 +197,6 @@
         private void AddTooltips() {
             Log.Debug("AddTooltips");
             buttonBack.TooltipText = "Close this window and go back to the login window";
-//            comboboxPhotoset.TooltipText =
-//                "Change to seeing all the photos (including those marked private), only the public ones or one of the albums";
             buttonSelectAll.TooltipText = "Select all the photos on this page";
             buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
             buttonFirstPage.TooltipText = "Go to the first page of photos";
