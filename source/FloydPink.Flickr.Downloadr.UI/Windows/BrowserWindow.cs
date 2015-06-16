@@ -16,6 +16,7 @@
 
     public partial class BrowserWindow : BaseWindow, IBrowserView {
         private bool _doNotFireOnSelectionChanged;
+        private PhotosetType _photosetType;
         private string _page;
         private string _pages;
         private string _perPage;
@@ -99,7 +100,13 @@
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
-        public bool ShowAllPhotos { get { return togglebuttonShowAllPhotos.Active; } }
+
+        public PhotosetType PhotosetType {
+            get { return _photosetType; }
+            set {
+                _photosetType = value;
+            }
+        }
 
         public string Page {
             get { return _page; }
@@ -190,8 +197,8 @@
         private void AddTooltips() {
             Log.Debug("AddTooltips");
             buttonBack.TooltipText = "Close this window and go back to the login window";
-            togglebuttonShowAllPhotos.TooltipText =
-                "Click to toggle seeing all the photos (including those marked private) or only the public ones";
+            comboboxPhotoset.TooltipText =
+                "Change to seeing all the photos (including those marked private), only the public ones or one of the albums";
             buttonSelectAll.TooltipText = "Select all the photos on this page";
             buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
             buttonFirstPage.TooltipText = "Go to the first page of photos";

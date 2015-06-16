@@ -1882,15 +1882,10 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.ToggleButton" id="togglebuttonShowAllPhotos">
+                      <widget class="Gtk.ComboBox" id="comboboxPhotoset">
                         <property name="MemberName" />
-                        <property name="WidthRequest">185</property>
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextOnly</property>
-                        <property name="Label" translatable="yes">Show All Photos</property>
-                        <property name="UseUnderline">True</property>
-                        <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="togglebuttonShowAllPhotosClick" />
+                        <property name="IsTextCombo">True</property>
+                        <property name="Items" translatable="yes" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -1977,7 +1972,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">|&lt;&lt;</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonFirstPageClick" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -1995,7 +1989,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">&lt;</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonPreviousPageClick" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -2052,7 +2045,6 @@ Restricted</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">1</property>
                             <property name="Active">0</property>
-                            <signal name="Changed" handler="comboboxPageChange" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -2078,7 +2070,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">&gt;</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonNextPageClick" />
                       </widget>
                       <packing>
                         <property name="Position">3</property>
@@ -2096,7 +2087,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">&gt;&gt;|</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonLastPageClick" />
                       </widget>
                       <packing>
                         <property name="Position">4</property>
@@ -2139,7 +2129,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">Selection</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonDownloadSelectionClick" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -2157,7 +2146,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">This Page</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonDownloadThisPageClick" />
                       </widget>
                       <packing>
                         <property name="Position">2</property>
@@ -2175,7 +2163,6 @@ Restricted</property>
                         <property name="Label" translatable="yes">All Pages</property>
                         <property name="UseUnderline">True</property>
                         <property name="FocusOnClick">False</property>
-                        <signal name="Clicked" handler="buttonDownloadAllPagesClick" />
                       </widget>
                       <packing>
                         <property name="Position">3</property>

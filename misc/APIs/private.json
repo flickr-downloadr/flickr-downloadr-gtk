@@ -1,0 +1,28 @@
+{
+  "photoset": {
+    "id"               : "72157603812821150",
+    "owner"            : "25764928@N00",
+    "username"         : "Hari_Menon",
+    "primary"          : "1623770956",
+    "secret"           : "ed58fad88b",
+    "server"           : "2021",
+    "farm"             : 3,
+    "photos"           : 35,
+    "count_views"      : 11,
+    "count_comments"   : 0,
+    "count_photos"     : 35,
+    "count_videos"     : 0,
+    "title"            : {
+      "_content": "Srisailam '04"
+    },
+    "description"      : {
+      "_content": ""
+    },
+    "can_comment"      : 1,
+    "date_create"      : "1201587895",
+    "date_update"      : "1356196127",
+    "coverphoto_server": 0,
+    "coverphoto_farm"  : 0
+  },
+  "stat"    : "ok"
+}

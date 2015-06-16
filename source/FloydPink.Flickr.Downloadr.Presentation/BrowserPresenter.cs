@@ -162,8 +162,21 @@
             _view.ShowSpinner(false);
         }
 
+        private string GetPhotosetMethodName(PhotosetType photoset) {
+            switch (photoset) {
+                case PhotosetType.All:
+                    return Methods.PeopleGetPhotos;
+                case PhotosetType.Public:
+                    return Methods.PeopleGetPublicPhotos;
+                case PhotosetType.Album:
+                    return Methods.PhotosetsGetPhotos;
+                default:
+                    return null;
+            }
+        }
+
         private async Task<PhotosResponse> GetPhotosResponse(int page) {
-            var methodName = _view.ShowAllPhotos ? Methods.PeopleGetPhotos : Methods.PeopleGetPublicPhotos;
+            var methodName = GetPhotosetMethodName(_view.PhotosetType);
             return
                 await
                     _logic.GetPhotosAsync(methodName, _view.User, _view.Preferences, page, _progress);

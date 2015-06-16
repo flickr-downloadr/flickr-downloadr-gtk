@@ -1,0 +1,28 @@
+{
+  "photoset": {
+    "id"               : "72157594503045979",
+    "owner"            : "25764928@N00",
+    "username"         : "Hari_Menon",
+    "primary"          : "412900213",
+    "secret"           : "e2c0a65098",
+    "server"           : "160",
+    "farm"             : 1,
+    "photos"           : 20,
+    "count_views"      : "457",
+    "count_comments"   : 2,
+    "count_photos"     : 20,
+    "count_videos"     : 0,
+    "title"            : {
+      "_content": "Most Interesting"
+    },
+    "description"      : {
+      "_content": "15 of my most 'interesting' photos here on Flickr\n\nSet automatically created by dopiaza's <a href=\"http:\/\/www.dopiaza.org\/flickr\/setmgr\/\" rel=\"nofollow\">set generator<\/a> on 13th June 2015 at 5:49pm BST"
+    },
+    "can_comment"      : 1,
+    "date_create"      : "1169931828",
+    "date_update"      : "1434214253",
+    "coverphoto_server": 0,
+    "coverphoto_farm"  : 0
+  },
+  "stat"    : "ok"
+}

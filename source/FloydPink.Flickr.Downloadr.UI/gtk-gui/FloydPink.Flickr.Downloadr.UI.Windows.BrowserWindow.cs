@@ -22,7 +22,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 		
 		private global::Gtk.Button buttonBack;
 		
-		private global::Gtk.ToggleButton togglebuttonShowAllPhotos;
+		private global::Gtk.ComboBox comboboxPhotoset;
 		
 		private global::Gtk.HBox hbox5;
 		
@@ -138,15 +138,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child hboxLeft.Gtk.Box+BoxChild
-			this.togglebuttonShowAllPhotos = new global::Gtk.ToggleButton ();
-			this.togglebuttonShowAllPhotos.WidthRequest = 185;
-			this.togglebuttonShowAllPhotos.CanFocus = true;
-			this.togglebuttonShowAllPhotos.Name = "togglebuttonShowAllPhotos";
-			this.togglebuttonShowAllPhotos.UseUnderline = true;
-			this.togglebuttonShowAllPhotos.FocusOnClick = false;
-			this.togglebuttonShowAllPhotos.Label = global::Mono.Unix.Catalog.GetString ("Show All Photos");
-			this.hboxLeft.Add (this.togglebuttonShowAllPhotos);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxLeft [this.togglebuttonShowAllPhotos]));
+			this.comboboxPhotoset = global::Gtk.ComboBox.NewText ();
+			this.comboboxPhotoset.Name = "comboboxPhotoset";
+			this.hboxLeft.Add (this.comboboxPhotoset);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxLeft [this.comboboxPhotoset]));
 			w8.Position = 1;
 			w8.Expand = false;
 			w8.Fill = false;
@@ -376,17 +371,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonBack.Clicked += new global::System.EventHandler (this.buttonBackClick);
-			this.togglebuttonShowAllPhotos.Clicked += new global::System.EventHandler (this.togglebuttonShowAllPhotosClick);
 			this.buttonSelectAll.Clicked += new global::System.EventHandler (this.buttonSelectAllClick);
 			this.buttonUnSelectAll.Clicked += new global::System.EventHandler (this.buttonUnSelectAllClick);
-			this.buttonFirstPage.Clicked += new global::System.EventHandler (this.buttonFirstPageClick);
-			this.buttonPreviousPage.Clicked += new global::System.EventHandler (this.buttonPreviousPageClick);
-			this.comboboxPage.Changed += new global::System.EventHandler (this.comboboxPageChange);
-			this.buttonNextPage.Clicked += new global::System.EventHandler (this.buttonNextPageClick);
-			this.buttonLastPage.Clicked += new global::System.EventHandler (this.buttonLastPageClick);
-			this.buttonDownloadSelection.Clicked += new global::System.EventHandler (this.buttonDownloadSelectionClick);
-			this.buttonDownloadThisPage.Clicked += new global::System.EventHandler (this.buttonDownloadThisPageClick);
-			this.buttonDownloadAllPages.Clicked += new global::System.EventHandler (this.buttonDownloadAllPagesClick);
 		}
 	}
 }
