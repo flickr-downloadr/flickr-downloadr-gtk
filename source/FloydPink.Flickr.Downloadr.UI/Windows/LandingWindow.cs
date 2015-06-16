@@ -1,5 +1,8 @@
 ﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
     using Bootstrap;
     using Gtk;
     using Helpers;
@@ -11,6 +14,12 @@
     public partial class LandingWindow : BaseWindow, ILandingView {
         private readonly ILandingPresenter _presenter;
         private SpinnerWidget spinner;
+
+        private string _page;
+        private string _pages;
+        private string _perPage;
+        private string _total;
+        private IEnumerable<Photoset> _albums;
 
         public LandingWindow(Session session) {
             Log.Debug("ctor");
@@ -28,8 +37,72 @@
             this._presenter.Initialize();
         }
 
+        public string FirstAlbum
+        {
+            get
+            {
+                return (((int.Parse(Page) - 1) * int.Parse(PerPage)) + 1).
+                    ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
+        public string LastAlbum
+        {
+            get
+            {
+                var maxLast = int.Parse(Page) * int.Parse(PerPage);
+                return maxLast > int.Parse(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
+            }
+        }
         public User User { get; set; }
+
         public Preferences Preferences { get; set; }
+
+        public string Page
+        {
+            get { return this._page; }
+            set
+            {
+                this._page = value;
+            }
+        }
+
+        public string Pages
+        {
+            get { return this._pages; }
+            set
+            {
+                this._pages = value;
+            }
+        }
+
+        public string PerPage
+        {
+            get { return this._perPage; }
+            set
+            {
+                this._perPage = value;
+            }
+        }
+
+        public string Total
+        {
+            get { return this._total; }
+            set
+            {
+                this._total = value;
+            }
+        }
+
+        public IEnumerable<Photoset> Albums { 
+            get { 
+                return _albums ?? new List<Photoset>();
+            } 
+            set { 
+                _albums = value;
+                UpdateUI();
+            }
+        }
 
         public void ShowSpinner(bool show) {
             Log.Debug("ShowSpinner");
@@ -74,6 +147,28 @@
             this.buttonNextPage.TooltipText = "Go to the next page of albums";
             this.buttonLastPage.TooltipText = "Go the last page of albums";
             this.buttonContinue.TooltipText = "Browse and download photos from the selected photoset";
+        }
+
+        private void UpdateUI() {
+            Log.Debug("UpdateUI");
+            Application.Invoke(delegate {
+                                   this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Albums</small>",
+                                       FirstAlbum, LastAlbum, Total);
+                                   this.labelPages.Markup = string.Format("<small>{0} of {1} Pages</small>", Page, Pages);
+
+                                   var pages = new ListStore(typeof (string));
+                                   this.comboboxPage.Model = pages;
+                                   Enumerable.Range(1, int.Parse(Pages)).ToList().ForEach(p => pages.AppendValues(p.ToString()));
+                                   this.comboboxPage.Active = int.Parse(Page) - 1;
+
+                                   this.buttonPreviousPage.Sensitive = this.buttonFirstPage.Sensitive = Page != "1";
+                                   this.buttonNextPage.Sensitive = this.buttonLastPage.Sensitive = Page != Pages;
+
+                                   this.scrolledwindowPhotos.Vadjustment.Value = 0;
+
+                                   hboxCenter.Sensitive = Albums.Any();
+                               });
+            // SetupTheImageGrid(Photos);
         }
 
         protected void buttonBackClick(object sender, EventArgs e) {

@@ -35,7 +35,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                     ParameterNames.PerPage,
                     // TODO: Clean this up
                     // preferences.PhotosPerPage.ToString(CultureInfo.InvariantCulture)
-                    "500"
+                    "10"
                 }, {
                     ParameterNames.Page, page.ToString(CultureInfo.InvariantCulture)
                 }

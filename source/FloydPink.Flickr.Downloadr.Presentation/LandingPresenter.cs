@@ -32,7 +32,17 @@
             var response =
                 await this._logic.GetPhotosetsAsync(Methods.PhotosetsGetList, this._view.User, this._view.Preferences, 1, this._progress);
 
+            SetPhotosetsResponse(response);
+
             this._view.ShowSpinner(false);
+        }
+
+        private void SetPhotosetsResponse(PhotosetsResponse photosetsResponse) {
+            this._view.Page = photosetsResponse.Page.ToString(CultureInfo.InvariantCulture);
+            this._view.Pages = photosetsResponse.Pages.ToString(CultureInfo.InvariantCulture);
+            this._view.PerPage = photosetsResponse.PerPage.ToString(CultureInfo.InvariantCulture);
+            this._view.Total = photosetsResponse.Total.ToString(CultureInfo.InvariantCulture);
+            this._view.Albums = photosetsResponse.Photosets;
         }
     }
 }

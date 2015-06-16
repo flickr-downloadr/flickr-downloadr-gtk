@@ -9,7 +9,6 @@
     using Helpers;
     using Model;
     using Model.Enums;
-    using Model.Extensions;
     using Presentation;
     using Presentation.Views;
     using Widgets;
@@ -99,7 +98,6 @@
             set
             {
                 this._photos = value;
-                PropertyChanged.Notify(() => AreAllPagePhotosSelected);
                 UpdateUI();
                 Application.Invoke(delegate {
                                        this._doNotFireOnSelectionChanged = true;
@@ -118,8 +116,6 @@
             set
             {
                 this._page = value;
-                PropertyChanged.Notify(() => Page);
-                PropertyChanged.Notify(() => AreAnyPagePhotosSelected);
             }
         }
 
@@ -129,7 +125,6 @@
             set
             {
                 this._pages = value;
-                PropertyChanged.Notify(() => Pages);
             }
         }
 
@@ -139,7 +134,6 @@
             set
             {
                 this._perPage = value;
-                PropertyChanged.Notify(() => PerPage);
             }
         }
 
@@ -149,9 +143,6 @@
             set
             {
                 this._total = value;
-                PropertyChanged.Notify(() => Total);
-                PropertyChanged.Notify(() => FirstPhoto);
-                PropertyChanged.Notify(() => LastPhoto);
             }
         }
 
@@ -193,12 +184,6 @@
                                        ButtonsType.Ok, MessageType.Info);
                                });
         }
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
             Log.Debug("OnDeleteEvent");
@@ -261,8 +246,6 @@
             Log.Debug("ClearSelectedPhotos");
             AllSelectedPhotos.Clear();
             SetSelectionOnAllImages(false);
-            PropertyChanged.Notify(() => SelectedPhotosExist);
-            PropertyChanged.Notify(() => SelectedPhotosCountText);
         }
 
         private void UpdateSelectionButtons() {

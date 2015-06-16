@@ -155,7 +155,7 @@
         private async Task GetAndSetPhotos(int page) {
             this._view.ShowSpinner(true);
 
-            SetPhotoResponse(await GetPhotosResponse(page));
+            SetPhotosResponse(await GetPhotosResponse(page));
 
             this._view.ShowSpinner(false);
         }
@@ -179,7 +179,7 @@
                 await this._logic.GetPhotosAsync(methodName, this._view.User, this._view.Preferences, page, this._progress);
         }
 
-        private void SetPhotoResponse(PhotosResponse photosResponse) {
+        private void SetPhotosResponse(PhotosResponse photosResponse) {
             this._view.Page = photosResponse.Page.ToString(CultureInfo.InvariantCulture);
             this._view.Pages = photosResponse.Pages.ToString(CultureInfo.InvariantCulture);
             this._view.PerPage = photosResponse.PerPage.ToString(CultureInfo.InvariantCulture);

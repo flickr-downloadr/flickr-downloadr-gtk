@@ -4,9 +4,8 @@
     using System.ComponentModel;
     using System.IO;
     using Enums;
-    using Extensions;
 
-    public class Preferences : INotifyPropertyChanged {
+    public class Preferences {
         private string _cacheLocation;
         private bool _checkForUpdates;
         private string _downloadLocation;
@@ -24,7 +23,6 @@
             set
             {
                 this._titleAsFilename = value;
-                PropertyChanged.Notify(() => TitleAsFilename);
             }
         }
 
@@ -34,7 +32,6 @@
             set
             {
                 this._downloadLocation = value;
-                PropertyChanged.Notify(() => DownloadLocation);
             }
         }
 
@@ -44,7 +41,6 @@
             set
             {
                 this._downloadSize = value;
-                PropertyChanged.Notify(() => DownloadSize);
             }
         }
 
@@ -54,7 +50,6 @@
             set
             {
                 this._photosPerPage = value;
-                PropertyChanged.Notify(() => PhotosPerPage);
             }
         }
 
@@ -64,7 +59,6 @@
             set
             {
                 this._safetyLevel = value;
-                PropertyChanged.Notify(() => SafetyLevel);
             }
         }
 
@@ -76,7 +70,6 @@
             set
             {
                 this._needOriginalTags = value;
-                PropertyChanged.Notify(() => NeedOriginalTags);
             }
         }
 
@@ -86,7 +79,6 @@
             set
             {
                 this._cacheLocation = value;
-                PropertyChanged.Notify(() => CacheLocation);
             }
         }
 
@@ -96,7 +88,6 @@
             set
             {
                 this._checkForUpdates = value;
-                PropertyChanged.Notify(() => CheckForUpdates);
             }
         }
 
@@ -106,7 +97,6 @@
             set
             {
                 this._logLevel = value;
-                PropertyChanged.Notify(() => LogLevel);
             }
         }
 
@@ -116,11 +106,8 @@
             set
             {
                 this._logLocation = value;
-                PropertyChanged.Notify(() => LogLocation);
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public static Preferences GetDefault() {
             return new Preferences {
