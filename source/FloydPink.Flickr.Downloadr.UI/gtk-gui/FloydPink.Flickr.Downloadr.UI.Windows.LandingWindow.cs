@@ -295,6 +295,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.buttonBack.Clicked += new global::System.EventHandler (this.buttonBackClick);
+			this.buttonFirstPage.Clicked += new global::System.EventHandler (this.buttonFirstPageClick);
+			this.buttonPreviousPage.Clicked += new global::System.EventHandler (this.buttonPreviousPageClick);
+			this.comboboxPage.Changed += new global::System.EventHandler (this.comboboxPageChange);
+			this.buttonNextPage.Clicked += new global::System.EventHandler (this.buttonNextPageClick);
+			this.buttonLastPage.Clicked += new global::System.EventHandler (this.buttonLastPageClick);
 			this.buttonContinue.Clicked += new global::System.EventHandler (this.buttonContinueClick);
 		}
 	}

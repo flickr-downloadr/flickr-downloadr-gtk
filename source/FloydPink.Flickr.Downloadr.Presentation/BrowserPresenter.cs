@@ -37,27 +37,27 @@
             await GetAndSetPhotos(1);
         }
 
-        public async Task NavigateTo(PhotoPage page) {
+        public async Task NavigateTo(PhotoOrAlbumPage page) {
             var targetPage = 0;
             var currentPage = int.Parse(this._view.Page);
             var totalPages = int.Parse(this._view.Pages);
             switch (page) {
-                case PhotoPage.First:
+                case PhotoOrAlbumPage.First:
                     if (currentPage != 1) {
                         targetPage = 1;
                     }
                     break;
-                case PhotoPage.Previous:
+                case PhotoOrAlbumPage.Previous:
                     if (currentPage != 1) {
                         targetPage = currentPage - 1;
                     }
                     break;
-                case PhotoPage.Next:
+                case PhotoOrAlbumPage.Next:
                     if (currentPage != totalPages) {
                         targetPage = currentPage + 1;
                     }
                     break;
-                case PhotoPage.Last:
+                case PhotoOrAlbumPage.Last:
                     if (currentPage != totalPages) {
                         targetPage = totalPages;
                     }

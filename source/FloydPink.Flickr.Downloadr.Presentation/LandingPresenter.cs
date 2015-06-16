@@ -5,6 +5,7 @@
     using Logic.Interfaces;
     using Model;
     using Model.Constants;
+    using Model.Enums;
     using Views;
 
     public class LandingPresenter : PresenterBase, ILandingPresenter {
@@ -27,14 +28,55 @@
         }
 
         public async Task Initialize() {
+            GetAndSetPhotosets(1);
+        }
+
+        public async Task NavigateTo(PhotoOrAlbumPage page) {
+            var targetPage = 0;
+            var currentPage = int.Parse(this._view.Page);
+            var totalPages = int.Parse(this._view.Pages);
+            switch (page) {
+                case PhotoOrAlbumPage.First:
+                    if (currentPage != 1) {
+                        targetPage = 1;
+                    }
+                    break;
+                case PhotoOrAlbumPage.Previous:
+                    if (currentPage != 1) {
+                        targetPage = currentPage - 1;
+                    }
+                    break;
+                case PhotoOrAlbumPage.Next:
+                    if (currentPage != totalPages) {
+                        targetPage = currentPage + 1;
+                    }
+                    break;
+                case PhotoOrAlbumPage.Last:
+                    if (currentPage != totalPages) {
+                        targetPage = totalPages;
+                    }
+                    break;
+            }
+            if (targetPage != 0) {
+                await GetAndSetPhotosets(targetPage);
+            }
+        }
+
+        public async Task NavigateTo(int page) {
+            await GetAndSetPhotosets(page);
+        }
+
+        private async Task GetAndSetPhotosets(int page) {
             this._view.ShowSpinner(true);
 
-            var response =
-                await this._logic.GetPhotosetsAsync(Methods.PhotosetsGetList, this._view.User, this._view.Preferences, 1, this._progress);
-
-            SetPhotosetsResponse(response);
+            SetPhotosetsResponse(await GetPhotosetsResponse(page));
 
             this._view.ShowSpinner(false);
+        }
+
+        private async Task<PhotosetsResponse> GetPhotosetsResponse(int page) {            
+            return
+                await this._logic.GetPhotosetsAsync(Methods.PhotosetsGetList, this._view.User, this._view.Preferences, page, this._progress);
         }
 
         private void SetPhotosetsResponse(PhotosetsResponse photosetsResponse) {

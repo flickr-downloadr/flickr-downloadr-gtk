@@ -7,6 +7,7 @@
     using Gtk;
     using Helpers;
     using Model;
+    using Model.Enums;
     using Presentation;
     using Presentation.Views;
     using Widgets;
@@ -171,6 +172,13 @@
             // SetupTheImageGrid(Photos);
         }
 
+        private void LoseFocus(Button element) {
+            Log.Debug("LoseFocus");
+            if (element.HasFocus) {
+                Focus = this.buttonBack;
+            }
+        }
+
         protected void buttonBackClick(object sender, EventArgs e) {
             Log.Debug("buttonBackClick");
             var loginWindow = new LoginWindow {
@@ -178,6 +186,38 @@
             };
             loginWindow.Show();
             Destroy();
+        }
+
+        protected async void buttonNextPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonNextPageClick");
+            LoseFocus((Button) sender);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Next);
+        }
+
+        protected async void buttonLastPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonLastPageClick");
+            LoseFocus((Button) sender);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Last);
+        }
+
+        protected async void buttonFirstPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonFirstPageClick");
+            LoseFocus((Button) sender);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.First);
+        }
+
+        protected async void buttonPreviousPageClick(object sender, EventArgs e) {
+            Log.Debug("buttonPreviousPageClick");
+            LoseFocus((Button) sender);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Previous);
+        }
+
+        protected async void comboboxPageChange(object sender, EventArgs e) {
+            Log.Debug("comboboxPageChange");
+            var jumpToPage = ((ComboBox) sender).ActiveText;
+            if (jumpToPage != null && jumpToPage != Page) {
+                await this._presenter.NavigateTo(int.Parse(jumpToPage));
+            }
         }
 
         protected void buttonContinueClick(object sender, EventArgs e) {

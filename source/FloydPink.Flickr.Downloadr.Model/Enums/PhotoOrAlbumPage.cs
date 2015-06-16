@@ -1,5 +1,5 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Model.Enums {
-    public enum PhotoPage {
+    public enum PhotoOrAlbumPage {
         First,
         Previous,
         Next,

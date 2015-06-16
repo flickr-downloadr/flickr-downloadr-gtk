@@ -47,7 +47,6 @@
     <Compile Include="Enums\PhotoDownloadSize.cs" />
     <Compile Include="Enums\PhotoMetadata.cs" />
     <Compile Include="Enums\PhotoSize.cs" />
-    <Compile Include="Enums\PhotoPage.cs" />
     <Compile Include="Enums\SafeSearch.cs" />
     <Compile Include="Helpers\InvariantCultureHelper.cs" />
     <Compile Include="Photo.cs" />
@@ -63,6 +62,7 @@
     <Compile Include="Enums\PhotosetType.cs" />
     <Compile Include="Photoset.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="Enums\PhotoOrAlbumPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

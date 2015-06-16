@@ -435,25 +435,25 @@
         protected async void buttonNextPageClick(object sender, EventArgs e) {
             Log.Debug("buttonNextPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Next);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Next);
         }
 
         protected async void buttonLastPageClick(object sender, EventArgs e) {
             Log.Debug("buttonLastPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Last);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Last);
         }
 
         protected async void buttonFirstPageClick(object sender, EventArgs e) {
             Log.Debug("buttonFirstPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.First);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.First);
         }
 
         protected async void buttonPreviousPageClick(object sender, EventArgs e) {
             Log.Debug("buttonPreviousPageClick");
             LoseFocus((Button) sender);
-            await this._presenter.NavigateTo(PhotoPage.Previous);
+            await this._presenter.NavigateTo(PhotoOrAlbumPage.Previous);
         }
 
         protected void buttonSelectAllClick(object sender, EventArgs e) {
@@ -466,16 +466,6 @@
             Log.Debug("buttonUnSelectAllClick");
             LoseFocus((Button) sender);
             SetSelectionOnAllImages(false);
-        }
-
-        protected async void togglebuttonShowAllPhotosClick(object sender, EventArgs e) {
-            Log.Debug("togglebuttonShowAllPhotosClick");
-            var toggleButton = (ToggleButton) sender;
-            toggleButton.Label = toggleButton.Active ? "Show Only Public Photos" : "Show All Photos";
-
-            LoseFocus((Button) sender);
-            ClearSelectedPhotos();
-            await this._presenter.InitializePhotoset();
         }
 
         protected async void buttonDownloadSelectionClick(object sender, EventArgs e) {
@@ -497,6 +487,7 @@
         }
 
         protected async void comboboxPageChange(object sender, EventArgs e) {
+            Log.Debug("comboboxPageChange");
             var jumpToPage = ((ComboBox) sender).ActiveText;
             if (jumpToPage != null && jumpToPage != Page) {
                 await this._presenter.NavigateTo(int.Parse(jumpToPage));
