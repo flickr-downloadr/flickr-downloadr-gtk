@@ -196,7 +196,7 @@
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            buttonBack.TooltipText = "Close this window and go back to the login window";
+            buttonBack.TooltipText = "Close this window and go back to the photoset selection window";
             buttonSelectAll.TooltipText = "Select all the photos on this page";
             buttonUnSelectAll.TooltipText = "Deselect all the photos on this page";
             buttonFirstPage.TooltipText = "Go to the first page of photos";
@@ -432,10 +432,8 @@
 
         protected void buttonBackClick(object sender, EventArgs e) {
             Log.Debug("buttonBackClick");
-            var loginWindow = new LoginWindow {
-                User = User
-            };
-            loginWindow.Show();
+            var landingWindow = new LandingWindow(User, Preferences);
+            landingWindow.Show();
             Destroy();
         }
 

@@ -78,7 +78,7 @@
             buttonCancel.TooltipText =
                 "Revert all the settings to their last saved values and go back to the login window";
             buttonDefaults.TooltipText = "Reset all the settings to their default values";
-            buttonSave.TooltipText = "Save all the settings and continue to the browser window";
+            buttonSave.TooltipText = "Save all the settings and continue to the photoset selection window";
             labelUpdate.TooltipText =
                 checkbuttonUpdate.TooltipText =
                     "Get notified automatically when there is an updated version available";
@@ -198,8 +198,8 @@
             Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
 
             _presenter.Save(preferences);
-            var browserWindow = new BrowserWindow(User, preferences);
-            browserWindow.Show();
+            var landingWindow = new LandingWindow(User, preferences);
+            landingWindow.Show();
             Destroy();
         }
 

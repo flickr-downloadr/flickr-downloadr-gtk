@@ -163,10 +163,10 @@
                                });
         }
 
-        public void OpenBrowserWindow() {
+        public void OpenLandingWindow() {
             Log.Debug("OpenBrowserWindow");
-            var browserWindow = new BrowserWindow(User, Preferences);
-            browserWindow.Show();
+            var landingWindow = new LandingWindow(User, Preferences);
+            landingWindow.Show();
             Destroy();
         }
 

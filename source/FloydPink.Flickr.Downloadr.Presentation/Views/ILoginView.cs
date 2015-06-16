@@ -5,7 +5,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation.Views {
         User User { get; set; }
         void ShowLoggedInControl(Preferences preferences);
         void ShowLoggedOutControl();
-        void OpenBrowserWindow();
+        void OpenLandingWindow();
         void OpenPreferencesWindow(Preferences preferences);
         void ShowUpdateAvailableNotification(string latestVersion);
     }

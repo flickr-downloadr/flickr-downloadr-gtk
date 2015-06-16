@@ -44,7 +44,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
 
         public void Continue() {
             if (this._preferences != null) {
-                this._view.OpenBrowserWindow();
+                this._view.OpenLandingWindow();
             } else {
                 this._view.OpenPreferencesWindow(Preferences.GetDefault());
             }

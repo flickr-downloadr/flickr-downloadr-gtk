@@ -6,5 +6,6 @@
     public interface ILandingView : IBaseView {
         User User { get; set; }
         Preferences Preferences { get; set; }
+        void UpdateProgress(string percentDone, string operationText, bool cancellable);
     }
 }
