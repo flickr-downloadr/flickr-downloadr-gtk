@@ -16,8 +16,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         private readonly IOAuthManager _oAuthManager;
 
         public BrowserLogic(IOAuthManager oAuthManager, IDownloadLogic downloadLogic) {
-            _oAuthManager = oAuthManager;
-            _downloadLogic = downloadLogic;
+            this._oAuthManager = oAuthManager;
+            this._downloadLogic = downloadLogic;
         }
 
         #region IBrowserLogic Members
@@ -44,7 +44,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             };
 
             var photosResponse = (Dictionary<string, object>)
-                await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
+                await this._oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
 
             return photosResponse.GetPhotosResponseFromDictionary();
         }
@@ -56,7 +56,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 return;
             }
 
-            await _downloadLogic.Download(photosList, cancellationToken, progress, preferences);
+            await this._downloadLogic.Download(photosList, cancellationToken, progress, preferences);
         }
 
         #endregion

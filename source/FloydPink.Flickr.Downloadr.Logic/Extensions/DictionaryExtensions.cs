@@ -44,6 +44,28 @@
                 photos);
         }
 
+        public static PhotosetsResponse GetPhotosetsResponseFromDictionary(this Dictionary<string, object> dictionary) {
+            var photosets = new List<Photoset>();
+            IEnumerable<Dictionary<string, object>> photosetDictionary;
+
+            if (runningOnMono) {
+                var photosetListAsArrayList = (ArrayList) dictionary.GetSubValue("photosets", "photoset");
+                photosetDictionary = photosetListAsArrayList.Cast<Dictionary<string, object>>();
+            } else {
+                var photosetListAsIEnumerable = (IEnumerable<object>) dictionary.GetSubValue("photosets", "photoset");
+                photosetDictionary = photosetListAsIEnumerable.Cast<Dictionary<string, object>>();
+            }
+
+            photosets.AddRange(photosetDictionary.Select(BuildPhotoset));
+
+            return new PhotosetsResponse(
+                int.Parse(dictionary.GetSubValue("photosets", "page").ToString()),
+                int.Parse(dictionary.GetSubValue("photosets", "pages").ToString()),
+                int.Parse(dictionary.GetSubValue("photosets", "perpage").ToString()),
+                int.Parse(dictionary.GetSubValue("photosets", "total").ToString()),
+                photosets);
+        }
+
         public static IEnumerable<string> ExtractOriginalTags(this Dictionary<string, object> dictionary) {
             IEnumerable<Dictionary<string, object>> tagList;
 
@@ -86,6 +108,18 @@
                 dictionary.GetValue("url_c").ToString(),
                 dictionary.GetValue("url_l").ToString(),
                 dictionary.GetValue("url_o").ToString());
+        }
+
+        private static Photoset BuildPhotoset(Dictionary<string, object> dictionary) {
+            return new Photoset(dictionary.GetValue("id").ToString(),
+                dictionary.GetValue("primary").ToString(),
+                dictionary.GetValue("secret").ToString(),
+                dictionary.GetValue("server").ToString(),
+                int.Parse(dictionary.GetValue("farm").ToString()),
+                int.Parse(dictionary.GetValue("photos").ToString()),
+                int.Parse(dictionary.GetValue("videos").ToString()),
+                dictionary.GetSubValue("title").ToString(),
+                dictionary.GetSubValue("description").ToString());
         }
     }
 }

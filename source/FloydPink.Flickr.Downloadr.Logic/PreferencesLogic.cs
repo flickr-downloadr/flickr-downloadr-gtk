@@ -8,17 +8,17 @@
         private readonly IRepository<Preferences> _repository;
 
         public PreferencesLogic(IRepository<Preferences> repository) {
-            _repository = repository;
+            this._repository = repository;
         }
 
         public Preferences GetPreferences() {
-            var preferences = _repository.Get();
+            var preferences = this._repository.Get();
             preferences = Validate(preferences);
             return preferences.PhotosPerPage == 0 ? null : preferences;
         }
 
         public void SavePreferences(Preferences preferences) {
-            _repository.Save(preferences);
+            this._repository.Save(preferences);
         }
 
         public void EmptyCacheDirectory(string cacheLocation) {

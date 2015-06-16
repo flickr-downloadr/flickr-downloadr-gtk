@@ -41,9 +41,11 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="LandingLogic.cs" />
     <Compile Include="BrowserLogic.cs" />
     <Compile Include="DownloadLogic.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Interfaces\ILandingLogic.cs" />
     <Compile Include="Interfaces\IBrowserLogic.cs" />
     <Compile Include="Interfaces\IDownloadLogic.cs" />
     <Compile Include="Interfaces\ILoginLogic.cs" />

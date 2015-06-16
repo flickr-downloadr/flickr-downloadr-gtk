@@ -5,68 +5,80 @@ namespace FloydPink.Flickr.Downloadr.Model {
     using Extensions;
 
     public class User : INotifyPropertyChanged {
-        [ScriptIgnore] private List<Photoset> _photosets;
         [ScriptIgnore] private UserInfo _info;
         private string _name;
+        [ScriptIgnore] private List<Photoset> _photosets;
         private string _userName;
         private string _userNsId;
 
         public User() {
-            _name = string.Empty;
-            _userName = string.Empty;
-            _userNsId = string.Empty;
+            this._name = string.Empty;
+            this._userName = string.Empty;
+            this._userNsId = string.Empty;
         }
 
         public User(string name, string userName, string userNsId) {
-            _name = name;
-            _userName = userName;
-            _userNsId = userNsId;
+            this._name = name;
+            this._userName = userName;
+            this._userNsId = userNsId;
         }
 
-        public string Name {
-            get { return _name; }
-            set {
-                _name = value;
+        public string Name
+        {
+            get { return this._name; }
+            set
+            {
+                this._name = value;
                 PropertyChanged.Notify(() => Name);
             }
         }
 
-        public string Username {
-            get { return _userName; }
-            set {
-                _userName = value;
+        public string Username
+        {
+            get { return this._userName; }
+            set
+            {
+                this._userName = value;
                 PropertyChanged.Notify(() => Username);
             }
         }
 
-        public string UserNsId {
-            get { return _userNsId; }
-            set {
-                _userNsId = value;
+        public string UserNsId
+        {
+            get { return this._userNsId; }
+            set
+            {
+                this._userNsId = value;
                 PropertyChanged.Notify(() => UserNsId);
             }
         }
 
         [ScriptIgnore]
-        public UserInfo Info {
-            get { return _info; }
-            set {
-                _info = value;
+        public UserInfo Info
+        {
+            get { return this._info; }
+            set
+            {
+                this._info = value;
                 PropertyChanged.Notify(() => Info);
             }
         }
 
         [ScriptIgnore]
-        public List<Photoset> Photosets {
-            get { return _photosets; }
-            set {
-                _photosets = value;
+        public List<Photoset> Photosets
+        {
+            get { return this._photosets; }
+            set
+            {
+                this._photosets = value;
                 PropertyChanged.Notify(() => Photosets);
             }
         }
 
-        public string WelcomeMessage {
-            get {
+        public string WelcomeMessage
+        {
+            get
+            {
                 var userNameString = string.IsNullOrEmpty(Name)
                     ? (string.IsNullOrEmpty(Username) ? string.Empty : Username)
                     : Name;

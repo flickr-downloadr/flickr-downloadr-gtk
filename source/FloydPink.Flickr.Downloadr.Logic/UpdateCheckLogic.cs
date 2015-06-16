@@ -11,7 +11,7 @@
         private readonly IRepository<Update> _repository;
 
         public UpdateCheckLogic(IRepository<Update> repository) {
-            _repository = repository;
+            this._repository = repository;
         }
 
         #region IUpdateCheckLogic implementation
@@ -19,7 +19,7 @@
         public Update UpdateAvailable(Preferences preferences) {
             var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
             Version latestVersion;
-            var update = _repository.Get();
+            var update = this._repository.Get();
             if (DateTime.Now.Subtract(TimeSpan.FromDays(1.0)) > update.LastChecked) {
                 var request = WebRequest.Create("http://flickrdownloadr.com/build.number");
                 var response = (HttpWebResponse) request.GetResponse();
@@ -32,7 +32,7 @@
                 latestVersion = new Version(update.LatestVersion);
             }
             update.Available = latestVersion.CompareTo(currentVersion) > 0;
-            _repository.Save(update);
+            this._repository.Save(update);
             return update;
         }
 

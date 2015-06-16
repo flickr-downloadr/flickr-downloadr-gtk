@@ -11,63 +11,63 @@ namespace FloydPink.Flickr.Downloadr.Logic {
     using Repository;
 
     public class LoginLogic : ILoginLogic {
-        private Action<User> _applyUser;
         private readonly IOAuthManager _oAuthManager;
         private readonly IRepository<Preferences> _preferencesRepository;
         private readonly IRepository<Token> _tokenRepository;
         private readonly IRepository<Update> _updateRepository;
         private readonly IUserInfoLogic _userInfoLogic;
         private readonly IRepository<User> _userRepository;
+        private Action<User> _applyUser;
 
         public LoginLogic(IOAuthManager oAuthManager, IUserInfoLogic userInfoLogic, IRepository<Token> tokenRepository,
                           IRepository<User> userRepository, IRepository<Preferences> preferencesRepository,
                           IRepository<Update> updateRepository) {
-            _oAuthManager = oAuthManager;
-            _userInfoLogic = userInfoLogic;
-            _tokenRepository = tokenRepository;
-            _userRepository = userRepository;
-            _preferencesRepository = preferencesRepository;
-            _updateRepository = updateRepository;
+            this._oAuthManager = oAuthManager;
+            this._userInfoLogic = userInfoLogic;
+            this._tokenRepository = tokenRepository;
+            this._userRepository = userRepository;
+            this._preferencesRepository = preferencesRepository;
+            this._updateRepository = updateRepository;
         }
 
         private void OAuthManagerAuthenticated(object sender, AuthenticatedEventArgs e) {
             var authenticatedUser = e.AuthenticatedUser;
-            _userRepository.Save(authenticatedUser);
+            this._userRepository.Save(authenticatedUser);
             CallApplyUser(authenticatedUser);
         }
 
         private async void CallApplyUser(User authenticatedUser) {
-            _applyUser(await _userInfoLogic.PopulateUserInfo(authenticatedUser));
+            this._applyUser(await this._userInfoLogic.PopulateUserInfo(authenticatedUser));
         }
 
         #region ILoginLogic Members
 
         public void Login(Action<User> applyUser) {
-            _applyUser = applyUser;
-            _oAuthManager.Authenticated += OAuthManagerAuthenticated;
+            this._applyUser = applyUser;
+            this._oAuthManager.Authenticated += OAuthManagerAuthenticated;
             Process.Start(new ProcessStartInfo {
-                FileName = _oAuthManager.BeginAuthorization()
+                FileName = this._oAuthManager.BeginAuthorization()
             });
         }
 
         public void Logout() {
-            _tokenRepository.Delete();
-            _userRepository.Delete();
-            _preferencesRepository.Delete();
-            _updateRepository.Delete();
+            this._tokenRepository.Delete();
+            this._userRepository.Delete();
+            this._preferencesRepository.Delete();
+            this._updateRepository.Delete();
         }
 
         public async Task<bool> IsUserLoggedInAsync(Action<User> applyUser) {
-            _applyUser = applyUser;
-            var token = _tokenRepository.Get();
-            var user = _userRepository.Get();
+            this._applyUser = applyUser;
+            var token = this._tokenRepository.Get();
+            var user = this._userRepository.Get();
             if (string.IsNullOrEmpty(token.TokenString)) {
                 return false;
             }
 
-            _oAuthManager.AccessToken = token.TokenString;
+            this._oAuthManager.AccessToken = token.TokenString;
             var testLogin =
-                (Dictionary<string, object>) await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.TestLogin);
+                (Dictionary<string, object>) await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.TestLogin);
             var userIsLoggedIn = (string) testLogin.GetSubValue("user", "id") == user.UserNsId;
 
             if (userIsLoggedIn) {

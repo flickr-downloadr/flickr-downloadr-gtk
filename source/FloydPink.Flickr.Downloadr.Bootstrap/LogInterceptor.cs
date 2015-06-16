@@ -11,10 +11,10 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
         private readonly ILog _log;
 
         public LogInterceptor(ILog log) {
-            _log = log;
+            this._log = log;
         }
 
-        public ILog Log { get { return _log; } }
+        public ILog Log { get { return this._log; } }
 
         public void Intercept(IInvocation invocation) {
             if (Log.IsDebugEnabled) {
@@ -75,7 +75,7 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap {
                 return "<null>";
             }
             var objtype = argument.GetType();
-            if (objtype == typeof (String) || objtype.IsPrimitive || !objtype.IsClass) {
+            if (objtype == typeof (string) || objtype.IsPrimitive || !objtype.IsClass) {
                 return argument.ToString();
             }
 

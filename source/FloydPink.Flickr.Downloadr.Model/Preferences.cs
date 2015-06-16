@@ -18,84 +18,104 @@
         private string _safetyLevel;
         private bool _titleAsFilename;
 
-        public bool TitleAsFilename {
-            get { return _titleAsFilename; }
-            set {
-                _titleAsFilename = value;
+        public bool TitleAsFilename
+        {
+            get { return this._titleAsFilename; }
+            set
+            {
+                this._titleAsFilename = value;
                 PropertyChanged.Notify(() => TitleAsFilename);
             }
         }
 
-        public string DownloadLocation {
-            get { return _downloadLocation; }
-            set {
-                _downloadLocation = value;
+        public string DownloadLocation
+        {
+            get { return this._downloadLocation; }
+            set
+            {
+                this._downloadLocation = value;
                 PropertyChanged.Notify(() => DownloadLocation);
             }
         }
 
-        public PhotoDownloadSize DownloadSize {
-            get { return _downloadSize; }
-            set {
-                _downloadSize = value;
+        public PhotoDownloadSize DownloadSize
+        {
+            get { return this._downloadSize; }
+            set
+            {
+                this._downloadSize = value;
                 PropertyChanged.Notify(() => DownloadSize);
             }
         }
 
-        public int PhotosPerPage {
-            get { return _photosPerPage; }
-            set {
-                _photosPerPage = value;
+        public int PhotosPerPage
+        {
+            get { return this._photosPerPage; }
+            set
+            {
+                this._photosPerPage = value;
                 PropertyChanged.Notify(() => PhotosPerPage);
             }
         }
 
-        public string SafetyLevel {
-            get { return _safetyLevel; }
-            set {
-                _safetyLevel = value;
+        public string SafetyLevel
+        {
+            get { return this._safetyLevel; }
+            set
+            {
+                this._safetyLevel = value;
                 PropertyChanged.Notify(() => SafetyLevel);
             }
         }
 
         public List<string> Metadata { get; set; }
 
-        public bool NeedOriginalTags {
-            get { return _needOriginalTags; }
-            set {
-                _needOriginalTags = value;
+        public bool NeedOriginalTags
+        {
+            get { return this._needOriginalTags; }
+            set
+            {
+                this._needOriginalTags = value;
                 PropertyChanged.Notify(() => NeedOriginalTags);
             }
         }
 
-        public string CacheLocation {
-            get { return _cacheLocation; }
-            set {
-                _cacheLocation = value;
+        public string CacheLocation
+        {
+            get { return this._cacheLocation; }
+            set
+            {
+                this._cacheLocation = value;
                 PropertyChanged.Notify(() => CacheLocation);
             }
         }
 
-        public bool CheckForUpdates {
-            get { return _checkForUpdates; }
-            set {
-                _checkForUpdates = value;
+        public bool CheckForUpdates
+        {
+            get { return this._checkForUpdates; }
+            set
+            {
+                this._checkForUpdates = value;
                 PropertyChanged.Notify(() => CheckForUpdates);
             }
         }
 
-        public LogLevel LogLevel {
-            get { return _logLevel; }
-            set {
-                _logLevel = value;
+        public LogLevel LogLevel
+        {
+            get { return this._logLevel; }
+            set
+            {
+                this._logLevel = value;
                 PropertyChanged.Notify(() => LogLevel);
             }
         }
 
-        public string LogLocation {
-            get { return _logLocation; }
-            set {
-                _logLocation = value;
+        public string LogLocation
+        {
+            get { return this._logLocation; }
+            set
+            {
+                this._logLocation = value;
                 PropertyChanged.Notify(() => LogLocation);
             }
         }

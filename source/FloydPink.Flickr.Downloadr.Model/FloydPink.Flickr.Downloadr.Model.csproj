@@ -52,6 +52,7 @@
     <Compile Include="Extensions\NotificationExtensions.cs" />
     <Compile Include="Helpers\InvariantCultureHelper.cs" />
     <Compile Include="Photo.cs" />
+    <Compile Include="PhotosetsResponse.cs" />
     <Compile Include="PhotosResponse.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="ProgressUpdate.cs" />

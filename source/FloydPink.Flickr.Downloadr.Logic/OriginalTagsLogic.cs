@@ -11,7 +11,7 @@
         private readonly IOAuthManager _oAuthManager;
 
         public OriginalTagsLogic(IOAuthManager oAuthManager) {
-            _oAuthManager = oAuthManager;
+            this._oAuthManager = oAuthManager;
         }
 
         public async Task<Photo> GetOriginalTagsTask(Photo photo) {
@@ -25,7 +25,7 @@
 
             var photoResponse =
                 (Dictionary<string, object>)
-                    await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PhotosGetInfo, extraParams);
+                    await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.PhotosGetInfo, extraParams);
 
             // Override the internal tags with the original ones
             photo.Tags = string.Join(", ", photoResponse.ExtractOriginalTags());

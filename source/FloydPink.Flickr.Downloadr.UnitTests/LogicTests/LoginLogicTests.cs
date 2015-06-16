@@ -12,6 +12,16 @@
 
     [TestFixture]
     public class LoginLogicTests {
+        [SetUp]
+        public void Setup() {
+            this._oAuthManager = MockRepository.GenerateMock<IOAuthManager>();
+            this._userInfoLogic = MockRepository.GenerateMock<IUserInfoLogic>();
+            this._tokenRepository = MockRepository.GenerateMock<IRepository<Token>>();
+            this._userRepository = MockRepository.GenerateMock<IRepository<User>>();
+            this._preferencesRepository = MockRepository.GenerateStub<IRepository<Preferences>>();
+            this._updateRepository = MockRepository.GenerateStub<IRepository<Update>>();
+        }
+
         private IOAuthManager _oAuthManager;
         private IRepository<Preferences> _preferencesRepository;
         private IRepository<Token> _tokenRepository;
@@ -19,113 +29,52 @@
         private IUserInfoLogic _userInfoLogic;
         private IRepository<User> _userRepository;
 
-        [SetUp]
-        public void Setup() {
-            _oAuthManager = MockRepository.GenerateMock<IOAuthManager>();
-            _userInfoLogic = MockRepository.GenerateMock<IUserInfoLogic>();
-            _tokenRepository = MockRepository.GenerateMock<IRepository<Token>>();
-            _userRepository = MockRepository.GenerateMock<IRepository<User>>();
-            _preferencesRepository = MockRepository.GenerateStub<IRepository<Preferences>>();
-            _updateRepository = MockRepository.GenerateStub<IRepository<Update>>();
+        [Test, ExpectedException(typeof (InvalidOperationException))]
+        public void WillCallBeginAuthorizationOnOAuthManagerOnLogin() {
+            this._oAuthManager.Expect(o => o.BeginAuthorization()).Return(string.Empty);
+            var logic = new LoginLogic(this._oAuthManager, null, null, null, null, null);
+
+            logic.Login(null);
+
+            this._oAuthManager.AssertWasCalled(o => o.BeginAuthorization());
         }
 
         [Test]
         public void WillCallDeleteOnAllRepositoriesOnLogout() {
-            var logic = new LoginLogic(null, null, _tokenRepository, _userRepository, _preferencesRepository,
-                _updateRepository);
+            var logic = new LoginLogic(null, null, this._tokenRepository, this._userRepository, this._preferencesRepository,
+                this._updateRepository);
             logic.Logout();
 
-            _tokenRepository.AssertWasCalled(t => t.Delete());
-            _userRepository.AssertWasCalled(u => u.Delete());
-            _preferencesRepository.AssertWasCalled(u => u.Delete());
-            _updateRepository.AssertWasCalled(u => u.Delete());
-        }
-
-        [Test, ExpectedException(typeof (InvalidOperationException))]
-        public void WillCallBeginAuthorizationOnOAuthManagerOnLogin() {
-            _oAuthManager.Expect(o => o.BeginAuthorization()).Return(string.Empty);
-            var logic = new LoginLogic(_oAuthManager, null, null, null, null, null);
-
-            logic.Login(null);
-
-            _oAuthManager.AssertWasCalled(o => o.BeginAuthorization());
-        }
-
-        [Test]
-        public async void WillReturnFalseWhenTokenRepositoryReturnsEmptyTokenStringOnIsUserLoggedInAsync() {
-            var logic = new LoginLogic(_oAuthManager, null, _tokenRepository, _userRepository, _preferencesRepository, _updateRepository);
-            _tokenRepository.Expect(t => t.Get()).Return(new Token {
-                TokenString = null,
-                Secret = null
-            });
-            _userRepository.Expect(t => t.Get()).Return(null);
-
-            var applyUser = new Action<User>(delegate { });
-
-            Assert.IsFalse(await logic.IsUserLoggedInAsync(applyUser));
-
-            _tokenRepository.VerifyAllExpectations();
-            _userRepository.VerifyAllExpectations();
+            this._tokenRepository.AssertWasCalled(t => t.Delete());
+            this._userRepository.AssertWasCalled(u => u.Delete());
+            this._preferencesRepository.AssertWasCalled(u => u.Delete());
+            this._updateRepository.AssertWasCalled(u => u.Delete());
         }
 
         [Test, ExpectedException(typeof (InvalidOperationException))]
         public async void WillCallTestLoginMethodOnIsUserLoggedInAsync() {
-            var logic = new LoginLogic(_oAuthManager, null, _tokenRepository, _userRepository, _preferencesRepository, _updateRepository);
+            var logic = new LoginLogic(this._oAuthManager, null, this._tokenRepository, this._userRepository, this._preferencesRepository,
+                this._updateRepository);
 
             const string tokenString = "Some String";
-            _tokenRepository.Expect(t => t.Get()).Return(new Token {
+            this._tokenRepository.Expect(t => t.Get()).Return(new Token {
                 TokenString = tokenString,
                 Secret = null
             });
-            _userRepository.Expect(t => t.Get()).Return(new User());
+            this._userRepository.Expect(t => t.Get()).Return(new User());
 
-            _oAuthManager.Expect(o => o.MakeAuthenticatedRequestAsync(null, null)).IgnoreArguments();
+            this._oAuthManager.Expect(o => o.MakeAuthenticatedRequestAsync(null, null)).IgnoreArguments();
 
             var applyUser = new Action<User>(delegate { });
 
             await logic.IsUserLoggedInAsync(applyUser);
 
-            _tokenRepository.VerifyAllExpectations();
-            _userRepository.VerifyAllExpectations();
+            this._tokenRepository.VerifyAllExpectations();
+            this._userRepository.VerifyAllExpectations();
 
-            Assert.Equals(_oAuthManager.AccessToken, tokenString);
+            Assert.Equals(this._oAuthManager.AccessToken, tokenString);
 
-            _oAuthManager.VerifyAllExpectations();
-        }
-
-        [Test]
-        public async void WillReturnTrueOnIsUserLoggedInAsync() {
-            const string nsId = "some nsid";
-            const string userName = "some username";
-            const string mockJsonResponse = "{\"user\":{\"id\":\"" + nsId + "\",\"username\":{\"_content\":\"" + userName +
-                                            "\"}},\"stat\":\"ok\"}";
-            dynamic deserializedJson = (new JavaScriptSerializer()).Deserialize<dynamic>(mockJsonResponse);
-
-            var logic = new LoginLogic(_oAuthManager, _userInfoLogic, _tokenRepository, _userRepository, _preferencesRepository,
-                _updateRepository);
-
-            _tokenRepository.Expect(t => t.Get()).Return(new Token {
-                TokenString = "Some String",
-                Secret = null
-            });
-            _userRepository.Expect(t => t.Get()).Return(new User {
-                Name = userName,
-                UserNsId = nsId
-            });
-
-            _userInfoLogic.Expect(u => u.PopulateUserInfo(null)).IgnoreArguments().Return(Task.FromResult(new User()));
-
-            _oAuthManager.Stub(o => o.MakeAuthenticatedRequestAsync(null, null))
-                         .IgnoreArguments()
-                         .Return(Task.FromResult<dynamic>(deserializedJson));
-
-            var applyUser = new Action<User>(delegate { });
-
-            Assert.IsTrue(await logic.IsUserLoggedInAsync(applyUser));
-
-            _tokenRepository.VerifyAllExpectations();
-            _userRepository.VerifyAllExpectations();
-            _oAuthManager.VerifyAllExpectations();
+            this._oAuthManager.VerifyAllExpectations();
         }
 
         [Test]
@@ -136,28 +85,82 @@
                                             "\"}},\"stat\":\"ok\"}";
             dynamic deserializedJson = (new JavaScriptSerializer()).Deserialize<dynamic>(mockJsonResponse);
 
-            var logic = new LoginLogic(_oAuthManager, null, _tokenRepository, _userRepository, _preferencesRepository, _updateRepository);
+            var logic = new LoginLogic(this._oAuthManager, null, this._tokenRepository, this._userRepository, this._preferencesRepository,
+                this._updateRepository);
 
-            _tokenRepository.Expect(t => t.Get()).Return(new Token {
+            this._tokenRepository.Expect(t => t.Get()).Return(new Token {
                 TokenString = "Some String",
                 Secret = null
             });
-            _userRepository.Expect(t => t.Get()).Return(new User {
+            this._userRepository.Expect(t => t.Get()).Return(new User {
                 Name = userName,
                 UserNsId = "some other NsId"
             });
 
-            _oAuthManager.Stub(o => o.MakeAuthenticatedRequestAsync(null, null))
-                         .IgnoreArguments()
-                         .Return(Task.FromResult<dynamic>(deserializedJson));
+            this._oAuthManager.Stub(o => o.MakeAuthenticatedRequestAsync(null, null))
+                .IgnoreArguments()
+                .Return(Task.FromResult<dynamic>(deserializedJson));
 
             var applyUser = new Action<User>(delegate { });
 
             Assert.IsFalse(await logic.IsUserLoggedInAsync(applyUser));
 
-            _tokenRepository.VerifyAllExpectations();
-            _userRepository.VerifyAllExpectations();
-            _oAuthManager.VerifyAllExpectations();
+            this._tokenRepository.VerifyAllExpectations();
+            this._userRepository.VerifyAllExpectations();
+            this._oAuthManager.VerifyAllExpectations();
+        }
+
+        [Test]
+        public async void WillReturnFalseWhenTokenRepositoryReturnsEmptyTokenStringOnIsUserLoggedInAsync() {
+            var logic = new LoginLogic(this._oAuthManager, null, this._tokenRepository, this._userRepository, this._preferencesRepository,
+                this._updateRepository);
+            this._tokenRepository.Expect(t => t.Get()).Return(new Token {
+                TokenString = null,
+                Secret = null
+            });
+            this._userRepository.Expect(t => t.Get()).Return(null);
+
+            var applyUser = new Action<User>(delegate { });
+
+            Assert.IsFalse(await logic.IsUserLoggedInAsync(applyUser));
+
+            this._tokenRepository.VerifyAllExpectations();
+            this._userRepository.VerifyAllExpectations();
+        }
+
+        [Test]
+        public async void WillReturnTrueOnIsUserLoggedInAsync() {
+            const string nsId = "some nsid";
+            const string userName = "some username";
+            const string mockJsonResponse = "{\"user\":{\"id\":\"" + nsId + "\",\"username\":{\"_content\":\"" + userName +
+                                            "\"}},\"stat\":\"ok\"}";
+            dynamic deserializedJson = (new JavaScriptSerializer()).Deserialize<dynamic>(mockJsonResponse);
+
+            var logic = new LoginLogic(this._oAuthManager, this._userInfoLogic, this._tokenRepository, this._userRepository,
+                this._preferencesRepository, this._updateRepository);
+
+            this._tokenRepository.Expect(t => t.Get()).Return(new Token {
+                TokenString = "Some String",
+                Secret = null
+            });
+            this._userRepository.Expect(t => t.Get()).Return(new User {
+                Name = userName,
+                UserNsId = nsId
+            });
+
+            this._userInfoLogic.Expect(u => u.PopulateUserInfo(null)).IgnoreArguments().Return(Task.FromResult(new User()));
+
+            this._oAuthManager.Stub(o => o.MakeAuthenticatedRequestAsync(null, null))
+                .IgnoreArguments()
+                .Return(Task.FromResult<dynamic>(deserializedJson));
+
+            var applyUser = new Action<User>(delegate { });
+
+            Assert.IsTrue(await logic.IsUserLoggedInAsync(applyUser));
+
+            this._tokenRepository.VerifyAllExpectations();
+            this._userRepository.VerifyAllExpectations();
+            this._oAuthManager.VerifyAllExpectations();
         }
     }
 }

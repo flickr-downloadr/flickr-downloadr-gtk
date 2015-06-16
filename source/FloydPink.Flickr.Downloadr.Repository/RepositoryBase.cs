@@ -10,7 +10,7 @@ namespace FloydPink.Flickr.Downloadr.Repository {
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "flickr-downloadr");
 
         protected abstract string RepoFileName { get; }
-        private string AbsoluteFilePath { get { return Path.Combine(_appDataFolder, RepoFileName); } }
+        private string AbsoluteFilePath { get { return Path.Combine(this._appDataFolder, RepoFileName); } }
 
         public void Delete() {
             if (File.Exists(AbsoluteFilePath)) {
@@ -26,8 +26,8 @@ namespace FloydPink.Flickr.Downloadr.Repository {
         }
 
         protected void Write(string fileContent) {
-            if (!Directory.Exists(_appDataFolder)) {
-                Directory.CreateDirectory(_appDataFolder);
+            if (!Directory.Exists(this._appDataFolder)) {
+                Directory.CreateDirectory(this._appDataFolder);
             }
             File.WriteAllText(AbsoluteFilePath, Crypt.Encrypt(fileContent, CryptKey));
         }

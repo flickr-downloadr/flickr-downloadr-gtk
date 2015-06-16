@@ -14,6 +14,9 @@
             For<IBrowserLogic>()
                 .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IBrowserLogic>())
                 .Use<BrowserLogic>();
+            For<ILandingLogic>()
+                .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<ILandingLogic>())
+                .Use<LandingLogic>();
             For<IDownloadLogic>()
                 .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IDownloadLogic>())
                 .Use<DownloadLogic>();

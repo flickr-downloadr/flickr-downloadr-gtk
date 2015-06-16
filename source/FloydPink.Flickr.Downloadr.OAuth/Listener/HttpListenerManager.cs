@@ -69,8 +69,10 @@ namespace FloydPink.Flickr.Downloadr.OAuth.Listener {
 
         public event EventHandler<HttpListenerCallbackEventArgs> RequestReceived;
 
-        public bool RequestReceivedHandlerExists {
-            get {
+        public bool RequestReceivedHandlerExists
+        {
+            get
+            {
                 var count = 0;
                 var eventHandler = RequestReceived;
                 if (eventHandler != null) {

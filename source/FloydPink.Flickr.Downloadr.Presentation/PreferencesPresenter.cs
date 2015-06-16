@@ -9,11 +9,11 @@
         private readonly IPreferencesLogic _logic;
 
         public PreferencesPresenter(IPreferencesView view, IPreferencesLogic logic) {
-            _logic = logic;
+            this._logic = logic;
         }
 
         public void Save(Preferences preferences) {
-            _logic.SavePreferences(preferences);
+            this._logic.SavePreferences(preferences);
         }
 
         public string GetCacheFolderSize(string cacheLocation) {
@@ -27,7 +27,7 @@
         }
 
         public void EmptyCacheDirectory(string cacheLocation) {
-            _logic.EmptyCacheDirectory(cacheLocation);
+            this._logic.EmptyCacheDirectory(cacheLocation);
         }
 
         // Thank you, humbads - http://stackoverflow.com/a/11124118/218882

@@ -4,64 +4,64 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
     using Views;
 
     public class LoginPresenter : PresenterBase, ILoginPresenter {
-        private Preferences _preferences;
         private readonly ILoginLogic _logic;
         private readonly IPreferencesLogic _preferencesLogic;
         private readonly IUpdateCheckLogic _updateCheckLogic;
         private readonly ILoginView _view;
+        private Preferences _preferences;
 
         public LoginPresenter(ILoginView view, ILoginLogic logic, IPreferencesLogic preferencesLogic,
                               IUpdateCheckLogic updateCheckLogic) {
-            _view = view;
-            _logic = logic;
-            _preferencesLogic = preferencesLogic;
-            _updateCheckLogic = updateCheckLogic;
+            this._view = view;
+            this._logic = logic;
+            this._preferencesLogic = preferencesLogic;
+            this._updateCheckLogic = updateCheckLogic;
         }
 
         public async void InitializeScreen() {
-            _view.ShowSpinner(true);
-            _view.ShowLoggedOutControl();
-            _preferences = _preferencesLogic.GetPreferences();
-            if (!await _logic.IsUserLoggedInAsync(ApplyUser)) {
+            this._view.ShowSpinner(true);
+            this._view.ShowLoggedOutControl();
+            this._preferences = this._preferencesLogic.GetPreferences();
+            if (!await this._logic.IsUserLoggedInAsync(ApplyUser)) {
                 Logout();
             }
         }
 
         public void Login() {
-            _view.ShowSpinner(true);
-            _logic.Login(ApplyUser);
+            this._view.ShowSpinner(true);
+            this._logic.Login(ApplyUser);
         }
 
         public void Logout() {
-            _logic.Logout();
-            if (_preferences != null) {
-                _preferencesLogic.EmptyCacheDirectory(_preferences.CacheLocation);
+            this._logic.Logout();
+            if (this._preferences != null) {
+                this._preferencesLogic.EmptyCacheDirectory(this._preferences.CacheLocation);
             }
-            _preferences = null;
-            _view.ShowSpinner(false);
-            _view.ShowLoggedOutControl();
+            this._preferences = null;
+            this._view.ShowSpinner(false);
+            this._view.ShowLoggedOutControl();
         }
 
         public void Continue() {
-            if (_preferences != null) {
-                _view.OpenBrowserWindow();
+            if (this._preferences != null) {
+                this._view.OpenBrowserWindow();
             } else {
-                _view.OpenPreferencesWindow(Preferences.GetDefault());
+                this._view.OpenPreferencesWindow(Preferences.GetDefault());
             }
         }
 
         private void ApplyUser(User user) {
-            if (_preferences != null) {
-                if (_preferences.CheckForUpdates) {
-                    var update = _updateCheckLogic.UpdateAvailable(_preferences);
+            if (this._preferences != null) {
+                if (this._preferences.CheckForUpdates) {
+                    var update = this._updateCheckLogic.UpdateAvailable(this._preferences);
                     if (update.Available) {
-                        _view.ShowUpdateAvailableNotification(update.LatestVersion);
+                        this._view.ShowUpdateAvailableNotification(update.LatestVersion);
                     }
                 }
             }
-            _view.ShowLoggedInControl(_preferences);
-            _view.User = user;
-            _view.ShowSpinner(false);
+            this._view.ShowLoggedInControl(this._preferences);
+            this._view.User = user;
+            this._view.ShowSpinner(false);
         }
     }
 }

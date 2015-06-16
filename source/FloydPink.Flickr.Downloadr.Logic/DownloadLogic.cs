@@ -15,11 +15,11 @@
 
     public class DownloadLogic : IDownloadLogic {
         private static readonly Random Random = new Random((int) DateTime.Now.Ticks);
-        private string _currentTimestampFolder;
         private readonly IOriginalTagsLogic _originalTagsLogic;
+        private string _currentTimestampFolder;
 
         public DownloadLogic(IOriginalTagsLogic originalTagsLogic) {
-            _originalTagsLogic = originalTagsLogic;
+            this._originalTagsLogic = originalTagsLogic;
         }
 
         public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken,
@@ -62,7 +62,7 @@
                 var photoWithPreferredTags = photo;
 
                 if (preferences.NeedOriginalTags) {
-                    photoWithPreferredTags = await _originalTagsLogic.GetOriginalTagsTask(photo);
+                    photoWithPreferredTags = await this._originalTagsLogic.GetOriginalTagsTask(photo);
                 }
 
                 var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
@@ -100,10 +100,10 @@
         }
 
         private DirectoryInfo CreateDownloadFolder(string downloadLocation) {
-            _currentTimestampFolder = string.Format("flickr-downloadr-{0}",
+            this._currentTimestampFolder = string.Format("flickr-downloadr-{0}",
                 GetSafeFilename(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")));
             var imageDirectory =
-                Directory.CreateDirectory(Path.Combine(downloadLocation, _currentTimestampFolder));
+                Directory.CreateDirectory(Path.Combine(downloadLocation, this._currentTimestampFolder));
             return imageDirectory;
         }
 

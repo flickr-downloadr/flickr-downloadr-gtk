@@ -13,7 +13,6 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
     using Model.Helpers;
 
     public class OAuthManager : IOAuthManager {
-        private string _requestToken = string.Empty;
         private readonly DesktopConsumer _consumer;
 
         private readonly Dictionary<string, string> _defaultParameters = new Dictionary<string, string> {
@@ -29,20 +28,21 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
 
         private readonly IHttpListenerManager _listenerManager;
         private readonly MessageReceivingEndpoint _serviceEndPoint;
+        private string _requestToken = string.Empty;
 
         public OAuthManager(IHttpListenerManager listenerManager, DesktopConsumer consumer,
                             MessageReceivingEndpoint serviceEndPoint) {
-            _listenerManager = listenerManager;
-            _consumer = consumer;
-            _serviceEndPoint = serviceEndPoint;
+            this._listenerManager = listenerManager;
+            this._consumer = consumer;
+            this._serviceEndPoint = serviceEndPoint;
             // Trying to fix https://github.com/flickr-downloadr/flickr-downloadr-gtk/issues/15
             // From the comment in this SO answer:
             // http://stackoverflow.com/questions/1186682/expectation-failed-when-trying-to-update-twitter-status/2025073#2025073
-            ServicePointManager.FindServicePoint(_serviceEndPoint.Location).Expect100Continue = false;
+            ServicePointManager.FindServicePoint(this._serviceEndPoint.Location).Expect100Continue = false;
         }
 
         private string CompleteAuthorization(string verifier) {
-            var response = _consumer.ProcessUserAuthorization(_requestToken, verifier);
+            var response = this._consumer.ProcessUserAuthorization(this._requestToken, verifier);
             AccessToken = response.AccessToken;
 
             var extraData = response.ExtraData;
@@ -55,7 +55,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         private void callbackManager_OnRequestReceived(object sender, HttpListenerCallbackEventArgs e) {
             var token = e.QueryStrings["oauth_token"];
             var verifier = e.QueryStrings["oauth_verifier"];
-            if (token == _requestToken) {
+            if (token == this._requestToken) {
                 CompleteAuthorization(verifier);
             }
         }
@@ -67,14 +67,14 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
         public event EventHandler<AuthenticatedEventArgs> Authenticated;
 
         public string BeginAuthorization() {
-            if (!_listenerManager.RequestReceivedHandlerExists) {
-                _listenerManager.RequestReceived += callbackManager_OnRequestReceived;
+            if (!this._listenerManager.RequestReceivedHandlerExists) {
+                this._listenerManager.RequestReceived += callbackManager_OnRequestReceived;
             }
-            _listenerManager.ResponseString = AppConstants.AuthenticatedMessage;
-            _listenerManager.SetupCallback();
+            this._listenerManager.ResponseString = AppConstants.AuthenticatedMessage;
+            this._listenerManager.SetupCallback();
             var requestArgs = new Dictionary<string, string> {
                 {
-                    ParameterNames.OAuthCallback, _listenerManager.ListenerAddress
+                    ParameterNames.OAuthCallback, this._listenerManager.ListenerAddress
                 }
             };
             var redirectArgs = new Dictionary<string, string> {
@@ -83,12 +83,11 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
                 }
             };
 
-            return
-                _consumer.RequestUserAuthorization(requestArgs, redirectArgs, out _requestToken).AbsoluteUri;
+            return this._consumer.RequestUserAuthorization(requestArgs, redirectArgs, out this._requestToken).AbsoluteUri;
         }
 
         public HttpWebRequest PrepareAuthorizedRequest(IDictionary<string, string> parameters) {
-            return _consumer.PrepareAuthorizedRequest(_serviceEndPoint, AccessToken, parameters);
+            return this._consumer.PrepareAuthorizedRequest(this._serviceEndPoint, AccessToken, parameters);
         }
 
         public async Task<dynamic> MakeAuthenticatedRequestAsync(string methodName,
@@ -111,7 +110,7 @@ namespace FloydPink.Flickr.Downloadr.OAuth {
                                                                 IDictionary<string, string> parameters = null) {
             parameters = parameters ?? new Dictionary<string, string>();
             var allParameters = new Dictionary<string, string>(parameters);
-            foreach (var kvp in _defaultParameters) {
+            foreach (var kvp in this._defaultParameters) {
                 allParameters.Add(kvp.Key, kvp.Value);
             }
             allParameters.Add(ParameterNames.Method, methodName);

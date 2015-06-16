@@ -12,7 +12,7 @@
         private readonly IOAuthManager _oAuthManager;
 
         public UserInfoLogic(IOAuthManager oAuthManager) {
-            _oAuthManager = oAuthManager;
+            this._oAuthManager = oAuthManager;
         }
 
         public async Task<User> PopulateUserInfo(User user) {
@@ -22,7 +22,7 @@
                 }
             };
 
-            dynamic userWithUserInfo = await _oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams);
+            dynamic userWithUserInfo = await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.PeopleGetInfo, exraParams);
 
             var userInfo = (Dictionary<string, object>) userWithUserInfo["person"];
 

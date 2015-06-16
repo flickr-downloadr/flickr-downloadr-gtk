@@ -8,7 +8,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
     using NUnit.Framework;
 
     [TestFixture]
-    public class BrowserLogicTests {
+    public class LandingLogicTests {
         [SetUp]
         public async void SetupTest() {
             // do everything to take us to the browser window...
@@ -18,7 +18,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         }
 
         private bool _asynchronouslyLoggedIn;
-        private IBrowserLogic _logic;
+        private ILandingLogic _logic;
         private ILoginLogic _loginLogic;
         private User _user;
 
@@ -26,7 +26,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         public void SetupTestFixture() {
             Bootstrapper.Initialize();
             this._loginLogic = Bootstrapper.GetInstance<ILoginLogic>();
-            this._logic = Bootstrapper.GetInstance<IBrowserLogic>();
+            this._logic = Bootstrapper.GetInstance<ILandingLogic>();
         }
 
         private void ApplyLoggedInUser(User user) {
@@ -45,15 +45,9 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
             WaitTillLoggedIn();
             var photosResponse =
                 await
-                    this._logic.GetPhotosAsync(Methods.PeopleGetPublicPhotos, this._user, Preferences.GetDefault(), 1,
+                    this._logic.GetPhotosetsAsync(Methods.PhotosetsGetList, this._user, Preferences.GetDefault(), 1,
                         new Progress<ProgressUpdate>());
-            Assert.IsNotNull(photosResponse.Photos);
-        }
-
-        [Test]
-        public void ProofOfConceptFor_AsynchronousTesting() {
-            WaitTillLoggedIn();
-            Assert.IsNotNull(this._user);
+            Assert.IsNotNull(photosResponse.Photosets);
         }
     }
 }
