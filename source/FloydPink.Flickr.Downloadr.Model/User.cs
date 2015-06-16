@@ -1,62 +1,25 @@
 namespace FloydPink.Flickr.Downloadr.Model {
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Web.Script.Serialization;
 
     public class User {
-        [ScriptIgnore] private UserInfo _info;
-        private string _name;
-        private string _userName;
-        private string _userNsId;
-
         public User() {
-            this._name = string.Empty;
-            this._userName = string.Empty;
-            this._userNsId = string.Empty;
+            this.Name = string.Empty;
+            this.Username = string.Empty;
+            this.UserNsId = string.Empty;
         }
 
         public User(string name, string userName, string userNsId) {
-            this._name = name;
-            this._userName = userName;
-            this._userNsId = userNsId;
+            this.Name = name;
+            this.Username = userName;
+            this.UserNsId = userNsId;
         }
 
-        public string Name
-        {
-            get { return this._name; }
-            set
-            {
-                this._name = value;
-            }
-        }
-
-        public string Username
-        {
-            get { return this._userName; }
-            set
-            {
-                this._userName = value;
-            }
-        }
-
-        public string UserNsId
-        {
-            get { return this._userNsId; }
-            set
-            {
-                this._userNsId = value;
-            }
-        }
+        public string Name { get; set; }
+        public string Username { get; set; }
+        public string UserNsId { get; set; }
 
         [ScriptIgnore]
-        public UserInfo Info
-        {
-            get { return this._info; }
-            set
-            {
-                this._info = value;
-            }
-        }
+        public UserInfo Info { get; set; }
 
         public string WelcomeMessage
         {
@@ -70,6 +33,5 @@ namespace FloydPink.Flickr.Downloadr.Model {
                     : string.Format("Welcome, {0}!", userNameString);
             }
         }
-
     }
 }
