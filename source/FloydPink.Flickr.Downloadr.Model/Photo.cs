@@ -1,5 +1,5 @@
 namespace FloydPink.Flickr.Downloadr.Model {
-    public class Photo : IPhotoWidget {
+    public class Photo : IGridWidgetItem {
         private readonly string _large1024Url;
         private readonly string _medium500Url;
         private readonly string _medium640Url;
@@ -54,6 +54,7 @@ namespace FloydPink.Flickr.Downloadr.Model {
         public string OriginalFormat { get; private set; }
         public string SmallSquare75X75Url { get; private set; }
         public string LargeSquare150X150Url { get; private set; }
+        public string WidgetThumbnailUrl { get { return LargeSquare150X150Url; } }
         public string ThumbnailUrl { get; private set; }
         public string Small240Url { get; private set; }
         public string Small320Url { get { return string.IsNullOrWhiteSpace(this._small320Url) ? Small240Url : this._small320Url; } }

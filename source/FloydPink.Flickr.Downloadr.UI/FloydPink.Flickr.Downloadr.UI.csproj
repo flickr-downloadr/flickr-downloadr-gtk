@@ -120,6 +120,8 @@
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Widgets.SpinnerWidget.cs" />
     <Compile Include="Windows\LandingWindow.cs" />
     <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Windows.LandingWindow.cs" />
+    <Compile Include="Widgets\GridWidget.cs" />
+    <Compile Include="gtk-gui\FloydPink.Flickr.Downloadr.UI.Widgets.GridWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

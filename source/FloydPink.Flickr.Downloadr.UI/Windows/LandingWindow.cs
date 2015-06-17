@@ -202,7 +202,7 @@
             if (album != null) {
                 var imageCell = new PhotoWidget();
                 imageCell.Name = string.Format("{0}Image{1}", rowId, j);
-                imageCell.ImageUrl = album.CoverPhotoUrl;
+                imageCell.ImageUrl = album.WidgetThumbnailUrl;
                 imageCell.Photo = album;
                 imageCell.SelectionChanged += OnSelectionChanged;
                 hboxPhotoRow.Add(imageCell);

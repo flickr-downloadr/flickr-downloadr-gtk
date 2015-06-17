@@ -49,14 +49,14 @@
             }
         }
 
-        public IPhotoWidget Photo { get; set; }
+        public IGridWidgetItem Photo { get; set; }
         public event EventHandler SelectionChanged;
 
         protected void imageClick(object o, ButtonPressEventArgs args) {
             IsSelected = !IsSelected;
         }
 
-        private void SetupOnHoverImage(QueryTooltipArgs args, IPhotoWidget photo) {
+        private void SetupOnHoverImage(QueryTooltipArgs args, IGridWidgetItem photo) {
             if (photo.GetType() == typeof(Photo)) {
                 var customTooltip = new PreviewPhotoWidget((Photo)photo);
                 args.Tooltip.Custom = customTooltip;
