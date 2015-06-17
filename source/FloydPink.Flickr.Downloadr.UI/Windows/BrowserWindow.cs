@@ -22,7 +22,7 @@
         private IEnumerable<Photo> _photos;
         private string _total;
         private SpinnerWidget _spinner;
-        private GridWidget _photoGrid;
+        private GridWidget _photosGrid;
 
         public BrowserWindow(Session session) {
             Log.Debug("ctor");
@@ -265,13 +265,13 @@
                 hboxCenter.Sensitive = hasPhotos;
                 hboxRight.Sensitive = hasPhotos;
             });
-            if (this._photoGrid == null) {
-                this._photoGrid = new GridWidget();
-                this._photoGrid.OnSelectionChanged += OnSelectionChanged;
-                this.scrolledwindowPhotos.AddWithViewport(this._photoGrid);
+            if (this._photosGrid == null) {
+                this._photosGrid = new GridWidget();
+                this._photosGrid.OnSelectionChanged += OnSelectionChanged;
+                this.scrolledwindowPhotos.AddWithViewport(this._photosGrid);
                 this.scrolledwindowPhotos.ShowAll();
             }
-            this._photoGrid.Items = Photos;
+            this._photosGrid.Items = Photos;
         }
 
         #region PhotoGrid
@@ -298,7 +298,7 @@
 
         private void SetSelectionOnAllImages(bool selected) {
             Log.Debug("SetSelectionOnAllImages");
-            foreach (var box in this._photoGrid.AllItems) {
+            foreach (var box in this._photosGrid.AllItems) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
@@ -314,7 +314,7 @@
 
         private void FindAndSelectPhoto(Photo photo) {
             Log.Debug("FindAndSelectPhoto");
-            foreach (var box in this._photoGrid.AllItems) {
+            foreach (var box in this._photosGrid.AllItems) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;

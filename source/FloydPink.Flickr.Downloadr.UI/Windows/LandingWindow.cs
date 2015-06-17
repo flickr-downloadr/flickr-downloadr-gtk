@@ -21,6 +21,7 @@
         private string _perPage;
         private string _total;
         private IEnumerable<Photoset> _albums;
+        private GridWidget _albumsGrid;
 
         public LandingWindow(Session session) {
             Log.Debug("ctor");
@@ -169,147 +170,19 @@
 
                                    hboxCenter.Sensitive = Albums.Any();
                                });
-             SetupTheAlbumGrid(Albums);
+            if (this._albumsGrid == null) {
+                this._albumsGrid = new GridWidget();
+                this._albumsGrid.OnSelectionChanged += OnSelectionChanged;
+                this.scrolledwindowPhotos.AddWithViewport(this._albumsGrid);
+                this.scrolledwindowPhotos.ShowAll();
+            }
+            this._albumsGrid.Items = Albums;
         }
-
-        #region PhotoGrid
-
-        private const int NumberOfAlbumsInARow = 5;
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-//            if (this._doNotFireOnSelectionChanged) {
-//                return;
-//            }
-//            var cachedImage = (PhotoWidget) sender;
-//
-//            if (!AllSelectedPhotos.ContainsKey(Page)) {
-//                AllSelectedPhotos[Page] = new Dictionary<string, Photo>();
-//            }
-//
-//            if (cachedImage.IsSelected) {
-//                AllSelectedPhotos[Page].Add(cachedImage.Photo.Id, cachedImage.Photo);
-//            } else {
-//                AllSelectedPhotos[Page].Remove(cachedImage.Photo.Id);
-//            }
-//
-//            UpdateSelectionButtons();
+            Console.WriteLine("TODO: Needs to fix this");
         }
-
-        private HBox AddAlbumToRow(HBox hboxPhotoRow, int j, Photoset album, string rowId) {
-            Log.Debug("AddAlbumToRow");
-            Box.BoxChild hboxChild;
-            if (album != null) {
-                var imageCell = new PhotoWidget();
-                imageCell.Name = string.Format("{0}Image{1}", rowId, j);
-                imageCell.ImageUrl = album.WidgetThumbnailUrl;
-                imageCell.Photo = album;
-                imageCell.SelectionChanged += OnSelectionChanged;
-                hboxPhotoRow.Add(imageCell);
-                hboxChild = ((Box.BoxChild) (hboxPhotoRow[imageCell]));
-            } else {
-                var dummyImage = new Image();
-                dummyImage.Name = string.Format("{0}Image{1}", rowId, j);
-                hboxPhotoRow.Add(dummyImage);
-                hboxChild = ((Box.BoxChild) (hboxPhotoRow[dummyImage]));
-            }
-            hboxPhotoRow.Homogeneous = true;
-            hboxChild.Position = j;
-            return hboxPhotoRow;
-        }
-
-        private void SetupTheAlbumRow(int i, IEnumerable<Photoset> rowAlbums) {
-            Log.Debug("SetupTheAlbumRow");
-            var rowAlbumsAsList = rowAlbums as IList<Photoset> ?? rowAlbums.ToList();
-            var rowAlbumsCount = rowAlbumsAsList.Count();
-
-            var rowId = string.Format("hboxPhotoRow{0}", i);
-            var hboxPhotoRow = new HBox();
-            hboxPhotoRow.Name = rowId;
-            hboxPhotoRow.Spacing = 6;
-
-            for (var j = 0; j < NumberOfAlbumsInARow; j++) {
-                if (j < rowAlbumsCount) {
-                    hboxPhotoRow = AddAlbumToRow(hboxPhotoRow, j, rowAlbumsAsList.ElementAt(j), rowId);
-                } else {
-                    hboxPhotoRow = AddAlbumToRow(hboxPhotoRow, j, null, rowId);
-                }
-            }
-
-            Application.Invoke(delegate {
-                                   this.vboxPhotos.Add(hboxPhotoRow);
-                                   var vboxChild = ((Box.BoxChild) (this.vboxPhotos[hboxPhotoRow]));
-                                   vboxChild.Position = i;
-                                   vboxChild.Padding = 10;
-                                   this.vboxPhotos.ShowAll();
-                               });
-        }
-
-        private void SetupTheAlbumGrid(IEnumerable<Photoset> albums) {
-            Log.Debug("SetupTheAlbumGrid");
-            var albumsAsList = albums as IList<Photoset> ?? albums.ToList();
-            var albumsCount = albumsAsList.Count();
-            var numberOfRows = albumsCount / NumberOfAlbumsInARow;
-            if (albumsCount % NumberOfAlbumsInARow > 0) {
-                numberOfRows += 1; // add an additional row for remainder of the images that won't reach full row
-            }
-            numberOfRows = numberOfRows < 3 ? 3 : numberOfRows; // render a minimum of 3 rows
-
-            foreach (var child in this.vboxPhotos.Children) {
-                Application.Invoke(delegate { this.vboxPhotos.Remove(child); });
-            }
-
-            if (albumsCount == 0) {
-                return;
-            }
-
-            for (var i = 0; i < numberOfRows; i++) {
-                var rowAlbums = albumsAsList.Skip(i * NumberOfAlbumsInARow).Take(NumberOfAlbumsInARow);
-                SetupTheAlbumRow(i, rowAlbums);
-            }
-        }
-
-        private void SetSelectionOnAllImages(bool selected) {
-            Log.Debug("SetSelectionOnAllImages");
-            foreach (var box in this.vboxPhotos.AllChildren) {
-                var hbox = box as HBox;
-                if (hbox == null) {
-                    continue;
-                }
-                foreach (var image in hbox.AllChildren) {
-                    var cachedImage = image as PhotoWidget;
-                    if (cachedImage != null) {
-                        cachedImage.IsSelected = selected;
-                    }
-                }
-            }
-        }
-
-        private void FindAndSelectPhoto(Photo photo) {
-            Log.Debug("FindAndSelectPhoto");
-            foreach (var box in this.vboxPhotos.AllChildren) {
-                var hbox = box as HBox;
-                if (hbox == null) {
-                    continue;
-                }
-                foreach (var image in hbox.AllChildren) {
-                    var cachedImage = image as PhotoWidget;
-                    if (cachedImage != null && cachedImage.Photo.Id == photo.Id) {
-                        cachedImage.IsSelected = true;
-                        return;
-                    }
-                }
-            }
-        }
-
-        private void SelectPhotos(List<Photo> photos) {
-            Log.Debug("SelectPhotos");
-            foreach (var photo in photos) {
-                FindAndSelectPhoto(photo);
-            }
-        }
-
-        #endregion
 
         private void LoseFocus(Button element) {
             Log.Debug("LoseFocus");
