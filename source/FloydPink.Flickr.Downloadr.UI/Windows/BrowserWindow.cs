@@ -90,6 +90,7 @@
         }
 
         public User User { get; set; }
+
         public Preferences Preferences { get; set; }
 
         public IEnumerable<Photo> Photos
@@ -108,6 +109,7 @@
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
+
         public PhotosetType PhotosetType { get; set; }
 
         public string Page
