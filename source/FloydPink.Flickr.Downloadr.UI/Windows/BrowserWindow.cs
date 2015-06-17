@@ -300,7 +300,7 @@
             }
 
             if (cachedImage.IsSelected) {
-                AllSelectedPhotos[Page].Add(cachedImage.Photo.Id, cachedImage.Photo);
+                AllSelectedPhotos[Page].Add(cachedImage.Photo.Id, (Photo)cachedImage.Photo);
             } else {
                 AllSelectedPhotos[Page].Remove(cachedImage.Photo.Id);
             }

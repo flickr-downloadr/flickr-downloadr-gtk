@@ -1,5 +1,5 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Model {
-    public class Photoset {
+    public class Photoset : IPhotoWidget {
         public Photoset(string id, string primary, string secret, string server, int farm, int photos, int videos, string title,
                         string description) {
             Id = id;

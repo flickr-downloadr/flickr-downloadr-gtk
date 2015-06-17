@@ -1,5 +1,5 @@
 namespace FloydPink.Flickr.Downloadr.Model {
-    public class Photo {
+    public class Photo : IPhotoWidget {
         private readonly string _large1024Url;
         private readonly string _medium500Url;
         private readonly string _medium640Url;

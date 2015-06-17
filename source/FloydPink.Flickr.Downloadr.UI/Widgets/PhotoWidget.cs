@@ -49,17 +49,19 @@
             }
         }
 
-        public Photo Photo { get; set; }
+        public IPhotoWidget Photo { get; set; }
         public event EventHandler SelectionChanged;
 
         protected void imageClick(object o, ButtonPressEventArgs args) {
             IsSelected = !IsSelected;
         }
 
-        private void SetupOnHoverImage(QueryTooltipArgs args, Photo photo) {
-            var customTooltip = new PreviewPhotoWidget(photo);
-            args.Tooltip.Custom = customTooltip;
-            args.RetVal = true;
+        private void SetupOnHoverImage(QueryTooltipArgs args, IPhotoWidget photo) {
+            if (photo.GetType() == typeof(Photo)) {
+                var customTooltip = new PreviewPhotoWidget((Photo)photo);
+                args.Tooltip.Custom = customTooltip;
+                args.RetVal = true;
+            }
         }
     }
 }

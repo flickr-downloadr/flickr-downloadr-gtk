@@ -63,6 +63,7 @@
     <Compile Include="Photoset.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Enums\PhotoOrAlbumPage.cs" />
+    <Compile Include="IPhotoWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
