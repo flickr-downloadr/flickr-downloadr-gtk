@@ -22,6 +22,11 @@
         public int Videos { get; private set; }
         public string Title { get; private set; }
         public string Description { get; private set; }
-        public Photo CoverPhoto { get; set; }
+        public string CoverPhotoUrl {
+            get {
+                return string.Format("https://farm{0}.staticflickr.com/{1}/{2}_{3}_q.jpg", 
+                this.Farm, this.Server, this.Primary,this.Secret);
+            }
+        }
     }
 }

@@ -84,10 +84,6 @@
                     select tag.GetValue("raw").ToString()).ToList();
         }
 
-        public static Photo ExtractPhoto(this Dictionary<string, object> dictionary) {
-            return BuildPhoto(dictionary);
-        }
-
         private static Photo BuildPhoto(Dictionary<string, object> dictionary) {
             return new Photo(dictionary.GetValue("id").ToString(),
                 dictionary.GetValue("owner").ToString(),
