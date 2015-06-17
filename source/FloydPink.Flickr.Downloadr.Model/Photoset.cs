@@ -1,7 +1,9 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Model {
+    using Model.Enums;
+
     public class Photoset : IGridWidgetItem {
         public Photoset(string id, string primary, string secret, string server, int farm, int photos, int videos, string title,
-                        string description) {
+                        string description, PhotosetType type) {
             Id = id;
             Primary = primary;
             Secret = secret;
@@ -11,6 +13,7 @@
             Videos = videos;
             Title = title;
             Description = description;
+            Type = type;
         }
 
         public string Id { get; private set; }
@@ -22,6 +25,7 @@
         public int Videos { get; private set; }
         public string Title { get; private set; }
         public string Description { get; private set; }
+        public PhotosetType Type { get; private set; }
         public string WidgetThumbnailUrl {
             get {
                 return string.Format("https://farm{0}.staticflickr.com/{1}/{2}_{3}_q.jpg", 

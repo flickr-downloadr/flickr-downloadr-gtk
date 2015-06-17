@@ -14,7 +14,7 @@
             Build();
             HasTooltip = true;
             QueryTooltip += (object o, QueryTooltipArgs args) => {
-                                var photo = ((PhotoWidget) o).Photo;
+                                var photo = ((PhotoWidget) o).WidgetItem;
                                 SetupOnHoverImage(args, photo);
                             };
         }
@@ -49,7 +49,7 @@
             }
         }
 
-        public IGridWidgetItem Photo { get; set; }
+        public IGridWidgetItem WidgetItem { get; set; }
         public event EventHandler SelectionChanged;
 
         protected void imageClick(object o, ButtonPressEventArgs args) {

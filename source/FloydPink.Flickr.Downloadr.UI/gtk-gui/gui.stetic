@@ -2277,33 +2277,21 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Alignment" id="alignment6">
+                      <widget class="Gtk.Label" id="labelSelectedPhotoset">
                         <property name="MemberName" />
-                        <child>
-                          <placeholder />
-                        </child>
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Selected Photoset</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
-                        <property name="AutoSize">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Alignment" id="alignment5">
-                        <property name="MemberName" />
-                        <child>
-                          <placeholder />
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="Position">2</property>
-                        <property name="AutoSize">True</property>
+                        <property name="AutoSize">False</property>
                       </packing>
                     </child>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                   </packing>
                 </child>
                 <child>

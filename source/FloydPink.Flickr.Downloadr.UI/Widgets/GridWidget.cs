@@ -24,6 +24,8 @@
 
         public event EventHandler OnSelectionChanged;
 
+        public bool DoNotFireSelectionChanged { get; set; }
+
         public int NumberOfItemsInARow {
             get {
                 return _numberOfItemsInARow;
@@ -45,15 +47,22 @@
             }
         }
 
+        private void OnSelectionChangedInternal(object sender, EventArgs e) {
+            Log.Debug("OnSelectionChangedInternal");
+            if (!DoNotFireSelectionChanged && OnSelectionChanged != null) {
+                OnSelectionChanged.Invoke(sender, e);
+            }
+        }
+
         private HBox AddItemToRow(HBox hboxRow, int j, IGridWidgetItem item, string rowId) {
-            Log.Debug("AddImageToRow");
+            Log.Debug("AddItemToRow");
             Box.BoxChild hboxChild;
             if (item != null) {
                 var imageCell = new PhotoWidget();
                 imageCell.Name = string.Format("{0}Image{1}", rowId, j);
                 imageCell.ImageUrl = item.WidgetThumbnailUrl;
-                imageCell.Photo = item;
-                imageCell.SelectionChanged += OnSelectionChanged;
+                imageCell.WidgetItem = item;
+                imageCell.SelectionChanged += OnSelectionChangedInternal;
                 hboxRow.Add(imageCell);
                 hboxChild = ((Box.BoxChild)(hboxRow[imageCell]));
             } else {
@@ -68,7 +77,7 @@
         }
 
         private void SetupRow(int i, IEnumerable<IGridWidgetItem> rowItems) {
-            Log.Debug("SetupTheImageRow");
+            Log.Debug("SetupRow");
             var rowItemsList = rowItems as IList<IGridWidgetItem> ?? rowItems.ToList();
             var rowItemsCount = rowItemsList.Count();
 
@@ -95,7 +104,7 @@
         }
 
         private void InitializeGrid() {
-            Log.Debug("SetupTheImageGrid");
+            Log.Debug("InitializeGrid");
             var widgetItemsList = this.Items as IList<IGridWidgetItem> ?? this.Items.ToList();
             var itemsCount = widgetItemsList.Count();
             var numberOfRows = itemsCount / NumberOfItemsInARow;

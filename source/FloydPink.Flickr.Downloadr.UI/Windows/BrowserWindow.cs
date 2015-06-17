@@ -15,7 +15,6 @@
 
     public partial class BrowserWindow : BaseWindow, IBrowserView {
         private readonly IBrowserPresenter _presenter;
-        private bool _doNotFireOnSelectionChanged;
         private string _page;
         private string _pages;
         private string _perPage;
@@ -91,9 +90,9 @@
                 this._photos = value;
                 UpdateUI();
                 Application.Invoke(delegate {
-                    this._doNotFireOnSelectionChanged = true;
+                    this._photosGrid.DoNotFireSelectionChanged = true;
                     SelectAlreadySelectedPhotos();
-                    this._doNotFireOnSelectionChanged = false;
+                    this._photosGrid.DoNotFireSelectionChanged = false;
                 });
             }
         }
@@ -278,19 +277,16 @@
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-            if (this._doNotFireOnSelectionChanged) {
-                return;
-            }
-            var cachedImage = (PhotoWidget)sender;
+            var photoWidget = (PhotoWidget)sender;
 
             if (!AllSelectedPhotos.ContainsKey(Page)) {
                 AllSelectedPhotos[Page] = new Dictionary<string, Photo>();
             }
 
-            if (cachedImage.IsSelected) {
-                AllSelectedPhotos[Page].Add(cachedImage.Photo.Id, (Photo)cachedImage.Photo);
+            if (photoWidget.IsSelected) {
+                AllSelectedPhotos[Page].Add(photoWidget.WidgetItem.Id, (Photo)photoWidget.WidgetItem);
             } else {
-                AllSelectedPhotos[Page].Remove(cachedImage.Photo.Id);
+                AllSelectedPhotos[Page].Remove(photoWidget.WidgetItem.Id);
             }
 
             UpdateSelectionButtons();
@@ -303,10 +299,10 @@
                 if (hbox == null) {
                     continue;
                 }
-                foreach (var image in hbox.AllChildren) {
-                    var cachedImage = image as PhotoWidget;
-                    if (cachedImage != null) {
-                        cachedImage.IsSelected = selected;
+                foreach (var child in hbox.AllChildren) {
+                    var photoWidget = child as PhotoWidget;
+                    if (photoWidget != null) {
+                        photoWidget.IsSelected = selected;
                     }
                 }
             }
@@ -319,10 +315,10 @@
                 if (hbox == null) {
                     continue;
                 }
-                foreach (var image in hbox.AllChildren) {
-                    var cachedImage = image as PhotoWidget;
-                    if (cachedImage != null && cachedImage.Photo.Id == photo.Id) {
-                        cachedImage.IsSelected = true;
+                foreach (var child in hbox.AllChildren) {
+                    var photoWidget = child as PhotoWidget;
+                    if (photoWidget != null && photoWidget.WidgetItem.Id == photo.Id) {
+                        photoWidget.IsSelected = true;
                         return;
                     }
                 }

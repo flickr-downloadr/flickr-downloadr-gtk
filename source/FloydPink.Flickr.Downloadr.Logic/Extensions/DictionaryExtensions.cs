@@ -5,6 +5,7 @@
     using System.Linq;
     using Model;
     using Model.Constants;
+    using Model.Enums;
 
     public static class DictionaryExtensions {
         private static readonly bool runningOnMono = Type.GetType("Mono.Runtime") != null;
@@ -119,7 +120,8 @@
                 int.Parse(dictionary.GetValue("photos").ToString()),
                 int.Parse(dictionary.GetValue("videos").ToString()),
                 dictionary.GetSubValue("title").ToString(),
-                dictionary.GetSubValue("description").ToString());
+                dictionary.GetSubValue("description").ToString(),
+                PhotosetType.Album);
         }
     }
 }

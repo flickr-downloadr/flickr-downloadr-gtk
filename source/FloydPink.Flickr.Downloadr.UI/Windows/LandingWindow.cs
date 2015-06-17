@@ -22,6 +22,7 @@
         private string _total;
         private IEnumerable<Photoset> _albums;
         private GridWidget _albumsGrid;
+        private Photoset SelectedPhotoset { get; set; }
 
         public LandingWindow(Session session) {
             Log.Debug("ctor");
@@ -169,6 +170,12 @@
                                    this.scrolledwindowPhotos.Vadjustment.Value = 0;
 
                                    hboxCenter.Sensitive = Albums.Any();
+
+                                   if (SelectedPhotoset != null && SelectedPhotoset.Type == PhotosetType.Album) {
+                                        SelectedPhotoset = null;
+                                   }
+
+                                   UpdateSelectionUI();
                                });
             if (this._albumsGrid == null) {
                 this._albumsGrid = new GridWidget();
@@ -181,7 +188,36 @@
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-            Console.WriteLine("TODO: Needs to fix this");
+            var photoWidget = (PhotoWidget)sender;
+
+            if (photoWidget.IsSelected) {
+                SelectedPhotoset = (Photoset)photoWidget.WidgetItem;
+            } else {
+                SelectedPhotoset = null;
+            }
+            UpdateSelectionUI();
+        }
+
+        private void UpdateSelectionUI() {
+            var isPhotosetSelected = this.SelectedPhotoset != null;
+            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<b>{0}</b>", SelectedPhotoset.Title) : "";
+            this.labelSelectedPhotoset.Visible = isPhotosetSelected;
+            this.buttonContinue.Sensitive = isPhotosetSelected;
+
+            this._albumsGrid.DoNotFireSelectionChanged = true;
+            foreach (var box in this._albumsGrid.AllItems) {
+                var hbox = box as HBox;
+                if (hbox == null) {
+                    continue;
+                }
+                foreach (var child in hbox.AllChildren) {
+                    var widget = child as PhotoWidget;
+                    if (widget != null && (SelectedPhotoset == null || widget.WidgetItem.Id != SelectedPhotoset.Id)) {                        
+                        widget.IsSelected = false;
+                    }
+                }
+            }
+            this._albumsGrid.DoNotFireSelectionChanged = false;
         }
 
         private void LoseFocus(Button element) {
