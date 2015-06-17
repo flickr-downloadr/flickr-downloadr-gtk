@@ -12,5 +12,6 @@ namespace FloydPink.Flickr.Downloadr.Model.Constants {
         public static readonly string Extras = "extras";
         public static readonly string PhotoId = "photo_id";
         public static readonly string Secret = "secret";
+        public static readonly string PhotosetId = "photoset_id";
     }
 }

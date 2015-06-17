@@ -1,4 +1,5 @@
 namespace FloydPink.Flickr.Downloadr.Presentation {
+    using System;
     using Logic.Interfaces;
     using Model;
     using Views;
@@ -19,11 +20,15 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public async void InitializeScreen() {
-            this._view.ShowSpinner(true);
+            try {
+                this._view.ShowSpinner(true);
             this._view.ShowLoggedOutControl();
             this._preferences = this._preferencesLogic.GetPreferences();
             if (!await this._logic.IsUserLoggedInAsync(ApplyUser)) {
                 Logout();
+            }
+            } catch (Exception ex) {
+                HandleException(ex);
             }
         }
 

@@ -23,25 +23,26 @@
             return null;
         }
 
-        public static PhotosResponse GetPhotosResponseFromDictionary(this Dictionary<string, object> dictionary) {
+        public static PhotosResponse GetPhotosResponseFromDictionary(this Dictionary<string, object> dictionary, bool isAlbum) {
+            var apiresponseCollectionName = isAlbum ? "photoset" : "photos";
             var photos = new List<Photo>();
             IEnumerable<Dictionary<string, object>> photoDictionary;
 
             if (runningOnMono) {
-                var photoListAsArrayList = (ArrayList) dictionary.GetSubValue("photos", "photo");
+                var photoListAsArrayList = (ArrayList) dictionary.GetSubValue(apiresponseCollectionName, "photo");
                 photoDictionary = photoListAsArrayList.Cast<Dictionary<string, object>>();
             } else {
-                var photoListAsIEnumerable = (IEnumerable<object>) dictionary.GetSubValue("photos", "photo");
+                var photoListAsIEnumerable = (IEnumerable<object>) dictionary.GetSubValue(apiresponseCollectionName, "photo");
                 photoDictionary = photoListAsIEnumerable.Cast<Dictionary<string, object>>();
             }
 
             photos.AddRange(photoDictionary.Select(BuildPhoto));
 
             return new PhotosResponse(
-                int.Parse(dictionary.GetSubValue("photos", "page").ToString()),
-                int.Parse(dictionary.GetSubValue("photos", "pages").ToString()),
-                int.Parse(dictionary.GetSubValue("photos", "perpage").ToString()),
-                int.Parse(dictionary.GetSubValue("photos", "total").ToString()),
+                int.Parse(dictionary.GetSubValue(apiresponseCollectionName, "page").ToString()),
+                int.Parse(dictionary.GetSubValue(apiresponseCollectionName, "pages").ToString()),
+                int.Parse(dictionary.GetSubValue(apiresponseCollectionName, "perpage").ToString()),
+                int.Parse(dictionary.GetSubValue(apiresponseCollectionName, "total").ToString()),
                 photos);
         }
 

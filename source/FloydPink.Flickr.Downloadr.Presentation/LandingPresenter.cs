@@ -28,7 +28,11 @@
         }
 
         public async Task Initialize() {
-            await GetAndSetPhotosets(1);
+            try {
+                await GetAndSetPhotosets(1);
+            } catch (Exception ex) {
+                HandleException(ex);
+            }
         }
 
         public async Task NavigateTo(PhotoOrAlbumPage page) {

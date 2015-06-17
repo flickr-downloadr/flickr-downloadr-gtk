@@ -26,7 +26,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 		
 		private global::Gtk.Button buttonUnSelectAll;
 		
-		private global::Gtk.Alignment alignment1;
+		private global::Gtk.Label labelSelectedPhotoset;
 		
 		private global::Gtk.HBox hboxCenter;
 		
@@ -155,14 +155,17 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			w6.Expand = false;
 			w6.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
-			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment1.Name = "alignment1";
-			this.hbox5.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.alignment1]));
+			this.labelSelectedPhotoset = new global::Gtk.Label ();
+			this.labelSelectedPhotoset.Name = "labelSelectedPhotoset";
+			this.labelSelectedPhotoset.Xalign = 0F;
+			this.labelSelectedPhotoset.LabelProp = global::Mono.Unix.Catalog.GetString ("Selected Photoset");
+			this.labelSelectedPhotoset.UseMarkup = true;
+			this.hbox5.Add (this.labelSelectedPhotoset);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.labelSelectedPhotoset]));
 			w7.Position = 2;
 			this.hboxLeft.Add (this.hbox5);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxLeft [this.hbox5]));
-			w8.Position = 2;
+			w8.Position = 1;
 			this.hboxButtons.Add (this.hboxLeft);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.hboxLeft]));
 			w9.Position = 0;
@@ -335,6 +338,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.hboxBottom.Add (this.hboxButtons);
 			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hboxBottom [this.hboxButtons]));
 			w25.Position = 0;
+			w25.Expand = false;
+			w25.Fill = false;
 			this.vboxRoot.Add (this.hboxBottom);
 			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vboxRoot [this.hboxBottom]));
 			w26.Position = 2;

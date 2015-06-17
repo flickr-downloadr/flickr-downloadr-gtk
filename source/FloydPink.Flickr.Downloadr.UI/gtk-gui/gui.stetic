@@ -1866,9 +1866,6 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder />
-                    </child>
-                    <child>
                       <widget class="Gtk.HBox" id="hbox5">
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
@@ -1910,27 +1907,27 @@ Restricted</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Alignment" id="alignment1">
+                          <widget class="Gtk.Label" id="labelSelectedPhotoset">
                             <property name="MemberName" />
-                            <child>
-                              <placeholder />
-                            </child>
+                            <property name="Xalign">0</property>
+                            <property name="LabelProp" translatable="yes">Selected Photoset</property>
+                            <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
                             <property name="Position">2</property>
-                            <property name="AutoSize">True</property>
+                            <property name="AutoSize">False</property>
                           </packing>
                         </child>
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
-                        <property name="AutoSize">True</property>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">False</property>
                       </packing>
                     </child>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                   </packing>
                 </child>
                 <child>
@@ -2164,6 +2161,8 @@ Restricted</property>
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>

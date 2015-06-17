@@ -34,7 +34,11 @@
         }
 
         public async Task InitializePhotoset() {
-            await GetAndSetPhotos(1);
+            try {
+                await GetAndSetPhotos(1);
+            } catch (Exception ex) {
+                HandleException(ex);
+            }
         }
 
         public async Task NavigateTo(PhotoOrAlbumPage page) {
@@ -160,23 +164,9 @@
             this._view.ShowSpinner(false);
         }
 
-        private string GetPhotosetMethodName(PhotosetType photoset) {
-            switch (photoset) {
-                case PhotosetType.All:
-                    return Methods.PeopleGetPhotos;
-                case PhotosetType.Public:
-                    return Methods.PeopleGetPublicPhotos;
-                case PhotosetType.Album:
-                    return Methods.PhotosetsGetPhotos;
-                default:
-                    return null;
-            }
-        }
-
         private async Task<PhotosResponse> GetPhotosResponse(int page) {
-            var methodName = GetPhotosetMethodName(this._view.PhotosetType);
             return
-                await this._logic.GetPhotosAsync(methodName, this._view.User, this._view.Preferences, page, this._progress);
+                await this._logic.GetPhotosAsync(this._view.SelectedPhotoset, this._view.User, this._view.Preferences, page, this._progress);
         }
 
         private void SetPhotosResponse(PhotosResponse photosResponse) {

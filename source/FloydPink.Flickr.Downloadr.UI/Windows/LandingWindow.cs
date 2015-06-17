@@ -270,7 +270,7 @@
 
         protected void buttonContinueClick(object sender, EventArgs e) {
             Log.Debug("buttonContinueClick");
-            var browserWindow = new BrowserWindow(new Session(User, Preferences));
+            var browserWindow = new BrowserWindow(new Session(User, Preferences, SelectedPhotoset));
             browserWindow.Show();
             Destroy();
         }

@@ -1,4 +1,5 @@
 ﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
+    using System;
     using Gtk;
     using log4net;
 
@@ -7,6 +8,13 @@
 
         protected BaseWindow() : base(WindowType.Toplevel) {
             Log = LogManager.GetLogger(GetType());
+        }
+
+        public void HandleException(Exception ex) {
+            Application.Invoke(delegate {
+                Console.WriteLine("############################\n############################\n############################\n");
+                throw ex;
+            });
         }
     }
 }

@@ -30,8 +30,11 @@
             AddTooltips();
 
             Title += VersionHelper.GetVersionString();
-            Preferences = session.Preferences;
+
             User = session.User;
+            Preferences = session.Preferences;
+            SelectedPhotoset = session.SelectedPhotoset;
+
             AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>>();
 
             AddSpinnerWidget();
@@ -99,7 +102,7 @@
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
 
-        public PhotosetType PhotosetType { get; set; }
+        public Photoset SelectedPhotoset { get; set; }
 
         public string Page {
             get { return this._page; }
@@ -244,6 +247,8 @@
             Log.Debug("UpdateUI");
             Application.Invoke(delegate {
                 UpdateSelectionButtons();
+
+                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", SelectedPhotoset.Title);
 
                 this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
                     FirstPhoto, LastPhoto, Total);

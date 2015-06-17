@@ -9,6 +9,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
     using Interfaces;
     using Model;
     using Model.Constants;
+    using Model.Enums;
     using OAuth;
 
     public class BrowserLogic : IBrowserLogic {
@@ -20,9 +21,22 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             this._downloadLogic = downloadLogic;
         }
 
+        private string GetPhotosetMethodName(PhotosetType photoset) {
+            switch (photoset) {
+                case PhotosetType.All:
+                    return Methods.PeopleGetPhotos;
+                case PhotosetType.Public:
+                    return Methods.PeopleGetPublicPhotos;
+                case PhotosetType.Album:
+                    return Methods.PhotosetsGetPhotos;
+                default:
+                    return null;
+            }
+        }
+
         #region IBrowserLogic Members
 
-        public async Task<PhotosResponse> GetPhotosAsync(string methodName, User user, Preferences preferences, int page,
+        public async Task<PhotosResponse> GetPhotosAsync(Photoset photoset, User user, Preferences preferences, int page,
                                                          IProgress<ProgressUpdate> progress) {
             var progressUpdate = new ProgressUpdate {
                 OperationText = "Getting list of photos...",
@@ -30,8 +44,9 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             };
             progress.Report(progressUpdate);
 
-            var extraParams = new Dictionary<string, string> {
-                {
+            var methodName = GetPhotosetMethodName(photoset.Type);
+
+            var extraParams = new Dictionary<string, string> { {
                     ParameterNames.UserId, user.UserNsId
                 }, {
                     ParameterNames.SafeSearch, preferences.SafetyLevel
@@ -43,10 +58,15 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 }
             };
 
+            var isAlbum = photoset.Type == PhotosetType.Album;
+            if (isAlbum) {
+                extraParams.Add(ParameterNames.PhotosetId, photoset.Id);
+            }
+
             var photosResponse = (Dictionary<string, object>)
                 await this._oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
 
-            return photosResponse.GetPhotosResponseFromDictionary();
+            return photosResponse.GetPhotosResponseFromDictionary(isAlbum);
         }
 
         public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken,
