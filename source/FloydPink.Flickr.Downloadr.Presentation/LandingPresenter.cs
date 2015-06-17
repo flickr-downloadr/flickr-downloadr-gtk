@@ -28,7 +28,7 @@
         }
 
         public async Task Initialize() {
-            GetAndSetPhotosets(1);
+            await GetAndSetPhotosets(1);
         }
 
         public async Task NavigateTo(PhotoOrAlbumPage page) {

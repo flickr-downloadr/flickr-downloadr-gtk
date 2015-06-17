@@ -26,8 +26,7 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             };
             progress.Report(progressUpdate);
 
-            var extraParams = new Dictionary<string, string> {
-                {
+            var extraParams = new Dictionary<string, string> { {
                     ParameterNames.UserId, user.UserNsId
                 }, {
                     ParameterNames.SafeSearch, preferences.SafetyLevel
@@ -41,12 +40,45 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 }
             };
 
-            var photosetsResponse = (Dictionary<string, object>)
+            var photosetsResponseDictionary = (Dictionary<string, object>)
                 await this._oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
 
-            return photosetsResponse.GetPhotosetsResponseFromDictionary();
+            var photosetsResponse = photosetsResponseDictionary.GetPhotosetsResponseFromDictionary();
+
+            photosetsResponse.Photosets = await RetrieveCoverPhoto(photosetsResponse.Photosets, progress);
+
+            return photosetsResponse;
         }
 
         #endregion
+
+        private async Task<IEnumerable<Photoset>> RetrieveCoverPhoto(IEnumerable<Photoset> photosets, IProgress<ProgressUpdate> progress) {
+            var photosetsList = new List<Photoset>();
+
+            var progressUpdate = new ProgressUpdate {
+                OperationText = "Getting album photos...",
+                ShowPercent = false
+            };
+            progress.Report(progressUpdate);
+
+            foreach (var photoset in photosets) {
+                var extraParams = new Dictionary<string, string> { {
+                    ParameterNames.PhotoId, photoset.Primary
+                }, {
+                    ParameterNames.Secret, photoset.Secret
+                }
+            };
+
+                var photoResponse =                (Dictionary<string, object>)
+                    await this._oAuthManager.MakeAuthenticatedRequestAsync(Methods.PhotosGetInfo, extraParams);
+
+                    photoset.CoverPhoto = photoResponse.ExtractPhoto();
+
+                    photosetsList.Add(photoset);
+                
+            }
+
+            return photosetsList;
+        }
     }
 }

@@ -14,6 +14,6 @@
         public int Pages { get; private set; }
         public int PerPage { get; private set; }
         public int Total { get; private set; }
-        public IEnumerable<Photoset> Photosets { get; private set; }
+        public IEnumerable<Photoset> Photosets { get; set; }
     }
 }

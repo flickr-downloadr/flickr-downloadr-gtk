@@ -22,5 +22,6 @@
         public int Videos { get; private set; }
         public string Title { get; private set; }
         public string Description { get; private set; }
+        public Photo CoverPhoto { get; set; }
     }
 }
