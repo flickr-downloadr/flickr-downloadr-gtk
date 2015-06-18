@@ -36,7 +36,8 @@
         public async Task InitializePhotoset() {
             try {
                 await GetAndSetPhotos(1);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 HandleException(ex);
             }
         }

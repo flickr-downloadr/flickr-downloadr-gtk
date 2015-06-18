@@ -5,7 +5,6 @@
     using System.Linq;
     using Bootstrap;
     using Gtk;
-    using Gdk;
     using Helpers;
     using Model;
     using Model.Enums;
@@ -15,21 +14,12 @@
 
     public partial class LandingWindow : BaseWindow, ILandingView {
         private readonly ILandingPresenter _presenter;
-        private SpinnerWidget spinner;
-
-        private string _page;
-        private string _pages;
-        private string _perPage;
-        private string _total;
-        private Photoset _publicPhotoset;
-        private Photoset _privatePhotoset;
-
-        private bool _unselectingPublicPhotoset;
-        private bool _unselectingPrivatePhotoset;
-
         private IEnumerable<Photoset> _albums;
-
-        private Photoset SelectedPhotoset { get; set; }
+        private Photoset _privatePhotoset;
+        private Photoset _publicPhotoset;
+        private bool _unselectingPrivatePhotoset;
+        private bool _unselectingPublicPhotoset;
+        private SpinnerWidget spinner;
 
         public LandingWindow(Session session) {
             Log.Debug("ctor");
@@ -54,6 +44,8 @@
             this._presenter.Initialize();
         }
 
+        private Photoset SelectedPhotoset { get; set; }
+
         public string FirstAlbum
         {
             get
@@ -71,72 +63,40 @@
                 return maxLast > int.Parse(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
             }
         }
+
         public User User { get; set; }
-
         public Preferences Preferences { get; set; }
+        public string Page { get; set; }
+        public string Pages { get; set; }
+        public string PerPage { get; set; }
+        public string Total { get; set; }
 
-        public string Page
+        public Photoset PublicPhotoset
         {
-            get { return this._page; }
+            get { return this._publicPhotoset; }
             set
             {
-                this._page = value;
-            }
-        }
-
-        public string Pages
-        {
-            get { return this._pages; }
-            set
-            {
-                this._pages = value;
-            }
-        }
-
-        public string PerPage
-        {
-            get { return this._perPage; }
-            set
-            {
-                this._perPage = value;
-            }
-        }
-
-        public string Total
-        {
-            get { return this._total; }
-            set
-            {
-                this._total = value;
-            }
-        }
-
-        public Photoset PublicPhotoset {
-            get {
-                return _publicPhotoset;
-            }
-            set {
-                _publicPhotoset = value;
+                this._publicPhotoset = value;
                 this.photowidgetPublic.WidgetItem = value;
             }
         }
 
-        public Photoset PrivatePhotoset {
-            get {
-                return _privatePhotoset;
-            }
-            set {
-                _privatePhotoset = value;
+        public Photoset PrivatePhotoset
+        {
+            get { return this._privatePhotoset; }
+            set
+            {
+                this._privatePhotoset = value;
                 this.photowidgetPrivate.WidgetItem = value;
             }
         }
 
-        public IEnumerable<Photoset> Albums { 
-            get { 
-                return _albums ?? new List<Photoset>();
-            } 
-            set { 
-                _albums = value;
+        public IEnumerable<Photoset> Albums
+        {
+            get { return this._albums ?? new List<Photoset>(); }
+            set
+            {
+                this._albums = value;
                 UpdateUI();
             }
         }
@@ -208,7 +168,7 @@
                                    hboxCenter.Sensitive = Albums.Any();
 
                                    if (SelectedPhotoset != null && SelectedPhotoset.Type == PhotosetType.Album) {
-                                        SelectedPhotoset = null;
+                                       SelectedPhotoset = null;
                                    }
 
                                    UpdateSelectionUI();
@@ -218,10 +178,10 @@
 
         private void OnPublicSetSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnPublicSetSelectionChanged");
-            if (_unselectingPublicPhotoset) {
+            if (this._unselectingPublicPhotoset) {
                 return;
             }
-            var photoWidget = (PhotoWidget)sender;
+            var photoWidget = (PhotoWidget) sender;
 
             if (photoWidget.IsSelected) {
                 SelectedPhotoset = PublicPhotoset;
@@ -233,10 +193,10 @@
 
         private void OnPrivateSetSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnPrivateSetSelectionChanged");
-            if (_unselectingPrivatePhotoset) {
+            if (this._unselectingPrivatePhotoset) {
                 return;
             }
-            var photoWidget = (PhotoWidget)sender;
+            var photoWidget = (PhotoWidget) sender;
 
             if (photoWidget.IsSelected) {
                 SelectedPhotoset = PrivatePhotoset;
@@ -248,10 +208,10 @@
 
         private void OnAlbumsSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnAlbumsSelectionChanged");
-            var photoWidget = (PhotoWidget)sender;
+            var photoWidget = (PhotoWidget) sender;
 
             if (photoWidget.IsSelected) {
-                SelectedPhotoset = (Photoset)photoWidget.WidgetItem;
+                SelectedPhotoset = (Photoset) photoWidget.WidgetItem;
             } else {
                 SelectedPhotoset = null;
             }
@@ -259,7 +219,7 @@
         }
 
         private void UpdateSelectionUI() {
-            var isPhotosetSelected = this.SelectedPhotoset != null;
+            var isPhotosetSelected = SelectedPhotoset != null;
 
             this.labelSelectedPhotoset.Visible = isPhotosetSelected;
             this.buttonContinue.Sensitive = isPhotosetSelected;
@@ -269,16 +229,18 @@
             }
 
             var selectedPhotosetLabelColor = SelectedPhotoset.Type == PhotosetType.Album ? "red" : "gray";
-            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<span color=\"{0}\"><b>{1}</b></span>", 
-                selectedPhotosetLabelColor, SelectedPhotoset.HtmlEncodedTitle) : "";
+            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected
+                ? string.Format("<span color=\"{0}\"><b>{1}</b></span>",
+                    selectedPhotosetLabelColor, SelectedPhotoset.HtmlEncodedTitle)
+                : "";
 
-            _unselectingPublicPhotoset = true;
+            this._unselectingPublicPhotoset = true;
             this.photowidgetPublic.IsSelected = SelectedPhotoset.Type == PhotosetType.Public;
-            _unselectingPublicPhotoset = false;
+            this._unselectingPublicPhotoset = false;
 
-            _unselectingPrivatePhotoset = true;
+            this._unselectingPrivatePhotoset = true;
             this.photowidgetPrivate.IsSelected = SelectedPhotoset.Type == PhotosetType.All;
-            _unselectingPrivatePhotoset = false;
+            this._unselectingPrivatePhotoset = false;
 
             this.albumsGrid.DoNotFireSelectionChanged = true;
             foreach (var box in this.albumsGrid.AllItems) {
@@ -288,7 +250,7 @@
                 }
                 foreach (var child in hbox.AllChildren) {
                     var widget = child as PhotoWidget;
-                    if (widget != null && (SelectedPhotoset.Type != PhotosetType.Album || widget.WidgetItem.Id != SelectedPhotoset.Id)) {                        
+                    if (widget != null && (SelectedPhotoset.Type != PhotosetType.Album || widget.WidgetItem.Id != SelectedPhotoset.Id)) {
                         widget.IsSelected = false;
                     }
                 }

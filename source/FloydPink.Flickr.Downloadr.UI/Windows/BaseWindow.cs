@@ -7,14 +7,15 @@
         protected readonly ILog Log;
 
         protected BaseWindow() : base(WindowType.Toplevel) {
-            Log = LogManager.GetLogger(GetType());
+            this.Log = LogManager.GetLogger(GetType());
         }
 
         public void HandleException(Exception ex) {
             Application.Invoke(delegate {
-                Console.WriteLine("############################\n############################\n############################\n");
-                throw ex;
-            });
+                                   Console.WriteLine(
+                                       "############################\n############################\n############################\n");
+                                   throw ex;
+                               });
         }
     }
 }

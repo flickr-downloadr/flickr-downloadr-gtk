@@ -41,22 +41,15 @@ namespace FloydPink.Flickr.Downloadr.Model {
             this._originalUrl = originalUrl;
         }
 
-        public string Id { get; private set; }
         public string Owner { get; private set; }
-        public string Secret { get; private set; }
-        public string Server { get; private set; }
-        public int Farm { get; private set; }
-        public string Title { get; private set; }
         public bool IsPublic { get; private set; }
         public bool IsFamily { get; private set; }
         public bool IsFriend { get; private set; }
-        public string Description { get; private set; }
         public string Tags { get; set; }
         public string OriginalSecret { get; private set; }
         public string OriginalFormat { get; private set; }
         public string SmallSquare75X75Url { get; private set; }
         public string LargeSquare150X150Url { get; private set; }
-        public string WidgetThumbnailUrl { get { return LargeSquare150X150Url; } }
         public string ThumbnailUrl { get; private set; }
         public string Small240Url { get; private set; }
         public string Small320Url { get { return string.IsNullOrWhiteSpace(this._small320Url) ? Small240Url : this._small320Url; } }
@@ -66,10 +59,15 @@ namespace FloydPink.Flickr.Downloadr.Model {
         public string Large1024Url { get { return string.IsNullOrWhiteSpace(this._large1024Url) ? Medium800Url : this._large1024Url; } }
         public string OriginalUrl { get { return string.IsNullOrWhiteSpace(this._originalUrl) ? Large1024Url : this._originalUrl; } }
         public string DownloadFormat { get { return string.IsNullOrWhiteSpace(OriginalFormat) ? "jpg" : OriginalFormat; } }
-        public string HtmlEncodedTitle {
-            get {
-                return HttpUtility.HtmlEncode(Title);
-            }
-        }
+
+        public string HtmlEncodedTitle { get { return HttpUtility.HtmlEncode(Title); } }
+
+        public string Id { get; private set; }
+        public string Secret { get; private set; }
+        public string Server { get; private set; }
+        public int Farm { get; private set; }
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+        public string WidgetThumbnailUrl { get { return LargeSquare150X150Url; } }
     }
 }

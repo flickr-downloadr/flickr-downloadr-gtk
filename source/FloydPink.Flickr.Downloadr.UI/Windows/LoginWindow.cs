@@ -12,9 +12,9 @@
     using Widgets;
 
     public partial class LoginWindow : BaseWindow, ILoginView {
+        private readonly ILoginPresenter _presenter;
         private User _user;
         private SpinnerWidget spinner;
-        private readonly ILoginPresenter _presenter;
 
         public LoginWindow()
             : this(new User()) { }
@@ -30,8 +30,8 @@
 
             AddSpinnerControl();
 
-            _presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter>(this);
-            _presenter.InitializeScreen();
+            this._presenter = Bootstrapper.GetPresenter<ILoginView, ILoginPresenter>(this);
+            this._presenter.InitializeScreen();
         }
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
@@ -57,42 +57,42 @@
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            buttonLogin.TooltipText = "Log in to flickr using OAuth";
-            buttonPrefs.TooltipText = "Update the Preferences";
-            buttonLogout.TooltipText = "Log out from the currently logged in account";
-            buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
+            this.buttonLogin.TooltipText = "Log in to flickr using OAuth";
+            this.buttonPrefs.TooltipText = "Update the Preferences";
+            this.buttonLogout.TooltipText = "Log out from the currently logged in account";
+            this.buttonContinue.TooltipText = "Browse and download the photos from the logged in account";
         }
 
         private void AddSpinnerControl() {
             Log.Debug("AddSpinnerControl");
-            spinner = new SpinnerWidget {
+            this.spinner = new SpinnerWidget {
                 Name = "loginSpinner",
                 Cancellable = true,
                 Operation = "Please wait...",
                 Visible = false
             };
-            spinner.SpinnerCanceled +=
+            this.spinner.SpinnerCanceled +=
                 (object sender, EventArgs e) => { Application.Invoke(delegate { this.hboxLogin.Sensitive = true; }); };
-            vbox2.Add(spinner);
+            this.vbox2.Add(this.spinner);
 
-            var spinnerSlot = ((Box.BoxChild) (vbox2[spinner]));
+            var spinnerSlot = ((Box.BoxChild) (this.vbox2[this.spinner]));
             spinnerSlot.Position = 0;
             spinnerSlot.Expand = true;
         }
 
         protected void buttonLoginClick(object sender, EventArgs e) {
             Log.Debug("buttonLoginClick");
-            _presenter.Login();
+            this._presenter.Login();
         }
 
         protected void buttonLogoutClick(object sender, EventArgs e) {
             Log.Debug("buttonLogoutClick");
-            _presenter.Logout();
+            this._presenter.Logout();
         }
 
         protected void buttonContinueClick(object sender, EventArgs e) {
             Log.Debug("buttonContinueClick");
-            _presenter.Continue();
+            this._presenter.Continue();
         }
 
         protected void buttonAboutClick(object sender, EventArgs e) {
@@ -110,10 +110,12 @@
 
         protected Preferences Preferences { get; set; }
 
-        public User User {
-            get { return _user; }
-            set {
-                _user = value;
+        public User User
+        {
+            get { return this._user; }
+            set
+            {
+                this._user = value;
                 SetWelcomeLabel(value);
             }
         }

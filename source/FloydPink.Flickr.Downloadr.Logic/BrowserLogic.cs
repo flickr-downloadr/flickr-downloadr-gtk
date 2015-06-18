@@ -46,7 +46,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
             var methodName = GetPhotosetMethodName(photoset.Type);
 
-            var extraParams = new Dictionary<string, string> { {
+            var extraParams = new Dictionary<string, string> {
+                {
                     ParameterNames.UserId, user.UserNsId
                 }, {
                     ParameterNames.SafeSearch, preferences.SafetyLevel

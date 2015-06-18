@@ -21,7 +21,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
         #region ILandingLogic Members
 
         public async Task<Photoset> GetCoverPhotoAsync(User user, Preferences preferences, bool onlyPrivate) {
-            var extraParams = new Dictionary<string, string> { {
+            var extraParams = new Dictionary<string, string> {
+                {
                     ParameterNames.UserId, user.UserNsId
                 }, {
                     ParameterNames.SafeSearch, preferences.SafetyLevel
@@ -30,7 +31,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
                 }, {
                     ParameterNames.Page, "1"
                 }, {
-                    ParameterNames.PrivacyFilter, onlyPrivate ? "5" : "1" // magic numbers: https://www.flickr.com/services/api/flickr.people.getPhotos.html
+                    ParameterNames.PrivacyFilter, onlyPrivate ? "5" : "1"
+                    // magic numbers: https://www.flickr.com/services/api/flickr.people.getPhotos.html
                 }
             };
 
@@ -39,11 +41,10 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
             var photo = photosetsResponseDictionary.GetPhotosResponseFromDictionary(false).Photos.FirstOrDefault();
 
-            return new Photoset(null, null, null, null, 0, 0, 0, 
-                onlyPrivate ? "All Photos" : "All Public Photos", "", 
-                onlyPrivate ? PhotosetType.All : PhotosetType.Public, 
+            return new Photoset(null, null, null, null, 0, 0, 0,
+                onlyPrivate ? "All Photos" : "All Public Photos", "",
+                onlyPrivate ? PhotosetType.All : PhotosetType.Public,
                 photo.SmallSquare75X75Url);
-
         }
 
         public async Task<PhotosetsResponse> GetPhotosetsAsync(string methodName, User user, Preferences preferences, int page,
@@ -54,7 +55,8 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             };
             progress.Report(progressUpdate);
 
-            var extraParams = new Dictionary<string, string> { {
+            var extraParams = new Dictionary<string, string> {
+                {
                     ParameterNames.UserId, user.UserNsId
                 }, {
                     ParameterNames.SafeSearch, preferences.SafetyLevel

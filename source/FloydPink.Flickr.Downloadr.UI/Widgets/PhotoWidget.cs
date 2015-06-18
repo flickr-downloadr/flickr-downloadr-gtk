@@ -20,28 +20,32 @@
                             };
         }
 
-        public string ImageUrl {
-            get { return _imageUrl; }
-            set {
-                _imageUrl = value;
-                if (!string.IsNullOrEmpty(_imageUrl)) {
-                    imageMain.SetCachedImage(value);
+        public string ImageUrl
+        {
+            get { return this._imageUrl; }
+            set
+            {
+                this._imageUrl = value;
+                if (!string.IsNullOrEmpty(this._imageUrl)) {
+                    this.imageMain.SetCachedImage(value);
                 }
             }
         }
 
-        public bool IsSelected {
-            get { return _isSelected; }
-            set {
-                if (_isSelected != value) {
-                    _isSelected = value;
-                    var selectedStar = "<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>";                        
+        public bool IsSelected
+        {
+            get { return this._isSelected; }
+            set
+            {
+                if (this._isSelected != value) {
+                    this._isSelected = value;
+                    var selectedStar = "<span color=\"green\" size=\"x-large\"><b><big> ★ </big></b></span>";
                     var unselectedStar = "<span color=\"silver\" size=\"x-large\"><b><big> ☆ </big></b></span>";
-                    frameLabel.LabelProp = _isSelected ? selectedStar : unselectedStar;
-                    if (_isSelected) {
-                        frameMain.ModifyBg(StateType.Normal, new Color(0, 255, 0));
+                    this.frameLabel.LabelProp = this._isSelected ? selectedStar : unselectedStar;
+                    if (this._isSelected) {
+                        this.frameMain.ModifyBg(StateType.Normal, new Color(0, 255, 0));
                     } else {
-                        frameMain.ModifyBg(StateType.Normal);
+                        this.frameMain.ModifyBg(StateType.Normal);
                     }
                     if (SelectionChanged != null) {
                         SelectionChanged(this, new EventArgs());
@@ -50,12 +54,12 @@
             }
         }
 
-        public IGridWidgetItem WidgetItem {
-            get {
-                return _widgetItem;
-            }
-            set {
-                _widgetItem = value;
+        public IGridWidgetItem WidgetItem
+        {
+            get { return this._widgetItem; }
+            set
+            {
+                this._widgetItem = value;
                 ImageUrl = value.WidgetThumbnailUrl;
             }
         }
@@ -70,11 +74,11 @@
             if (photo == null) {
                 return;
             }
-            if (photo.GetType() == typeof(Photo)) {
-                var previewPhotoTooltip = new PreviewPhotoWidget((Photo)photo);
+            if (photo.GetType() == typeof (Photo)) {
+                var previewPhotoTooltip = new PreviewPhotoWidget((Photo) photo);
                 args.Tooltip.Custom = previewPhotoTooltip;
             } else {
-                var albumName = ((Photoset)photo).HtmlEncodedTitle;
+                var albumName = ((Photoset) photo).HtmlEncodedTitle;
                 var albumNameToolTip = new Label(albumName);
                 albumNameToolTip.UseMarkup = true;
                 args.Tooltip.Custom = albumNameToolTip;

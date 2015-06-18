@@ -22,12 +22,13 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         public async void InitializeScreen() {
             try {
                 this._view.ShowSpinner(true);
-            this._view.ShowLoggedOutControl();
-            this._preferences = this._preferencesLogic.GetPreferences();
-            if (!await this._logic.IsUserLoggedInAsync(ApplyUser)) {
-                Logout();
+                this._view.ShowLoggedOutControl();
+                this._preferences = this._preferencesLogic.GetPreferences();
+                if (!await this._logic.IsUserLoggedInAsync(ApplyUser)) {
+                    Logout();
+                }
             }
-            } catch (Exception ex) {
+            catch (Exception ex) {
                 HandleException(ex);
             }
         }
@@ -36,7 +37,8 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
             try {
                 this._view.ShowSpinner(true);
                 this._logic.Login(ApplyUser);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 HandleException(ex);
             }
         }

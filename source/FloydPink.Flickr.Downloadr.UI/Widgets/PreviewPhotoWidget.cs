@@ -8,10 +8,10 @@
     public partial class PreviewPhotoWidget : Bin {
         public PreviewPhotoWidget(Photo photo) {
             Build();
-            labelCaption.LabelProp =
+            this.labelCaption.LabelProp =
                 string.Format("<span color=\"white\" bgcolor=\"black\"><big><b>      {0}      </b></big></span>",
                     photo.HtmlEncodedTitle);
-            imagePreview.SetCachedImage(FileCache.FromUrl(photo.Medium500Url));
+            this.imagePreview.SetCachedImage(FileCache.FromUrl(photo.Medium500Url));
         }
     }
 }

@@ -31,11 +31,12 @@
             try {
                 this._view.ShowSpinner(true);
 
-                _view.PublicPhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, false);
-                _view.PrivatePhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, true);
+                this._view.PublicPhotoset = await this._logic.GetCoverPhotoAsync(this._view.User, this._view.Preferences, false);
+                this._view.PrivatePhotoset = await this._logic.GetCoverPhotoAsync(this._view.User, this._view.Preferences, true);
 
                 await GetAndSetPhotosets(1);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 HandleException(ex);
             }
         }
@@ -83,7 +84,7 @@
             this._view.ShowSpinner(false);
         }
 
-        private async Task<PhotosetsResponse> GetPhotosetsResponse(int page) {            
+        private async Task<PhotosetsResponse> GetPhotosetsResponse(int page) {
             return
                 await this._logic.GetPhotosetsAsync(Methods.PhotosetsGetList, this._view.User, this._view.Preferences, page, this._progress);
         }

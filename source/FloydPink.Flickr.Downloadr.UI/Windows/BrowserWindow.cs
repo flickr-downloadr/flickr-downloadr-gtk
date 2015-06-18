@@ -1,7 +1,6 @@
 ﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using Bootstrap;
@@ -15,11 +14,7 @@
 
     public partial class BrowserWindow : BaseWindow, IBrowserView {
         private readonly IBrowserPresenter _presenter;
-        private string _page;
-        private string _pages;
-        private string _perPage;
         private IEnumerable<Photo> _photos;
-        private string _total;
         private SpinnerWidget _spinner;
 
         public BrowserWindow(Session session) {
@@ -46,8 +41,10 @@
 
         public int SelectedPhotosCount { get { return AllSelectedPhotos.Values.SelectMany(d => d.Values).Count(); } }
 
-        public string SelectedPhotosCountText {
-            get {
+        public string SelectedPhotosCountText
+        {
+            get
+            {
                 var selectionCount = SelectedPhotosExist
                     ? SelectedPhotosCount.ToString(CultureInfo.InvariantCulture)
                     : string.Empty;
@@ -59,96 +56,79 @@
 
         public bool SelectedPhotosExist { get { return SelectedPhotosCount != 0; } }
 
-        public bool AreAnyPagePhotosSelected {
+        public bool AreAnyPagePhotosSelected
+        {
             get { return Page != null && AllSelectedPhotos.ContainsKey(Page) && AllSelectedPhotos[Page].Count != 0; }
         }
 
-        public bool AreAllPagePhotosSelected {
-            get {
+        public bool AreAllPagePhotosSelected
+        {
+            get
+            {
                 return Photos != null &&
-                (!AllSelectedPhotos.ContainsKey(Page) || Photos.Count() != AllSelectedPhotos[Page].Count);
+                       (!AllSelectedPhotos.ContainsKey(Page) || Photos.Count() != AllSelectedPhotos[Page].Count);
             }
         }
 
-        public string FirstPhoto {
-            get {
+        public string FirstPhoto
+        {
+            get
+            {
                 return (((int.Parse(Page) - 1) * int.Parse(PerPage)) + 1).
                     ToString(CultureInfo.InvariantCulture);
             }
         }
 
-        public string LastPhoto {
-            get {
+        public string LastPhoto
+        {
+            get
+            {
                 var maxLast = int.Parse(Page) * int.Parse(PerPage);
                 return maxLast > int.Parse(Total) ? Total : maxLast.ToString(CultureInfo.InvariantCulture);
             }
         }
 
         public User User { get; set; }
-
         public Preferences Preferences { get; set; }
 
-        public IEnumerable<Photo> Photos {
+        public IEnumerable<Photo> Photos
+        {
             get { return this._photos; }
-            set {
+            set
+            {
                 this._photos = value;
                 UpdateUI();
                 Application.Invoke(delegate {
-                    this.photosGrid.DoNotFireSelectionChanged = true;
-                    SelectAlreadySelectedPhotos();
-                    this.photosGrid.DoNotFireSelectionChanged = false;
-                });
+                                       this.photosGrid.DoNotFireSelectionChanged = true;
+                                       SelectAlreadySelectedPhotos();
+                                       this.photosGrid.DoNotFireSelectionChanged = false;
+                                   });
             }
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
-
         public Photoset CurrentPhotoset { get; set; }
-
-        public string Page {
-            get { return this._page; }
-            set {
-                this._page = value;
-            }
-        }
-
-        public string Pages {
-            get { return this._pages; }
-            set {
-                this._pages = value;
-            }
-        }
-
-        public string PerPage {
-            get { return this._perPage; }
-            set {
-                this._perPage = value;
-            }
-        }
-
-        public string Total {
-            get { return this._total; }
-            set {
-                this._total = value;
-            }
-        }
+        public string Page { get; set; }
+        public string Pages { get; set; }
+        public string PerPage { get; set; }
+        public string Total { get; set; }
 
         public void ShowSpinner(bool show) {
             Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
-                this.hboxButtons.Sensitive = !show;
-                this.scrolledwindowPhotos.Visible = !show;
-                this._spinner.Visible = show;
-            });
+                                   this.hboxButtons.Sensitive = !show;
+                                   this.scrolledwindowPhotos.Visible = !show;
+                                   this._spinner.Visible = show;
+                               });
         }
 
         public void UpdateProgress(string percentDone, string operationText, bool cancellable) {
             Log.Debug("UpdateProgress");
             Application.Invoke(delegate {
-                this._spinner.Cancellable = cancellable;
-                this._spinner.Operation = operationText;
-                this._spinner.PercentDone = percentDone;
-            });
+                                   this._spinner.Cancellable = cancellable;
+                                   this._spinner.Operation = operationText;
+                                   this._spinner.PercentDone = percentDone;
+                               });
         }
 
         public bool ShowWarning(string warningMessage) {
@@ -160,16 +140,16 @@
         public void DownloadComplete(string downloadedLocation, bool downloadComplete) {
             Log.Debug("DownloadComplete");
             Application.Invoke(delegate {
-                var message = downloadComplete
+                                   var message = downloadComplete
                                        ? "Download completed to the directory"
                                        : "Incomplete download could be found at";
-                if (downloadComplete) {
-                    ClearSelectedPhotos();
-                }
-                MessageBox.Show(this,
-                    string.Format("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),
-                    ButtonsType.Ok, MessageType.Info);
-            });
+                                   if (downloadComplete) {
+                                       ClearSelectedPhotos();
+                                   }
+                                   MessageBox.Show(this,
+                                       string.Format("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),
+                                       ButtonsType.Ok, MessageType.Info);
+                               });
         }
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs args) {
@@ -202,12 +182,12 @@
                 Visible = false
             };
             this._spinner.SpinnerCanceled += (object sender, EventArgs e) => {
-                this.scrolledwindowPhotos.Visible = true;
-                this.hboxButtons.Sensitive = true;
-                this._presenter.CancelDownload();
-            };
+                                                 this.scrolledwindowPhotos.Visible = true;
+                                                 this.hboxButtons.Sensitive = true;
+                                                 this._presenter.CancelDownload();
+                                             };
             this.hboxSpinner.Add(this._spinner);
-            var spinnerSlot = ((Box.BoxChild)(this.hboxSpinner[this._spinner]));
+            var spinnerSlot = ((Box.BoxChild) (this.hboxSpinner[this._spinner]));
             spinnerSlot.Position = 0;
             spinnerSlot.Expand = true;
         }
@@ -247,31 +227,31 @@
         private void UpdateUI() {
             Log.Debug("UpdateUI");
             Application.Invoke(delegate {
-                UpdateSelectionButtons();
+                                   UpdateSelectionButtons();
 
-                var selectedPhotosetLabelColor = CurrentPhotoset.Type == PhotosetType.Album ? "red" : "gray";
-                this.labelSelectedPhotoset.LabelProp = string.Format("<span color=\"{0}\"><b>{1}</b></span>", 
-                    selectedPhotosetLabelColor, CurrentPhotoset.HtmlEncodedTitle);
+                                   var selectedPhotosetLabelColor = CurrentPhotoset.Type == PhotosetType.Album ? "red" : "gray";
+                                   this.labelSelectedPhotoset.LabelProp = string.Format("<span color=\"{0}\"><b>{1}</b></span>",
+                                       selectedPhotosetLabelColor, CurrentPhotoset.HtmlEncodedTitle);
 
-                this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
-                    FirstPhoto, LastPhoto, Total);
-                this.labelPages.Markup = string.Format("<small>{0} of {1} Pages</small>", Page, Pages);
+                                   this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
+                                       FirstPhoto, LastPhoto, Total);
+                                   this.labelPages.Markup = string.Format("<small>{0} of {1} Pages</small>", Page, Pages);
 
-                var pages = new ListStore(typeof(string));
-                this.comboboxPage.Model = pages;
-                Enumerable.Range(1, int.Parse(Pages)).ToList().ForEach(p => pages.AppendValues(p.ToString()));
-                this.comboboxPage.Active = int.Parse(Page) - 1;
+                                   var pages = new ListStore(typeof (string));
+                                   this.comboboxPage.Model = pages;
+                                   Enumerable.Range(1, int.Parse(Pages)).ToList().ForEach(p => pages.AppendValues(p.ToString()));
+                                   this.comboboxPage.Active = int.Parse(Page) - 1;
 
-                this.buttonPreviousPage.Sensitive = this.buttonFirstPage.Sensitive = Page != "1";
-                this.buttonNextPage.Sensitive = this.buttonLastPage.Sensitive = Page != Pages;
+                                   this.buttonPreviousPage.Sensitive = this.buttonFirstPage.Sensitive = Page != "1";
+                                   this.buttonNextPage.Sensitive = this.buttonLastPage.Sensitive = Page != Pages;
 
-                this.scrolledwindowPhotos.Vadjustment.Value = 0;
+                                   this.scrolledwindowPhotos.Vadjustment.Value = 0;
 
-                var hasPhotos = Photos.Any();
-                hbox5.Sensitive = hasPhotos;
-                hboxCenter.Sensitive = hasPhotos;
-                hboxRight.Sensitive = hasPhotos;
-            });
+                                   var hasPhotos = Photos.Any();
+                                   hbox5.Sensitive = hasPhotos;
+                                   hboxCenter.Sensitive = hasPhotos;
+                                   hboxRight.Sensitive = hasPhotos;
+                               });
             this.photosGrid.Items = Photos;
         }
 
@@ -279,14 +259,14 @@
 
         private void OnSelectionChanged(object sender, EventArgs e) {
             Log.Debug("OnSelectionChanged");
-            var photoWidget = (PhotoWidget)sender;
+            var photoWidget = (PhotoWidget) sender;
 
             if (!AllSelectedPhotos.ContainsKey(Page)) {
                 AllSelectedPhotos[Page] = new Dictionary<string, Photo>();
             }
 
             if (photoWidget.IsSelected) {
-                AllSelectedPhotos[Page].Add(photoWidget.WidgetItem.Id, (Photo)photoWidget.WidgetItem);
+                AllSelectedPhotos[Page].Add(photoWidget.WidgetItem.Id, (Photo) photoWidget.WidgetItem);
             } else {
                 AllSelectedPhotos[Page].Remove(photoWidget.WidgetItem.Id);
             }
@@ -347,61 +327,61 @@
 
         protected async void buttonNextPageClick(object sender, EventArgs e) {
             Log.Debug("buttonNextPageClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoOrAlbumPage.Next);
         }
 
         protected async void buttonLastPageClick(object sender, EventArgs e) {
             Log.Debug("buttonLastPageClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoOrAlbumPage.Last);
         }
 
         protected async void buttonFirstPageClick(object sender, EventArgs e) {
             Log.Debug("buttonFirstPageClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoOrAlbumPage.First);
         }
 
         protected async void buttonPreviousPageClick(object sender, EventArgs e) {
             Log.Debug("buttonPreviousPageClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.NavigateTo(PhotoOrAlbumPage.Previous);
         }
 
         protected void buttonSelectAllClick(object sender, EventArgs e) {
             Log.Debug("buttonSelectAllClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             SetSelectionOnAllImages(true);
         }
 
         protected void buttonUnSelectAllClick(object sender, EventArgs e) {
             Log.Debug("buttonUnSelectAllClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             SetSelectionOnAllImages(false);
         }
 
         protected async void buttonDownloadSelectionClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadSelectionClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.DownloadSelection();
         }
 
         protected async void buttonDownloadThisPageClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadThisPageClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.DownloadThisPage();
         }
 
         protected async void buttonDownloadAllPagesClick(object sender, EventArgs e) {
             Log.Debug("buttonDownloadAllPagesClick");
-            LoseFocus((Button)sender);
+            LoseFocus((Button) sender);
             await this._presenter.DownloadAllPages();
         }
 
         protected async void comboboxPageChange(object sender, EventArgs e) {
             Log.Debug("comboboxPageChange");
-            var jumpToPage = ((ComboBox)sender).ActiveText;
+            var jumpToPage = ((ComboBox) sender).ActiveText;
             if (jumpToPage != null && jumpToPage != Page) {
                 await this._presenter.NavigateTo(int.Parse(jumpToPage));
             }

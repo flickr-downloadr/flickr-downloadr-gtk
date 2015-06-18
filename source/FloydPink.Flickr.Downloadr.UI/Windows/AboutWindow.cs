@@ -9,10 +9,10 @@
             Log.Debug("ctor");
             Build();
 
-            labelLink.TooltipText = "http://flickrdownloadr.com";
+            this.labelLink.TooltipText = "http://flickrdownloadr.com";
 
             Title += VersionHelper.GetVersionString();
-            labelVersion.LabelProp = string.Format("<big><big>flickr downloadr {0}</big></big>",
+            this.labelVersion.LabelProp = string.Format("<big><big>flickr downloadr {0}</big></big>",
                 VersionHelper.GetVersionString());
         }
 

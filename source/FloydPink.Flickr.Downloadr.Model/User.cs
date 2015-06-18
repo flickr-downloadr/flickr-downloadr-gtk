@@ -3,15 +3,15 @@ namespace FloydPink.Flickr.Downloadr.Model {
 
     public class User {
         public User() {
-            this.Name = string.Empty;
-            this.Username = string.Empty;
-            this.UserNsId = string.Empty;
+            Name = string.Empty;
+            Username = string.Empty;
+            UserNsId = string.Empty;
         }
 
         public User(string name, string userName, string userNsId) {
-            this.Name = name;
-            this.Username = userName;
-            this.UserNsId = userNsId;
+            Name = name;
+            Username = userName;
+            UserNsId = userNsId;
         }
 
         public string Name { get; set; }

@@ -11,8 +11,8 @@
     using Presentation.Views;
 
     public partial class PreferencesWindow : BaseWindow, IPreferencesView {
-        private Preferences _preferences;
         private readonly IPreferencesPresenter _presenter;
+        private Preferences _preferences;
 
         public PreferencesWindow(Session session) {
             Log.Debug("ctor");
@@ -24,17 +24,19 @@
             Preferences = session.Preferences;
             User = session.User;
 
-            _presenter = Bootstrapper.GetPresenter<IPreferencesView, IPreferencesPresenter>(this);
+            this._presenter = Bootstrapper.GetPresenter<IPreferencesView, IPreferencesPresenter>(this);
 
             SetCacheSize();
         }
 
         private User User { get; set; }
 
-        public Preferences Preferences {
-            get { return _preferences; }
-            set {
-                _preferences = value;
+        public Preferences Preferences
+        {
+            get { return this._preferences; }
+            set
+            {
+                this._preferences = value;
                 setFieldsFromModel(Preferences);
             }
         }
@@ -52,67 +54,62 @@
 
         private void AddTooltips() {
             Log.Debug("AddTooltips");
-            labelFilename.TooltipText = radioPhotoId.TooltipText = radioPhotoTitle.TooltipText =
+            this.labelFilename.TooltipText = this.radioPhotoId.TooltipText = this.radioPhotoTitle.TooltipText =
                 "Choose to name the downloaded photos with its internal photo id (a unique number) or its title (Untitled images will be assigned random unique names)";
-            labelDownloadLocation.TooltipText =
-                entryDownloadLocation.TooltipText = buttonDownloadLocation.TooltipText =
-                    "Set the location to save the downloaded photos and metadata";
-            labelDownloadSize.TooltipText = comboboxDownloadSize.TooltipText =
+            this.labelDownloadLocation.TooltipText = this.entryDownloadLocation.TooltipText = this.buttonDownloadLocation.TooltipText =
+                "Set the location to save the downloaded photos and metadata";
+            this.labelDownloadSize.TooltipText = this.comboboxDownloadSize.TooltipText =
                 "Set the size of the photos to download";
-            labelMetadata.TooltipText =
-                checkbuttonTags.TooltipText =
-                    checkbuttonDescription.TooltipText = checkbuttonTitle.TooltipText =
-                        "Select the attributes of the metadata to be downloaded";
-            labelPhotosPerPage.TooltipText = comboboxPhotosPerPage.TooltipText =
+            this.labelMetadata.TooltipText =
+                this.checkbuttonTags.TooltipText = this.checkbuttonDescription.TooltipText = this.checkbuttonTitle.TooltipText =
+                    "Select the attributes of the metadata to be downloaded";
+            this.labelPhotosPerPage.TooltipText = this.comboboxPhotosPerPage.TooltipText =
                 "Set the number of photos to be displayed in a page on the browser window";
-            labelSafetyLevel.TooltipText = comboboxSafetyLevel.TooltipText =
+            this.labelSafetyLevel.TooltipText = this.comboboxSafetyLevel.TooltipText =
                 "Set the safety level of the photos to be downloaded";
-            labelTags.TooltipText = radioTagsInternal.TooltipText = radioTagsOriginal.TooltipText =
+            this.labelTags.TooltipText = this.radioTagsInternal.TooltipText = this.radioTagsOriginal.TooltipText =
                 "Choose the type of tags to be downloaded - internal tags does not preserve the space, original will be exactly as it were entered";
-            labelCacheLocation.TooltipText =
-                entryCacheLocation.TooltipText = buttonCacheLocation.TooltipText =
-                    "Set the location to save the cached copy of the thumbnails and preview images";
-            labelCacheSize.TooltipText = labelCacheSizeValue.TooltipText =
+            this.labelCacheLocation.TooltipText = this.entryCacheLocation.TooltipText = this.buttonCacheLocation.TooltipText =
+                "Set the location to save the cached copy of the thumbnails and preview images";
+            this.labelCacheSize.TooltipText = this.labelCacheSizeValue.TooltipText =
                 "Amount of space taken by the current cache folder";
-            buttonEmptyCache.TooltipText = "Empty the cache folder if it is taking up too much space";
-            buttonCancel.TooltipText =
+            this.buttonEmptyCache.TooltipText = "Empty the cache folder if it is taking up too much space";
+            this.buttonCancel.TooltipText =
                 "Revert all the settings to their last saved values and go back to the login window";
-            buttonDefaults.TooltipText = "Reset all the settings to their default values";
-            buttonSave.TooltipText = "Save all the settings and continue to the photoset selection window";
-            labelUpdate.TooltipText =
-                checkbuttonUpdate.TooltipText =
-                    "Get notified automatically when there is an updated version available";
-            labelLogLevel.TooltipText = comboboxLogLevel.TooltipText =
+            this.buttonDefaults.TooltipText = "Reset all the settings to their default values";
+            this.buttonSave.TooltipText = "Save all the settings and continue to the photoset selection window";
+            this.labelUpdate.TooltipText = this.checkbuttonUpdate.TooltipText =
+                "Get notified automatically when there is an updated version available";
+            this.labelLogLevel.TooltipText = this.comboboxLogLevel.TooltipText =
                 "Set the level of diagnostic logging (Recommended: Off)";
-            labelLogLocation.TooltipText =
-                entryLogLocation.TooltipText = buttonLogLocation.TooltipText =
-                    "Set the location to save the log files with diagnostic information";
-            labelRestartRequired.TooltipText = "The settings on the fields with red asterisk above, will work better after a restart";
+            this.labelLogLocation.TooltipText = this.entryLogLocation.TooltipText = this.buttonLogLocation.TooltipText =
+                "Set the location to save the log files with diagnostic information";
+            this.labelRestartRequired.TooltipText = "The settings on the fields with red asterisk above, will work better after a restart";
         }
 
         private void SetCacheSize() {
             Log.Debug("SetCacheSize");
-            labelCacheSizeValue.Text = _presenter.GetCacheFolderSize(Preferences.CacheLocation);
-            buttonEmptyCache.Visible =
-                !(labelCacheSizeValue.Text == "0 B" || labelCacheSizeValue.Text == "-");
+            this.labelCacheSizeValue.Text = this._presenter.GetCacheFolderSize(Preferences.CacheLocation);
+            this.buttonEmptyCache.Visible =
+                !(this.labelCacheSizeValue.Text == "0 B" || this.labelCacheSizeValue.Text == "-");
         }
 
         private void setFieldsFromModel(Preferences preferences) {
             Log.Debug("setFieldsFromModel");
             // Filename
-            radioPhotoId.Active = !preferences.TitleAsFilename;
-            radioPhotoTitle.Active = preferences.TitleAsFilename;
+            this.radioPhotoId.Active = !preferences.TitleAsFilename;
+            this.radioPhotoTitle.Active = preferences.TitleAsFilename;
 
             // Download location
-            entryDownloadLocation.Text = preferences.DownloadLocation;
+            this.entryDownloadLocation.Text = preferences.DownloadLocation;
 
             // Download size
-            comboboxDownloadSize.Active = (int) preferences.DownloadSize;
+            this.comboboxDownloadSize.Active = (int) preferences.DownloadSize;
 
             // Metadata
-            checkbuttonTags.Active = preferences.Metadata.Contains(PhotoMetadata.Tags);
-            checkbuttonDescription.Active = preferences.Metadata.Contains(PhotoMetadata.Description);
-            checkbuttonTitle.Active = preferences.Metadata.Contains(PhotoMetadata.Title);
+            this.checkbuttonTags.Active = preferences.Metadata.Contains(PhotoMetadata.Tags);
+            this.checkbuttonDescription.Active = preferences.Metadata.Contains(PhotoMetadata.Description);
+            this.checkbuttonTitle.Active = preferences.Metadata.Contains(PhotoMetadata.Title);
 
             // Photos per page
             var photosPerPageMap = new Dictionary<string, int> {
@@ -126,54 +123,54 @@
                     "100", 3
                 }
             };
-            comboboxPhotosPerPage.Active = photosPerPageMap[preferences.PhotosPerPage.ToString()];
+            this.comboboxPhotosPerPage.Active = photosPerPageMap[preferences.PhotosPerPage.ToString()];
 
             //Safety level
-            comboboxSafetyLevel.Active = int.Parse(preferences.SafetyLevel) - 1;
+            this.comboboxSafetyLevel.Active = int.Parse(preferences.SafetyLevel) - 1;
 
             // Tags
-            radioTagsInternal.Active = !preferences.NeedOriginalTags;
-            radioTagsOriginal.Active = preferences.NeedOriginalTags;
+            this.radioTagsInternal.Active = !preferences.NeedOriginalTags;
+            this.radioTagsOriginal.Active = preferences.NeedOriginalTags;
 
             // Cache location
-            entryCacheLocation.Text = preferences.CacheLocation;
+            this.entryCacheLocation.Text = preferences.CacheLocation;
 
             // Check for Update
-            checkbuttonUpdate.Active = preferences.CheckForUpdates;
+            this.checkbuttonUpdate.Active = preferences.CheckForUpdates;
 
             // Log Level
-            comboboxLogLevel.Active = (int) preferences.LogLevel;
+            this.comboboxLogLevel.Active = (int) preferences.LogLevel;
 
             // Log location
-            entryLogLocation.Text = preferences.LogLocation;
+            this.entryLogLocation.Text = preferences.LogLocation;
         }
 
         private Preferences getModelFromFields() {
             Log.Debug("getModelFromFields");
             var metadata = new List<string>();
-            if (checkbuttonTags.Active) {
+            if (this.checkbuttonTags.Active) {
                 metadata.Add(PhotoMetadata.Tags);
             }
-            if (checkbuttonDescription.Active) {
+            if (this.checkbuttonDescription.Active) {
                 metadata.Add(PhotoMetadata.Description);
             }
-            if (checkbuttonTitle.Active) {
+            if (this.checkbuttonTitle.Active) {
                 metadata.Add(PhotoMetadata.Title);
             }
             return new Preferences {
-                TitleAsFilename = radioPhotoTitle.Active,
-                DownloadLocation = entryDownloadLocation.Text,
+                TitleAsFilename = this.radioPhotoTitle.Active,
+                DownloadLocation = this.entryDownloadLocation.Text,
                 DownloadSize =
-                    (PhotoDownloadSize) Enum.Parse(typeof (PhotoDownloadSize), comboboxDownloadSize.ActiveText),
+                    (PhotoDownloadSize) Enum.Parse(typeof (PhotoDownloadSize), this.comboboxDownloadSize.ActiveText),
                 Metadata = metadata,
-                PhotosPerPage = int.Parse(comboboxPhotosPerPage.ActiveText),
-                SafetyLevel = (comboboxSafetyLevel.Active + 1).ToString(),
-                NeedOriginalTags = radioTagsOriginal.Active,
-                CacheLocation = entryCacheLocation.Text,
-                CheckForUpdates = checkbuttonUpdate.Active,
+                PhotosPerPage = int.Parse(this.comboboxPhotosPerPage.ActiveText),
+                SafetyLevel = (this.comboboxSafetyLevel.Active + 1).ToString(),
+                NeedOriginalTags = this.radioTagsOriginal.Active,
+                CacheLocation = this.entryCacheLocation.Text,
+                CheckForUpdates = this.checkbuttonUpdate.Active,
                 LogLevel =
-                    (LogLevel) Enum.Parse(typeof (LogLevel), comboboxLogLevel.ActiveText),
-                LogLocation = entryLogLocation.Text
+                    (LogLevel) Enum.Parse(typeof (LogLevel), this.comboboxLogLevel.ActiveText),
+                LogLocation = this.entryLogLocation.Text
             };
         }
 
@@ -197,7 +194,7 @@
 
             Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
 
-            _presenter.Save(preferences);
+            this._presenter.Save(preferences);
             var landingWindow = new LandingWindow(new Session(User, preferences));
             landingWindow.Show();
             Destroy();
@@ -254,7 +251,7 @@
             var result = MessageBox.Show(this, "Are you sure you want to empty the cache folder?",
                 ButtonsType.YesNo, MessageType.Question);
             if (result == ResponseType.Yes) {
-                _presenter.EmptyCacheDirectory(Preferences.CacheLocation);
+                this._presenter.EmptyCacheDirectory(Preferences.CacheLocation);
                 SetCacheSize();
             }
         }
