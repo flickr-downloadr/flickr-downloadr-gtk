@@ -1,4 +1,5 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Model {
+    using System.Web;
     using Model.Enums;
 
     public class Photoset : IGridWidgetItem {
@@ -30,6 +31,11 @@
             get {
                 return string.Format("https://farm{0}.staticflickr.com/{1}/{2}_{3}_s.jpg", 
                 this.Farm, this.Server, this.Primary,this.Secret);
+            }
+        }
+        public string HtmlEncodedTitle {
+            get {
+                return HttpUtility.HtmlEncode(Title);
             }
         }
     }

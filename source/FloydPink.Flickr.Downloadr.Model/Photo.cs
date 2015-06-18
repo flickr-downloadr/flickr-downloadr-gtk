@@ -1,4 +1,6 @@
 namespace FloydPink.Flickr.Downloadr.Model {
+    using System.Web;
+
     public class Photo : IGridWidgetItem {
         private readonly string _large1024Url;
         private readonly string _medium500Url;
@@ -64,5 +66,10 @@ namespace FloydPink.Flickr.Downloadr.Model {
         public string Large1024Url { get { return string.IsNullOrWhiteSpace(this._large1024Url) ? Medium800Url : this._large1024Url; } }
         public string OriginalUrl { get { return string.IsNullOrWhiteSpace(this._originalUrl) ? Large1024Url : this._originalUrl; } }
         public string DownloadFormat { get { return string.IsNullOrWhiteSpace(OriginalFormat) ? "jpg" : OriginalFormat; } }
+        public string HtmlEncodedTitle {
+            get {
+                return HttpUtility.HtmlEncode(Title);
+            }
+        }
     }
 }

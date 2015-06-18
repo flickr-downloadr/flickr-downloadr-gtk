@@ -249,7 +249,7 @@
             Application.Invoke(delegate {
                 UpdateSelectionButtons();
 
-                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", CurrentPhotoset.Title);
+                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", CurrentPhotoset.HtmlEncodedTitle);
 
                 this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
                     FirstPhoto, LastPhoto, Total);

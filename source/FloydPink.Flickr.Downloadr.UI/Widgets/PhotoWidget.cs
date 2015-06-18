@@ -58,10 +58,15 @@
 
         private void SetupOnHoverImage(QueryTooltipArgs args, IGridWidgetItem photo) {
             if (photo.GetType() == typeof(Photo)) {
-                var customTooltip = new PreviewPhotoWidget((Photo)photo);
-                args.Tooltip.Custom = customTooltip;
-                args.RetVal = true;
+                var previewPhotoTooltip = new PreviewPhotoWidget((Photo)photo);
+                args.Tooltip.Custom = previewPhotoTooltip;
+            } else {
+                var albumName = ((Photoset)photo).HtmlEncodedTitle;
+                var albumNameToolTip = new Label(albumName);
+                albumNameToolTip.UseMarkup = true;
+                args.Tooltip.Custom = albumNameToolTip;
             }
+            args.RetVal = true;
         }
     }
 }

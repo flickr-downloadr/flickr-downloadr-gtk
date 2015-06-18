@@ -1,6 +1,5 @@
 ﻿namespace FloydPink.Flickr.Downloadr.UI.Widgets {
     using System.ComponentModel;
-    using System.Web;
     using CachedImage;
     using Gtk;
     using Model;
@@ -11,7 +10,7 @@
             Build();
             labelCaption.LabelProp =
                 string.Format("<span color=\"white\" bgcolor=\"black\"><big><b>      {0}      </b></big></span>",
-                    HttpUtility.HtmlEncode(photo.Title));
+                    photo.HtmlEncodedTitle);
             imagePreview.SetCachedImage(FileCache.FromUrl(photo.Medium500Url));
         }
     }

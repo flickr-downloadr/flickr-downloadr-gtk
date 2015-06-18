@@ -196,7 +196,7 @@
 
         private void UpdateSelectionUI() {
             var isPhotosetSelected = this.SelectedPhotoset != null;
-            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<b>{0}</b>", SelectedPhotoset.Title) : "";
+            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<b>{0}</b>", SelectedPhotoset.HtmlEncodedTitle) : "";
             this.labelSelectedPhotoset.Visible = isPhotosetSelected;
             this.buttonContinue.Sensitive = isPhotosetSelected;
 
