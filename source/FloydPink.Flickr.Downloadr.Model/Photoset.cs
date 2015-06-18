@@ -28,7 +28,7 @@
         public PhotosetType Type { get; private set; }
         public string WidgetThumbnailUrl {
             get {
-                return string.Format("https://farm{0}.staticflickr.com/{1}/{2}_{3}_q.jpg", 
+                return string.Format("https://farm{0}.staticflickr.com/{1}/{2}_{3}_s.jpg", 
                 this.Farm, this.Server, this.Primary,this.Secret);
             }
         }

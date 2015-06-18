@@ -58,13 +58,13 @@
             Log.Debug("AddItemToRow");
             Box.BoxChild hboxChild;
             if (item != null) {
-                var imageCell = new PhotoWidget();
-                imageCell.Name = string.Format("{0}Image{1}", rowId, j);
-                imageCell.ImageUrl = item.WidgetThumbnailUrl;
-                imageCell.WidgetItem = item;
-                imageCell.SelectionChanged += OnSelectionChangedInternal;
-                hboxRow.Add(imageCell);
-                hboxChild = ((Box.BoxChild)(hboxRow[imageCell]));
+                var itemWidget = new PhotoWidget();
+                itemWidget.Name = string.Format("{0}Image{1}", rowId, j);
+                itemWidget.ImageUrl = item.WidgetThumbnailUrl;
+                itemWidget.WidgetItem = item;
+                itemWidget.SelectionChanged += OnSelectionChangedInternal;
+                hboxRow.Add(itemWidget);
+                hboxChild = ((Box.BoxChild)(hboxRow[itemWidget]));
             } else {
                 var dummyImage = new Gtk.Image();
                 dummyImage.Name = string.Format("{0}Image{1}", rowId, j);

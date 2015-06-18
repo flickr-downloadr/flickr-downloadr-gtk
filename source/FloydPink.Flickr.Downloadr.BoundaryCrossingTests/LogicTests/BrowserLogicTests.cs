@@ -4,6 +4,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
     using Bootstrap;
     using Logic.Interfaces;
     using Model;
+    using Model.Enums;
     using Model.Constants;
     using NUnit.Framework;
 
@@ -43,10 +44,10 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         [Test]
         public async void GetPublicPhotos_WillGetPublicPhotos() {
             WaitTillLoggedIn();
+            var publicPhotos = new Photoset(null,null,null,null,0,0,0,null,null,PhotosetType.Public);
             var photosResponse =
-                await
-                    this._logic.GetPhotosAsync(Methods.PeopleGetPublicPhotos, this._user, Preferences.GetDefault(), 1,
-                        new Progress<ProgressUpdate>());
+                await this._logic.GetPhotosAsync(publicPhotos, this._user, Preferences.GetDefault(), 1,
+                    new Progress<ProgressUpdate>());
             Assert.IsNotNull(photosResponse.Photos);
         }
 

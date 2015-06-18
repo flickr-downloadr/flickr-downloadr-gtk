@@ -21,7 +21,6 @@
         private IEnumerable<Photo> _photos;
         private string _total;
         private SpinnerWidget _spinner;
-        private GridWidget _photosGrid;
 
         public BrowserWindow(Session session) {
             Log.Debug("ctor");
@@ -29,11 +28,13 @@
 
             AddTooltips();
 
+            this.photosGrid.OnSelectionChanged += OnSelectionChanged;
+
             Title += VersionHelper.GetVersionString();
 
             User = session.User;
             Preferences = session.Preferences;
-            SelectedPhotoset = session.SelectedPhotoset;
+            CurrentPhotoset = session.SelectedPhotoset;
 
             AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>>();
 
@@ -93,16 +94,16 @@
                 this._photos = value;
                 UpdateUI();
                 Application.Invoke(delegate {
-                    this._photosGrid.DoNotFireSelectionChanged = true;
+                    this.photosGrid.DoNotFireSelectionChanged = true;
                     SelectAlreadySelectedPhotos();
-                    this._photosGrid.DoNotFireSelectionChanged = false;
+                    this.photosGrid.DoNotFireSelectionChanged = false;
                 });
             }
         }
 
         public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
 
-        public Photoset SelectedPhotoset { get; set; }
+        public Photoset CurrentPhotoset { get; set; }
 
         public string Page {
             get { return this._page; }
@@ -248,7 +249,7 @@
             Application.Invoke(delegate {
                 UpdateSelectionButtons();
 
-                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", SelectedPhotoset.Title);
+                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", CurrentPhotoset.Title);
 
                 this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
                     FirstPhoto, LastPhoto, Total);
@@ -269,13 +270,7 @@
                 hboxCenter.Sensitive = hasPhotos;
                 hboxRight.Sensitive = hasPhotos;
             });
-            if (this._photosGrid == null) {
-                this._photosGrid = new GridWidget();
-                this._photosGrid.OnSelectionChanged += OnSelectionChanged;
-                this.scrolledwindowPhotos.AddWithViewport(this._photosGrid);
-                this.scrolledwindowPhotos.ShowAll();
-            }
-            this._photosGrid.Items = Photos;
+            this.photosGrid.Items = Photos;
         }
 
         #region PhotoGrid
@@ -299,7 +294,7 @@
 
         private void SetSelectionOnAllImages(bool selected) {
             Log.Debug("SetSelectionOnAllImages");
-            foreach (var box in this._photosGrid.AllItems) {
+            foreach (var box in this.photosGrid.AllItems) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
@@ -315,7 +310,7 @@
 
         private void FindAndSelectPhoto(Photo photo) {
             Log.Debug("FindAndSelectPhoto");
-            foreach (var box in this._photosGrid.AllItems) {
+            foreach (var box in this.photosGrid.AllItems) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;

@@ -6,7 +6,7 @@
     public interface IBrowserView : IBaseView {
         User User { get; set; }
         Preferences Preferences { get; set; }
-        Photoset SelectedPhotoset { get; set; }
+        Photoset CurrentPhotoset { get; set; }
         IEnumerable<Photo> Photos { get; set; }
         IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
         string Page { get; set; }

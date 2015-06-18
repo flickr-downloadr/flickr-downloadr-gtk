@@ -5,6 +5,7 @@
     using System.Linq;
     using Bootstrap;
     using Gtk;
+    using Gdk;
     using Helpers;
     using Model;
     using Model.Enums;
@@ -21,7 +22,6 @@
         private string _perPage;
         private string _total;
         private IEnumerable<Photoset> _albums;
-        private GridWidget _albumsGrid;
         private Photoset SelectedPhotoset { get; set; }
 
         public LandingWindow(Session session) {
@@ -29,6 +29,8 @@
             Build();
 
             AddTooltips();
+
+            this.albumsGrid.OnSelectionChanged += OnSelectionChanged;
 
             Title += VersionHelper.GetVersionString();
             Preferences = session.Preferences;
@@ -177,13 +179,7 @@
 
                                    UpdateSelectionUI();
                                });
-            if (this._albumsGrid == null) {
-                this._albumsGrid = new GridWidget();
-                this._albumsGrid.OnSelectionChanged += OnSelectionChanged;
-                this.scrolledwindowPhotos.AddWithViewport(this._albumsGrid);
-                this.scrolledwindowPhotos.ShowAll();
-            }
-            this._albumsGrid.Items = Albums;
+            this.albumsGrid.Items = Albums;
         }
 
         private void OnSelectionChanged(object sender, EventArgs e) {
@@ -204,8 +200,8 @@
             this.labelSelectedPhotoset.Visible = isPhotosetSelected;
             this.buttonContinue.Sensitive = isPhotosetSelected;
 
-            this._albumsGrid.DoNotFireSelectionChanged = true;
-            foreach (var box in this._albumsGrid.AllItems) {
+            this.albumsGrid.DoNotFireSelectionChanged = true;
+            foreach (var box in this.albumsGrid.AllItems) {
                 var hbox = box as HBox;
                 if (hbox == null) {
                     continue;
@@ -217,7 +213,7 @@
                     }
                 }
             }
-            this._albumsGrid.DoNotFireSelectionChanged = false;
+            this.albumsGrid.DoNotFireSelectionChanged = false;
         }
 
         private void LoseFocus(Button element) {

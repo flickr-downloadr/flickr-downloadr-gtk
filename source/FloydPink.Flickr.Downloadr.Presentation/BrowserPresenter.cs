@@ -166,7 +166,7 @@
 
         private async Task<PhotosResponse> GetPhotosResponse(int page) {
             return
-                await this._logic.GetPhotosAsync(this._view.SelectedPhotoset, this._view.User, this._view.Preferences, page, this._progress);
+                await this._logic.GetPhotosAsync(this._view.CurrentPhotoset, this._view.User, this._view.Preferences, page, this._progress);
         }
 
         private void SetPhotosResponse(PhotosResponse photosResponse) {

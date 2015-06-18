@@ -1819,7 +1819,12 @@ Restricted</property>
                     <property name="MemberName" />
                     <property name="ShadowType">None</property>
                     <child>
-                      <placeholder />
+                      <widget class="FloydPink.Flickr.Downloadr.UI.Widgets.GridWidget" id="photosGrid">
+                        <property name="MemberName" />
+                        <property name="Events">ButtonPressMask</property>
+                        <property name="DoNotFireSelectionChanged">False</property>
+                        <property name="NumberOfItemsInARow">5</property>
+                      </widget>
                     </child>
                   </widget>
                 </child>
@@ -2229,7 +2234,12 @@ Restricted</property>
                     <property name="MemberName" />
                     <property name="ShadowType">None</property>
                     <child>
-                      <placeholder />
+                      <widget class="FloydPink.Flickr.Downloadr.UI.Widgets.GridWidget" id="albumsGrid">
+                        <property name="MemberName" />
+                        <property name="Events">ButtonPressMask</property>
+                        <property name="DoNotFireSelectionChanged">False</property>
+                        <property name="NumberOfItemsInARow">6</property>
+                      </widget>
                     </child>
                   </widget>
                 </child>
