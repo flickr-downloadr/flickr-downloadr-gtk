@@ -249,7 +249,9 @@
             Application.Invoke(delegate {
                 UpdateSelectionButtons();
 
-                this.labelSelectedPhotoset.LabelProp = string.Format("<b>{0}</b>", CurrentPhotoset.HtmlEncodedTitle);
+                var selectedPhotosetLabelColor = CurrentPhotoset.Type == PhotosetType.Album ? "red" : "gray";
+                this.labelSelectedPhotoset.LabelProp = string.Format("<span color=\"{0}\"><b>{1}</b></span>", 
+                    selectedPhotosetLabelColor, CurrentPhotoset.HtmlEncodedTitle);
 
                 this.labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Photos</small>",
                     FirstPhoto, LastPhoto, Total);

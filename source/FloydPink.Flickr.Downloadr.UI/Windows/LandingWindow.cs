@@ -260,13 +260,17 @@
 
         private void UpdateSelectionUI() {
             var isPhotosetSelected = this.SelectedPhotoset != null;
-            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<b>{0}</b>", SelectedPhotoset.HtmlEncodedTitle) : "";
+
             this.labelSelectedPhotoset.Visible = isPhotosetSelected;
             this.buttonContinue.Sensitive = isPhotosetSelected;
 
             if (SelectedPhotoset == null) {
                 return;
             }
+
+            var selectedPhotosetLabelColor = SelectedPhotoset.Type == PhotosetType.Album ? "red" : "gray";
+            this.labelSelectedPhotoset.LabelProp = isPhotosetSelected ? string.Format("<span color=\"{0}\"><b>{1}</b></span>", 
+                selectedPhotosetLabelColor, SelectedPhotoset.HtmlEncodedTitle) : "";
 
             _unselectingPublicPhotoset = true;
             this.photowidgetPublic.IsSelected = SelectedPhotoset.Type == PhotosetType.Public;
