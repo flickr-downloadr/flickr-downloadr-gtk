@@ -157,7 +157,7 @@
                                });
         }
 
-        public void ShowSpinner(bool show) {
+        public override void ShowSpinner(bool show) {
             Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
                                    this.hboxLogin.Sensitive = !show;

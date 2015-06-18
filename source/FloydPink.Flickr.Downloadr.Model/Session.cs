@@ -2,8 +2,6 @@
     using System.Collections.Generic;
 
     public class Session {
-        private List<Photoset> _photosets;
-
         public Session(User user, Preferences preferences, Photoset photoset = null) {
             User = user;
             Preferences = preferences;

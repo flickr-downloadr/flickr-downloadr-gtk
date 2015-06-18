@@ -41,7 +41,7 @@
             }
         }
 
-        public void ShowSpinner(bool show) {
+        public override void ShowSpinner(bool show) {
             //			Visibility visibility = show ? Visibility.Visible : Visibility.Collapsed;
             //			Spinner.Dispatch(s => s.Visibility = visibility);
         }

@@ -1434,7 +1434,7 @@ Restricted</property>
     <property name="Title" translatable="yes">Fatal Error - flickr downloadr</property>
     <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">Center</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
     <child>

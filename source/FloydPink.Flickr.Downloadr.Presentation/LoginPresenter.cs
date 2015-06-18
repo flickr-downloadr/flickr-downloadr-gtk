@@ -29,7 +29,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
                 }
             }
             catch (Exception ex) {
-                HandleException(ex);
+                _view.HandleException(ex);
             }
         }
 
@@ -39,7 +39,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
                 this._logic.Login(ApplyUser);
             }
             catch (Exception ex) {
-                HandleException(ex);
+                _view.HandleException(ex);
             }
         }
 

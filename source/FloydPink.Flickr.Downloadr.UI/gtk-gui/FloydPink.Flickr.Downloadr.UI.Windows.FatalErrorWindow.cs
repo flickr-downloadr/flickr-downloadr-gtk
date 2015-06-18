@@ -28,7 +28,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.Title = global::Mono.Unix.Catalog.GetString ("Fatal Error - flickr downloadr");
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
-			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
 			// Container child FloydPink.Flickr.Downloadr.UI.Windows.FatalErrorWindow.Gtk.Container+ContainerChild

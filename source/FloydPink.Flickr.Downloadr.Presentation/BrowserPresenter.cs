@@ -38,7 +38,7 @@
                 await GetAndSetPhotos(1);
             }
             catch (Exception ex) {
-                HandleException(ex);
+                _view.HandleException(ex);
             }
         }
 

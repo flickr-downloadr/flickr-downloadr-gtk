@@ -113,7 +113,7 @@
         public string PerPage { get; set; }
         public string Total { get; set; }
 
-        public void ShowSpinner(bool show) {
+        public override void ShowSpinner(bool show) {
             Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
                                    this.hboxButtons.Sensitive = !show;
