@@ -70,14 +70,14 @@ namespace FloydPink.Flickr.Downloadr.Logic {
             return photosResponse.GetPhotosResponseFromDictionary(isAlbum);
         }
 
-        public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken,
-                                   IProgress<ProgressUpdate> progress, Preferences preferences) {
+        public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
+                                   Preferences preferences, Photoset photoset) {
             var photosList = photos as IList<Photo> ?? photos.ToList();
             if (!photosList.Any()) {
                 return;
             }
 
-            await this._downloadLogic.Download(photosList, cancellationToken, progress, preferences);
+            await this._downloadLogic.Download(photosList, cancellationToken, progress, preferences, photoset);
         }
 
         #endregion

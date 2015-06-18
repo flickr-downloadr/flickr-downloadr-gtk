@@ -146,7 +146,9 @@
                 var photosList = photos as IList<Photo> ?? photos.ToList();
 
                 this._cancellationTokenSource = new CancellationTokenSource();
-                await this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress, this._view.Preferences);
+                await
+                    this._logic.Download(photosList, this._cancellationTokenSource.Token, this._progress, this._view.Preferences,
+                        this._view.CurrentPhotoset);
                 this._view.DownloadComplete(this._downloadedLocation, true);
             }
             catch (OperationCanceledException) {

@@ -22,13 +22,13 @@
             this._originalTagsLogic = originalTagsLogic;
         }
 
-        public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken,
-                                   IProgress<ProgressUpdate> progress, Preferences preferences) {
-            await DownloadPhotos(photos, cancellationToken, progress, preferences);
+        public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
+                                   Preferences preferences, Photoset photoset) {
+            await DownloadPhotos(photos, cancellationToken, progress, preferences, photoset);
         }
 
-        private async Task DownloadPhotos(IEnumerable<Photo> photos, CancellationToken cancellationToken,
-                                          IProgress<ProgressUpdate> progress, Preferences preferences) {
+        private async Task DownloadPhotos(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
+                                          Preferences preferences, Photoset photoset) {
             var progressUpdate = new ProgressUpdate {
                 Cancellable = true,
                 OperationText = "Downloading photos...",
@@ -41,7 +41,7 @@
             var photosList = photos as IList<Photo> ?? photos.ToList();
             var totalCount = photosList.Count();
 
-            var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation);
+            var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation, photoset);
 
             foreach (var photo in photosList) {
                 var photoUrl = photo.OriginalUrl;
@@ -99,12 +99,16 @@
             }
         }
 
-        private DirectoryInfo CreateDownloadFolder(string downloadLocation) {
-            this._currentTimestampFolder = string.Format("flickr-downloadr-{0}",
+        private DirectoryInfo CreateDownloadFolder(string downloadLocation, Photoset currentPhotoset) {
+            this._currentTimestampFolder = string.Format("flickr-downloadr{0}-{1}", GetDownloadFolderNameForPhotoset(currentPhotoset),
                 GetSafeFilename(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")));
             var imageDirectory =
                 Directory.CreateDirectory(Path.Combine(downloadLocation, this._currentTimestampFolder));
             return imageDirectory;
+        }
+
+        private string GetDownloadFolderNameForPhotoset(Photoset photoset) {
+            return photoset.Type == PhotosetType.Album ? string.Format("-[{0}]", GetSafeFilename(photoset.Title)) : string.Empty;
         }
 
         private static string RandomString(int size) {
