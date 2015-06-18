@@ -9,6 +9,8 @@
         string Pages { get; set; }
         string PerPage { get; set; }
         string Total { get; set; }
+        Photoset PublicPhotoset { get; set; }
+        Photoset PrivatePhotoset { get; set; }
         IEnumerable<Photoset> Albums { get; set; }
         void UpdateProgress(string percentDone, string operationText, bool cancellable);
     }

@@ -29,6 +29,11 @@
 
         public async Task Initialize() {
             try {
+                this._view.ShowSpinner(true);
+
+                _view.PublicPhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, false);
+                _view.PrivatePhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, true);
+
                 await GetAndSetPhotosets(1);
             } catch (Exception ex) {
                 HandleException(ex);

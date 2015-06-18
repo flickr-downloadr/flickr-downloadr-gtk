@@ -60,7 +60,6 @@
             if (item != null) {
                 var itemWidget = new PhotoWidget();
                 itemWidget.Name = string.Format("{0}Image{1}", rowId, j);
-                itemWidget.ImageUrl = item.WidgetThumbnailUrl;
                 itemWidget.WidgetItem = item;
                 itemWidget.SelectionChanged += OnSelectionChangedInternal;
                 hboxRow.Add(itemWidget);

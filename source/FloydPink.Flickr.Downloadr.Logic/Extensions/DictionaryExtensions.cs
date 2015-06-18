@@ -122,7 +122,7 @@
                 int.Parse(dictionary.GetValue("videos").ToString()),
                 dictionary.GetSubValue("title").ToString(),
                 dictionary.GetSubValue("description").ToString(),
-                PhotosetType.Album);
+                PhotosetType.Album, null);
         }
     }
 }

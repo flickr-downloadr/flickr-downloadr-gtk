@@ -21,7 +21,14 @@
         private string _pages;
         private string _perPage;
         private string _total;
+        private Photoset _publicPhotoset;
+        private Photoset _privatePhotoset;
+
+        private bool _unselectingPublicPhotoset;
+        private bool _unselectingPrivatePhotoset;
+
         private IEnumerable<Photoset> _albums;
+
         private Photoset SelectedPhotoset { get; set; }
 
         public LandingWindow(Session session) {
@@ -30,7 +37,12 @@
 
             AddTooltips();
 
-            this.albumsGrid.OnSelectionChanged += OnSelectionChanged;
+            this.photowidgetPublic.SelectionChanged += OnPublicSetSelectionChanged;
+            this.photowidgetPrivate.SelectionChanged += OnPrivateSetSelectionChanged;
+            this.albumsGrid.OnSelectionChanged += OnAlbumsSelectionChanged;
+
+            this.hboxPublicPrivate.Visible = false;
+            this.labelSets.Visible = false;
 
             Title += VersionHelper.GetVersionString();
             Preferences = session.Preferences;
@@ -99,6 +111,26 @@
             }
         }
 
+        public Photoset PublicPhotoset {
+            get {
+                return _publicPhotoset;
+            }
+            set {
+                _publicPhotoset = value;
+                this.photowidgetPublic.WidgetItem = value;
+            }
+        }
+
+        public Photoset PrivatePhotoset {
+            get {
+                return _privatePhotoset;
+            }
+            set {
+                _privatePhotoset = value;
+                this.photowidgetPrivate.WidgetItem = value;
+            }
+        }
+
         public IEnumerable<Photoset> Albums { 
             get { 
                 return _albums ?? new List<Photoset>();
@@ -113,6 +145,8 @@
             Log.Debug("ShowSpinner");
             Application.Invoke(delegate {
                                    this.hboxButtons.Sensitive = !show;
+                                   this.hboxPublicPrivate.Visible = !show;
+                                   this.labelSets.Visible = !show;
                                    this.scrolledwindowPhotos.Visible = !show;
                                    this.spinner.Visible = show;
                                });
@@ -182,8 +216,38 @@
             this.albumsGrid.Items = Albums;
         }
 
-        private void OnSelectionChanged(object sender, EventArgs e) {
-            Log.Debug("OnSelectionChanged");
+        private void OnPublicSetSelectionChanged(object sender, EventArgs e) {
+            Log.Debug("OnPublicSetSelectionChanged");
+            if (_unselectingPublicPhotoset) {
+                return;
+            }
+            var photoWidget = (PhotoWidget)sender;
+
+            if (photoWidget.IsSelected) {
+                SelectedPhotoset = PublicPhotoset;
+            } else {
+                SelectedPhotoset = null;
+            }
+            UpdateSelectionUI();
+        }
+
+        private void OnPrivateSetSelectionChanged(object sender, EventArgs e) {
+            Log.Debug("OnPrivateSetSelectionChanged");
+            if (_unselectingPrivatePhotoset) {
+                return;
+            }
+            var photoWidget = (PhotoWidget)sender;
+
+            if (photoWidget.IsSelected) {
+                SelectedPhotoset = PrivatePhotoset;
+            } else {
+                SelectedPhotoset = null;
+            }
+            UpdateSelectionUI();
+        }
+
+        private void OnAlbumsSelectionChanged(object sender, EventArgs e) {
+            Log.Debug("OnAlbumsSelectionChanged");
             var photoWidget = (PhotoWidget)sender;
 
             if (photoWidget.IsSelected) {
@@ -200,6 +264,18 @@
             this.labelSelectedPhotoset.Visible = isPhotosetSelected;
             this.buttonContinue.Sensitive = isPhotosetSelected;
 
+            if (SelectedPhotoset == null) {
+                return;
+            }
+
+            _unselectingPublicPhotoset = true;
+            this.photowidgetPublic.IsSelected = SelectedPhotoset.Type == PhotosetType.Public;
+            _unselectingPublicPhotoset = false;
+
+            _unselectingPrivatePhotoset = true;
+            this.photowidgetPrivate.IsSelected = SelectedPhotoset.Type == PhotosetType.All;
+            _unselectingPrivatePhotoset = false;
+
             this.albumsGrid.DoNotFireSelectionChanged = true;
             foreach (var box in this.albumsGrid.AllItems) {
                 var hbox = box as HBox;
@@ -208,7 +284,7 @@
                 }
                 foreach (var child in hbox.AllChildren) {
                     var widget = child as PhotoWidget;
-                    if (widget != null && (SelectedPhotoset == null || widget.WidgetItem.Id != SelectedPhotoset.Id)) {                        
+                    if (widget != null && (SelectedPhotoset.Type != PhotosetType.Album || widget.WidgetItem.Id != SelectedPhotoset.Id)) {                        
                         widget.IsSelected = false;
                     }
                 }

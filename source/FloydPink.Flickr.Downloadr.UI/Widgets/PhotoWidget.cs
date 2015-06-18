@@ -9,6 +9,7 @@
     public partial class PhotoWidget : Bin {
         private string _imageUrl;
         private bool _isSelected;
+        private IGridWidgetItem _widgetItem;
 
         public PhotoWidget() {
             Build();
@@ -49,7 +50,16 @@
             }
         }
 
-        public IGridWidgetItem WidgetItem { get; set; }
+        public IGridWidgetItem WidgetItem {
+            get {
+                return _widgetItem;
+            }
+            set {
+                _widgetItem = value;
+                ImageUrl = value.WidgetThumbnailUrl;
+            }
+        }
+
         public event EventHandler SelectionChanged;
 
         protected void imageClick(object o, ButtonPressEventArgs args) {
@@ -57,6 +67,9 @@
         }
 
         private void SetupOnHoverImage(QueryTooltipArgs args, IGridWidgetItem photo) {
+            if (photo == null) {
+                return;
+            }
             if (photo.GetType() == typeof(Photo)) {
                 var previewPhotoTooltip = new PreviewPhotoWidget((Photo)photo);
                 args.Tooltip.Custom = previewPhotoTooltip;

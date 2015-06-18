@@ -33,8 +33,12 @@ namespace FloydPink.Flickr.Downloadr.Presentation {
         }
 
         public void Login() {
-            this._view.ShowSpinner(true);
-            this._logic.Login(ApplyUser);
+            try {
+                this._view.ShowSpinner(true);
+                this._logic.Login(ApplyUser);
+            } catch (Exception ex) {
+                HandleException(ex);
+            }
         }
 
         public void Logout() {
