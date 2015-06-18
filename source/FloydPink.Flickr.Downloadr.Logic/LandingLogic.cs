@@ -41,10 +41,12 @@ namespace FloydPink.Flickr.Downloadr.Logic {
 
             var photo = photosetsResponseDictionary.GetPhotosResponseFromDictionary(false).Photos.FirstOrDefault();
 
-            return new Photoset(null, null, null, null, 0, 0, 0,
-                onlyPrivate ? "All Photos" : "All Public Photos", "",
-                onlyPrivate ? PhotosetType.All : PhotosetType.Public,
-                photo.SmallSquare75X75Url);
+            return photo != null
+                ? new Photoset(null, null, null, null, 0, 0, 0,
+                    onlyPrivate ? "All Photos" : "All Public Photos", "",
+                    onlyPrivate ? PhotosetType.All : PhotosetType.Public,
+                    photo.SmallSquare75X75Url)
+                : null;
         }
 
         public async Task<PhotosetsResponse> GetPhotosetsAsync(string methodName, User user, Preferences preferences, int page,

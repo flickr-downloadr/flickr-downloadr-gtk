@@ -245,6 +245,8 @@
                                    this.buttonPreviousPage.Sensitive = this.buttonFirstPage.Sensitive = Page != "1";
                                    this.buttonNextPage.Sensitive = this.buttonLastPage.Sensitive = Page != Pages;
 
+                                   this.buttonDownloadAllPages.Sensitive = Pages != "1";
+
                                    this.scrolledwindowPhotos.Vadjustment.Value = 0;
 
                                    var hasPhotos = Photos.Any();

@@ -60,7 +60,9 @@
             set
             {
                 this._widgetItem = value;
-                ImageUrl = value.WidgetThumbnailUrl;
+                if (value != null) {
+                    ImageUrl = value.WidgetThumbnailUrl;
+                }
             }
         }
 

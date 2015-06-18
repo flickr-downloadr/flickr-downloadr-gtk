@@ -32,7 +32,9 @@
             this.albumsGrid.OnSelectionChanged += OnAlbumsSelectionChanged;
 
             this.hboxPublicPrivate.Visible = false;
-            this.labelSets.Visible = false;
+            this.vbox1.Visible = false; // All Public Photos
+            this.vbox3.Visible = false; // All Photos
+            this.scrolledwindowPhotos.Visible = this.labelSets.Visible = false; // Albums;
 
             Title += VersionHelper.GetVersionString();
             Preferences = session.Preferences;
@@ -78,6 +80,7 @@
             {
                 this._publicPhotoset = value;
                 this.photowidgetPublic.WidgetItem = value;
+                this.vbox1.Visible = value != null;
             }
         }
 
@@ -88,6 +91,7 @@
             {
                 this._privatePhotoset = value;
                 this.photowidgetPrivate.WidgetItem = value;
+                this.vbox3.Visible = value != null;
             }
         }
 
@@ -106,8 +110,8 @@
             Application.Invoke(delegate {
                                    this.hboxButtons.Sensitive = !show;
                                    this.hboxPublicPrivate.Visible = !show;
-                                   this.labelSets.Visible = !show;
-                                   this.scrolledwindowPhotos.Visible = !show;
+                                   this.labelSets.Visible = Albums.Any() && !show;
+                                   this.scrolledwindowPhotos.Visible = Albums.Any() && !show;
                                    this.spinner.Visible = show;
                                });
         }
