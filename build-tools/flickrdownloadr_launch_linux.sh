@@ -47,12 +47,12 @@ FD_FIRST_RUN="${XDG_CONFIG_HOME:-$HOME/.config}/flickr-downloadr/firstrun"
 if [ ! -f "$FD_FIRST_RUN" ]; then
   mkdir -p `dirname "$FD_FIRST_RUN"`
   echo $(date +"%Y-%m-%d_%H-%M-%S") > ${FD_FIRST_RUN}
-  mozroots --import --sync
+  sudo cert-sync /etc/ssl/certs/ca-certificates.crt
 fi
 
 # this script should be in $PREFIX/bin
 MONO_EXEC="exec -a flickrdownloadr mono-sgen"
-EXE_PATH="${0%%/flickrdownloadr}/bin/flickr-downloadr.exe"
+EXE_PATH="/opt/flickrdownloadr/bin/flickr-downloadr.exe"
 
 _FD_REDIRECT_LOG="${FD_REDIRECT_LOG:-${XDG_CONFIG_HOME:-$HOME/.config}/flickr-downloadr/log}"
 
