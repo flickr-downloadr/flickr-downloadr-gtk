@@ -12,6 +12,6 @@ Vcs-Git: git@github.com:flickr-downloadr/flickr-downloadr-gtk.git
 Priority: optional
 Installed-Size: ${bitrock_deb_installedSize}
 Version: ${bitrock_deb_version}
-Depends : mono-complete, gtk-sharp3
+Depends: mono-runtime (>=3.12), ca-certificates-mono, libmono-system-web-extensions4.0-cil, libmono-microsoft-csharp4.0-cil, gtk-sharp2
 
 
