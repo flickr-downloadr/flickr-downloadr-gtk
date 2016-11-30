@@ -1,6 +1,6 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
     using Presentation;
-    using StructureMap.Configuration.DSL;
+    using StructureMap;
 
     public class PresentationRegistry : Registry {
         public PresentationRegistry() {

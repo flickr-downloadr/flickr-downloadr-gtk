@@ -7,7 +7,7 @@
     public class RepositoryTests {
         private TokenRepository _repository;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp() {
             this._repository = new TokenRepository();
         }

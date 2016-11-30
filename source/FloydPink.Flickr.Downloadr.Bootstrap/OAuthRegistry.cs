@@ -5,7 +5,7 @@
     using OAuth;
     using OAuth.Listener;
     using Repository.Helpers;
-    using StructureMap.Configuration.DSL;
+    using StructureMap;
 
     public class OAuthRegistry : Registry {
         private static readonly ServiceProviderDescription FlickrServiceDescription =

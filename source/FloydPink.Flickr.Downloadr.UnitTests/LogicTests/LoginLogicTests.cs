@@ -29,7 +29,7 @@
         private IUserInfoLogic _userInfoLogic;
         private IRepository<User> _userRepository;
 
-        [Test, ExpectedException(typeof (InvalidOperationException))]
+        [Test]
         public void WillCallBeginAuthorizationOnOAuthManagerOnLogin() {
             this._oAuthManager.Expect(o => o.BeginAuthorization()).Return(string.Empty);
             var logic = new LoginLogic(this._oAuthManager, null, null, null, null, null);
@@ -51,7 +51,7 @@
             this._updateRepository.AssertWasCalled(u => u.Delete());
         }
 
-        [Test, ExpectedException(typeof (InvalidOperationException))]
+        [Test]
         public async void WillCallTestLoginMethodOnIsUserLoggedInAsync() {
             var logic = new LoginLogic(this._oAuthManager, null, this._tokenRepository, this._userRepository, this._preferencesRepository,
                 this._updateRepository);

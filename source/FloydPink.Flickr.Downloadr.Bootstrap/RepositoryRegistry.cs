@@ -1,7 +1,7 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
     using Model;
     using Repository;
-    using StructureMap.Configuration.DSL;
+    using StructureMap;
 
     public class RepositoryRegistry : Registry {
         public RepositoryRegistry() {

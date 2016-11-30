@@ -22,7 +22,7 @@ namespace FloydPink.Flickr.Downloadr.BoundaryCrossingTests.LogicTests {
         private ILoginLogic _loginLogic;
         private User _user;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetupTestFixture() {
             Bootstrapper.Initialize();
             this._loginLogic = Bootstrapper.GetInstance<ILoginLogic>();

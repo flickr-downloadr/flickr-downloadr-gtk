@@ -1,7 +1,7 @@
 ﻿namespace FloydPink.Flickr.Downloadr.Bootstrap {
     using Logic;
     using Logic.Interfaces;
-    using StructureMap.Configuration.DSL;
+    using StructureMap;
 
     public class LogicRegistry : Registry {
         public LogicRegistry() {

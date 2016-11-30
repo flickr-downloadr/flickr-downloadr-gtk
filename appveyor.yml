@@ -25,11 +25,11 @@ environment:
   FD_CERT_PWD:
     secure: LDV1CBXqfvvW0VpFmQX6Zbp7Eik6IJ4TxdDwaKgpTC+A9DAX/H2GRssOmqB+BWZj
   FLICKR_DOWNLOADR_SHARED_SECRET:
-    secure: DNxghVZ3HphcDvLH6HNEAka2DwJOeMWP0sruloVZj3r4NmImm5pr2vkyN0vC/Bdn
+    secure: D4KY6IRkAEYkUFG6nOXm2fKkOPQL4xMXrskcqCB9pK83bBaDLuag43izJS+6mhOUkFMxfNrRPb2/IC7Doo1+dQ==
   FLICKR_DOWNLOADR_CONSUMER_KEY:
-    secure: iNNRAx5PYpkP9rOHhWrkiJIaOoqXpDgo1E7q46C6n64fhmOGWXKENpB+PYssnfoW16e4YWjvWGw/guh1bczb1Q9WQAniR1KmTt5KBd+0i+UU6ahE2k1xWNuI2E2tbCLD
+    secure: kYO9cheSs9qFdw/DXr1Ny2ej6kT/1iwEYbgHu8sCeAbrPzWpqcWoI6umUcbgK21y36z9/SZZXwPhyKt/tT2Ik4oVO4b3YhB6Ssil/oQDNL26+4AfOqYWUNfD8wTs9T/M
   FLICKR_DOWNLOADR_CONSUMER_SECRET:
-    secure: clxtbFASnQa9Z8px9an8QdKyrZghSZMFljjrtiH3QrBDUjb31ASYH0NcG723YPVeaGK4RRGtUDIYTboGroz8f53PZi9yom7dzC4bZ3WXv/o=
+    secure: zf/Wl0Go3HEPHqH8X/x0plLnHPm3rjcxklMZBeLGLcTr9yGy1eiAoUaTVStE79P4JJC/0JM+i/N5zrp/jT4R+VxOpjV0JTqvAxWwDkCCbtU=
 
 #---------------------------------#
 #       build configuration       #
