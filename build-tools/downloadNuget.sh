@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -f ../source/.nuget/NuGet.exe
-wget http://nuget.org/nuget.exe
+wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 chmod a+x nuget.exe
 mv nuget.exe ../source/.nuget/NuGet.exe
 cd ../source
