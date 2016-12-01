@@ -18,7 +18,7 @@
   <property name="common.assembly.info" value="${source.directory}\CommonAssemblyInfo.cs" />
 
   <!-- Test references -->
-  <property name="nunit.dir" value="${build.tools.dir}\nunit\NUnit-2.6.3\bin" dynamic="true" />
+  <property name="nunit.dir" value="${build.tools.dir}\nunit\NUnit.3.5.0" dynamic="true" />
   <property name="unittests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.UnitTests.exe" />
   <property name="boundarycrossingtests.assembly" value="${bin.dir}\FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 
@@ -107,15 +107,15 @@
   <target name="compilesolution" depends="cleanBin, createBin, increment-version, restorenugetpackages">
     <echo message="Compiling Solution:" />
 
-    <exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319"
+    <exec program="msbuild.exe"  basedir="C:\Program Files (x86)\MSBuild\14.0\Bin"
       commandline='"${source.directory}\${flickrdownloadr.solution}" /p:Platform="Any CPU" /p:Configuration=${project.build.type} /t:Rebuild /v:m /m'
       workingdir="." />
   </target>
 
   <target name="nunittest">
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
-    <exec program="${nunit.dir}\nunit-console.exe">
-      <arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${nunit.results.dir}\${nunittest.output.file.name}&quot;"/>
+    <exec program="${nunit.dir}\nunit3-console.exe">
+      <arg value="&quot;${nunittest.testassemblypath}&quot; --result=&quot;${nunit.results.dir}\${nunittest.output.file.name}&quot;"/>
     </exec>
   </target>
 

@@ -1,10 +1,12 @@
-﻿namespace FloydPink.Flickr.Downloadr.Presentation {
-    using System.Threading.Tasks;
-    using Model.Enums;
+﻿using System.Threading.Tasks;
+using FloydPink.Flickr.Downloadr.Model.Enums;
 
-    public interface ILandingPresenter {
-        Task Initialize();
-        Task NavigateTo(PhotoOrAlbumPage page);
-        Task NavigateTo(int page);
-    }
+namespace FloydPink.Flickr.Downloadr.Presentation
+{
+  public interface ILandingPresenter
+  {
+    Task Initialize();
+    Task NavigateTo(PhotoOrAlbumPage page);
+    Task NavigateTo(int page);
+  }
 }

@@ -1,9 +1,11 @@
-﻿namespace FloydPink.Flickr.Downloadr.Presentation {
-    using Model;
+﻿using FloydPink.Flickr.Downloadr.Model;
 
-    public interface IPreferencesPresenter {
-        void Save(Preferences preferences);
-        string GetCacheFolderSize(string cacheLocation);
-        void EmptyCacheDirectory(string cacheLocation);
-    }
+namespace FloydPink.Flickr.Downloadr.Presentation
+{
+  public interface IPreferencesPresenter
+  {
+    void Save(Preferences preferences);
+    string GetCacheFolderSize(string cacheLocation);
+    void EmptyCacheDirectory(string cacheLocation);
+  }
 }

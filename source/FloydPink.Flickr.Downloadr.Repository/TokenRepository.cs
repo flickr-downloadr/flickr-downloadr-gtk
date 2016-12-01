@@ -1,20 +1,30 @@
-namespace FloydPink.Flickr.Downloadr.Repository {
-    using Extensions;
-    using Model;
+using FloydPink.Flickr.Downloadr.Model;
+using FloydPink.Flickr.Downloadr.Repository.Extensions;
 
-    public class TokenRepository : RepositoryBase, IRepository<Token> {
-        protected override string RepoFileName { get { return "token.repo"; } }
-
-        #region IRepository<Token> Members
-
-        public Token Get() {
-            return Read().FromJson<Token>();
-        }
-
-        public void Save(Token value) {
-            Write(value.ToJson());
-        }
-
-        #endregion
+namespace FloydPink.Flickr.Downloadr.Repository
+{
+  public class TokenRepository : RepositoryBase, IRepository<Token>
+  {
+    protected override string RepoFileName
+    {
+      get
+      {
+        return "token.repo";
+      }
     }
+
+    #region IRepository<Token> Members
+
+    public Token Get()
+    {
+      return Read().FromJson<Token>();
+    }
+
+    public void Save(Token value)
+    {
+      Write(value.ToJson());
+    }
+
+    #endregion
+  }
 }

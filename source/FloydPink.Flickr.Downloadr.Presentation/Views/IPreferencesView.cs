@@ -1,7 +1,9 @@
-﻿namespace FloydPink.Flickr.Downloadr.Presentation.Views {
-    using Model;
+﻿using FloydPink.Flickr.Downloadr.Model;
 
-    public interface IPreferencesView : IBaseView {
-        Preferences Preferences { get; set; }
-    }
+namespace FloydPink.Flickr.Downloadr.Presentation.Views
+{
+  public interface IPreferencesView : IBaseView
+  {
+    Preferences Preferences { get; set; }
+  }
 }

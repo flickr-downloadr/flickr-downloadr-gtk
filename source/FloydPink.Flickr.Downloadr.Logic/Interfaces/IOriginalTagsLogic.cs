@@ -1,8 +1,10 @@
-﻿namespace FloydPink.Flickr.Downloadr.Logic.Interfaces {
-    using System.Threading.Tasks;
-    using Model;
+﻿using System.Threading.Tasks;
+using FloydPink.Flickr.Downloadr.Model;
 
-    public interface IOriginalTagsLogic {
-        Task<Photo> GetOriginalTagsTask(Photo photo);
-    }
+namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
+{
+  public interface IOriginalTagsLogic
+  {
+    Task<Photo> GetOriginalTagsTask(Photo photo);
+  }
 }

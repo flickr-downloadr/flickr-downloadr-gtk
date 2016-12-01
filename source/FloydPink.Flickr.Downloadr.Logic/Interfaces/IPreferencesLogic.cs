@@ -1,9 +1,11 @@
-﻿namespace FloydPink.Flickr.Downloadr.Logic.Interfaces {
-    using Model;
+﻿using FloydPink.Flickr.Downloadr.Model;
 
-    public interface IPreferencesLogic {
-        Preferences GetPreferences();
-        void SavePreferences(Preferences preferences);
-        void EmptyCacheDirectory(string cacheLocation);
-    }
+namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
+{
+  public interface IPreferencesLogic
+  {
+    Preferences GetPreferences();
+    void SavePreferences(Preferences preferences);
+    void EmptyCacheDirectory(string cacheLocation);
+  }
 }

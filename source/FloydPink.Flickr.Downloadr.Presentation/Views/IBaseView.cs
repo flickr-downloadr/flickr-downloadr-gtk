@@ -1,8 +1,10 @@
-namespace FloydPink.Flickr.Downloadr.Presentation.Views {
-    using System;
+using System;
 
-    public interface IBaseView {
-        void ShowSpinner(bool show);
-        void HandleException(Exception ex);
-    }
+namespace FloydPink.Flickr.Downloadr.Presentation.Views
+{
+  public interface IBaseView
+  {
+    void ShowSpinner(bool show);
+    void HandleException(Exception ex);
+  }
 }

@@ -1,12 +1,15 @@
-namespace FloydPink.Flickr.Downloadr.OAuth {
-    using System;
-    using Model;
+using System;
+using FloydPink.Flickr.Downloadr.Model;
 
-    public class AuthenticatedEventArgs : EventArgs {
-        public AuthenticatedEventArgs(User user) {
-            AuthenticatedUser = user;
-        }
-
-        public User AuthenticatedUser { get; private set; }
+namespace FloydPink.Flickr.Downloadr.OAuth
+{
+  public class AuthenticatedEventArgs : EventArgs
+  {
+    public AuthenticatedEventArgs(User user)
+    {
+      AuthenticatedUser = user;
     }
+
+    public User AuthenticatedUser { get; private set; }
+  }
 }

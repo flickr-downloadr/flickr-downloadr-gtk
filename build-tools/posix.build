@@ -18,7 +18,7 @@
   <property name="common.assembly.info" value="${source.directory}/CommonAssemblyInfo.cs" />
 
   <!-- Test references -->
-  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit-2.6.3/bin" dynamic="true" />
+  <property name="nunit.dir" value="${build.tools.dir}/nunit/NUnit.3.5.0" dynamic="true" />
   <property name="unittests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.UnitTests.exe" />
   <property name="boundarycrossingtests.assembly" value="${bin.dir}/FloydPink.Flickr.Downloadr.BoundaryCrossingTests.exe" />
 

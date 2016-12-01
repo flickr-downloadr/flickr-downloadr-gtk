@@ -1,11 +1,14 @@
-﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
-    using Helpers;
+﻿using FloydPink.Flickr.Downloadr.UI.Helpers;
 
-    public partial class FatalErrorWindow : BaseWindow {
-        public FatalErrorWindow() {
-            Log.Debug("ctor");
-            Build();
-            Title += VersionHelper.GetVersionString();
-        }
+namespace FloydPink.Flickr.Downloadr.UI.Windows
+{
+  public partial class FatalErrorWindow : BaseWindow
+  {
+    public FatalErrorWindow()
+    {
+      Log.Debug("ctor");
+      Build();
+      Title += VersionHelper.GetVersionString();
     }
+  }
 }

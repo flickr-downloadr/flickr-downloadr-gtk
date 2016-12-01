@@ -1,11 +1,13 @@
-namespace FloydPink.Flickr.Downloadr.Logic.Interfaces {
-    using System;
-    using System.Threading.Tasks;
-    using Model;
+using System;
+using System.Threading.Tasks;
+using FloydPink.Flickr.Downloadr.Model;
 
-    public interface ILoginLogic {
-        void Login(Action<User> applyUser);
-        void Logout();
-        Task<bool> IsUserLoggedInAsync(Action<User> applyUser);
-    }
+namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
+{
+  public interface ILoginLogic
+  {
+    void Login(Action<User> applyUser);
+    void Logout();
+    Task<bool> IsUserLoggedInAsync(Action<User> applyUser);
+  }
 }

@@ -1,12 +1,14 @@
-namespace FloydPink.Flickr.Downloadr.Presentation.Views {
-    using Model;
+using FloydPink.Flickr.Downloadr.Model;
 
-    public interface ILoginView : IBaseView {
-        User User { get; set; }
-        void ShowLoggedInControl(Preferences preferences);
-        void ShowLoggedOutControl();
-        void OpenLandingWindow();
-        void OpenPreferencesWindow(Preferences preferences);
-        void ShowUpdateAvailableNotification(string latestVersion);
-    }
+namespace FloydPink.Flickr.Downloadr.Presentation.Views
+{
+  public interface ILoginView : IBaseView
+  {
+    User User { get; set; }
+    void ShowLoggedInControl(Preferences preferences);
+    void ShowLoggedOutControl();
+    void OpenLandingWindow();
+    void OpenPreferencesWindow(Preferences preferences);
+    void ShowUpdateAvailableNotification(string latestVersion);
+  }
 }

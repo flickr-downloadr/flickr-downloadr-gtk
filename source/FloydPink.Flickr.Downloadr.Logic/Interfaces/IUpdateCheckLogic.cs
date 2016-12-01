@@ -1,7 +1,9 @@
-﻿namespace FloydPink.Flickr.Downloadr.Logic.Interfaces {
-    using Model;
+﻿using FloydPink.Flickr.Downloadr.Model;
 
-    public interface IUpdateCheckLogic {
-        Update UpdateAvailable(Preferences preferences);
-    }
+namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
+{
+  public interface IUpdateCheckLogic
+  {
+    Update UpdateAvailable(Preferences preferences);
+  }
 }

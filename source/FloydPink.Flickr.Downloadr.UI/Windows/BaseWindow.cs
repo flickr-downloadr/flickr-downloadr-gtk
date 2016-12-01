@@ -1,24 +1,24 @@
-﻿namespace FloydPink.Flickr.Downloadr.UI.Windows {
-    using System;
-    using Gtk;
-    using log4net;
-    using Presentation.Views;
+﻿using System;
+using FloydPink.Flickr.Downloadr.Presentation.Views;
+using Gtk;
+using log4net;
 
-    public class BaseWindow : Window, IBaseView {
-        protected readonly ILog Log;
+namespace FloydPink.Flickr.Downloadr.UI.Windows
+{
+  public class BaseWindow : Window, IBaseView
+  {
+    protected readonly ILog Log;
 
-        protected BaseWindow() : base(WindowType.Toplevel) {
-            this.Log = LogManager.GetLogger(GetType());
-        }
-
-        public virtual void ShowSpinner(bool show) {
-            
-        }
-
-        public void HandleException(Exception ex) {
-            Application.Invoke(delegate {
-                                   throw ex;
-                               });
-        }
+    protected BaseWindow() : base(WindowType.Toplevel)
+    {
+      Log = LogManager.GetLogger(GetType());
     }
+
+    public virtual void ShowSpinner(bool show) {}
+
+    public void HandleException(Exception ex)
+    {
+      Application.Invoke(delegate { throw ex; });
+    }
+  }
 }
