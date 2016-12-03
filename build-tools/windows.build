@@ -120,7 +120,7 @@
   </target>
 
   <target name="deploy">
-    <exec program="bash.exe" basedir="C:\Program Files (x86)\Git\bin\" verbose="true">
+    <exec program="bash.exe" basedir="C:\Program Files\Git\bin\" verbose="true">
       <environment>
         <variable name="BUILDNUMBER" value="${buildnumber.version}"/>
       </environment>
