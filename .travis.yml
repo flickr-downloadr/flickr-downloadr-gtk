@@ -4,17 +4,17 @@ branches:
 language: objective-c
 env:
   matrix:
-  - MONO_VERSION="3.12.1"
+  - MONO_VERSION="4.6.2"
   global:
   - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
   - secure: aNNjDler0hHuiPXBSNptNRAtH9ZFGZxiah8Oik3HKp4lVJm5eYZS4ZYXZPyy5HdBoDwQvzFuwQ5b9yJJ8AJmDApuQ/f3sZB7JarN+J2abVFEr8DQWRIIoh08MA3t68od0UYXr2rTQ0DnCdRHa0WfZHUf1RUQr16NzDwzn1b4SUc=
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
 before_install:
-- wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
-- sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
-- wget "http://installbuilder.bitrock.com/installbuilder-enterprise-15.1.0-osx-installer.dmg"
-- hdiutil mount installbuilder-enterprise-15.1.0-osx-installer.dmg
-- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-15.1.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+- wget "https://download.mono-project.com/archive/${MONO_VERSION}/macos-10-universal/MonoFramework-MDK-${MONO_VERSION}.7.macos10.xamarin.universal.pkg"
+- sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.7.macos10.xamarin.universal.pkg" -target /
+- wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.0-osx-installer.dmg"
+- hdiutil mount installbuilder-enterprise-16.11.0-osx-installer.dmg
+- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 script:
 - cd build-tools
 - ./unlock-keychain.sh
