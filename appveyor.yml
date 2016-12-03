@@ -21,7 +21,7 @@ environment:
   install_builder_license_signature:
     secure: 3j/EJAZzA8i/OfWyhmvLnzk7SZ8/KNaaTVfWyw0uVhe5gcZfhlGVPfgwrdnvEut3
   gh_token:
-    secure: K8R2b8g3A8zB4IFQ0/G/fU8IKhU3PoFaKZARKl0IbCUvVxfzzfVY9yKUVPjM4M4V
+    secure: g24l+LoZgp3MgeD26FPYtnRIhSXqx9yIzRoWyVbRJ5vcYekx2yB85Qjd0UfflIgv
   FD_CERT_PWD:
     secure: LDV1CBXqfvvW0VpFmQX6Zbp7Eik6IJ4TxdDwaKgpTC+A9DAX/H2GRssOmqB+BWZj
   FLICKR_DOWNLOADR_SHARED_SECRET:
