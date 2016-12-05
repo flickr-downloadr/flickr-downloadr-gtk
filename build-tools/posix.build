@@ -105,7 +105,7 @@
   <target name="nunittest">
     <property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
     <exec program="mono" verbose="true">
-      <arg value="${nunit.dir}/nunit-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
+      <arg value="${nunit.dir}/nunit3-console.exe &quot;${nunittest.testassemblypath}&quot;"/>
     </exec>
   </target>
 
