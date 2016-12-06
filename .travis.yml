@@ -10,7 +10,7 @@ env:
   - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
 before_install:
-- sudo mkdir /usr/local/bin && sudo chmod 777 /usr/local
+- mkdir /usr/local/bin && chmod 777 /usr/local
 - export PATH=/usr/local/bin:${PATH}
 - wget "https://download.mono-project.com/archive/${MONO_VERSION}/macos-10-universal/MonoFramework-MDK-${MONO_VERSION}.7.macos10.xamarin.universal.pkg"
 - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.7.macos10.xamarin.universal.pkg" -target /
