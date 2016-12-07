@@ -1,18 +1,32 @@
+language: csharp
+
+sudo: required
+dist: trusty
+
 branches:
   only:
   - master
-os: osx
-mono: latest
+
+mono:
+  - latest
+
+os:
+  - osx
+
+osx_image: xcode7.3
+
 env:
   matrix:
   - MONO_VERSION="4.6.2"
   global:
   - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
+
 before_install:
 - wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.0-osx-installer.dmg"
 - hdiutil mount installbuilder-enterprise-16.11.0-osx-installer.dmg
-- "/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.0-osx-installer.app/Contents/MacOS/installbuilder.sh" --mode unattended --unattendedmodeui none
+- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+
 script:
 - which mono
 - mono --version
