@@ -12,9 +12,9 @@ env:
 before_install:
 - wget "https://download.mono-project.com/archive/mdk-latest-stable.pkg"
 - sudo installer -pkg "mdk-latest-stable.pkg" -target /
-- wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.0-osx-installer.dmg"
-- hdiutil mount installbuilder-enterprise-16.11.0-osx-installer.dmg
-- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+- wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.1-osx-installer.dmg"
+- hdiutil mount installbuilder-enterprise-16.11.1-osx-installer.dmg
+- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.1-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 
 script:
 - which mono
