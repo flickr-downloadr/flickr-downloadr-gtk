@@ -1,7 +1,20 @@
+language: csharp
+
+sudo: required
+dist: trusty
+
 branches:
   only:
   - master
-language: objective-c
+
+mono:
+  - latest
+
+os:
+  - osx
+
+osx_image: xcode7.3
+
 env:
   matrix:
   - MONO_VERSION="4.6.2"
@@ -10,8 +23,6 @@ env:
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
 
 before_install:
-- wget "https://download.mono-project.com/archive/mdk-latest-stable.pkg"
-- sudo installer -pkg "mdk-latest-stable.pkg" -target /
 - wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.1-osx-installer.dmg"
 - hdiutil mount installbuilder-enterprise-16.11.1-osx-installer.dmg
 - sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.1-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
