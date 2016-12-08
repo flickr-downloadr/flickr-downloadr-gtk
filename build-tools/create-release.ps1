@@ -13,10 +13,10 @@ $packVariable = "pack_$($platform)_platform_files"
 If(Test-Path $pathToLicenseFile)
  {
    Write-Host "About to execute: $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile --setvars project.version=$env:BUILDNUMBER $packVariable=true runSignTool=1"
-   & $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile --setvars project.version=$env:BUILDNUMBER $packVariable=true runSignTool=1
+   & $installBuilderCli build $pathToBuildFile $platform --license $pathToLicenseFile --setvars project.version=$env:BUILDNUMBER $packVariable=true runSignTool=0
  }
 Else
  {
    Write-Host "About to execute: $installBuilderCli build $pathToBuildFile $platform --setvars project.version=$env:BUILDNUMBER  $packVariable=true runSignTool=1"
-   & $installBuilderCli build $pathToBuildFile $platform --setvars project.version=$env:BUILDNUMBER  $packVariable=true runSignTool=1
+   & $installBuilderCli build $pathToBuildFile $platform --setvars project.version=$env:BUILDNUMBER  $packVariable=true runSignTool=0
  }

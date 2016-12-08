@@ -539,7 +539,6 @@
     <preBuildActionList>
         <actionGroup>
             <explanation>Sign the Windows exe</explanation>
-            <run>0</run>
             <actionList>
                 <setInstallerVariable>
                     <name>signtool</name>
