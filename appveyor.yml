@@ -24,12 +24,6 @@ environment:
     secure: nOQMj6mAWlrvN+GlR/lthvpKnkOe+Y9mwFDvlMrtXTpUxxZUbfcxv1WP0m5U6kvl
   FD_CERT_PWD:
     secure: LDV1CBXqfvvW0VpFmQX6Zbp7Eik6IJ4TxdDwaKgpTC+A9DAX/H2GRssOmqB+BWZj
-  FLICKR_DOWNLOADR_SHARED_SECRET:
-    secure: qsV2knebG33/whHJDT/YYcztNlG/43e36DPOuhvHdqfkaY7IjddtcIn+KkcQo/p29cn7U7K825dDi2ZsWZ+sYMcjC2H2V7YpiBLXZB68LdqKxxHZ71IsAA4C9KBnHdgF
-  FLICKR_DOWNLOADR_CONSUMER_KEY:
-    secure: ZwAc7AvtJwHMze/7aY1zNrMY3Gp7Vt9a2em3pkMoCyDAJ3WrikZHy9MEfXcP39KsR+0lkgvarnwLiYjwkKUabFgd8d3Arlcjo/bD/Ka4BnF0YeaLDDVsiOhdCZPFDm4z
-  FLICKR_DOWNLOADR_CONSUMER_SECRET:
-    secure: EAAAAC7zr5gZOS2cgvKc8cjGIaadcAbv8fo8L7Ijr/N9FUMv61PFtDmLgI+06xrVy3Qktw==
 
 #---------------------------------#
 #       build configuration       #
