@@ -5,3 +5,4 @@
 - Add unit tests for any new or changed functionality (the coverage is not yet a 100%, this needs to be improved).
 - Ensure that local build (which compiles the solution and runs all the unit tests) passes.
 - The installers for all Windows, Mac OS X and Linux are built by CI builds as detailed [here](continuous-integration.md)
+- A `Secrets.cs` file needs to be placed in `/source/`, with a static class and three constants defined on it as discussed [here](https://github.com/flickr-downloadr/flickr-downloadr-gtk/issues/30) - please create an issue if there are any questions.

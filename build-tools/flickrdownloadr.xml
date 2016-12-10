@@ -4,6 +4,7 @@
     <version>0.0.1</version>
     <licenseFile>../LICENSE</licenseFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
+    <enableSslSupport>1</enableSslSupport>
     <leftImage>../misc/images/icons/icon.png</leftImage>
     <logoImage>../misc/images/logo-Small-About.png</logoImage>
     <splashImage>../misc/images/logo.png</splashImage>
@@ -210,7 +211,7 @@
                         <httpGet>
                             <filename>${system_temp_directory}/dotnet45.exe</filename>
                             <progressText>Downloading .NET installer</progressText>
-                            <url>http://flickrdownloadr.com/installer/windows/dependencies/dotnet45.exe</url>
+                            <url>https://flickrdownloadr.com/installer/windows/dependencies/dotnet45.exe</url>
                         </httpGet>
                         <runProgram>
                             <program>${system_temp_directory}/dotnetfx.exe</program>
@@ -766,7 +767,7 @@
     <productContact>contact.us@flickrdownloadr.com</productContact>
     <productDisplayIcon>${installdir}\icon.ico</productDisplayIcon>
     <productUrlHelpLink>https://github.com/flickr-downloadr/flickr-downloadr/issues</productUrlHelpLink>
-    <productUrlInfoAbout>http://flickrdownloadr.com</productUrlInfoAbout>
+    <productUrlInfoAbout>https://flickrdownloadr.com</productUrlInfoAbout>
     <registerWithPackageDatabase>1</registerWithPackageDatabase>
     <saveRelativePaths>1</saveRelativePaths>
     <summary>A cross-platform desktop app, written in Mono that would download (all or selected) photos from your photostream in their selected size along with their description, title and tags.</summary>
