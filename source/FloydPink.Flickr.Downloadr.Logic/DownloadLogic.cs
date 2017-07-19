@@ -77,6 +77,11 @@ namespace FloydPink.Flickr.Downloadr.Logic
         }
 
         var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
+
+        if (preferences.FlickrOrder) {
+          photoName = curCount.ToString();
+        }
+
         var targetFileName = Path.Combine(imageDirectory.FullName,
           string.Format("{0}.{1}", photoName, photoExtension));
 
