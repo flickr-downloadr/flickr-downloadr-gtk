@@ -67,6 +67,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         "Choose to name the downloaded photos with its internal photo id (a unique number) or its order as defined inside the album or its title (Untitled images will be assigned random unique names)";
       labelDownloadLocation.TooltipText = entryDownloadLocation.TooltipText = buttonDownloadLocation.TooltipText =
         "Set the location to save the downloaded photos and metadata";
+      labelAlbumSearchName.TooltipText = entryAlbumSearchName.TooltipText = 
+        "Search for albums containing this text in their name";
       labelDownloadSize.TooltipText = comboboxDownloadSize.TooltipText =
         "Set the size of the photos to download";
       labelMetadata.TooltipText =
@@ -111,6 +113,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       radioPhotoId.Active = !preferences.TitleAsFilename && !preferences.FlickrOrder;
       radioPhotoTitle.Active = preferences.TitleAsFilename;
       radioFlickrOrder.Active = preferences.FlickrOrder && !preferences.TitleAsFilename;
+
+      entryAlbumSearchName.Text = preferences.AlbumSearchName;
 
       // Download location
       entryDownloadLocation.Text = preferences.DownloadLocation;
@@ -182,6 +186,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         TitleAsFilename = radioPhotoTitle.Active,
         FlickrOrder = radioFlickrOrder.Active,
         DownloadLocation = entryDownloadLocation.Text,
+        AlbumSearchName = entryAlbumSearchName.Text,
         DownloadSize =
           (PhotoDownloadSize) Enum.Parse(typeof(PhotoDownloadSize), comboboxDownloadSize.ActiveText),
         Metadata = metadata,
@@ -208,6 +213,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     {
       Log.Debug("buttonDefaultsClick");
       Preferences = Preferences.GetDefault();
+
+      //Preferences.Visited = true; //@rob@ TODO vedi evento save
     }
 
     private void buttonSaveClick(object sender, EventArgs e)
@@ -220,6 +227,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
 
       _presenter.Save(preferences);
+
+      //preferences.Visited = true; //@rob@ TODO aggiungere cache statica? e' brutto che ogni pag 1 leggiamo tutto, anche se non cambiamo parametri.
+
       var landingWindow = new LandingWindow(new Session(User, preferences));
       landingWindow.Show();
       Destroy();

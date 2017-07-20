@@ -55,21 +55,27 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
         photos);
     }
 
+    public static PhotosetsResponse GetPhotosetsResponseFromFilteredDictionary(int pageNumber, int pageSize, IEnumerable<Dictionary<string, object>> photosetDictionary)
+    {
+      var photosets = new List<Photoset>();
+
+      Dictionary <string, object>[] tmp =(Dictionary<string, object>[]) photosetDictionary.ToArray();
+      int tot = tmp.Length;
+
+      for (int i=((pageNumber -1) * pageSize); !((photosets.Count == pageSize) || (i == tot)); i++)
+      {
+        photosets.Add(BuildPhotoset(tmp[i]));
+      }
+      
+      int pages = (int) Math.Ceiling((double) tot / pageSize);
+      return new PhotosetsResponse(pageNumber, pages, pageSize, tot, photosets);
+    }
+
+
     public static PhotosetsResponse GetPhotosetsResponseFromDictionary(this Dictionary<string, object> dictionary)
     {
       var photosets = new List<Photoset>();
-      IEnumerable<Dictionary<string, object>> photosetDictionary;
-
-      if (runningOnMono)
-      {
-        var photosetListAsArrayList = (ArrayList) dictionary.GetSubValue("photosets", "photoset");
-        photosetDictionary = photosetListAsArrayList.Cast<Dictionary<string, object>>();
-      }
-      else
-      {
-        var photosetListAsIEnumerable = (IEnumerable<object>) dictionary.GetSubValue("photosets", "photoset");
-        photosetDictionary = photosetListAsIEnumerable.Cast<Dictionary<string, object>>();
-      }
+      IEnumerable<Dictionary<string, object>> photosetDictionary = ExtractPhotosets(dictionary);
 
       photosets.AddRange(photosetDictionary.Select(BuildPhotoset));
 
@@ -79,6 +85,24 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
         int.Parse(dictionary.GetSubValue("photosets", "perpage").ToString()),
         int.Parse(dictionary.GetSubValue("photosets", "total").ToString()),
         photosets);
+    }
+
+    public static IEnumerable<Dictionary<string, object>> ExtractPhotosets(Dictionary<string, object> dictionary)
+    {
+      IEnumerable<Dictionary<string, object>> photosetDictionary;
+
+      if (runningOnMono)
+      {
+        var photosetListAsArrayList = (ArrayList)dictionary.GetSubValue("photosets", "photoset");
+        photosetDictionary = photosetListAsArrayList.Cast<Dictionary<string, object>>();
+      }
+      else
+      {
+        var photosetListAsIEnumerable = (IEnumerable<object>)dictionary.GetSubValue("photosets", "photoset");
+        photosetDictionary = photosetListAsIEnumerable.Cast<Dictionary<string, object>>();
+      }
+
+      return photosetDictionary;
     }
 
     public static IEnumerable<string> ExtractOriginalTags(this Dictionary<string, object> dictionary)

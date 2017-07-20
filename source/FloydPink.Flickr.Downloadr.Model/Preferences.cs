@@ -10,6 +10,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public bool TitleAsFilename { get; set; }
     public bool FlickrOrder { get; set; }
     public string DownloadLocation { get; set; }
+    public string AlbumSearchName { get; set; }
     public PhotoDownloadSize DownloadSize { get; set; }
     public int PhotosPerPage { get; set; }
     public string SafetyLevel { get; set; }
@@ -19,6 +20,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public bool CheckForUpdates { get; set; }
     public LogLevel LogLevel { get; set; }
     public string LogLocation { get; set; }
+    //public bool Visited { get; set; }  //@rob@ add later, cache. See comment on save button click.
 
     public static Preferences GetDefault()
     {
@@ -27,6 +29,7 @@ namespace FloydPink.Flickr.Downloadr.Model
         TitleAsFilename = false,
         FlickrOrder = false,
         PhotosPerPage = 25,
+        AlbumSearchName = "",
         DownloadLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
         Metadata =
           new List<string>
