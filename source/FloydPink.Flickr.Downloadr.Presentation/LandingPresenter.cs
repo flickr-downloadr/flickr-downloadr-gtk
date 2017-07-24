@@ -40,6 +40,8 @@ namespace FloydPink.Flickr.Downloadr.Presentation
         _view.PublicPhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, false);
         _view.PrivatePhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, true);
 
+        _view.ShowSpinner(false);
+
         await GetAndSetPhotosets(1);
       } catch (Exception ex)
       {
@@ -94,7 +96,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
     {
       _view.ShowSpinner(true);
 
-      SetPhotosetsResponse(await GetPhotosetsResponse(page));
+       SetPhotosetsResponse(await GetPhotosetsResponse(page));
 
       _view.ShowSpinner(false);
     }

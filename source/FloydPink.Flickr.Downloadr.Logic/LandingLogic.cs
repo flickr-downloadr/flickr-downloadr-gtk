@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
   public class LandingLogic : ILandingLogic
   {
     private readonly IOAuthManager _oAuthManager;
+    private static List<Dictionary<string, object>> cachedFilteredPhotosets;
 
     public LandingLogic(IOAuthManager oAuthManager)
     {
@@ -77,7 +78,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
           ParameterNames.SafeSearch, preferences.SafetyLevel
         },
         {
-          ParameterNames.PerPage, "21"
+          ParameterNames.PerPage, preferences.PhotosPerPage.ToString()
         },
         {
           ParameterNames.Page, page.ToString(CultureInfo.InvariantCulture)
@@ -87,7 +88,49 @@ namespace FloydPink.Flickr.Downloadr.Logic
       var photosetsResponseDictionary = (Dictionary<string, object>)
         await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
 
-      return photosetsResponseDictionary.GetPhotosetsResponseFromDictionary();
+      String srcValue = preferences.AlbumSearchName;
+      
+      if (!String.IsNullOrWhiteSpace(srcValue))
+      {
+        srcValue = srcValue.ToLower();
+
+        if (page == 1) {
+          if (cachedFilteredPhotosets == null || preferences.Visited) {
+            preferences.Visited = false;
+
+            cachedFilteredPhotosets = new List<Dictionary<string, object>>();
+            int maxNum = int.Parse(photosetsResponseDictionary.GetSubValue("photosets", "total").ToString());
+
+            var innerParams = new Dictionary<string, string>
+              {
+                {
+                  ParameterNames.UserId, user.UserNsId
+                }
+              };
+
+            var tmpPhotosetsToBeFiltered = (Dictionary<string, object>)
+               await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, innerParams);
+
+            IEnumerator<Dictionary<string, object>> browser = DictionaryExtensions.ExtractPhotosets(tmpPhotosetsToBeFiltered).GetEnumerator();
+
+            while (browser.MoveNext())
+            {
+              Dictionary<string, object> cur = browser.Current;
+              if (cur.GetSubValue("title").ToString().ToLower().Contains(srcValue))
+              {
+                cachedFilteredPhotosets.Add(cur);
+              }
+
+            }
+          }
+        }
+        
+        return DictionaryExtensions.GetPhotosetsResponseFromFilteredDictionary(page, preferences.PhotosPerPage, cachedFilteredPhotosets);
+      }
+      else
+      {
+        return photosetsResponseDictionary.GetPhotosetsResponseFromDictionary();
+      }
     }
 
     #endregion
