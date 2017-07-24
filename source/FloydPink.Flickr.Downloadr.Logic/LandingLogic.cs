@@ -15,7 +15,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
   public class LandingLogic : ILandingLogic
   {
     private readonly IOAuthManager _oAuthManager;
-    private List<Dictionary<string, object>> cachedFilteredPhotosets;
+    private static List<Dictionary<string, object>> cachedFilteredPhotosets;
 
     public LandingLogic(IOAuthManager oAuthManager)
     {
@@ -95,31 +95,34 @@ namespace FloydPink.Flickr.Downloadr.Logic
         srcValue = srcValue.ToLower();
 
         if (page == 1) {
-          cachedFilteredPhotosets = new List<Dictionary<string, object>>();
-          int maxNum = int.Parse(photosetsResponseDictionary.GetSubValue("photosets", "total").ToString());
+          if (cachedFilteredPhotosets == null || preferences.Visited) {
+            preferences.Visited = false;
 
-          var innerParams = new Dictionary<string, string>
-        {
-          {
-            ParameterNames.UserId, user.UserNsId
-          }
-        };
+            cachedFilteredPhotosets = new List<Dictionary<string, object>>();
+            int maxNum = int.Parse(photosetsResponseDictionary.GetSubValue("photosets", "total").ToString());
 
-          var tmpPhotosetsToBeFiltered = (Dictionary<string, object>)
-             await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, innerParams);
-          
-          IEnumerator<Dictionary<string, object>> browser = DictionaryExtensions.ExtractPhotosets(tmpPhotosetsToBeFiltered).GetEnumerator();
+            var innerParams = new Dictionary<string, string>
+              {
+                {
+                  ParameterNames.UserId, user.UserNsId
+                }
+              };
 
-          while (browser.MoveNext())
-          {
-            Dictionary<string, object> cur = browser.Current;
-            if (cur.GetSubValue("title").ToString().ToLower().Contains(srcValue))
+            var tmpPhotosetsToBeFiltered = (Dictionary<string, object>)
+               await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, innerParams);
+
+            IEnumerator<Dictionary<string, object>> browser = DictionaryExtensions.ExtractPhotosets(tmpPhotosetsToBeFiltered).GetEnumerator();
+
+            while (browser.MoveNext())
             {
-              cachedFilteredPhotosets.Add(cur);
-            }
-            
-          }
+              Dictionary<string, object> cur = browser.Current;
+              if (cur.GetSubValue("title").ToString().ToLower().Contains(srcValue))
+              {
+                cachedFilteredPhotosets.Add(cur);
+              }
 
+            }
+          }
         }
         
         return DictionaryExtensions.GetPhotosetsResponseFromFilteredDictionary(page, preferences.PhotosPerPage, cachedFilteredPhotosets);

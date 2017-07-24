@@ -214,7 +214,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Log.Debug("buttonDefaultsClick");
       Preferences = Preferences.GetDefault();
 
-      //Preferences.Visited = true; //@rob@ TODO vedi evento save
+      Preferences.Visited = true;
     }
 
     private void buttonSaveClick(object sender, EventArgs e)
@@ -228,7 +228,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 
       _presenter.Save(preferences);
 
-      //preferences.Visited = true; //@rob@ TODO aggiungere cache statica? e' brutto che ogni pag 1 leggiamo tutto, anche se non cambiamo parametri.
+      preferences.Visited = true;
 
       var landingWindow = new LandingWindow(new Session(User, preferences));
       landingWindow.Show();

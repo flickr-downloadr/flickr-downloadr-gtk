@@ -20,7 +20,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public bool CheckForUpdates { get; set; }
     public LogLevel LogLevel { get; set; }
     public string LogLocation { get; set; }
-    //public bool Visited { get; set; }  //@rob@ add later, cache. See comment on save button click.
+    public bool Visited { get; set; }
 
     public static Preferences GetDefault()
     {
