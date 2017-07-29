@@ -49,8 +49,10 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
       var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation, photoset);
 
+      var curCount = 0;
       foreach (var photo in photosList)
       {
+        curCount++;
         var photoUrl = photo.OriginalUrl;
         var photoExtension = "jpg";
         switch (preferences.DownloadSize)
@@ -77,6 +79,12 @@ namespace FloydPink.Flickr.Downloadr.Logic
         var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
         var targetFileName = Path.Combine(imageDirectory.FullName,
           string.Format("{0}.{1}", photoName, photoExtension));
+
+        if (File.Exists(targetFileName)) {
+          targetFileName = Path.Combine(imageDirectory.FullName,
+          string.Format("{0}-{2}.{1}", photoName, photoExtension, curCount));
+        }
+
         WriteMetaDataFile(photoWithPreferredTags, targetFileName, preferences);
 
         var request = WebRequest.Create(photoUrl);
