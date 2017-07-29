@@ -23,9 +23,9 @@ env:
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
 
 before_install:
-- wget "https://installbuilder.bitrock.com/installbuilder-enterprise-16.11.1-osx-installer.dmg"
-- hdiutil mount installbuilder-enterprise-16.11.1-osx-installer.dmg
-- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-16.11.1-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
+- wget "https://installbuilder.bitrock.com/installbuilder-enterprise-17.7.0-osx-installer.dmg"
+- hdiutil mount installbuilder-enterprise-17.7.0-osx-installer.dmg
+- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-17.7.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none
 
 script:
 - which mono

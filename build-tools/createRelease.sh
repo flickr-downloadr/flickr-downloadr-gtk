@@ -1,4 +1,4 @@
-INSTALL_BUILDER_VERSION="16.11.1"
+INSTALL_BUILDER_VERSION="17.7.0"
 
 if [ "$(uname)" == "Darwin" ]; then
   INSTALLBUILDERCLI="/Applications/Bitrock InstallBuilder Enterprise ${INSTALL_BUILDER_VERSION}/bin/Builder.app/Contents/MacOS/installbuilder.sh"
