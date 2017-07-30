@@ -76,9 +76,9 @@ namespace FloydPink.Flickr.Downloadr.Logic
           photoWithPreferredTags = await _originalTagsLogic.GetOriginalTagsTask(photo);
         }
 
-        var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
+        var photoName = preferences.FileNameMode == FileNameMode.Title ? GetSafeFilename(photo.Title) : photo.Id;
 
-        if (preferences.OriginalOrder)
+        if (preferences.FileNameMode == FileNameMode.OriginalOrder)
         {
           photoName = GetPadded(curCount);
         }

@@ -54,7 +54,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 		
 		private global::Gtk.RadioButton radioPhotoTitle;
 
-        private global::Gtk.RadioButton radioFlickrOrder;
+        private global::Gtk.RadioButton radioOriginalOrder;
 
         private global::Gtk.HBox hbox4;
 		
@@ -337,14 +337,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.radioPhotoTitle]));
 			w21.Position = 1;
 
-      this.radioFlickrOrder = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Flickr Order"));
-      this.radioFlickrOrder.CanFocus = true;
-      this.radioFlickrOrder.Name = "radioFlickrOrder";
-      this.radioFlickrOrder.DrawIndicator = true;
-      this.radioFlickrOrder.UseUnderline = true;
-      this.radioFlickrOrder.Group = this.radioPhotoId.Group;
-      this.hbox3.Add(this.radioFlickrOrder);
-      global::Gtk.Box.BoxChild w121 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioFlickrOrder]));
+      this.radioOriginalOrder = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Flickr Order"));
+      this.radioOriginalOrder.CanFocus = true;
+      this.radioOriginalOrder.Name = "radioFlickrOrder";
+      this.radioOriginalOrder.DrawIndicator = true;
+      this.radioOriginalOrder.UseUnderline = true;
+      this.radioOriginalOrder.Group = this.radioPhotoId.Group;
+      this.hbox3.Add(this.radioOriginalOrder);
+      global::Gtk.Box.BoxChild w121 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioOriginalOrder]));
       w121.Position = 1;
 
       this.vbox13.Add (this.hbox3);
