@@ -78,8 +78,9 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
         var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
 
-        if (preferences.FlickrOrder) {
-          photoName = curCount.ToString().PadLeft(8, '0');
+        if (preferences.FlickrOrder)
+        {
+          photoName = GetPadded(curCount);
         }
 
         var targetFileName = Path.Combine(imageDirectory.FullName,
@@ -87,7 +88,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
         if (File.Exists(targetFileName)) {
           targetFileName = Path.Combine(imageDirectory.FullName,
-          string.Format("{0}-{2}.{1}", photoName, photoExtension, curCount));
+          string.Format("{0}-{2}.{1}", photoName, photoExtension, GetPadded(curCount)));
         }
 
         WriteMetaDataFile(photoWithPreferredTags, targetFileName, preferences);
@@ -107,6 +108,11 @@ namespace FloydPink.Flickr.Downloadr.Logic
           cancellationToken.ThrowIfCancellationRequested();
         }
       }
+    }
+
+    private static string GetPadded(int curCount)
+    {
+      return curCount.ToString().PadLeft(6, '0');
     }
 
     private static async Task DownloadAndSavePhoto(string targetFileName, WebRequest request, byte[] buffer)
