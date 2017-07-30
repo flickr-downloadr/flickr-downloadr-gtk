@@ -78,7 +78,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
           ParameterNames.SafeSearch, preferences.SafetyLevel
         },
         {
-          ParameterNames.PerPage, preferences.PhotosPerPage.ToString()
+          ParameterNames.PerPage, preferences.PhotosPerPage.ToString() //<-- fixed (previously there was the constant '21')
         },
         {
           ParameterNames.Page, page.ToString(CultureInfo.InvariantCulture)
@@ -87,50 +87,67 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
       var photosetsResponseDictionary = (Dictionary<string, object>)
         await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, extraParams);
-
-      String srcValue = preferences.AlbumSearchName;
-      
-      if (!String.IsNullOrWhiteSpace(srcValue))
+    
+      if (!String.IsNullOrWhiteSpace(preferences.AlbumSearchName))
       {
-        srcValue = srcValue.ToLower();
+        bool refreshCache = (page == 1 && (cachedFilteredPhotosets == null || preferences.Visited));
 
-        if (page == 1) {
-          if (cachedFilteredPhotosets == null || preferences.Visited) {
-            preferences.Visited = false;
-
-            cachedFilteredPhotosets = new List<Dictionary<string, object>>();
-            int maxNum = int.Parse(photosetsResponseDictionary.GetSubValue("photosets", "total").ToString());
-
-            var innerParams = new Dictionary<string, string>
-              {
-                {
-                  ParameterNames.UserId, user.UserNsId
-                }
-              };
-
-            var tmpPhotosetsToBeFiltered = (Dictionary<string, object>)
-               await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, innerParams);
-
-            IEnumerator<Dictionary<string, object>> browser = DictionaryExtensions.ExtractPhotosets(tmpPhotosetsToBeFiltered).GetEnumerator();
-
-            while (browser.MoveNext())
-            {
-              Dictionary<string, object> cur = browser.Current;
-              if (cur.GetSubValue("title").ToString().ToLower().Contains(srcValue))
-              {
-                cachedFilteredPhotosets.Add(cur);
-              }
-
-            }
-          }
+        if (refreshCache)
+        {
+          await LoadCacheForMatchingAlbums(methodName, user, preferences, photosetsResponseDictionary);
         }
-        
-        return DictionaryExtensions.GetPhotosetsResponseFromFilteredDictionary(page, preferences.PhotosPerPage, cachedFilteredPhotosets);
+        return PaginatedCache(page, preferences.PhotosPerPage);
       }
       else
       {
         return photosetsResponseDictionary.GetPhotosetsResponseFromDictionary();
       }
+    }
+
+    /*
+      Here we are going to get all the albums and then we'll filter only the matching names. 
+    */
+    private async Task LoadCacheForMatchingAlbums(string methodName, User user, Preferences preferences, Dictionary<string, object> photosetsResponseDictionary)
+    {
+      preferences.Visited = false;
+      String albumName = preferences.AlbumSearchName.ToLower();
+
+      cachedFilteredPhotosets = new List<Dictionary<string, object>>();
+      int maxNum = int.Parse(photosetsResponseDictionary.GetSubValue("photosets", "total").ToString());
+
+      /*
+        See the behaviour for the optional 'page' parameter, from "https://www.flickr.com/services/api/explore/flickr.photosets.getList":
+          - The page of results to get. Currently, if this is not provided, all sets are returned, but this behaviour may change in future.
+      */
+      var innerParams = new Dictionary<string, string>
+      {
+        {
+          ParameterNames.UserId, user.UserNsId
+
+          //let's skip the 'page' parameter
+        }
+      };
+
+      //we are going to get the list of all the albums, along with their title...
+      var tmpPhotosetsToBeFiltered = (Dictionary<string, object>)
+         await _oAuthManager.MakeAuthenticatedRequestAsync(methodName, innerParams);
+
+      IEnumerator<Dictionary<string, object>> browser = DictionaryExtensions.ExtractPhotosets(tmpPhotosetsToBeFiltered).GetEnumerator();
+
+      //let's cache only the matching albums
+      while (browser.MoveNext())
+      {
+        Dictionary<string, object> cur = browser.Current;
+        if (cur.GetSubValue("title").ToString().ToLower().Contains(albumName))
+        {
+          cachedFilteredPhotosets.Add(cur);
+        }
+      }
+    }
+
+    private static PhotosetsResponse PaginatedCache(int pageNumber, int photosPerPage)
+    {
+      return DictionaryExtensions.GetPhotosetsResponseFromFilteredDictionary(pageNumber, photosPerPage, cachedFilteredPhotosets);
     }
 
     #endregion
