@@ -8,7 +8,7 @@ namespace FloydPink.Flickr.Downloadr.Model
   public class Preferences
   {
     public bool TitleAsFilename { get; set; }
-    public bool FlickrOrder { get; set; }
+    public bool OriginalOrder { get; set; }
     public string DownloadLocation { get; set; }
     public PhotoDownloadSize DownloadSize { get; set; }
     public int PhotosPerPage { get; set; }
@@ -25,7 +25,7 @@ namespace FloydPink.Flickr.Downloadr.Model
       return new Preferences
       {
         TitleAsFilename = false,
-        FlickrOrder = false,
+        OriginalOrder = false,
         PhotosPerPage = 25,
         DownloadLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
         Metadata =

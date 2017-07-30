@@ -78,7 +78,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
         var photoName = preferences.TitleAsFilename ? GetSafeFilename(photo.Title) : photo.Id;
 
-        if (preferences.FlickrOrder)
+        if (preferences.OriginalOrder)
         {
           photoName = GetPadded(curCount);
         }

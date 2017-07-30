@@ -108,9 +108,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     {
       Log.Debug("setFieldsFromModel");
       // Filename
-      radioPhotoId.Active = !preferences.TitleAsFilename && !preferences.FlickrOrder;
+      radioPhotoId.Active = !preferences.TitleAsFilename && !preferences.OriginalOrder;
       radioPhotoTitle.Active = preferences.TitleAsFilename;
-      radioFlickrOrder.Active = preferences.FlickrOrder && !preferences.TitleAsFilename;
+      radioFlickrOrder.Active = preferences.OriginalOrder && !preferences.TitleAsFilename;
 
       // Download location
       entryDownloadLocation.Text = preferences.DownloadLocation;
@@ -180,7 +180,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       return new Preferences
       {
         TitleAsFilename = radioPhotoTitle.Active,
-        FlickrOrder = radioFlickrOrder.Active,
+        OriginalOrder = radioFlickrOrder.Active,
         DownloadLocation = entryDownloadLocation.Text,
         DownloadSize =
           (PhotoDownloadSize) Enum.Parse(typeof(PhotoDownloadSize), comboboxDownloadSize.ActiveText),
