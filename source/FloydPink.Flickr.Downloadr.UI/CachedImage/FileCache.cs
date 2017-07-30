@@ -30,7 +30,7 @@ namespace FloydPink.Flickr.Downloadr.UI.CachedImage
 
       // Cast the string into a Uri so we can access the image name without regex
       var uri = new Uri(url);
-      var localFile = string.Format("{0}/{1}", AppCacheDirectory, uri.Segments[uri.Segments.Length - 1]);
+      string localFile = GetLocalFilename(uri);
 
       if (!File.Exists(localFile))
       {
@@ -39,6 +39,11 @@ namespace FloydPink.Flickr.Downloadr.UI.CachedImage
 
       // The full path of the image on the local computer
       return localFile;
+    }
+
+    public static string GetLocalFilename(Uri uri)
+    {
+      return string.Format("{0}/{1}", AppCacheDirectory, uri.Segments[uri.Segments.Length - 1]);
     }
   }
 }
