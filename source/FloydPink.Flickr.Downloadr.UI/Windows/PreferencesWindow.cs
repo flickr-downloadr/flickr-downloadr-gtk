@@ -67,6 +67,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         "Choose to name the downloaded photos with its internal photo id (a unique number) or its order as defined inside the album or its title (Untitled images will be assigned random unique names)";
       labelDownloadLocation.TooltipText = entryDownloadLocation.TooltipText = buttonDownloadLocation.TooltipText =
         "Set the location to save the downloaded photos and metadata";
+      labelAlbumSearchName.TooltipText = entryAlbumSearchName.TooltipText = 
+        "Search for albums containing this text in their name";
       labelDownloadSize.TooltipText = comboboxDownloadSize.TooltipText =
         "Set the size of the photos to download";
       labelMetadata.TooltipText =
@@ -111,6 +113,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       radioPhotoId.Active = preferences.FileNameMode == FileNameMode.PhotoId;
       radioPhotoTitle.Active = preferences.FileNameMode == FileNameMode.Title;
       radioOriginalOrder.Active = preferences.FileNameMode == FileNameMode.OriginalOrder;
+
+      entryAlbumSearchName.Text = preferences.AlbumSearchName;
 
       // Download location
       entryDownloadLocation.Text = preferences.DownloadLocation;
@@ -180,11 +184,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       return new Preferences
       {
 
-        FileNameMode = 
-        radioPhotoTitle.Active    ? FileNameMode.Title : 
-        radioOriginalOrder.Active ? FileNameMode.OriginalOrder:FileNameMode.PhotoId,
+        FileNameMode =
+        radioPhotoTitle.Active ? FileNameMode.Title :
+        radioOriginalOrder.Active ? FileNameMode.OriginalOrder : FileNameMode.PhotoId,
 
         DownloadLocation = entryDownloadLocation.Text,
+        AlbumSearchName = entryAlbumSearchName.Text,
         DownloadSize =
           (PhotoDownloadSize) Enum.Parse(typeof(PhotoDownloadSize), comboboxDownloadSize.ActiveText),
         Metadata = metadata,
@@ -211,6 +216,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     {
       Log.Debug("buttonDefaultsClick");
       Preferences = Preferences.GetDefault();
+
+      Preferences.Visited = true;
     }
 
     private void buttonSaveClick(object sender, EventArgs e)
@@ -223,6 +230,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Bootstrapper.ReconfigureLogging(preferences.LogLevel.ToString(), preferences.LogLocation);
 
       _presenter.Save(preferences);
+
+      preferences.Visited = true;
+
       var landingWindow = new LandingWindow(new Session(User, preferences));
       landingWindow.Show();
       Destroy();

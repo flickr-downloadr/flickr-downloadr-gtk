@@ -5,7 +5,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
 {
   public interface ILandingPresenter
   {
-    Task Initialize();
+    Task Initialize(int curAlbumPageNumber);
     Task NavigateTo(PhotoOrAlbumPage page);
     Task NavigateTo(int page);
   }

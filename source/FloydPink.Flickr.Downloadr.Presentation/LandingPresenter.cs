@@ -31,7 +31,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
       };
     }
 
-    public async Task Initialize()
+    public async Task Initialize(int curAlbumPageNumber)
     {
       try
       {
@@ -40,7 +40,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation
         _view.PublicPhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, false);
         _view.PrivatePhotoset = await _logic.GetCoverPhotoAsync(_view.User, _view.Preferences, true);
 
-        await GetAndSetPhotosets(1);
+        _view.ShowSpinner(false);
+
+        await GetAndSetPhotosets(curAlbumPageNumber);
       } catch (Exception ex)
       {
         _view.HandleException(ex);
@@ -94,7 +96,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
     {
       _view.ShowSpinner(true);
 
-      SetPhotosetsResponse(await GetPhotosetsResponse(page));
+       SetPhotosetsResponse(await GetPhotosetsResponse(page));
 
       _view.ShowSpinner(false);
     }

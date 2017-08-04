@@ -33,6 +33,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       User = session.User;
       Preferences = session.Preferences;
       CurrentPhotoset = session.SelectedPhotoset;
+      CurrentAlbumPage = session.CurrentAlbumPageNumber;
 
       AllSelectedPhotos = new Dictionary<string, Dictionary<string, Photo>>();
 
@@ -130,6 +131,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 
     public IDictionary<string, Dictionary<string, Photo>> AllSelectedPhotos { get; set; }
     public Photoset CurrentPhotoset { get; set; }
+    public int CurrentAlbumPage { get; set; }
     public string Page { get; set; }
     public string Pages { get; set; }
     public string PerPage { get; set; }
@@ -383,7 +385,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     protected void buttonBackClick(object sender, EventArgs e)
     {
       Log.Debug("buttonBackClick");
-      var landingWindow = new LandingWindow(new Session(User, Preferences));
+      var landingWindow = new LandingWindow(new Session(User, Preferences, CurrentAlbumPage));
       landingWindow.Show();
       Destroy();
     }

@@ -42,11 +42,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Title += VersionHelper.GetVersionString();
       Preferences = session.Preferences;
       User = session.User;
+      Page = session.CurrentAlbumPageNumber.ToString();
 
       AddSpinnerWidget();
 
       _presenter = Bootstrapper.GetPresenter<ILandingView, ILandingPresenter>(this);
-      _presenter.Initialize();
+      _presenter.Initialize(session.CurrentAlbumPageNumber);
     }
 
     private Photoset SelectedPhotoset { get; set; }
@@ -365,7 +366,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     protected void buttonContinueClick(object sender, EventArgs e)
     {
       Log.Debug("buttonContinueClick");
-      var browserWindow = new BrowserWindow(new Session(User, Preferences, SelectedPhotoset));
+      var browserWindow = new BrowserWindow(new Session(User, Preferences, SelectedPhotoset, int.Parse(Page)));
       browserWindow.Show();
       Destroy();
     }
