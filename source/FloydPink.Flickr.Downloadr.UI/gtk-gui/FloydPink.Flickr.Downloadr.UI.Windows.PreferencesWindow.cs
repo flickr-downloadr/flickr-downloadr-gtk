@@ -355,7 +355,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.radioPhotoTitle]));
 			w21.Position = 2;
 
-      this.radioOriginalOrder = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Flickr Order"));
+      this.radioOriginalOrder = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Original Order"));
       this.radioOriginalOrder.CanFocus = true;
       this.radioOriginalOrder.Name = "radioFlickrOrder";
       this.radioOriginalOrder.DrawIndicator = true;
