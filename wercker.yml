@@ -5,7 +5,7 @@ build:
             name: build and test
             code: |-
               sudo apt-get update
-              sudo apt-get install rpm -y
+              sudo apt-get install wget rpm -y
               sudo cert-sync /etc/ssl/certs/ca-certificates.crt
               echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
               echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
