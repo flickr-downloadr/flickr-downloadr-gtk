@@ -98,7 +98,7 @@
   <target name="compilesolution" depends="cleanBin, createBin, increment-version, restorenugetpackages">
     <echo message="Compiling Solution:" />
 
-    <exec program="xbuild" workingdir="${source.directory}"
+    <exec program="msbuild" workingdir="${source.directory}"
       commandline='"${source.directory}/${flickrdownloadr.solution}" /p:Platform="x86" /p:Configuration=${project.build.type} /t:Rebuild /v:m' />
   </target>
 
