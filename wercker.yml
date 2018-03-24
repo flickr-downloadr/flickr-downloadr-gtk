@@ -6,7 +6,7 @@ build:
             code: |-
               sudo apt-get update
               sudo apt-get install rpm -y
-              sudo cert-sync --import --machine --sync
+              sudo cert-sync /etc/ssl/certs/ca-certificates.crt
               echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
               echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
               echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
