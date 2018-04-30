@@ -21,7 +21,7 @@ environment:
   install_builder_license_signature:
     secure: 3j/EJAZzA8i/OfWyhmvLnzk7SZ8/KNaaTVfWyw0uVhe5gcZfhlGVPfgwrdnvEut3
   GH_TOKEN:
-    secure: 0AzFyT08fngD2aMNPrS1FRE52vYpWWzKmsVCPripoEURAb6fA4xvn5AEIbUXWCHK
+    secure: 2Zfpumy5On2K7O7FtazjQuXNItVtOSktY0qDp2vxR25AaqPy49cvlsaueX+tuWR/
   FD_CERT_PWD:
     secure: LDV1CBXqfvvW0VpFmQX6Zbp7Eik6IJ4TxdDwaKgpTC+A9DAX/H2GRssOmqB+BWZj
 

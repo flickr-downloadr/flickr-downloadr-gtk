@@ -18,7 +18,7 @@ then
   CIENGINE="wercker"
   wget "http://stedolan.github.io/jq/download/linux64/jq"
   chmod +x jq
-  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${WERCKER_GIT_COMMIT} | jq -r '.commit.message'"
+  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${WERCKER_GIT_COMMIT} | ./jq -r '.commit.message'"
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$WERCKER_GIT_COMMIT | ./jq -r '.commit.message')
 fi
 
