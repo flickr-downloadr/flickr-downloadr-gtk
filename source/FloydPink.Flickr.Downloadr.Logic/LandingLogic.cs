@@ -78,7 +78,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
           ParameterNames.SafeSearch, preferences.SafetyLevel
         },
         {
-          ParameterNames.PerPage, preferences.PhotosPerPage.ToString() //<-- fixed (previously there was the constant '21')
+          ParameterNames.PerPage, "21"
         },
         {
           ParameterNames.Page, page.ToString(CultureInfo.InvariantCulture)
