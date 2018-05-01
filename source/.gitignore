@@ -193,3 +193,4 @@ $RECYCLE.BIN/
 *.resources
 *.userprefs
 
+.vs/
