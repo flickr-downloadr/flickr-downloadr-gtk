@@ -23,6 +23,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyrightAttribute("Copyright © 2012-2018 Haridas Pachuveetil")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("2.5.1.9")]
-[assembly: AssemblyFileVersionAttribute("2.5.1.9")]
+[assembly: AssemblyVersionAttribute("2.6.0.1")]
+[assembly: AssemblyFileVersionAttribute("2.6.0.1")]
 
