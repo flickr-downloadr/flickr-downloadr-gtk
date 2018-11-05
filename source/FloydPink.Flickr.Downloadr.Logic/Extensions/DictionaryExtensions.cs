@@ -25,10 +25,12 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
         var subDictionary = (Dictionary<string, object>) dictionary[key];
         return subDictionary.ContainsKey(subKey) ? subDictionary[subKey] : null;
       }
+
       return null;
     }
 
-    public static PhotosResponse GetPhotosResponseFromDictionary(this Dictionary<string, object> dictionary, bool isAlbum)
+    public static PhotosResponse GetPhotosResponseFromDictionary(this Dictionary<string, object> dictionary,
+      bool isAlbum)
     {
       var apiresponseCollectionName = isAlbum ? "photoset" : "photos";
       var photos = new List<Photo>();
@@ -55,18 +57,19 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
         photos);
     }
 
-    public static PhotosetsResponse GetPhotosetsResponseFromFilteredDictionary(int pageNumber, int pageSize, IEnumerable<Dictionary<string, object>> photosetDictionary)
+    public static PhotosetsResponse GetPhotosetsResponseFromFilteredDictionary(int pageNumber, int pageSize,
+      IEnumerable<Dictionary<string, object>> photosetDictionary)
     {
       var photosets = new List<Photoset>();
 
-      Dictionary <string, object>[] tmp =(Dictionary<string, object>[]) photosetDictionary.ToArray();
+      Dictionary<string, object>[] tmp = (Dictionary<string, object>[]) photosetDictionary.ToArray();
       int tot = tmp.Length;
 
-      for (int i=((pageNumber -1) * pageSize); !((photosets.Count == pageSize) || (i == tot)); i++)
+      for (int i = ((pageNumber - 1) * pageSize); !((photosets.Count == pageSize) || (i == tot)); i++)
       {
         photosets.Add(BuildPhotoset(tmp[i]));
       }
-      
+
       int pages = (int) Math.Ceiling((double) tot / pageSize);
       return new PhotosetsResponse(pageNumber, pages, pageSize, tot, photosets);
     }
@@ -93,12 +96,12 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 
       if (runningOnMono)
       {
-        var photosetListAsArrayList = (ArrayList)dictionary.GetSubValue("photosets", "photoset");
+        var photosetListAsArrayList = (ArrayList) dictionary.GetSubValue("photosets", "photoset");
         photosetDictionary = photosetListAsArrayList.Cast<Dictionary<string, object>>();
       }
       else
       {
-        var photosetListAsIEnumerable = (IEnumerable<object>)dictionary.GetSubValue("photosets", "photoset");
+        var photosetListAsIEnumerable = (IEnumerable<object>) dictionary.GetSubValue("photosets", "photoset");
         photosetDictionary = photosetListAsIEnumerable.Cast<Dictionary<string, object>>();
       }
 
@@ -125,6 +128,47 @@ namespace FloydPink.Flickr.Downloadr.Logic.Extensions
 
       return (from Dictionary<string, object> tag in tagList
         select tag.GetValue("raw").ToString()).ToList();
+    }
+
+    public static PhotoLocation ExtractLocationDetails(this Dictionary<string, object> dictionary)
+    {
+      var photoJson = (Dictionary<string, object>) dictionary.GetValue("photo");
+      var location = photoJson.GetValue("location");
+      var locationString = location as string;
+      if (locationString != null && string.IsNullOrEmpty(locationString))
+      {
+        return null;
+      }
+
+      var locationDict = (Dictionary<string, object>) location;
+      var accuracy = int.Parse(locationDict.GetValue("accuracy").ToString());
+      var latitude = double.Parse(locationDict.GetValue("latitude").ToString());
+      var longitude = double.Parse(locationDict.GetValue("longitude").ToString());
+      if (accuracy < 3)
+      {
+        return new PhotoLocation(accuracy, latitude, longitude);
+      }
+
+      var country = locationDict.GetSubValue("country")?.ToString();
+      if (accuracy < 6)
+      {
+        return new PhotoLocation(accuracy, latitude, longitude, country);
+      }
+
+      var region = locationDict.GetSubValue("region")?.ToString();
+      if (accuracy < 11)
+      {
+        return new PhotoLocation(accuracy, latitude, longitude, country, region);
+      }
+
+      var county = locationDict.GetSubValue("county")?.ToString();
+      if (accuracy < 16)
+      {
+        return new PhotoLocation(accuracy, latitude, longitude, country, region, county);
+      }
+
+      var locality = locationDict.GetSubValue("locality")?.ToString();
+      return new PhotoLocation(accuracy, latitude, longitude, country, region, county, locality);
     }
 
     private static Photo BuildPhoto(Dictionary<string, object> dictionary)

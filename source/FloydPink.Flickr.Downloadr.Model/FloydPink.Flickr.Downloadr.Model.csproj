@@ -51,6 +51,7 @@
     <Compile Include="Enums\SafeSearch.cs" />
     <Compile Include="Helpers\InvariantCultureHelper.cs" />
     <Compile Include="Photo.cs" />
+    <Compile Include="PhotoLocation.cs" />
     <Compile Include="PhotosetsResponse.cs" />
     <Compile Include="PhotosResponse.cs" />
     <Compile Include="Preferences.cs" />

@@ -9,6 +9,7 @@ namespace FloydPink.Flickr.Downloadr.Model.Enums
     public static readonly string Tags = "Tags";
     public static readonly string Description = "Description";
     public static readonly string Title = "Title";
+    public static readonly string Location = "Location";
 
     public static List<string> GetItems()
     {

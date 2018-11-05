@@ -4,6 +4,7 @@ using FloydPink.Flickr.Downloadr.Logic.Extensions;
 using FloydPink.Flickr.Downloadr.Logic.Interfaces;
 using FloydPink.Flickr.Downloadr.Model;
 using FloydPink.Flickr.Downloadr.Model.Constants;
+using FloydPink.Flickr.Downloadr.Model.Enums;
 using FloydPink.Flickr.Downloadr.OAuth;
 
 namespace FloydPink.Flickr.Downloadr.Logic
@@ -17,7 +18,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
       _oAuthManager = oAuthManager;
     }
 
-    public async Task<Photo> GetOriginalTagsTask(Photo photo)
+    public async Task<Photo> GetOriginalTagsTask(Photo photo, Preferences preferences)
     {
       var extraParams = new Dictionary<string, string>
       {
@@ -35,6 +36,11 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
       // Override the internal tags with the original ones
       photo.Tags = string.Join(", ", photoResponse.ExtractOriginalTags());
+
+      if (preferences.NeedLocationMetadata)
+      {
+        photo.Location = photoResponse.ExtractLocationDetails();
+      }
 
       return photo;
     }

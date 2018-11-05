@@ -5,6 +5,6 @@ namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
 {
   public interface IOriginalTagsLogic
   {
-    Task<Photo> GetOriginalTagsTask(Photo photo);
+    Task<Photo> GetOriginalTagsTask(Photo photo, Preferences preferences);
   }
 }

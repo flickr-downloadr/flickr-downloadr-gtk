@@ -73,7 +73,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
         if (preferences.NeedOriginalTags)
         {
-          photoWithPreferredTags = await _originalTagsLogic.GetOriginalTagsTask(photo);
+          photoWithPreferredTags = await _originalTagsLogic.GetOriginalTagsTask(photo, preferences);
         }
 
         var photoName = preferences.FileNameMode == FileNameMode.Title ? GetSafeFilename(photo.Title) : photo.Id;
@@ -170,12 +170,21 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
     private static void WriteMetaDataFile(Photo photo, string targetFileName, Preferences preferences)
     {
-      var metadata = preferences.Metadata.ToDictionary(metadatum => metadatum,
-        metadatum =>
-          photo.GetType()
-            .GetProperty(metadatum)
-            .GetValue(photo, null)
-            .ToString());
+      var metadata = new Dictionary<string, object>();
+      var metadataPreferences = preferences.Metadata;
+      if (preferences.NeedLocationMetadata && !metadataPreferences.Contains(PhotoMetadata.Location))
+      {
+        metadataPreferences.Add(PhotoMetadata.Location);
+      }
+      foreach (var metadatum in metadataPreferences)
+      {
+        var metadataValue = photo.GetType().GetProperty(metadatum)?.GetValue(photo, null);
+        if (metadataValue != null)
+        {
+          metadata.Add(metadatum, metadataValue);
+        }
+      }
+
       if (metadata.Count > 0)
       {
         File.WriteAllText(string.Format("{0}.json", targetFileName), metadata.ToJson(), Encoding.UTF8);

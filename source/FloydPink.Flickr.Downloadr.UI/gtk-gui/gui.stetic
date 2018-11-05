@@ -648,7 +648,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="643 589">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="736 752">
     <property name="MemberName" />
     <property name="HeightRequest">510</property>
     <property name="Title" translatable="yes">Preferences - flickr downloadr</property>
@@ -841,6 +841,18 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Label" id="labelLocation">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Location:</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">11</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Label" id="labelTags">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
@@ -848,7 +860,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">11</property>
+                        <property name="Position">12</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -860,7 +872,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">12</property>
+                        <property name="Position">13</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -872,7 +884,19 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">13</property>
+                        <property name="Position">14</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="labelAlbumSearchName">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Search for Album Name:</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">15</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -917,6 +941,21 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.RadioButton" id="radioOriginalOrder">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes">Original Order</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="Group">groupFilename</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.RadioButton" id="radioPhotoTitle">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
@@ -927,7 +966,7 @@
                         <property name="Group">groupFilename</property>
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">2</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -1254,6 +1293,23 @@ All</property>
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.CheckButton" id="checkbuttonLocation">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Label" translatable="yes">Capture Location metadata (tags must be 'Original')</property>
+                    <property name="DrawIndicator">True</property>
+                    <property name="HasLabel">True</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">11</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.HBox" id="hbox6">
                     <property name="MemberName" />
                     <property name="Homogeneous">True</property>
@@ -1268,6 +1324,7 @@ All</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
                         <property name="Group">groupTags</property>
+                        <signal name="Clicked" handler="tagPreferenceChanged" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -1283,6 +1340,7 @@ All</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
                         <property name="Group">groupTags</property>
+                        <signal name="Clicked" handler="tagPreferenceChanged" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -1292,7 +1350,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">11</property>
+                    <property name="Position">12</property>
                     <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                   </packing>
@@ -1307,7 +1365,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">12</property>
+                    <property name="Position">13</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1324,10 +1382,23 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">13</property>
+                    <property name="Position">14</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryAlbumSearchName">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">●</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">15</property>
+                    <property name="AutoSize">False</property>
                   </packing>
                 </child>
               </widget>

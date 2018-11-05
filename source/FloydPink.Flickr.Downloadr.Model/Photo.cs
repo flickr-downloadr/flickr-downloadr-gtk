@@ -55,6 +55,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public string LargeSquare150X150Url { get; }
     public string ThumbnailUrl { get; private set; }
     public string Small240Url { get; }
+    public PhotoLocation Location { get; set; }
 
     public string Small320Url
     {

@@ -26,6 +26,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public LogLevel LogLevel { get; set; }
     public string LogLocation { get; set; }
     public bool Visited { get; set; }
+    public bool NeedLocationMetadata { get; set; }
 
     public static Preferences GetDefault()
     {
@@ -45,6 +46,7 @@ namespace FloydPink.Flickr.Downloadr.Model
         DownloadSize = PhotoDownloadSize.Original,
         SafetyLevel = SafeSearch.Safe,
         NeedOriginalTags = false,
+        NeedLocationMetadata = true,
         CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
           "flickr-downloadr", "Cache"),
         CheckForUpdates = true,

@@ -80,6 +80,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         "Set the safety level of the photos to be downloaded";
       labelTags.TooltipText = radioTagsInternal.TooltipText = radioTagsOriginal.TooltipText =
         "Choose the type of tags to be downloaded - internal tags does not preserve the space, original will be exactly as it were entered";
+      labelLocation.TooltipText = checkbuttonLocation.TooltipText =
+        "Save the geo-location metadata on the photo (available only when 'Original' tags are enabled)";
       labelCacheLocation.TooltipText = entryCacheLocation.TooltipText = buttonCacheLocation.TooltipText =
         "Set the location to save the cached copy of the thumbnails and preview images";
       labelCacheSize.TooltipText = labelCacheSizeValue.TooltipText =
@@ -152,6 +154,13 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       radioTagsInternal.Active = !preferences.NeedOriginalTags;
       radioTagsOriginal.Active = preferences.NeedOriginalTags;
 
+      // Location
+      labelLocation.Sensitive = checkbuttonLocation.Sensitive = preferences.NeedOriginalTags;
+      if (preferences.NeedOriginalTags) 
+      {
+        checkbuttonLocation.Active = preferences.NeedLocationMetadata;
+      }
+
       // Cache location
       entryCacheLocation.Text = preferences.CacheLocation;
 
@@ -191,17 +200,24 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         DownloadLocation = entryDownloadLocation.Text,
         AlbumSearchName = entryAlbumSearchName.Text,
         DownloadSize =
-          (PhotoDownloadSize) Enum.Parse(typeof(PhotoDownloadSize), comboboxDownloadSize.ActiveText),
+          (PhotoDownloadSize)Enum.Parse(typeof(PhotoDownloadSize), comboboxDownloadSize.ActiveText),
         Metadata = metadata,
         PhotosPerPage = int.Parse(comboboxPhotosPerPage.ActiveText),
         SafetyLevel = (comboboxSafetyLevel.Active + 1).ToString(),
         NeedOriginalTags = radioTagsOriginal.Active,
+        NeedLocationMetadata = radioTagsOriginal.Active && checkbuttonLocation.Active,
         CacheLocation = entryCacheLocation.Text,
         CheckForUpdates = checkbuttonUpdate.Active,
         LogLevel =
           (LogLevel) Enum.Parse(typeof(LogLevel), comboboxLogLevel.ActiveText),
         LogLocation = entryLogLocation.Text
       };
+    }
+
+    protected void tagPreferenceChanged(object sender, EventArgs e)
+    {
+      labelLocation.Sensitive = checkbuttonLocation.Sensitive = radioTagsOriginal.Active;
+      checkbuttonLocation.Active = false;
     }
 
     private void buttonCancelClick(object sender, EventArgs e)
