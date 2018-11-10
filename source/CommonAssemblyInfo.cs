@@ -20,9 +20,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfigurationAttribute("Release")]
 [assembly: AssemblyCompanyAttribute("http://flickrdownloadr.com")]
 [assembly: AssemblyProductAttribute("flickr downloadr")]
-[assembly: AssemblyCopyrightAttribute("Copyright © 2012-2018 Haridas Pachuveetil")]
+[assembly: AssemblyCopyrightAttribute("Copyright © 2012-2018 flickr downloadr")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("2.6.0.1")]
-[assembly: AssemblyFileVersionAttribute("2.6.0.1")]
+[assembly: AssemblyVersionAttribute("2.7.0.1")]
+[assembly: AssemblyFileVersionAttribute("2.7.0.1")]
 
