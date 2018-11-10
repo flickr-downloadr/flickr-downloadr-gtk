@@ -5,176 +5,225 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	public partial class AboutWindow
 	{
 		private global::Gtk.VBox vbox3;
-		
+
 		private global::Gtk.VBox vbox4;
-		
+
 		private global::Gtk.HBox hbox7;
-		
+
 		private global::Gtk.Alignment alignment6;
-		
+
 		private global::Gtk.Image image2;
-		
+
 		private global::Gtk.Alignment alignment7;
-		
+
 		private global::Gtk.Label labelVersion;
-		
+
 		private global::Gtk.VBox vbox5;
-		
+
 		private global::Gtk.HBox hbox6;
-		
+
 		private global::Gtk.Alignment alignment1;
-		
+
 		private global::Gtk.EventBox eventboxHyperlink;
-		
+
 		private global::Gtk.Label labelLink;
-		
+
 		private global::Gtk.Alignment alignment2;
-		
+
+		private global::Gtk.HBox hbox2;
+
+		private global::Gtk.Alignment alignment3;
+
+		private global::Gtk.EventBox eventboxDonate;
+
+		private global::Gtk.Label labelDonate;
+
+		private global::Gtk.Alignment alignment4;
+
 		private global::Gtk.HBox hbox5;
-		
+
 		private global::Gtk.Button buttonClose;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget FloydPink.Flickr.Downloadr.UI.Windows.AboutWindow
 			this.WidthRequest = 360;
 			this.HeightRequest = 220;
 			this.Name = "FloydPink.Flickr.Downloadr.UI.Windows.AboutWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString ("About - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
+			this.Title = global::Mono.Unix.Catalog.GetString("About - flickr downloadr");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
 			this.Resizable = false;
 			this.AllowGrow = false;
 			// Container child FloydPink.Flickr.Downloadr.UI.Windows.AboutWindow.Gtk.Container+ContainerChild
-			this.vbox3 = new global::Gtk.VBox ();
+			this.vbox3 = new global::Gtk.VBox();
 			this.vbox3.Name = "vbox3";
 			this.vbox3.Spacing = 6;
 			// Container child vbox3.Gtk.Box+BoxChild
-			this.vbox4 = new global::Gtk.VBox ();
+			this.vbox4 = new global::Gtk.VBox();
 			this.vbox4.Name = "vbox4";
 			this.vbox4.Homogeneous = true;
 			this.vbox4.Spacing = 6;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.hbox7 = new global::Gtk.HBox ();
+			this.hbox7 = new global::Gtk.HBox();
 			this.hbox7.Name = "hbox7";
 			this.hbox7.Spacing = 6;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment6 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
-			this.hbox7.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.alignment6]));
+			this.hbox7.Add(this.alignment6);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.alignment6]));
 			w1.Position = 0;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.image2 = new global::Gtk.Image ();
+			this.image2 = new global::Gtk.Image();
 			this.image2.Name = "image2";
-			this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.logo-Small-About.png");
-			this.hbox7.Add (this.image2);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.image2]));
+			this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("FloydPink.Flickr.Downloadr.UI.Assets.logo-Small-About.png");
+			this.hbox7.Add(this.image2);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.image2]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment7.Name = "alignment7";
-			this.hbox7.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.alignment7]));
+			this.hbox7.Add(this.alignment7);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.alignment7]));
 			w3.Position = 2;
-			this.vbox4.Add (this.hbox7);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox7]));
+			this.vbox4.Add(this.hbox7);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox7]));
 			w4.Position = 0;
 			w4.Expand = false;
 			w4.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.labelVersion = new global::Gtk.Label ();
+			this.labelVersion = new global::Gtk.Label();
 			this.labelVersion.Name = "labelVersion";
-			this.labelVersion.LabelProp = global::Mono.Unix.Catalog.GetString ("flickr downloadr");
+			this.labelVersion.LabelProp = global::Mono.Unix.Catalog.GetString("flickr downloadr");
 			this.labelVersion.UseMarkup = true;
-			this.vbox4.Add (this.labelVersion);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.labelVersion]));
+			this.vbox4.Add(this.labelVersion);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.labelVersion]));
 			w5.Position = 2;
 			w5.Expand = false;
 			w5.Fill = false;
-			this.vbox3.Add (this.vbox4);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox4]));
+			this.vbox3.Add(this.vbox4);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.vbox4]));
 			w6.Position = 0;
 			// Container child vbox3.Gtk.Box+BoxChild
-			this.vbox5 = new global::Gtk.VBox ();
+			this.vbox5 = new global::Gtk.VBox();
 			this.vbox5.Name = "vbox5";
 			this.vbox5.Homogeneous = true;
 			this.vbox5.Spacing = 6;
 			// Container child vbox5.Gtk.Box+BoxChild
-			this.hbox6 = new global::Gtk.HBox ();
+			this.hbox6 = new global::Gtk.HBox();
 			this.hbox6.Name = "hbox6";
 			this.hbox6.Spacing = 6;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment1.Name = "alignment1";
-			this.hbox6.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment1]));
+			this.hbox6.Add(this.alignment1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.alignment1]));
 			w7.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.eventboxHyperlink = new global::Gtk.EventBox ();
+			this.eventboxHyperlink = new global::Gtk.EventBox();
 			this.eventboxHyperlink.Name = "eventboxHyperlink";
 			// Container child eventboxHyperlink.Gtk.Container+ContainerChild
-			this.labelLink = new global::Gtk.Label ();
+			this.labelLink = new global::Gtk.Label();
 			this.labelLink.Name = "labelLink";
-			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString ("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b></a>");
+			this.labelLink.LabelProp = global::Mono.Unix.Catalog.GetString("<a href=\"#\"><b><big><span color=\"blue\">http://flickrdownloadr.com</span></big></b" +
+					"></a>");
 			this.labelLink.UseMarkup = true;
 			this.labelLink.UseUnderline = true;
-			this.eventboxHyperlink.Add (this.labelLink);
-			this.hbox6.Add (this.eventboxHyperlink);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.eventboxHyperlink]));
+			this.eventboxHyperlink.Add(this.labelLink);
+			this.hbox6.Add(this.eventboxHyperlink);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.eventboxHyperlink]));
 			w9.Position = 1;
 			w9.Expand = false;
 			w9.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment2 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment2.Name = "alignment2";
-			this.hbox6.Add (this.alignment2);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment2]));
+			this.hbox6.Add(this.alignment2);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.alignment2]));
 			w10.Position = 2;
-			this.vbox5.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox6]));
+			this.vbox5.Add(this.hbox6);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.hbox6]));
 			w11.Position = 1;
 			w11.Expand = false;
 			w11.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
-			this.hbox5 = new global::Gtk.HBox ();
+			this.hbox2 = new global::Gtk.HBox();
+			this.hbox2.Name = "hbox2";
+			this.hbox2.Spacing = 6;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment3 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+			this.alignment3.Name = "alignment3";
+			this.hbox2.Add(this.alignment3);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.alignment3]));
+			w12.Position = 0;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.eventboxDonate = new global::Gtk.EventBox();
+			this.eventboxDonate.Name = "eventboxDonate";
+			// Container child eventboxDonate.Gtk.Container+ContainerChild
+			this.labelDonate = new global::Gtk.Label();
+			this.labelDonate.Name = "labelDonate";
+			this.labelDonate.LabelProp = global::Mono.Unix.Catalog.GetString("<a href=\"#\"><b><span color=\"blue\">Donate</span></b></a>");
+			this.labelDonate.UseMarkup = true;
+			this.labelDonate.UseUnderline = true;
+			this.eventboxDonate.Add(this.labelDonate);
+			this.hbox2.Add(this.eventboxDonate);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.eventboxDonate]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment4 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+			this.alignment4.Name = "alignment4";
+			this.hbox2.Add(this.alignment4);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.alignment4]));
+			w15.Position = 2;
+			this.vbox5.Add(this.hbox2);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.hbox2]));
+			w16.Position = 2;
+			w16.Expand = false;
+			w16.Fill = false;
+			// Container child vbox5.Gtk.Box+BoxChild
+			this.hbox5 = new global::Gtk.HBox();
 			this.hbox5.Name = "hbox5";
 			this.hbox5.Homogeneous = true;
 			this.hbox5.Spacing = 6;
 			// Container child hbox5.Gtk.Box+BoxChild
-			this.buttonClose = new global::Gtk.Button ();
+			this.buttonClose = new global::Gtk.Button();
 			this.buttonClose.WidthRequest = 50;
 			this.buttonClose.CanFocus = true;
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.UseUnderline = true;
-			this.buttonClose.Label = global::Mono.Unix.Catalog.GetString ("Close");
-			this.hbox5.Add (this.buttonClose);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonClose]));
-			w12.Position = 2;
-			w12.Expand = false;
-			w12.Fill = false;
-			this.vbox5.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox5]));
-			w13.Position = 2;
-			w13.Expand = false;
-			w13.Fill = false;
-			this.vbox3.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox5]));
-			w14.Position = 1;
-			this.Add (this.vbox3);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.buttonClose.Label = global::Mono.Unix.Catalog.GetString("Close");
+			this.hbox5.Add(this.buttonClose);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.buttonClose]));
+			w17.Position = 2;
+			w17.Expand = false;
+			w17.Fill = false;
+			this.vbox5.Add(this.hbox5);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.hbox5]));
+			w18.Position = 3;
+			w18.Expand = false;
+			w18.Fill = false;
+			this.vbox3.Add(this.vbox5);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.vbox5]));
+			w19.Position = 1;
+			this.Add(this.vbox3);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
-			this.Show ();
-			this.eventboxHyperlink.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.eventboxHyperlinkClicked);
-			this.buttonClose.Clicked += new global::System.EventHandler (this.buttonCloseClick);
+			this.Show();
+			this.eventboxHyperlink.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler(this.eventboxHyperlinkClicked);
+			this.eventboxDonate.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler(this.eventboxDonateClicked);
+			this.buttonClose.Clicked += new global::System.EventHandler(this.buttonCloseClick);
 		}
 	}
 }

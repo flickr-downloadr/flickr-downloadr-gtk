@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using FloydPink.Flickr.Downloadr.Bootstrap;
@@ -174,13 +175,24 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         var message = downloadComplete
           ? "Download completed to the directory"
           : "Incomplete download could be found at";
+        var readyToDonate = ResponseType.No;
         if (downloadComplete)
         {
           ClearSelectedPhotos();
+          readyToDonate = MessageBox.Show(this, string.Format("{0}: {1}{1}{2}",
+                                              "Download completed",
+                                              Environment.NewLine,
+                                              "Would you consider making a small donation?"),
+                          ButtonsType.YesNo, MessageType.Question);
         }
         MessageBox.Show(this,
           string.Format("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),
           ButtonsType.Ok, MessageType.Info);
+
+        if (readyToDonate == ResponseType.Yes)
+        {
+          Process.Start(VersionHelper.GetDonateUrl("downloadComplete"));
+        }
       });
     }
 

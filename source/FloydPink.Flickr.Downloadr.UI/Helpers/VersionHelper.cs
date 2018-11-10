@@ -17,6 +17,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Helpers
       return string.Format(CampaignUrlFormat, string.Empty, "about", HttpUtility.UrlEncode(GetVersionString()));
     }
 
+    public static string GetDonateUrl(string utmMedium)
+    {
+      return string.Format(CampaignUrlFormat, "donate", utmMedium, HttpUtility.UrlEncode(GetVersionString()));
+    }
+
     public static string GetUpdateUrl()
     {
       return string.Format(CampaignUrlFormat, "downloads", "update", HttpUtility.UrlEncode(GetVersionString()));

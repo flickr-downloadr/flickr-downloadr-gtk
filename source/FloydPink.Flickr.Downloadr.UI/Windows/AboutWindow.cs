@@ -30,5 +30,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Log.Debug("eventboxHyperlinkClicked");
       Process.Start(VersionHelper.GetAboutUrl());
     }
+
+    protected void eventboxDonateClicked(object o, ButtonPressEventArgs args)
+    {
+      Log.Debug("eventboxHyperlinkClicked");
+      Process.Start(VersionHelper.GetDonateUrl("about"));
+    }
   }
 }
