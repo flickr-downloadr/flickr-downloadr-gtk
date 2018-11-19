@@ -33,6 +33,9 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap
       For<IUpdateCheckLogic>()
         .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IUpdateCheckLogic>())
         .Use<UpdateCheckLogic>();
+      For<IDonateIntentCheckLogic>()
+        .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IDonateIntentCheckLogic>())
+        .Use<DonateIntentCheckLogic>();
       For<ISystemProcess>()
         .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<ISystemProcess>())
         .Use<SystemProcess>();

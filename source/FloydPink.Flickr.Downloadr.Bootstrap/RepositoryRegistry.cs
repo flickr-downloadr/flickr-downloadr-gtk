@@ -20,6 +20,9 @@ namespace FloydPink.Flickr.Downloadr.Bootstrap
       For<IRepository<Update>>()
         .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IRepository<Update>>())
         .Use<UpdateRepository>();
+      For<IRepository<DonateIntent>>()
+        .DecorateAllWith(DynamicProxy.LoggingInterceptorFor<IRepository<DonateIntent>>())
+        .Use<DonateIntentRepository>();
     }
   }
 }

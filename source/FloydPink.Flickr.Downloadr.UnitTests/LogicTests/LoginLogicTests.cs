@@ -26,12 +26,14 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
       _userRepository = MockRepository.GenerateMock<IRepository<User>>();
       _preferencesRepository = MockRepository.GenerateStub<IRepository<Preferences>>();
       _updateRepository = MockRepository.GenerateStub<IRepository<Update>>();
+      _donateIntentRepo = MockRepository.GenerateStub<IRepository<DonateIntent>>();
     }
 
     private IOAuthManager _oAuthManager;
     private IRepository<Preferences> _preferencesRepository;
     private IRepository<Token> _tokenRepository;
     private IRepository<Update> _updateRepository;
+    private IRepository<DonateIntent> _donateIntentRepo;
     private IUserInfoLogic _userInfoLogic;
     private IRepository<User> _userRepository;
     private ISystemProcess _systemProcess;
@@ -41,7 +43,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
     {
       _oAuthManager.Expect(o => o.BeginAuthorization()).Return(string.Empty);
       _systemProcess.Expect(s => s.Start(Arg<ProcessStartInfo>.Is.Anything));
-      var logic = new LoginLogic(_oAuthManager, null, _systemProcess, null, null, null, null);
+      var logic = new LoginLogic(_oAuthManager, null, _systemProcess, null, null, null, null, _donateIntentRepo);
 
       logic.Login(null);
 
@@ -53,7 +55,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
     public void WillCallDeleteOnAllRepositoriesOnLogout()
     {
       var logic = new LoginLogic(null, null, null, _tokenRepository, _userRepository, _preferencesRepository,
-        _updateRepository);
+        _updateRepository, _donateIntentRepo);
       logic.Logout();
 
       _tokenRepository.AssertWasCalled(t => t.Delete());
@@ -66,7 +68,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
     public async Task WillCallTestLoginMethodOnIsUserLoggedInAsync()
     {
       var logic = new LoginLogic(_oAuthManager, null, null, _tokenRepository, _userRepository, _preferencesRepository,
-        _updateRepository);
+        _updateRepository, _donateIntentRepo);
 
       const string tokenString = "Some String";
       _tokenRepository.Expect(t => t.Get()).Return(new Token
@@ -98,7 +100,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
       dynamic deserializedJson = new JavaScriptSerializer().Deserialize<dynamic>(mockJsonResponse);
 
       var logic = new LoginLogic(_oAuthManager, null, null, _tokenRepository, _userRepository, _preferencesRepository,
-        _updateRepository);
+        _updateRepository, _donateIntentRepo);
 
       _tokenRepository.Expect(t => t.Get()).Return(new Token
       {
@@ -128,7 +130,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
     public async Task WillReturnFalseWhenTokenRepositoryReturnsEmptyTokenStringOnIsUserLoggedInAsync()
     {
       var logic = new LoginLogic(_oAuthManager, null, null, _tokenRepository, _userRepository, _preferencesRepository,
-        _updateRepository);
+        _updateRepository, _donateIntentRepo);
       _tokenRepository.Expect(t => t.Get()).Return(new Token
       {
         TokenString = null,
@@ -154,7 +156,7 @@ namespace FloydPink.Flickr.Downloadr.UnitTests.LogicTests
       dynamic deserializedJson = new JavaScriptSerializer().Deserialize<dynamic>(mockJsonResponse);
 
       var logic = new LoginLogic(_oAuthManager, _userInfoLogic, null, _tokenRepository, _userRepository,
-        _preferencesRepository, _updateRepository);
+        _preferencesRepository, _updateRepository, _donateIntentRepo);
 
       _tokenRepository.Expect(t => t.Get()).Return(new Token
       {

@@ -167,7 +167,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       return result != ResponseType.Yes;
     }
 
-    public void DownloadComplete(string downloadedLocation, bool downloadComplete)
+    public void DownloadComplete(string downloadedLocation, bool downloadComplete, DonateIntent intent = null)
     {
       Log.Debug("DownloadComplete");
       Application.Invoke(delegate
@@ -179,11 +179,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         if (downloadComplete)
         {
           ClearSelectedPhotos();
-          readyToDonate = MessageBox.Show(this, string.Format("{0}: {1}{1}{2}",
-                                              "Download completed",
-                                              Environment.NewLine,
-                                              "Would you consider making a small donation?"),
-                          ButtonsType.YesNo, MessageType.Question);
+          if (!intent.Suppressed)
+          {
+            readyToDonate = MessageBox.Show(this, string.Format("{0}: {1}{1}{2}",
+                                                "Download completed",
+                                                Environment.NewLine,
+                                                "Would you consider making a small donation?"),
+                            ButtonsType.YesNo, MessageType.Question);
+          }
         }
         MessageBox.Show(this,
           string.Format("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),

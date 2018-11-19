@@ -63,6 +63,8 @@
     <Compile Include="Interfaces\IUpdateCheckLogic.cs" />
     <Compile Include="UpdateCheckLogic.cs" />
     <Compile Include="UserInfoLogic.cs" />
+    <Compile Include="Interfaces\IDonateIntentCheckLogic.cs" />
+    <Compile Include="DonateIntentCheckLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FloydPink.Flickr.Downloadr.Model\FloydPink.Flickr.Downloadr.Model.csproj">

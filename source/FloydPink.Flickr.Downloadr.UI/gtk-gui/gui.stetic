@@ -704,7 +704,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="736 752">
+  <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.PreferencesWindow" design-size="736 807">
     <property name="MemberName" />
     <property name="HeightRequest">510</property>
     <property name="Title" translatable="yes">Preferences - flickr downloadr</property>
@@ -860,6 +860,18 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Label" id="labelDonation">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Donation Request:</property>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">8</property>
+                        <property name="AutoSize">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Label" id="labelUpdate">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
@@ -867,7 +879,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">8</property>
+                        <property name="Position">9</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -879,7 +891,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">9</property>
+                        <property name="Position">10</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -892,7 +904,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">10</property>
+                        <property name="Position">11</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -904,7 +916,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">11</property>
+                        <property name="Position">12</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -916,7 +928,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">12</property>
+                        <property name="Position">13</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -928,7 +940,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">13</property>
+                        <property name="Position">14</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -940,7 +952,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">14</property>
+                        <property name="Position">15</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -952,7 +964,7 @@
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">15</property>
+                        <property name="Position">16</property>
                         <property name="AutoSize">False</property>
                       </packing>
                     </child>
@@ -985,6 +997,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Photo ID</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1236,6 +1249,23 @@ All</property>
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.CheckButton" id="checkbuttonDonate">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Label" translatable="yes">Suppress donation requests (I have already donated)</property>
+                    <property name="DrawIndicator">True</property>
+                    <property name="HasLabel">True</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">8</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.HBox" id="hbox10">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
@@ -1256,7 +1286,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">8</property>
+                    <property name="Position">9</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1300,7 +1330,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">9</property>
+                    <property name="Position">10</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1341,7 +1371,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">10</property>
+                    <property name="Position">11</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1358,7 +1388,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">11</property>
+                    <property name="Position">12</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1374,6 +1404,7 @@ All</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Internal</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -1404,7 +1435,7 @@ All</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">12</property>
+                    <property name="Position">13</property>
                     <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                   </packing>
@@ -1419,7 +1450,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">13</property>
+                    <property name="Position">14</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1436,7 +1467,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">14</property>
+                    <property name="Position">15</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -1451,7 +1482,7 @@ Restricted</property>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">15</property>
+                    <property name="Position">16</property>
                     <property name="AutoSize">False</property>
                   </packing>
                 </child>

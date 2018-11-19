@@ -27,6 +27,7 @@ namespace FloydPink.Flickr.Downloadr.Model
     public string LogLocation { get; set; }
     public bool Visited { get; set; }
     public bool NeedLocationMetadata { get; set; }
+    public bool SuppressDonationPrompt { get; set; }
 
     public static Preferences GetDefault()
     {
@@ -50,6 +51,7 @@ namespace FloydPink.Flickr.Downloadr.Model
         CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
           "flickr-downloadr", "Cache"),
         CheckForUpdates = true,
+        SuppressDonationPrompt = false,
         LogLevel = LogLevel.Info,
         LogLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
           "flickr-downloadr", "Logs")

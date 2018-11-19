@@ -16,6 +16,6 @@ namespace FloydPink.Flickr.Downloadr.Presentation.Views
     string Total { get; set; }
     void UpdateProgress(string percentDone, string operationText, bool cancellable);
     bool ShowWarning(string warningMessage);
-    void DownloadComplete(string downloadedLocation, bool downloadComplete);
+    void DownloadComplete(string downloadedLocation, bool downloadComplete, DonateIntent intent = null);
   }
 }

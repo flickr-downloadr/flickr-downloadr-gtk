@@ -93,6 +93,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       buttonSave.TooltipText = "Save all the settings and continue to the photoset selection window";
       labelUpdate.TooltipText = checkbuttonUpdate.TooltipText =
         "Get notified automatically when there is an updated version available";
+      labelDonation.TooltipText = checkbuttonDonate.TooltipText =
+        "Suppress the requests asking for a small donation (after you've made one)";
       labelLogLevel.TooltipText = comboboxLogLevel.TooltipText =
         "Set the level of diagnostic logging (Recommended: Off)";
       labelLogLocation.TooltipText = entryLogLocation.TooltipText = buttonLogLocation.TooltipText =
@@ -167,6 +169,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       // Check for Update
       checkbuttonUpdate.Active = preferences.CheckForUpdates;
 
+      // Download prompt
+      checkbuttonDonate.Active = preferences.SuppressDonationPrompt;
+
       // Log Level
       comboboxLogLevel.Active = (int) preferences.LogLevel;
 
@@ -208,6 +213,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         NeedLocationMetadata = radioTagsOriginal.Active && checkbuttonLocation.Active,
         CacheLocation = entryCacheLocation.Text,
         CheckForUpdates = checkbuttonUpdate.Active,
+        SuppressDonationPrompt = checkbuttonDonate.Active,
         LogLevel =
           (LogLevel) Enum.Parse(typeof(LogLevel), comboboxLogLevel.ActiveText),
         LogLocation = entryLogLocation.Text

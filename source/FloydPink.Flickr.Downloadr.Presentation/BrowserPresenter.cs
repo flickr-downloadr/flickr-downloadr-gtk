@@ -17,13 +17,15 @@ namespace FloydPink.Flickr.Downloadr.Presentation
     private readonly IBrowserLogic _logic;
     private readonly Progress<ProgressUpdate> _progress = new Progress<ProgressUpdate>();
     private readonly IBrowserView _view;
+    private readonly IDonateIntentCheckLogic _donateIntentCheckLogic;
     private CancellationTokenSource _cancellationTokenSource;
     private string _downloadedLocation;
 
-    public BrowserPresenter(IBrowserLogic logic, IBrowserView view)
+    public BrowserPresenter(IBrowserLogic logic, IBrowserView view, IDonateIntentCheckLogic donateIntentCheckLogic)
     {
       _logic = logic;
       _view = view;
+      _donateIntentCheckLogic = donateIntentCheckLogic;
       _progress.ProgressChanged += (sender, progress) =>
       {
         _view.UpdateProgress(
@@ -181,9 +183,13 @@ namespace FloydPink.Flickr.Downloadr.Presentation
 
         _cancellationTokenSource = new CancellationTokenSource();
         await
-          _logic.Download(photosList, _cancellationTokenSource.Token, _progress, _view.Preferences,
-            _view.CurrentPhotoset);
-        _view.DownloadComplete(_downloadedLocation, true);
+          _logic.Download(photosList,
+                          _cancellationTokenSource.Token,
+                          _progress,
+                          _view.Preferences,
+                          _view.CurrentPhotoset);
+        var intent = _donateIntentCheckLogic.DonateIntentAvailable();
+        _view.DownloadComplete(_downloadedLocation, true, intent);
       } catch (OperationCanceledException)
       {
         _view.DownloadComplete(_downloadedLocation, false);

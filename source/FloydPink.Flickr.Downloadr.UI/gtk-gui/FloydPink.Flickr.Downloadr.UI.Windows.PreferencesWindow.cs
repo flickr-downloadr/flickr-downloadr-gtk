@@ -34,6 +34,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 
 		private global::Gtk.Label labelLogLevel;
 
+		private global::Gtk.Label labelDonation;
+
 		private global::Gtk.Label labelUpdate;
 
 		private global::Gtk.Label labelCacheSize;
@@ -89,6 +91,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 		private global::Gtk.Button buttonLogLocation;
 
 		private global::Gtk.ComboBox comboboxLogLevel;
+
+		private global::Gtk.CheckButton checkbuttonDonate;
 
 		private global::Gtk.HBox hbox10;
 
@@ -252,23 +256,32 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			w11.PackType = ((global::Gtk.PackType)(1));
 			w11.Position = 7;
 			// Container child vbox12.Gtk.Box+BoxChild
+			this.labelDonation = new global::Gtk.Label();
+			this.labelDonation.Name = "labelDonation";
+			this.labelDonation.Xalign = 0F;
+			this.labelDonation.LabelProp = global::Mono.Unix.Catalog.GetString("Donation Request:");
+			this.vbox12.Add(this.labelDonation);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelDonation]));
+			w12.PackType = ((global::Gtk.PackType)(1));
+			w12.Position = 8;
+			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelUpdate = new global::Gtk.Label();
 			this.labelUpdate.Name = "labelUpdate";
 			this.labelUpdate.Xalign = 0F;
 			this.labelUpdate.LabelProp = global::Mono.Unix.Catalog.GetString("Update Notification:");
 			this.vbox12.Add(this.labelUpdate);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelUpdate]));
-			w12.PackType = ((global::Gtk.PackType)(1));
-			w12.Position = 8;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelUpdate]));
+			w13.PackType = ((global::Gtk.PackType)(1));
+			w13.Position = 9;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelCacheSize = new global::Gtk.Label();
 			this.labelCacheSize.Name = "labelCacheSize";
 			this.labelCacheSize.Xalign = 0F;
 			this.labelCacheSize.LabelProp = global::Mono.Unix.Catalog.GetString("Cache Size:");
 			this.vbox12.Add(this.labelCacheSize);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelCacheSize]));
-			w13.PackType = ((global::Gtk.PackType)(1));
-			w13.Position = 9;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelCacheSize]));
+			w14.PackType = ((global::Gtk.PackType)(1));
+			w14.Position = 10;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelCacheLocation = new global::Gtk.Label();
 			this.labelCacheLocation.Name = "labelCacheLocation";
@@ -276,63 +289,63 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.labelCacheLocation.LabelProp = global::Mono.Unix.Catalog.GetString("Cache Location: <span color=\"red\">*</span>");
 			this.labelCacheLocation.UseMarkup = true;
 			this.vbox12.Add(this.labelCacheLocation);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelCacheLocation]));
-			w14.PackType = ((global::Gtk.PackType)(1));
-			w14.Position = 10;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelCacheLocation]));
+			w15.PackType = ((global::Gtk.PackType)(1));
+			w15.Position = 11;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelLocation = new global::Gtk.Label();
 			this.labelLocation.Name = "labelLocation";
 			this.labelLocation.Xalign = 0F;
 			this.labelLocation.LabelProp = global::Mono.Unix.Catalog.GetString("Location:");
 			this.vbox12.Add(this.labelLocation);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelLocation]));
-			w15.PackType = ((global::Gtk.PackType)(1));
-			w15.Position = 11;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelLocation]));
+			w16.PackType = ((global::Gtk.PackType)(1));
+			w16.Position = 12;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelTags = new global::Gtk.Label();
 			this.labelTags.Name = "labelTags";
 			this.labelTags.Xalign = 0F;
 			this.labelTags.LabelProp = global::Mono.Unix.Catalog.GetString("Tags:");
 			this.vbox12.Add(this.labelTags);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelTags]));
-			w16.PackType = ((global::Gtk.PackType)(1));
-			w16.Position = 12;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelTags]));
+			w17.PackType = ((global::Gtk.PackType)(1));
+			w17.Position = 13;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelSafetyLevel = new global::Gtk.Label();
 			this.labelSafetyLevel.Name = "labelSafetyLevel";
 			this.labelSafetyLevel.Xalign = 0F;
 			this.labelSafetyLevel.LabelProp = global::Mono.Unix.Catalog.GetString("Safety Level:");
 			this.vbox12.Add(this.labelSafetyLevel);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelSafetyLevel]));
-			w17.PackType = ((global::Gtk.PackType)(1));
-			w17.Position = 13;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelSafetyLevel]));
+			w18.PackType = ((global::Gtk.PackType)(1));
+			w18.Position = 14;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelPhotosPerPage = new global::Gtk.Label();
 			this.labelPhotosPerPage.Name = "labelPhotosPerPage";
 			this.labelPhotosPerPage.Xalign = 0F;
 			this.labelPhotosPerPage.LabelProp = global::Mono.Unix.Catalog.GetString("Photos Per Page:");
 			this.vbox12.Add(this.labelPhotosPerPage);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelPhotosPerPage]));
-			w18.PackType = ((global::Gtk.PackType)(1));
-			w18.Position = 14;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelPhotosPerPage]));
+			w19.PackType = ((global::Gtk.PackType)(1));
+			w19.Position = 15;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.labelAlbumSearchName = new global::Gtk.Label();
 			this.labelAlbumSearchName.Name = "labelAlbumSearchName";
 			this.labelAlbumSearchName.Xalign = 0F;
 			this.labelAlbumSearchName.LabelProp = global::Mono.Unix.Catalog.GetString("Search for Album Name:");
 			this.vbox12.Add(this.labelAlbumSearchName);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelAlbumSearchName]));
-			w19.PackType = ((global::Gtk.PackType)(1));
-			w19.Position = 15;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox12[this.labelAlbumSearchName]));
+			w20.PackType = ((global::Gtk.PackType)(1));
+			w20.Position = 16;
 			this.vbox11.Add(this.vbox12);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.vbox12]));
-			w20.Position = 0;
-			w20.Expand = false;
-			this.hbox1.Add(this.vbox11);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox11]));
-			w21.Position = 1;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.vbox12]));
+			w21.Position = 0;
 			w21.Expand = false;
-			w21.Fill = false;
+			this.hbox1.Add(this.vbox11);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox11]));
+			w22.Position = 1;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.vbox13 = new global::Gtk.VBox();
 			this.vbox13.Name = "vbox13";
@@ -350,8 +363,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioPhotoId.UseUnderline = true;
 			this.radioPhotoId.Group = new global::GLib.SList(global::System.IntPtr.Zero);
 			this.hbox3.Add(this.radioPhotoId);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioPhotoId]));
-			w22.Position = 0;
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioPhotoId]));
+			w23.Position = 0;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.radioOriginalOrder = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Original Order"));
 			this.radioOriginalOrder.CanFocus = true;
@@ -360,8 +373,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioOriginalOrder.UseUnderline = true;
 			this.radioOriginalOrder.Group = this.radioPhotoId.Group;
 			this.hbox3.Add(this.radioOriginalOrder);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioOriginalOrder]));
-			w23.Position = 1;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioOriginalOrder]));
+			w24.Position = 1;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.radioPhotoTitle = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Photo Title"));
 			this.radioPhotoTitle.CanFocus = true;
@@ -370,11 +383,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioPhotoTitle.UseUnderline = true;
 			this.radioPhotoTitle.Group = this.radioPhotoId.Group;
 			this.hbox3.Add(this.radioPhotoTitle);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioPhotoTitle]));
-			w24.Position = 2;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.radioPhotoTitle]));
+			w25.Position = 2;
 			this.vbox13.Add(this.hbox3);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox3]));
-			w25.Position = 0;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox3]));
+			w26.Position = 0;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox4 = new global::Gtk.HBox();
 			this.hbox4.Name = "hbox4";
@@ -386,8 +399,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.entryDownloadLocation.IsEditable = false;
 			this.entryDownloadLocation.InvisibleChar = '●';
 			this.hbox4.Add(this.entryDownloadLocation);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.entryDownloadLocation]));
-			w26.Position = 0;
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.entryDownloadLocation]));
+			w27.Position = 0;
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.buttonDownloadLocation = new global::Gtk.Button();
 			this.buttonDownloadLocation.WidthRequest = 0;
@@ -396,14 +409,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonDownloadLocation.UseUnderline = true;
 			this.buttonDownloadLocation.Label = global::Mono.Unix.Catalog.GetString("...");
 			this.hbox4.Add(this.buttonDownloadLocation);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.buttonDownloadLocation]));
-			w27.Position = 1;
-			w27.Expand = false;
-			w27.Fill = false;
-			this.vbox13.Add(this.hbox4);
-			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox4]));
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.buttonDownloadLocation]));
 			w28.Position = 1;
+			w28.Expand = false;
 			w28.Fill = false;
+			this.vbox13.Add(this.hbox4);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox4]));
+			w29.Position = 1;
+			w29.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxDownloadSize = global::Gtk.ComboBox.NewText();
 			this.comboboxDownloadSize.AppendText(global::Mono.Unix.Catalog.GetString("Medium"));
@@ -411,9 +424,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.comboboxDownloadSize.AppendText(global::Mono.Unix.Catalog.GetString("Original"));
 			this.comboboxDownloadSize.Name = "comboboxDownloadSize";
 			this.vbox13.Add(this.comboboxDownloadSize);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxDownloadSize]));
-			w29.Position = 2;
-			w29.Fill = false;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxDownloadSize]));
+			w30.Position = 2;
+			w30.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox8 = new global::Gtk.HBox();
 			this.hbox8.Name = "hbox8";
@@ -427,8 +440,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.checkbuttonTags.DrawIndicator = true;
 			this.checkbuttonTags.UseUnderline = true;
 			this.hbox8.Add(this.checkbuttonTags);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.checkbuttonTags]));
-			w30.Position = 0;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.checkbuttonTags]));
+			w31.Position = 0;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.checkbuttonDescription = new global::Gtk.CheckButton();
 			this.checkbuttonDescription.CanFocus = true;
@@ -437,12 +450,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.checkbuttonDescription.DrawIndicator = true;
 			this.checkbuttonDescription.UseUnderline = true;
 			this.hbox8.Add(this.checkbuttonDescription);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.checkbuttonDescription]));
-			w31.Position = 1;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.checkbuttonDescription]));
+			w32.Position = 1;
 			this.vbox13.Add(this.hbox8);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox8]));
-			w32.Position = 3;
-			w32.Expand = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox8]));
+			w33.Position = 3;
+			w33.Expand = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox9 = new global::Gtk.HBox();
 			this.hbox9.Name = "hbox9";
@@ -456,19 +469,19 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.checkbuttonTitle.DrawIndicator = true;
 			this.checkbuttonTitle.UseUnderline = true;
 			this.hbox9.Add(this.checkbuttonTitle);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.checkbuttonTitle]));
-			w33.Position = 0;
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.checkbuttonTitle]));
+			w34.Position = 0;
 			// Container child hbox9.Gtk.Box+BoxChild
 			this.fixed5 = new global::Gtk.Fixed();
 			this.fixed5.Name = "fixed5";
 			this.fixed5.HasWindow = false;
 			this.hbox9.Add(this.fixed5);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.fixed5]));
-			w34.Position = 1;
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.fixed5]));
+			w35.Position = 1;
 			this.vbox13.Add(this.hbox9);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox9]));
-			w35.Position = 4;
-			w35.Expand = false;
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox9]));
+			w36.Position = 4;
+			w36.Expand = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.labelRestartRequired = new global::Gtk.Label();
 			this.labelRestartRequired.Name = "labelRestartRequired";
@@ -476,9 +489,9 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.labelRestartRequired.LabelProp = global::Mono.Unix.Catalog.GetString("<span color=\"red\">*</span> Requires Restart");
 			this.labelRestartRequired.UseMarkup = true;
 			this.vbox13.Add(this.labelRestartRequired);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.labelRestartRequired]));
-			w36.PackType = ((global::Gtk.PackType)(1));
-			w36.Position = 5;
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.labelRestartRequired]));
+			w37.PackType = ((global::Gtk.PackType)(1));
+			w37.Position = 5;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox11 = new global::Gtk.HBox();
 			this.hbox11.Name = "hbox11";
@@ -490,8 +503,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.entryLogLocation.IsEditable = false;
 			this.entryLogLocation.InvisibleChar = '●';
 			this.hbox11.Add(this.entryLogLocation);
-			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.entryLogLocation]));
-			w37.Position = 0;
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.entryLogLocation]));
+			w38.Position = 0;
 			// Container child hbox11.Gtk.Box+BoxChild
 			this.buttonLogLocation = new global::Gtk.Button();
 			this.buttonLogLocation.CanFocus = true;
@@ -499,16 +512,16 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonLogLocation.UseUnderline = true;
 			this.buttonLogLocation.Label = global::Mono.Unix.Catalog.GetString("...");
 			this.hbox11.Add(this.buttonLogLocation);
-			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.buttonLogLocation]));
-			w38.Position = 1;
-			w38.Expand = false;
-			w38.Fill = false;
-			this.vbox13.Add(this.hbox11);
-			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox11]));
-			w39.PackType = ((global::Gtk.PackType)(1));
-			w39.Position = 6;
+			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.buttonLogLocation]));
+			w39.Position = 1;
 			w39.Expand = false;
 			w39.Fill = false;
+			this.vbox13.Add(this.hbox11);
+			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox11]));
+			w40.PackType = ((global::Gtk.PackType)(1));
+			w40.Position = 6;
+			w40.Expand = false;
+			w40.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxLogLevel = global::Gtk.ComboBox.NewText();
 			this.comboboxLogLevel.AppendText(global::Mono.Unix.Catalog.GetString("Off"));
@@ -520,11 +533,24 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.comboboxLogLevel.AppendText(global::Mono.Unix.Catalog.GetString("All"));
 			this.comboboxLogLevel.Name = "comboboxLogLevel";
 			this.vbox13.Add(this.comboboxLogLevel);
-			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxLogLevel]));
-			w40.PackType = ((global::Gtk.PackType)(1));
-			w40.Position = 7;
-			w40.Expand = false;
-			w40.Fill = false;
+			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxLogLevel]));
+			w41.PackType = ((global::Gtk.PackType)(1));
+			w41.Position = 7;
+			w41.Expand = false;
+			w41.Fill = false;
+			// Container child vbox13.Gtk.Box+BoxChild
+			this.checkbuttonDonate = new global::Gtk.CheckButton();
+			this.checkbuttonDonate.CanFocus = true;
+			this.checkbuttonDonate.Name = "checkbuttonDonate";
+			this.checkbuttonDonate.Label = global::Mono.Unix.Catalog.GetString("Suppress donation requests (I have already donated)");
+			this.checkbuttonDonate.DrawIndicator = true;
+			this.checkbuttonDonate.UseUnderline = true;
+			this.vbox13.Add(this.checkbuttonDonate);
+			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.checkbuttonDonate]));
+			w42.PackType = ((global::Gtk.PackType)(1));
+			w42.Position = 8;
+			w42.Expand = false;
+			w42.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox10 = new global::Gtk.HBox();
 			this.hbox10.Name = "hbox10";
@@ -537,14 +563,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.checkbuttonUpdate.DrawIndicator = true;
 			this.checkbuttonUpdate.UseUnderline = true;
 			this.hbox10.Add(this.checkbuttonUpdate);
-			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.checkbuttonUpdate]));
-			w41.Position = 0;
+			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.checkbuttonUpdate]));
+			w43.Position = 0;
 			this.vbox13.Add(this.hbox10);
-			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox10]));
-			w42.PackType = ((global::Gtk.PackType)(1));
-			w42.Position = 8;
-			w42.Expand = false;
-			w42.Fill = false;
+			global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox10]));
+			w44.PackType = ((global::Gtk.PackType)(1));
+			w44.Position = 9;
+			w44.Expand = false;
+			w44.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox7 = new global::Gtk.HBox();
 			this.hbox7.Name = "hbox7";
@@ -554,10 +580,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.labelCacheSizeValue.Name = "labelCacheSizeValue";
 			this.labelCacheSizeValue.LabelProp = global::Mono.Unix.Catalog.GetString("0 KB");
 			this.hbox7.Add(this.labelCacheSizeValue);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.labelCacheSizeValue]));
-			w43.Position = 0;
-			w43.Expand = false;
-			w43.Fill = false;
+			global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.labelCacheSizeValue]));
+			w45.Position = 0;
+			w45.Expand = false;
+			w45.Fill = false;
 			// Container child hbox7.Gtk.Box+BoxChild
 			this.buttonEmptyCache = new global::Gtk.Button();
 			this.buttonEmptyCache.WidthRequest = 100;
@@ -567,17 +593,17 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonEmptyCache.UseUnderline = true;
 			this.buttonEmptyCache.Label = global::Mono.Unix.Catalog.GetString("Empty Cache");
 			this.hbox7.Add(this.buttonEmptyCache);
-			global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.buttonEmptyCache]));
-			w44.Position = 1;
-			w44.Expand = false;
-			w44.Fill = false;
-			w44.Padding = ((uint)(5));
+			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.buttonEmptyCache]));
+			w46.Position = 1;
+			w46.Expand = false;
+			w46.Fill = false;
+			w46.Padding = ((uint)(5));
 			this.vbox13.Add(this.hbox7);
-			global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox7]));
-			w45.PackType = ((global::Gtk.PackType)(1));
-			w45.Position = 9;
-			w45.Expand = false;
-			w45.Fill = false;
+			global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox7]));
+			w47.PackType = ((global::Gtk.PackType)(1));
+			w47.Position = 10;
+			w47.Expand = false;
+			w47.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox5 = new global::Gtk.HBox();
 			this.hbox5.Name = "hbox5";
@@ -589,8 +615,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.entryCacheLocation.IsEditable = false;
 			this.entryCacheLocation.InvisibleChar = '●';
 			this.hbox5.Add(this.entryCacheLocation);
-			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.entryCacheLocation]));
-			w46.Position = 0;
+			global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.entryCacheLocation]));
+			w48.Position = 0;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.buttonCacheLocation = new global::Gtk.Button();
 			this.buttonCacheLocation.CanFocus = true;
@@ -598,16 +624,16 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonCacheLocation.UseUnderline = true;
 			this.buttonCacheLocation.Label = global::Mono.Unix.Catalog.GetString("...");
 			this.hbox5.Add(this.buttonCacheLocation);
-			global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.buttonCacheLocation]));
-			w47.Position = 1;
-			w47.Expand = false;
-			w47.Fill = false;
+			global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.buttonCacheLocation]));
+			w49.Position = 1;
+			w49.Expand = false;
+			w49.Fill = false;
 			this.vbox13.Add(this.hbox5);
-			global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox5]));
-			w48.PackType = ((global::Gtk.PackType)(1));
-			w48.Position = 10;
-			w48.Expand = false;
-			w48.Fill = false;
+			global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox5]));
+			w50.PackType = ((global::Gtk.PackType)(1));
+			w50.Position = 11;
+			w50.Expand = false;
+			w50.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.checkbuttonLocation = new global::Gtk.CheckButton();
 			this.checkbuttonLocation.CanFocus = true;
@@ -616,11 +642,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.checkbuttonLocation.DrawIndicator = true;
 			this.checkbuttonLocation.UseUnderline = true;
 			this.vbox13.Add(this.checkbuttonLocation);
-			global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.checkbuttonLocation]));
-			w49.PackType = ((global::Gtk.PackType)(1));
-			w49.Position = 11;
-			w49.Expand = false;
-			w49.Fill = false;
+			global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.checkbuttonLocation]));
+			w51.PackType = ((global::Gtk.PackType)(1));
+			w51.Position = 12;
+			w51.Expand = false;
+			w51.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.hbox6 = new global::Gtk.HBox();
 			this.hbox6.Name = "hbox6";
@@ -634,8 +660,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioTagsInternal.UseUnderline = true;
 			this.radioTagsInternal.Group = new global::GLib.SList(global::System.IntPtr.Zero);
 			this.hbox6.Add(this.radioTagsInternal);
-			global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.radioTagsInternal]));
-			w50.Position = 0;
+			global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.radioTagsInternal]));
+			w52.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.radioTagsOriginal = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Original (Slower download)"));
 			this.radioTagsOriginal.CanFocus = true;
@@ -644,13 +670,13 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.radioTagsOriginal.UseUnderline = true;
 			this.radioTagsOriginal.Group = this.radioTagsInternal.Group;
 			this.hbox6.Add(this.radioTagsOriginal);
-			global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.radioTagsOriginal]));
-			w51.Position = 1;
+			global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.radioTagsOriginal]));
+			w53.Position = 1;
 			this.vbox13.Add(this.hbox6);
-			global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox6]));
-			w52.PackType = ((global::Gtk.PackType)(1));
-			w52.Position = 12;
-			w52.Expand = false;
+			global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.hbox6]));
+			w54.PackType = ((global::Gtk.PackType)(1));
+			w54.Position = 13;
+			w54.Expand = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxSafetyLevel = global::Gtk.ComboBox.NewText();
 			this.comboboxSafetyLevel.AppendText(global::Mono.Unix.Catalog.GetString("Safe"));
@@ -658,11 +684,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.comboboxSafetyLevel.AppendText(global::Mono.Unix.Catalog.GetString("Restricted"));
 			this.comboboxSafetyLevel.Name = "comboboxSafetyLevel";
 			this.vbox13.Add(this.comboboxSafetyLevel);
-			global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxSafetyLevel]));
-			w53.PackType = ((global::Gtk.PackType)(1));
-			w53.Position = 13;
-			w53.Expand = false;
-			w53.Fill = false;
+			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxSafetyLevel]));
+			w55.PackType = ((global::Gtk.PackType)(1));
+			w55.Position = 14;
+			w55.Expand = false;
+			w55.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.comboboxPhotosPerPage = global::Gtk.ComboBox.NewText();
 			this.comboboxPhotosPerPage.AppendText(global::Mono.Unix.Catalog.GetString("25"));
@@ -671,11 +697,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.comboboxPhotosPerPage.AppendText(global::Mono.Unix.Catalog.GetString("100"));
 			this.comboboxPhotosPerPage.Name = "comboboxPhotosPerPage";
 			this.vbox13.Add(this.comboboxPhotosPerPage);
-			global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxPhotosPerPage]));
-			w54.PackType = ((global::Gtk.PackType)(1));
-			w54.Position = 14;
-			w54.Expand = false;
-			w54.Fill = false;
+			global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.comboboxPhotosPerPage]));
+			w56.PackType = ((global::Gtk.PackType)(1));
+			w56.Position = 15;
+			w56.Expand = false;
+			w56.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.entryAlbumSearchName = new global::Gtk.Entry();
 			this.entryAlbumSearchName.CanFocus = true;
@@ -683,26 +709,26 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.entryAlbumSearchName.IsEditable = true;
 			this.entryAlbumSearchName.InvisibleChar = '●';
 			this.vbox13.Add(this.entryAlbumSearchName);
-			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.entryAlbumSearchName]));
-			w55.PackType = ((global::Gtk.PackType)(1));
-			w55.Position = 15;
+			global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.entryAlbumSearchName]));
+			w57.PackType = ((global::Gtk.PackType)(1));
+			w57.Position = 16;
 			this.hbox1.Add(this.vbox13);
-			global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox13]));
-			w56.Position = 2;
-			w56.Expand = false;
-			w56.Fill = false;
-			w56.Padding = ((uint)(10));
+			global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox13]));
+			w58.Position = 2;
+			w58.Expand = false;
+			w58.Fill = false;
+			w58.Padding = ((uint)(10));
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment3 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment3.Name = "alignment3";
 			this.hbox1.Add(this.alignment3);
-			global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.alignment3]));
-			w57.PackType = ((global::Gtk.PackType)(1));
-			w57.Position = 3;
+			global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.alignment3]));
+			w59.PackType = ((global::Gtk.PackType)(1));
+			w59.Position = 3;
 			this.vbox9.Add(this.hbox1);
-			global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.hbox1]));
-			w58.Position = 2;
-			w58.Padding = ((uint)(10));
+			global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.hbox1]));
+			w60.Position = 2;
+			w60.Padding = ((uint)(10));
 			// Container child vbox9.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox();
 			this.hbox2.Name = "hbox2";
@@ -716,10 +742,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = global::Mono.Unix.Catalog.GetString("Cancel");
 			this.hbox2.Add(this.buttonCancel);
-			global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonCancel]));
-			w59.Position = 0;
-			w59.Expand = false;
-			w59.Fill = false;
+			global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonCancel]));
+			w61.Position = 0;
+			w61.Expand = false;
+			w61.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.buttonDefaults = new global::Gtk.Button();
 			this.buttonDefaults.WidthRequest = 80;
@@ -728,10 +754,10 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonDefaults.UseUnderline = true;
 			this.buttonDefaults.Label = global::Mono.Unix.Catalog.GetString("Defaults");
 			this.hbox2.Add(this.buttonDefaults);
-			global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonDefaults]));
-			w60.Position = 1;
-			w60.Expand = false;
-			w60.Fill = false;
+			global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonDefaults]));
+			w62.Position = 1;
+			w62.Expand = false;
+			w62.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.buttonSave = new global::Gtk.Button();
 			this.buttonSave.WidthRequest = 80;
@@ -740,23 +766,23 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 			this.buttonSave.UseUnderline = true;
 			this.buttonSave.Label = global::Mono.Unix.Catalog.GetString("Save");
 			this.hbox2.Add(this.buttonSave);
-			global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonSave]));
-			w61.Position = 2;
-			w61.Expand = false;
-			w61.Fill = false;
+			global::Gtk.Box.BoxChild w63 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.buttonSave]));
+			w63.Position = 2;
+			w63.Expand = false;
+			w63.Fill = false;
 			this.vbox9.Add(this.hbox2);
-			global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.hbox2]));
-			w62.Position = 3;
-			w62.Expand = false;
-			w62.Fill = false;
-			w62.Padding = ((uint)(5));
+			global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.hbox2]));
+			w64.Position = 3;
+			w64.Expand = false;
+			w64.Fill = false;
+			w64.Padding = ((uint)(5));
 			this.Add(this.vbox9);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 736;
-			this.DefaultHeight = 752;
+			this.DefaultHeight = 807;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.buttonDownloadLocation.Clicked += new global::System.EventHandler(this.buttonDownloadLocationClick);

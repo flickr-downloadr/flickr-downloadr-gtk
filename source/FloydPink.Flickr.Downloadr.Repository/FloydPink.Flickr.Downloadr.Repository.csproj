@@ -49,6 +49,7 @@
     <Compile Include="TokenRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UpdateRepository.cs" />
+    <Compile Include="DonateIntentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FloydPink.Flickr.Downloadr.Model\FloydPink.Flickr.Downloadr.Model.csproj">

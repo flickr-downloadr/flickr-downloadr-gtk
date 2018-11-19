@@ -18,13 +18,15 @@ namespace FloydPink.Flickr.Downloadr.Logic
     private readonly ISystemProcess _process;
     private readonly IRepository<Token> _tokenRepository;
     private readonly IRepository<Update> _updateRepository;
+    private readonly IRepository<DonateIntent> _donateIntentRepository;
     private readonly IUserInfoLogic _userInfoLogic;
     private readonly IRepository<User> _userRepository;
     private Action<User> _applyUser;
 
     public LoginLogic(IOAuthManager oAuthManager, IUserInfoLogic userInfoLogic, ISystemProcess process,
-      IRepository<Token> tokenRepository, IRepository<User> userRepository,
-      IRepository<Preferences> preferencesRepository, IRepository<Update> updateRepository)
+                      IRepository<Token> tokenRepository, IRepository<User> userRepository, 
+                      IRepository<Preferences> preferencesRepository, IRepository<Update> updateRepository,
+                      IRepository<DonateIntent> donateIntentRepository)
     {
       _oAuthManager = oAuthManager;
       _userInfoLogic = userInfoLogic;
@@ -33,6 +35,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
       _userRepository = userRepository;
       _preferencesRepository = preferencesRepository;
       _updateRepository = updateRepository;
+      _donateIntentRepository = donateIntentRepository;
     }
 
     private void OAuthManagerAuthenticated(object sender, AuthenticatedEventArgs e)
@@ -65,6 +68,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
       _userRepository.Delete();
       _preferencesRepository.Delete();
       _updateRepository.Delete();
+      _donateIntentRepository.Delete();
     }
 
     public async Task<bool> IsUserLoggedInAsync(Action<User> applyUser)
