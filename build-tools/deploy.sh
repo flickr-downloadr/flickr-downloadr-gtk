@@ -8,6 +8,7 @@ if [[ $TRAVIS = true ]]
 then
   echo "The TRAVIS_COMMIT variable has a value of - ${TRAVIS_COMMIT}"
   CIENGINE="travis"
+  brew upgrade 2>&1 1> "brewupgrade.log"
   brew update 2>&1 1> "brewupdate.log"
   brew install jq 2>&1 1> "brewinstall.log"
   echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | jq -r '.commit.message'"
