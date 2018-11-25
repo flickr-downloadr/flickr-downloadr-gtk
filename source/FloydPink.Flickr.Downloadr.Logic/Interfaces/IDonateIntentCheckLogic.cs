@@ -4,6 +4,6 @@ namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
 {
   public interface IDonateIntentCheckLogic
   {
-    DonateIntent DonateIntentAvailable();
+    DonateIntent DonateIntentAvailable(int photosCount = 0);
   }
 }

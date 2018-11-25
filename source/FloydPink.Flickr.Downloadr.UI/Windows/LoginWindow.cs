@@ -37,6 +37,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       _presenter.InitializeScreen();
     }
 
+    public override void ClearSelectedPhotos()
+    {
+      throw new NotImplementedException();
+    }
+
     protected void OnDeleteEvent(object sender, DeleteEventArgs args)
     {
       Log.Debug("OnDeleteEvent");

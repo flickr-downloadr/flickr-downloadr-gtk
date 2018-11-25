@@ -8,5 +8,6 @@ namespace FloydPink.Flickr.Downloadr.Presentation
     Task Initialize(int curAlbumPageNumber);
     Task NavigateTo(PhotoOrAlbumPage page);
     Task NavigateTo(int page);
+    Task DownloadSelection();
   }
 }

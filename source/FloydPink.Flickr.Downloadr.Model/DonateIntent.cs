@@ -12,5 +12,6 @@ namespace FloydPink.Flickr.Downloadr.Model
 
     public DateTime LastChecked { get; set; }
     public bool Suppressed { get; set; }
+    public int DownloadedPhotosCount { get; set; }
   }
 }

@@ -188,7 +188,7 @@ namespace FloydPink.Flickr.Downloadr.Presentation
                           _progress,
                           _view.Preferences,
                           _view.CurrentPhotoset);
-        var intent = _donateIntentCheckLogic.DonateIntentAvailable();
+        var intent = _donateIntentCheckLogic.DonateIntentAvailable(photosList.Count);
         _view.DownloadComplete(_downloadedLocation, true, intent);
       } catch (OperationCanceledException)
       {

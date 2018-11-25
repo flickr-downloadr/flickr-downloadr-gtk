@@ -160,45 +160,6 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       });
     }
 
-    public bool ShowWarning(string warningMessage)
-    {
-      Log.Debug("ShowWarning");
-      var result = MessageBox.Show(this, warningMessage, ButtonsType.YesNo, MessageType.Question);
-      return result != ResponseType.Yes;
-    }
-
-    public void DownloadComplete(string downloadedLocation, bool downloadComplete, DonateIntent intent = null)
-    {
-      Log.Debug("DownloadComplete");
-      Application.Invoke(delegate
-      {
-        var message = downloadComplete
-          ? "Download completed to the directory"
-          : "Incomplete download could be found at";
-        var readyToDonate = ResponseType.No;
-        if (downloadComplete)
-        {
-          ClearSelectedPhotos();
-          if (!intent.Suppressed)
-          {
-            readyToDonate = MessageBox.Show(this, string.Format("{0}: {1}{1}{2}",
-                                                "Download completed",
-                                                Environment.NewLine,
-                                                "Would you consider making a small donation?"),
-                            ButtonsType.YesNo, MessageType.Question);
-          }
-        }
-        MessageBox.Show(this,
-          string.Format("{0}: {1}{1}{2}", message, Environment.NewLine, downloadedLocation),
-          ButtonsType.Ok, MessageType.Info);
-
-        if (readyToDonate == ResponseType.Yes)
-        {
-          Process.Start(VersionHelper.GetDonateUrl("downloadComplete"));
-        }
-      });
-    }
-
     protected void OnDeleteEvent(object sender, DeleteEventArgs args)
     {
       Log.Debug("OnDeleteEvent");
@@ -265,7 +226,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       }
     }
 
-    private void ClearSelectedPhotos()
+    public override void ClearSelectedPhotos()
     {
       Log.Debug("ClearSelectedPhotos");
       AllSelectedPhotos.Clear();

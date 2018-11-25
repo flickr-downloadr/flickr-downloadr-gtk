@@ -2,21 +2,21 @@
 
 namespace FloydPink.Flickr.Downloadr.Model
 {
-  public class PhotosResponse
+  public class PhotosetsResponse
   {
-    public PhotosResponse(int page, int pages, int perPage, int total, IEnumerable<Photo> photos)
+    public PhotosetsResponse(int page, int pages, int perPage, int total, IEnumerable<Photoset> photosets)
     {
       Page = page;
       Pages = pages;
       PerPage = perPage;
       Total = total;
-      Photos = photos;
+      Photosets = photosets;
     }
 
     public int Page { get; private set; }
     public int Pages { get; private set; }
     public int PerPage { get; private set; }
     public int Total { get; private set; }
-    public IEnumerable<Photo> Photos { get; private set; }
+    public IEnumerable<Photoset> Photosets { get; set; }
   }
 }

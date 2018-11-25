@@ -9,6 +9,6 @@ namespace FloydPink.Flickr.Downloadr.Logic.Interfaces
   public interface IDownloadLogic
   {
     Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
-      Preferences preferences, Photoset photoset);
+                  Preferences preferences, Photoset photoset, string folderPrefix = null, string albumProgress = null);
   }
 }

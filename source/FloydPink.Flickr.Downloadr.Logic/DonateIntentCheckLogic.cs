@@ -21,20 +21,21 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
     #region IDonateIntentCheckLogic implementation
 
-    public DonateIntent DonateIntentAvailable()
+    public DonateIntent DonateIntentAvailable(int photosCount = 0)
     {
       try
       {
-        var update = _repository.Get();
+        var intent = _repository.Get();
         var preferences = _preferencesRepository.Get();
 
-        var suppressed = DateTime.Now.Subtract(TimeSpan.FromDays(1.0)) <= update.LastChecked;
-        update.Suppressed = suppressed || preferences.SuppressDonationPrompt;
-        update.LastChecked = DateTime.Now;
+        var suppressed = DateTime.Now.Subtract(TimeSpan.FromHours(1.0)) <= intent.LastChecked;
+        intent.Suppressed = suppressed || preferences.SuppressDonationPrompt;
+        intent.LastChecked = DateTime.Now;
+        intent.DownloadedPhotosCount = photosCount;
 
-        _repository.Save(update);
+        _repository.Save(intent);
 
-        return update;
+        return intent;
       } catch (Exception ex)
       {
         Log.Error(string.Format("Unexpected exception in DonateIntentCheckLogic::DonateIntentAvailble method\n\n{0}", ex));

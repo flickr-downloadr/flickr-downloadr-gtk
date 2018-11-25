@@ -2339,7 +2339,7 @@ Restricted</property>
   </widget>
   <widget class="Gtk.Window" id="FloydPink.Flickr.Downloadr.UI.Windows.LandingWindow" design-size="1130 622">
     <property name="MemberName" />
-    <property name="WidthRequest">960</property>
+    <property name="WidthRequest">1080</property>
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">Select Photoset - flickr downloadr</property>
     <property name="Icon">resource:FloydPink.Flickr.Downloadr.UI.Assets.icon.png</property>
@@ -2514,11 +2514,41 @@ Restricted</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="labelSets">
+          <widget class="Gtk.HBox" id="hboxAlbums">
             <property name="MemberName" />
-            <property name="Xalign">0</property>
-            <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;&lt;u&gt;Albums:&lt;/u&gt;&lt;/b&gt;&lt;/big&gt;</property>
-            <property name="UseMarkup">True</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="labelSets">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;&lt;u&gt;Albums:&lt;/u&gt;&lt;/b&gt;&lt;/big&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.CheckButton" id="checkbuttonDownloadMultipleAlbums">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Label" translatable="yes">Download entire albums </property>
+                <property name="DrawIndicator">True</property>
+                <property name="HasLabel">True</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Toggled" handler="checkbuttonDownloadMultipleAlbumsToggled" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
           </widget>
           <packing>
             <property name="Position">2</property>
@@ -2563,11 +2593,11 @@ Restricted</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hboxBottom">
+          <widget class="Gtk.HBox" id="hboxBottom1">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.HBox" id="hboxButtons">
+              <widget class="Gtk.HBox" id="hboxButtons1">
                 <property name="MemberName" />
                 <property name="Homogeneous">True</property>
                 <property name="Spacing">6</property>
@@ -2576,7 +2606,7 @@ Restricted</property>
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Button" id="buttonBack">
+                      <widget class="Gtk.Button" id="buttonBack1">
                         <property name="MemberName" />
                         <property name="WidthRequest">65</property>
                         <property name="CanFocus">True</property>
@@ -2593,7 +2623,7 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="labelSelectedPhotoset">
+                      <widget class="Gtk.Label" id="labelSelectedPhotoset1">
                         <property name="MemberName" />
                         <property name="Xalign">0</property>
                         <property name="LabelProp" translatable="yes">Selected Photoset</property>
@@ -2615,7 +2645,7 @@ Restricted</property>
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Button" id="buttonFirstPage">
+                      <widget class="Gtk.Button" id="buttonFirstPage1">
                         <property name="MemberName" />
                         <property name="WidthRequest">35</property>
                         <property name="CanFocus">True</property>
@@ -2633,7 +2663,7 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="buttonPreviousPage">
+                      <widget class="Gtk.Button" id="buttonPreviousPage1">
                         <property name="MemberName" />
                         <property name="WidthRequest">35</property>
                         <property name="CanFocus">True</property>
@@ -2659,7 +2689,7 @@ Restricted</property>
                             <property name="MemberName" />
                             <property name="Spacing">6</property>
                             <child>
-                              <widget class="Gtk.Label" id="labelPhotos">
+                              <widget class="Gtk.Label" id="labelPhotos1">
                                 <property name="MemberName" />
                                 <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
                                 <property name="UseMarkup">True</property>
@@ -2672,7 +2702,7 @@ Restricted</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Label" id="labelPages">
+                              <widget class="Gtk.Label" id="labelPages1">
                                 <property name="MemberName" />
                                 <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
                                 <property name="UseMarkup">True</property>
@@ -2693,7 +2723,7 @@ Restricted</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.ComboBox" id="comboboxPage">
+                          <widget class="Gtk.ComboBox" id="comboboxPage1">
                             <property name="MemberName" />
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">1</property>
@@ -2715,7 +2745,7 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="buttonNextPage">
+                      <widget class="Gtk.Button" id="buttonNextPage1">
                         <property name="MemberName" />
                         <property name="WidthRequest">35</property>
                         <property name="CanFocus">True</property>
@@ -2733,7 +2763,7 @@ Restricted</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="buttonLastPage">
+                      <widget class="Gtk.Button" id="buttonLastPage1">
                         <property name="MemberName" />
                         <property name="WidthRequest">35</property>
                         <property name="CanFocus">True</property>
@@ -2819,6 +2849,299 @@ Restricted</property>
           </widget>
           <packing>
             <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hboxBottom2">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.HBox" id="hboxButtons2">
+                <property name="MemberName" />
+                <property name="Homogeneous">True</property>
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.HBox" id="hboxLeft1">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonBack2">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">65</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Back</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="buttonBackClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.HBox" id="hbox5">
+                        <property name="MemberName" />
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.Button" id="buttonSelectAll">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">35</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextOnly</property>
+                            <property name="Label" translatable="yes">✓</property>
+                            <property name="UseUnderline">True</property>
+                            <property name="FocusOnClick">False</property>
+                            <signal name="Clicked" handler="buttonSelectAllClick" />
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="buttonUnSelectAll">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">35</property>
+                            <property name="Sensitive">False</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextOnly</property>
+                            <property name="Label" translatable="yes">X</property>
+                            <property name="UseUnderline">True</property>
+                            <property name="FocusOnClick">False</property>
+                            <signal name="Clicked" handler="buttonUnSelectAllClick" />
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="labelSelectedPhotoset2">
+                            <property name="MemberName" />
+                            <property name="Xalign">0</property>
+                            <property name="LabelProp" translatable="yes">(Downloading entire albums)</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">2</property>
+                            <property name="AutoSize">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">False</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.HBox" id="hboxCenter1">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonFirstPage2">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">35</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">|&lt;&lt;</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="FocusOnClick">False</property>
+                        <signal name="Clicked" handler="buttonFirstPageClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonPreviousPage2">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">35</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">&lt;</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="FocusOnClick">False</property>
+                        <signal name="Clicked" handler="buttonPreviousPageClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.HBox" id="hbox3">
+                        <property name="MemberName" />
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.VBox" id="vbox4">
+                            <property name="MemberName" />
+                            <property name="Spacing">6</property>
+                            <child>
+                              <widget class="Gtk.Label" id="labelPhotos2">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
+                                <property name="UseMarkup">True</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">0</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Label" id="labelPages2">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">&lt;small&gt;                       &lt;/small&gt;</property>
+                                <property name="UseMarkup">True</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.ComboBox" id="comboboxPage2">
+                            <property name="MemberName" />
+                            <property name="IsTextCombo">True</property>
+                            <property name="Items" translatable="yes">1</property>
+                            <property name="Active">0</property>
+                            <signal name="Changed" handler="comboboxPageChange" />
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonNextPage2">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">35</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">&gt;</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="FocusOnClick">False</property>
+                        <signal name="Clicked" handler="buttonNextPageClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonLastPage2">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">35</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">&gt;&gt;|</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="FocusOnClick">False</property>
+                        <signal name="Clicked" handler="buttonLastPageClick" />
+                      </widget>
+                      <packing>
+                        <property name="Position">4</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.HBox" id="hboxRight1">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="buttonDownloadSelection">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">229</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Download selected albums</property>
+                        <property name="UseUnderline">True</property>
+                        <property name="FocusOnClick">False</property>
+                        <signal name="Clicked" handler="buttonDownloadSelectionClick" />
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">5</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>

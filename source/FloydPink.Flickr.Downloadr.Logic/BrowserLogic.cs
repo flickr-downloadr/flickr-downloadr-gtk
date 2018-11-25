@@ -42,12 +42,15 @@ namespace FloydPink.Flickr.Downloadr.Logic
     #region IBrowserLogic Members
 
     public async Task<PhotosResponse> GetPhotosAsync(Photoset photoset, User user, Preferences preferences, int page,
-      IProgress<ProgressUpdate> progress)
+                     IProgress<ProgressUpdate> progress, string albumProgress = null)
     {
+      var isGettingAlbumPhotos = !string.IsNullOrEmpty(albumProgress);
       var progressUpdate = new ProgressUpdate
       {
-        OperationText = "Getting list of photos...",
-        ShowPercent = false
+        OperationText = isGettingAlbumPhotos ? "Getting photos in album..." : "Getting list of photos...",
+        ShowPercent = isGettingAlbumPhotos,
+        PercentDone = 0,
+        AlbumProgress = albumProgress
       };
       progress.Report(progressUpdate);
 

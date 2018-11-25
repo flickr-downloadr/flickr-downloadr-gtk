@@ -53,6 +53,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       //			Spinner.Dispatch(s => s.Visibility = visibility);
     }
 
+    public override void ClearSelectedPhotos()
+    {
+      throw new NotImplementedException();
+    }
+
     private void OnDeleteEvent(object sender, DeleteEventArgs args)
     {
       Log.Debug("OnDeleteEvent");

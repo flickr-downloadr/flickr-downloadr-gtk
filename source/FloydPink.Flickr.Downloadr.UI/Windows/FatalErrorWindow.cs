@@ -1,4 +1,5 @@
-﻿using FloydPink.Flickr.Downloadr.UI.Helpers;
+﻿using System;
+using FloydPink.Flickr.Downloadr.UI.Helpers;
 
 namespace FloydPink.Flickr.Downloadr.UI.Windows
 {
@@ -10,5 +11,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Build();
       Title += VersionHelper.GetVersionString();
     }
+
+    public override void ClearSelectedPhotos()
+    {
+      throw new NotImplementedException();
+    }
+
   }
 }

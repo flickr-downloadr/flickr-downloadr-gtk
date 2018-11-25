@@ -21,7 +21,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     private Photoset _publicPhotoset;
     private bool _unselectingPrivatePhotoset;
     private bool _unselectingPublicPhotoset;
-    private SpinnerWidget spinner;
+    private SpinnerWidget _spinner;
 
     public LandingWindow(Session session)
     {
@@ -37,12 +37,14 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       hboxPublicPrivate.Visible = false;
       vbox1.Visible = false; // All Public Photos
       vbox3.Visible = false; // All Photos
-      scrolledwindowPhotos.Visible = labelSets.Visible = false; // Albums;
+      scrolledwindowPhotos.Visible = hboxAlbums.Visible = false; // Albums;
 
       Title += VersionHelper.GetVersionString();
       Preferences = session.Preferences;
       User = session.User;
       Page = session.CurrentAlbumPageNumber.ToString();
+
+      AllSelectedAlbums = new Dictionary<string, Dictionary<string, Photoset>>();
 
       AddSpinnerWidget();
 
@@ -51,6 +53,52 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     }
 
     private Photoset SelectedPhotoset { get; set; }
+
+    public int SelectedAlbumsCount
+    {
+      get
+      {
+        return AllSelectedAlbums.Values.SelectMany(d => d.Values).Count();
+      }
+    }
+
+    public string SelectedAlbumsCountText
+    {
+      get
+      {
+        var selectionCount = SelectedAlbumsExist
+          ? SelectedAlbumsCount.ToString(CultureInfo.InvariantCulture)
+          : string.Empty;
+        return string.IsNullOrEmpty(selectionCount)
+          ? "Download selected albums"
+          : string.Format("Download selected albums ({0})", selectionCount);
+      }
+    }
+
+    public bool SelectedAlbumsExist
+    {
+      get
+      {
+        return SelectedAlbumsCount != 0;
+      }
+    }
+
+    public bool AreAnyPageAlbumsSelected
+    {
+      get
+      {
+        return (Page != null) && AllSelectedAlbums.ContainsKey(Page) && (AllSelectedAlbums[Page].Count != 0);
+      }
+    }
+
+    public bool AreAllPageAlbumsSelected
+    {
+      get
+      {
+        return (Albums != null) &&
+          (!AllSelectedAlbums.ContainsKey(Page) || (Albums.Count() != AllSelectedAlbums[Page].Count));
+      }
+    }
 
     public string FirstAlbum
     {
@@ -76,6 +124,8 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     public string Pages { get; set; }
     public string PerPage { get; set; }
     public string Total { get; set; }
+
+    public IDictionary<string, Dictionary<string, Photoset>> AllSelectedAlbums { get; set; }
 
     public Photoset PublicPhotoset
     {
@@ -115,42 +165,74 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       {
         _albums = value;
         UpdateUI();
+        Application.Invoke(delegate
+        {
+          albumsGrid.DoNotFireSelectionChanged = true;
+          SelectAlreadySelectedAlbums();
+          albumsGrid.DoNotFireSelectionChanged = false;
+        });
       }
     }
+
+    public bool DownloadMultipleAlbums { get; set; }
 
     public override void ShowSpinner(bool show)
     {
       Log.Debug("ShowSpinner");
       Application.Invoke(delegate
       {
-        hboxButtons.Sensitive = !show;
+        hboxButtons1.Sensitive = hboxButtons2.Sensitive = !show;
         hboxPublicPrivate.Visible = !show;
-        labelSets.Visible = Albums.Any() && !show;
+        hboxAlbums.Visible = Albums.Any() && !show;
         scrolledwindowPhotos.Visible = Albums.Any() && !show;
-        spinner.Visible = show;
+        _spinner.Visible = show;
       });
     }
 
     public void UpdateProgress(string percentDone, string operationText, bool cancellable)
     {
       Log.Debug("UpdateProgress");
-      Application.Invoke(delegate { spinner.Operation = operationText; });
+      Application.Invoke(delegate
+      {
+        _spinner.Cancellable = cancellable;
+        _spinner.Operation = operationText;
+        _spinner.PercentDone = percentDone;
+      });
     }
 
     private void AddSpinnerWidget()
     {
       Log.Debug("AddSpinnerWidget");
-      spinner = new SpinnerWidget
+      _spinner = new SpinnerWidget
       {
         Name = "landingSpinner",
         Cancellable = false,
         Operation = "Please wait...",
         Visible = false
       };
-      hboxSpinner.Add(spinner);
-      var spinnerSlot = (Box.BoxChild) hboxSpinner[spinner];
+      hboxSpinner.Add(_spinner);
+      var spinnerSlot = (Box.BoxChild) hboxSpinner[_spinner];
       spinnerSlot.Position = 0;
       spinnerSlot.Expand = true;
+    }
+
+    private void SelectAlreadySelectedAlbums()
+    {
+      Log.Debug("SelectAlreadySelectedAlbums");
+      if (!AllSelectedAlbums.ContainsKey(Page) || (AllSelectedAlbums[Page].Count <= 0))
+      {
+        return;
+      }
+
+      var albums = Albums.Where(album => AllSelectedAlbums[Page].ContainsKey(album.Id)).ToList();
+      SelectAlbums(albums);
+    }
+
+    public override void ClearSelectedPhotos()
+    {
+      Log.Debug("ClearSelectedPhotos");
+      AllSelectedAlbums.Clear();
+      SetSelectionOnAllAlbums(false);
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs args)
@@ -163,12 +245,12 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     private void AddTooltips()
     {
       Log.Debug("AddTooltips");
-      buttonBack.TooltipText = "Close this window and go back to the login window";
-      buttonFirstPage.TooltipText = "Go to the first page of albums";
-      buttonPreviousPage.TooltipText = "Go to the previous page of albums";
-      comboboxPage.TooltipText = "Select a page to quickly jump there";
-      buttonNextPage.TooltipText = "Go to the next page of albums";
-      buttonLastPage.TooltipText = "Go the last page of albums";
+      buttonBack1.TooltipText = buttonBack2.TooltipText = "Close this window and go back to the login window";
+      buttonFirstPage1.TooltipText = buttonFirstPage2.TooltipText = "Go to the first page of albums";
+      buttonPreviousPage1.TooltipText = buttonPreviousPage2.TooltipText = "Go to the previous page of albums";
+      comboboxPage1.TooltipText = comboboxPage2.TooltipText = "Select a page to quickly jump there";
+      buttonNextPage1.TooltipText = buttonNextPage2.TooltipText = "Go to the next page of albums";
+      buttonLastPage1.TooltipText = buttonLastPage2.TooltipText = "Go the last page of albums";
       buttonContinue.TooltipText = "Browse and download photos from the selected photoset";
     }
 
@@ -177,21 +259,27 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       Log.Debug("UpdateUI");
       Application.Invoke(delegate
       {
-        labelPhotos.Markup = string.Format("<small>{0} - {1} of {2} Albums</small>",
+        labelPhotos1.Markup = labelPhotos2.Markup = string.Format("<small>{0} - {1} of {2} Albums</small>",
           FirstAlbum, LastAlbum, Total);
-        labelPages.Markup = string.Format("<small>{0} of {1} Pages</small>", Page, Pages);
+        labelPages1.Markup = labelPages2.Markup = string.Format("<small>{0} of {1} Pages</small>", Page, Pages);
 
         var pages = new ListStore(typeof(string));
-        comboboxPage.Model = pages;
+        comboboxPage1.Model = comboboxPage2.Model = pages;
         Enumerable.Range(1, int.Parse(Pages)).ToList().ForEach(p => pages.AppendValues(p.ToString()));
-        comboboxPage.Active = int.Parse(Page) - 1;
+        comboboxPage1.Active = comboboxPage2.Active = int.Parse(Page) - 1;
 
-        buttonPreviousPage.Sensitive = buttonFirstPage.Sensitive = Page != "1";
-        buttonNextPage.Sensitive = buttonLastPage.Sensitive = Page != Pages;
+        buttonPreviousPage1.Sensitive = buttonFirstPage1.Sensitive = buttonPreviousPage2.Sensitive = buttonFirstPage2.Sensitive = Page != "1";
+        buttonNextPage1.Sensitive = buttonLastPage1.Sensitive = buttonNextPage2.Sensitive = buttonLastPage2.Sensitive = Page != Pages;
 
         scrolledwindowPhotos.Vadjustment.Value = 0;
 
         hboxCenter.Sensitive = Albums.Any();
+
+        checkbuttonDownloadMultipleAlbums.Active = DownloadMultipleAlbums;
+
+        hboxBottom1.Visible = !DownloadMultipleAlbums;
+        hboxBottom2.Visible = DownloadMultipleAlbums;
+        vbox1.Sensitive = vbox3.Sensitive = !DownloadMultipleAlbums;
 
         if ((SelectedPhotoset != null) && (SelectedPhotoset.Type == PhotosetType.Album))
         {
@@ -200,6 +288,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 
         UpdateSelectionUI();
       });
+
       albumsGrid.Items = Albums;
     }
 
@@ -263,16 +352,16 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
     {
       var isPhotosetSelected = SelectedPhotoset != null;
 
-      labelSelectedPhotoset.Visible = isPhotosetSelected;
+      labelSelectedPhotoset1.Visible = isPhotosetSelected;
       buttonContinue.Sensitive = isPhotosetSelected;
 
-      if (SelectedPhotoset == null)
+      if (SelectedPhotoset == null || DownloadMultipleAlbums)
       {
         return;
       }
 
       var selectedPhotosetLabelColor = SelectedPhotoset.Type == PhotosetType.Album ? "red" : "gray";
-      labelSelectedPhotoset.LabelProp = isPhotosetSelected
+      labelSelectedPhotoset1.LabelProp = isPhotosetSelected
         ? string.Format("<span color=\"{0}\"><b>{1}</b></span>",
           selectedPhotosetLabelColor, SelectedPhotoset.HtmlEncodedTitle)
         : "";
@@ -305,12 +394,22 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       albumsGrid.DoNotFireSelectionChanged = false;
     }
 
+    private void UpdateSelectionButtons()
+    {
+      Log.Debug("UpdateSelectionButtons");
+      buttonSelectAll.Sensitive = AreAllPageAlbumsSelected;
+      buttonUnSelectAll.Sensitive = AreAnyPageAlbumsSelected;
+
+      buttonDownloadSelection.Label = SelectedAlbumsCountText;
+      buttonDownloadSelection.Sensitive = SelectedAlbumsExist;
+    }
+
     private void LoseFocus(Button element)
     {
       Log.Debug("LoseFocus");
       if (element.HasFocus)
       {
-        Focus = buttonBack;
+        Focus = DownloadMultipleAlbums ? buttonBack2 : buttonBack1;
       }
     }
 
@@ -361,6 +460,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       {
         await _presenter.NavigateTo(int.Parse(jumpToPage));
       }
+      UpdateSelectionButtons();
     }
 
     protected void buttonContinueClick(object sender, EventArgs e)
@@ -370,5 +470,132 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
       browserWindow.Show();
       Destroy();
     }
+
+    protected void checkbuttonDownloadMultipleAlbumsToggled(object sender, EventArgs e)
+    {
+      DownloadMultipleAlbums = !DownloadMultipleAlbums;
+
+      if (!DownloadMultipleAlbums) {
+        AllSelectedAlbums = new Dictionary<string, Dictionary<string, Photoset>>();
+      }
+
+      if (DownloadMultipleAlbums)
+      {
+        albumsGrid.OnSelectionChanged -= OnAlbumsSelectionChanged;
+        albumsGrid.OnSelectionChanged += OnSelectionChanged;
+      }
+      else
+      {
+        albumsGrid.OnSelectionChanged -= OnSelectionChanged;
+        albumsGrid.OnSelectionChanged += OnAlbumsSelectionChanged;
+      }
+
+      UpdateUI();
+      UpdateSelectionButtons();
+    }
+
+    #region PhotoGrid
+
+    private void OnSelectionChanged(object sender, EventArgs e)
+    {
+      Log.Debug("OnSelectionChanged");
+      var photoWidget = (PhotoWidget)sender;
+
+      if (!AllSelectedAlbums.ContainsKey(Page))
+      {
+        AllSelectedAlbums[Page] = new Dictionary<string, Photoset>();
+      }
+
+      if (photoWidget.IsSelected)
+      {
+        AllSelectedAlbums[Page].Add(photoWidget.WidgetItem.Id, (Photoset)photoWidget.WidgetItem);
+      }
+      else
+      {
+        AllSelectedAlbums[Page].Remove(photoWidget.WidgetItem.Id);
+      }
+
+      UpdateSelectionButtons();
+    }
+
+    private void SetSelectionOnAllAlbums(bool selected)
+    {
+      Log.Debug("SetSelectionOnAllAlbums");
+      foreach (var box in albumsGrid.AllItems)
+      {
+        var hbox = box as HBox;
+        if (hbox == null)
+        {
+          continue;
+        }
+        foreach (var child in hbox.AllChildren)
+        {
+          var photoWidget = child as PhotoWidget;
+          if (photoWidget != null)
+          {
+            photoWidget.IsSelected = selected;
+          }
+        }
+      }
+    }
+
+    private void FindAndSelectAlbum(Photoset photoset)
+    {
+      Log.Debug("FindAndSelectAlbum");
+      foreach (var box in albumsGrid.AllItems)
+      {
+        var hbox = box as HBox;
+        if (hbox == null)
+        {
+          continue;
+        }
+        foreach (var child in hbox.AllChildren)
+        {
+          var photoWidget = child as PhotoWidget;
+          if ((photoWidget != null) && (photoWidget.WidgetItem.Id == photoset.Id))
+          {
+            photoWidget.IsSelected = true;
+            return;
+          }
+        }
+      }
+    }
+
+    private void SelectAlbums(List<Photoset> photosets)
+    {
+      Log.Debug("SelectAlbums");
+      foreach (var photoset in photosets)
+      {
+        FindAndSelectAlbum(photoset);
+      }
+    }
+
+    #endregion
+
+    #region "Button Events"
+
+    protected void buttonSelectAllClick(object sender, EventArgs e)
+    {
+      Log.Debug("buttonSelectAllClick");
+      LoseFocus((Button)sender);
+      SetSelectionOnAllAlbums(true);
+    }
+
+    protected void buttonUnSelectAllClick(object sender, EventArgs e)
+    {
+      Log.Debug("buttonUnSelectAllClick");
+      LoseFocus((Button)sender);
+      SetSelectionOnAllAlbums(false);
+    }
+
+    protected async void buttonDownloadSelectionClick(object sender, EventArgs e)
+    {
+      Log.Debug("buttonDownloadSelectionClick");
+      LoseFocus((Button)sender);
+      await _presenter.DownloadSelection();
+    }
+
+    #endregion
+
   }
 }

@@ -5,85 +5,86 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
 	public partial class FatalErrorWindow
 	{
 		private global::Gtk.VBox vbox4;
-		
+
 		private global::Gtk.Alignment alignment5;
-		
+
 		private global::Gtk.HBox hbox6;
-		
+
 		private global::Gtk.Alignment alignment8;
-		
+
 		private global::Gtk.Image image3;
-		
+
 		private global::Gtk.Alignment alignment7;
-		
+
 		private global::Gtk.Alignment alignment6;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget FloydPink.Flickr.Downloadr.UI.Windows.FatalErrorWindow
 			this.WidthRequest = 320;
 			this.HeightRequest = 200;
 			this.Name = "FloydPink.Flickr.Downloadr.UI.Windows.FatalErrorWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString ("Fatal Error - flickr downloadr");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
+			this.Title = global::Mono.Unix.Catalog.GetString("Fatal Error - flickr downloadr");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource("FloydPink.Flickr.Downloadr.UI.Assets.icon.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
 			// Container child FloydPink.Flickr.Downloadr.UI.Windows.FatalErrorWindow.Gtk.Container+ContainerChild
-			this.vbox4 = new global::Gtk.VBox ();
+			this.vbox4 = new global::Gtk.VBox();
 			this.vbox4.Name = "vbox4";
 			this.vbox4.Spacing = 6;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment5 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
-			this.vbox4.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.alignment5]));
+			this.vbox4.Add(this.alignment5);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.alignment5]));
 			w1.Position = 0;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.hbox6 = new global::Gtk.HBox ();
+			this.hbox6 = new global::Gtk.HBox();
 			this.hbox6.Name = "hbox6";
 			this.hbox6.Spacing = 6;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment8 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment8.Name = "alignment8";
-			this.hbox6.Add (this.alignment8);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment8]));
+			this.hbox6.Add(this.alignment8);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.alignment8]));
 			w2.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.image3 = new global::Gtk.Image ();
+			this.image3 = new global::Gtk.Image();
 			this.image3.Name = "image3";
-			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("FloydPink.Flickr.Downloadr.UI.Assets.fatal-error.png");
-			this.hbox6.Add (this.image3);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.image3]));
+			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("FloydPink.Flickr.Downloadr.UI.Assets.fatal-error.png");
+			this.hbox6.Add(this.image3);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.image3]));
 			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment7.Name = "alignment7";
-			this.hbox6.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.alignment7]));
+			this.hbox6.Add(this.alignment7);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.alignment7]));
 			w4.Position = 2;
-			this.vbox4.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox6]));
+			this.vbox4.Add(this.hbox6);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox6]));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment6 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
-			this.vbox4.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.alignment6]));
+			this.vbox4.Add(this.alignment6);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.alignment6]));
 			w6.Position = 2;
-			this.Add (this.vbox4);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.vbox4);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 480;
 			this.DefaultHeight = 640;
-			this.Show ();
+			this.Show();
 		}
 	}
 }

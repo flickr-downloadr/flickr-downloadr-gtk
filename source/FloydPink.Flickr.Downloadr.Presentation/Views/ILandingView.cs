@@ -14,6 +14,9 @@ namespace FloydPink.Flickr.Downloadr.Presentation.Views
     Photoset PublicPhotoset { get; set; }
     Photoset PrivatePhotoset { get; set; }
     IEnumerable<Photoset> Albums { get; set; }
+    IDictionary<string, Dictionary<string, Photoset>> AllSelectedAlbums { get; set; }
     void UpdateProgress(string percentDone, string operationText, bool cancellable);
+    bool ShowWarning(string warningMessage);
+    void DownloadComplete(string downloadedLocation, bool downloadComplete, DonateIntent intent = null);
   }
 }

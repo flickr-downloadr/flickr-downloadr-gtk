@@ -26,20 +26,21 @@ namespace FloydPink.Flickr.Downloadr.Logic
     }
 
     public async Task Download(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
-      Preferences preferences, Photoset photoset)
+      Preferences preferences, Photoset photoset, string folderPrefix = null, string albumProgress = null)
     {
-      await DownloadPhotos(photos, cancellationToken, progress, preferences, photoset);
+      await DownloadPhotos(photos, cancellationToken, progress, preferences, photoset, folderPrefix, albumProgress);
     }
 
     private async Task DownloadPhotos(IEnumerable<Photo> photos, CancellationToken cancellationToken, IProgress<ProgressUpdate> progress,
-      Preferences preferences, Photoset photoset)
+                                      Preferences preferences, Photoset photoset, string folderPrefix = null, string albumProgress = null)
     {
       var progressUpdate = new ProgressUpdate
       {
         Cancellable = true,
-        OperationText = "Downloading photos...",
+        OperationText = string.IsNullOrEmpty(albumProgress) ? "Downloading photos..." : "Downloading albums...",
         PercentDone = 0,
-        ShowPercent = true
+        ShowPercent = true,
+        AlbumProgress = albumProgress
       };
       progress.Report(progressUpdate);
 
@@ -47,7 +48,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
       var photosList = photos as IList<Photo> ?? photos.ToList();
       var totalCount = photosList.Count();
 
-      var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation, photoset);
+      var imageDirectory = CreateDownloadFolder(preferences.DownloadLocation, photoset, folderPrefix);
 
       var curCount = 0;
       foreach (var photo in photosList)
@@ -101,7 +102,7 @@ namespace FloydPink.Flickr.Downloadr.Logic
 
         doneCount++;
         progressUpdate.PercentDone = doneCount*100/totalCount;
-        progressUpdate.DownloadedPath = imageDirectory.FullName;
+        progressUpdate.DownloadedPath = string.IsNullOrWhiteSpace(folderPrefix) ? imageDirectory.FullName : _currentTimestampFolder;
         progress.Report(progressUpdate);
         if (doneCount != totalCount)
         {
@@ -133,13 +134,28 @@ namespace FloydPink.Flickr.Downloadr.Logic
       }
     }
 
-    private DirectoryInfo CreateDownloadFolder(string downloadLocation, Photoset currentPhotoset)
+    private DirectoryInfo CreateDownloadFolder(string downloadLocation, Photoset currentPhotoset, string folderPrefix)
     {
-      _currentTimestampFolder = string.Format("flickr-downloadr{0}-{1}", GetDownloadFolderNameForPhotoset(currentPhotoset),
-        GetSafeFilename(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")));
-      var imageDirectory =
-        Directory.CreateDirectory(Path.Combine(downloadLocation, _currentTimestampFolder));
-      return imageDirectory;
+      if (string.IsNullOrWhiteSpace(folderPrefix)) {
+        _currentTimestampFolder = string.Format("flickr-downloadr{0}-{1}", GetDownloadFolderNameForPhotoset(currentPhotoset),
+          GetSafeFilename(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")));
+
+        var imageDirectory = Directory.CreateDirectory(Path.Combine(downloadLocation, _currentTimestampFolder));
+
+        return imageDirectory;
+      }
+      else {
+        var albumRootDirectory = Directory.CreateDirectory(Path.Combine(downloadLocation, Path.Combine(downloadLocation, folderPrefix)));
+
+        _currentTimestampFolder = albumRootDirectory.FullName;
+
+        if (currentPhotoset.Type == PhotosetType.Album)
+        {
+          return Directory.CreateDirectory(Path.Combine(_currentTimestampFolder, GetSafeFilename(currentPhotoset.Title)));
+        }
+
+        return albumRootDirectory;
+      }
     }
 
     private string GetDownloadFolderNameForPhotoset(Photoset photoset)

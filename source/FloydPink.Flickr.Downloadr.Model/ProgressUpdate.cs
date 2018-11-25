@@ -7,5 +7,6 @@
     public string OperationText { get; set; }
     public bool Cancellable { get; set; }
     public string DownloadedPath { get; set; }
+    public string AlbumProgress { get; set; }
   }
 }

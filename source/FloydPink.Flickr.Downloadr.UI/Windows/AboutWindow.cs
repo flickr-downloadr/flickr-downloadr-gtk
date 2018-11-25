@@ -19,6 +19,11 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         VersionHelper.GetVersionString());
     }
 
+    public override void ClearSelectedPhotos()
+    {
+      throw new NotImplementedException();
+    }
+
     protected void buttonCloseClick(object sender, EventArgs e)
     {
       Log.Debug("buttonCloseClick");
