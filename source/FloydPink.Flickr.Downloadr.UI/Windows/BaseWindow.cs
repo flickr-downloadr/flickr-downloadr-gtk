@@ -45,7 +45,7 @@ namespace FloydPink.Flickr.Downloadr.UI.Windows
         if (downloadComplete)
         {
           ClearSelectedPhotos();
-          if (!intent.Suppressed || intent.DownloadedPhotosCount > 50)
+          if (!intent.Suppressed || intent.DownloadedPhotosCount > 100)
           {
             var donateRequestMessageOpening = intent.DownloadedPhotosCount > 0
                                                     ? string.Format("Download of {0} photos complete", intent.DownloadedPhotosCount)
