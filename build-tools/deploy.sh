@@ -11,7 +11,7 @@ then
   wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64 -O jq
   chmod +x jq
   echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | ./jq -r '.commit.message'"
-  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
+  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | ./jq -r '.commit.message')
 elif [[ $WERCKER = true ]]
 then
   echo "The WERCKER_GIT_COMMIT variable has a value of - ${WERCKER_GIT_COMMIT}"
