@@ -8,10 +8,9 @@ if [[ $TRAVIS = true ]]
 then
   echo "The TRAVIS_COMMIT variable has a value of - ${TRAVIS_COMMIT}"
   CIENGINE="travis"
-  brew update 2>&1 1> "brewupdate.log"
-  brew upgrade 2>&1 1> "brewupgrade.log"
-  brew install jq 2>&1 1> "brewinstall.log"
-  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | jq -r '.commit.message'"
+  wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64 -O jq
+  chmod +x jq
+  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | ./jq -r '.commit.message'"
   APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | jq -r '.commit.message')
 elif [[ $WERCKER = true ]]
 then
