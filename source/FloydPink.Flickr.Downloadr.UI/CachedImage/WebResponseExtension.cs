@@ -9,7 +9,7 @@ namespace FloydPink.Flickr.Downloadr.UI.CachedImage
     {
       var responseStream = webresponse.GetResponseStream();
 
-      using (var memoryStream = new MemoryStream((int) webresponse.ContentLength))
+      using (var memoryStream = new MemoryStream())
       {
         if (responseStream != null)
         {
