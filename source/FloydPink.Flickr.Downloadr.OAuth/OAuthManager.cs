@@ -116,8 +116,9 @@ namespace FloydPink.Flickr.Downloadr.OAuth
         using (var reader = new StreamReader(response.GetResponseStream()))
         {
           var responseString = reader.ReadToEnd();
-          deserialized =
-            new JavaScriptSerializer().Deserialize<dynamic>(responseString);
+          JavaScriptSerializer deserializer = new JavaScriptSerializer();
+          deserializer.MaxJsonLength = Int32.MaxValue;
+          deserialized = deserializer.Deserialize<dynamic>(responseString);
         }
       });
       return deserialized;
