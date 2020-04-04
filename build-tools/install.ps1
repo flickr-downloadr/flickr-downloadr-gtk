@@ -7,7 +7,7 @@ try {
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
 	$installBuilder = "installbuilder-enterprise-20.3.0-windows-installer.exe"
-	$installBuilderExe = "https://installbuilder.com/$($installBuilder)"
+	$installBuilderExe = "https://clients.bitrock.com/installbuilder/$($installBuilder)"
 	$installBuilderExeLocal = "$($buildToolsDir)$($installBuilder)"
 	$installBuilderInstallLog = "$($buildToolsDir)installbuilder.log"
 
