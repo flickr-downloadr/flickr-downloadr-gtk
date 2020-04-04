@@ -1,12 +1,12 @@
 try {
 	$buildToolsDir = "C:\projects\flickr-downloadr-gtk\build-tools\"
 
-	$gtkInstaller = "gtk-sharp-2.12.38.msi"
+	$gtkInstaller = "gtk-sharp-2.12.45.msi"
 	$gtkInstallerMsi = "https://download.xamarin.com/GTKforWindows/Windows/$($gtkInstaller)"
 	$gtkInstallerMsiLocal = "$($buildToolsDir)$($gtkInstaller)"
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
-	$installBuilder = "installbuilder-enterprise-19.9.0-windows-installer.exe"
+	$installBuilder = "installbuilder-enterprise-20.3.0-windows-installer.exe"
 	$installBuilderExe = "https://installbuilder.bitrock.com/$($installBuilder)"
 	$installBuilderExeLocal = "$($buildToolsDir)$($installBuilder)"
 	$installBuilderInstallLog = "$($buildToolsDir)installbuilder.log"
