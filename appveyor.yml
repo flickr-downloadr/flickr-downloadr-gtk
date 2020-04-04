@@ -11,7 +11,7 @@ branches:
 #    environment configuration    #
 #---------------------------------#
 
-os: Windows Server 2012
+image: Visual Studio 2019
 
 init:
   - git config --global core.autocrlf input
