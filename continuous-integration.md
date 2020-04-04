@@ -5,7 +5,7 @@ Every commit to the `master` branch kicks off CI builds (that builds and runs al
  - [AppVeyor](https://ci.appveyor.com/project/floydpink/flickr-downloadr-gtk) for Windows
  - [Travis CI](https://travis-ci.org/flickr-downloadr/flickr-downloadr-gtk) for Mac OS X
  - [Wercker](https://app.wercker.com/project/bykey/065aabc1580cec6d31a2daeef61548b0) for Linux
- 
+
 Any commit that has the string `[deploy]` in the commit message will also build the installers for all three supported platforms, using [BitRock InstallBuilder](http://installbuilder.bitrock.com/).
 
 The installers will be committed separately from the CI builds to a new branch named `deploy-v<VERSION>` (as an example, for the version`v1.0.2.1`, the new branch will be `deploy-v1.0.2.1`) on the [`flickr-downloadr/flickr-downloadr.github.io`](https://github.com/flickr-downloadr/flickr-downloadr.github.io) repository.
