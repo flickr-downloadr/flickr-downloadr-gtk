@@ -17,15 +17,15 @@ osx_image: xcode7.3
 
 env:
   matrix:
-  - MONO_VERSION="4.6.2"
+  - MONO_VERSION="6.10.0"
   global:
   - secure: BlgjX4Szqo5ueziHsLep9wrURiWLpth1vsYO75YE63jWrS9pPnUdFJiB3wHWZf0D0a1R2EWAz9aRTOAFyHPLRmK7uQL8acmRoebpLYkHCdGaYsbWqaIvFLhYd4yqDCSV1JbU1DVJxLGXCZ1S39UNtznci+MuyFjy/RreciCWhQ8=
   - secure: aQBrZ69q4g7vqoPiaIh5zVpHTHkJd/urY/MaZvAF6tYOKUXtvnRB6dxjq0ksOJ2XSQUfYewtGip9BZ3vsZzXGZLVrrhXAqXbLvAvjxtl3CHNVXFcul0S/gaXZaRjtc2ZlTlill8Ux94FAZEVoLss5xYuPwPOuyv9M6GvldNKBBw=
 
 before_install:
-- wget "https://installbuilder.com/installbuilder-enterprise-20.3.0-osx-installer.dmg" >/dev/null
-- hdiutil mount installbuilder-enterprise-20.3.0-osx-installer.dmg
-- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-20.3.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none >/dev/null
+- wget "https://installbuilder.com/installbuilder-enterprise-20.9.0-osx-installer.dmg" >/dev/null
+- hdiutil mount installbuilder-enterprise-20.9.0-osx-installer.dmg
+- sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-20.9.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none >/dev/null
 
 script:
 - which mono

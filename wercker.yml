@@ -1,4 +1,4 @@
-box: floydpink/ubuntu-install-builder:20.3.0-v2
+box: floydpink/ubuntu-install-builder:20.9.0
 build:
     steps:
         - script:
