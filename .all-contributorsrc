@@ -1,10 +1,63 @@
 {
-  "files": ["README.md"],
+  "projectName": "flickr-downloadr-gtk",
+  "projectOwner": "flickr-downloadr",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
-  "contributorsPerLine": 7,
-  "contributorsSortAlphabetically": true,
-  "badgeTemplate": "<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors) <!-- ALL-CONTRIBUTORS-BADGE:END -->",
-  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
-  "skipCi": "true",
-  "contributors": ["CGarces", "robermann", "W1N9Zr0", "floydpink", "cutedaffodil"]
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "floydpink",
+      "name": "Hari Pachuveetil",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/171072?v=4",
+      "profile": "https://harimenon.com/",
+      "contributions": [
+        "code",
+        "mentoring"
+      ]
+    },
+    {
+      "login": "CGarces",
+      "name": "Carlos Garcés",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6617155?v=4",
+      "profile": "http://cgarces.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "robermann",
+      "name": "Roberto Mannai",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2182986?v=4",
+      "profile": "https://github.com/robermann",
+      "contributions": [
+        "code",
+        "question"
+      ]
+    },
+    {
+      "login": "W1N9Zr0",
+      "name": "W1N9Zr0",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/529107?v=4",
+      "profile": "https://github.com/W1N9Zr0",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "cutedaffodil",
+      "name": "Sindhu Vijayan",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16906624?v=4",
+      "profile": "https://cutedaffodil.github.io/",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
 }
