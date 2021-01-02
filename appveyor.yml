@@ -5,7 +5,7 @@
 # branches to build
 branches:
   only:
-    - master
+    - main
 
 #---------------------------------#
 #    environment configuration    #

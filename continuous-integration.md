@@ -1,6 +1,6 @@
 ### Automated Build Process
 
-Every commit to the `master` branch kicks off CI builds (that builds and runs all the unit tests) in three different CI services:
+Every commit to the `main` branch kicks off CI builds (that builds and runs all the unit tests) in three different CI services:
 
  - [AppVeyor](https://ci.appveyor.com/project/floydpink/flickr-downloadr-gtk) for Windows
  - [Travis CI](https://travis-ci.org/flickr-downloadr/flickr-downloadr-gtk) for Mac OS X

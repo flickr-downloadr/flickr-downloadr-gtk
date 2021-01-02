@@ -64,7 +64,7 @@ git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOY
 if [[ $TRAVIS = true ]]
 then
   cd ..
-  git clone -b master $SOURCEREPO flickr-downloadr-gtk-new
+  git clone -b main $SOURCEREPO flickr-downloadr-gtk-new
   cd flickr-downloadr-gtk-new
   git config credential.helper "store --file=.git/fd-credentials"
   echo "https://${GH_TOKEN}:@github.com" > .git/fd-credentials
@@ -74,7 +74,7 @@ then
   git add -f .
   git commit -m "Released ${VERSION} [skip ci]" -s
   git tag -a ${VERSION} -m "Creating release ${VERSION}"
-  git push --tags origin master
+  git push --tags origin main
 fi
 
 echo "Deployed $VERSION successfully"
