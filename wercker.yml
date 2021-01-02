@@ -1,4 +1,4 @@
-box: floydpink/ubuntu-install-builder:20.9.0
+box: floydpink/ubuntu-install-builder:20.12.0
 build:
     steps:
         - script:

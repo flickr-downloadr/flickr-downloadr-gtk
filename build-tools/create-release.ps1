@@ -1,4 +1,4 @@
-$installBuilderCli = "C:\Program Files (x86)\VMware InstallBuilder Enterprise 20.9.0\bin\builder-cli.exe"
+$installBuilderCli = "C:\Program Files (x86)\VMware InstallBuilder Enterprise 20.12.0\bin\builder-cli.exe"
 $pathToBuildFile = "flickrdownloadr.xml"
 $pathToLicenseFile = "flickrdownloadrlicense.xml"
 
