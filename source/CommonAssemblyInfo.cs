@@ -23,6 +23,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyrightAttribute("Copyright © 2012-2021 flickr downloadr")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("3.3.2.3")]
-[assembly: AssemblyFileVersionAttribute("3.3.2.3")]
+[assembly: AssemblyVersionAttribute("3.3.2.4")]
+[assembly: AssemblyFileVersionAttribute("3.3.2.4")]
 
