@@ -265,7 +265,7 @@
                                 </httpGet>
                                 <runProgram>
                                     <program>msiexec</program>
-                                    <programArguments>/i ${system_temp_directory}\gtk-sharp.msi</programArguments>
+                                    <programArguments>/i "${system_temp_directory}\gtk-sharp.msi"</programArguments>
                                     <progressText>Installing GTK#</progressText>
                                 </runProgram>
                             </actionList>
