@@ -1,4 +1,4 @@
-INSTALL_BUILDER_VERSION="20.12.0"
+INSTALL_BUILDER_VERSION="21.3.0"
 
 if [ "$(uname)" == "Darwin" ]; then
   INSTALLBUILDERCLI="/Applications/VMware InstallBuilder Enterprise ${INSTALL_BUILDER_VERSION}/bin/Builder.app/Contents/MacOS/installbuilder.sh"
