@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  build:
+    macos:
+      xcode: 11.7.0
+    steps:
+        - checkout
+        - run:
+            name: prepare the machine
+            command: |
+              curl https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.122.macos10.xamarin.universal.pkg --output MonoFramework.pkg
+              sudo installer -pkg MonoFramework.pkg -target /
+              curl https://installbuilder.com/installbuilder-enterprise-21.6.0-osx-installer.dmg --output installbuilder-enterprise-21.6.0-osx-installer.dmg
+              sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-21.6.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none >/dev/null
+
+        - run:
+            name: build and deploy
+            command: |
+              which mono
+              mono --version
+              cd build-tools
+              ./unlock-keychain.sh
+              ./go.sh circleci Release
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: main
