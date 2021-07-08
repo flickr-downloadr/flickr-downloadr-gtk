@@ -4,14 +4,11 @@ REPO="https://github.com/flickr-downloadr/flickr-downloadr.github.io.git"
 SOURCEREPO="https://github.com/flickr-downloadr/flickr-downloadr-gtk.git"
 
 CIENGINE="appveyor"
-if [[ $TRAVIS = true ]]
+if [[ $GITHUB_WORKFLOW = 'ci cd' ]]
 then
-  echo "The TRAVIS_COMMIT variable has a value of - ${TRAVIS_COMMIT}"
-  CIENGINE="travis"
-  wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64 -O jq
-  chmod +x jq
-  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${TRAVIS_COMMIT} | ./jq -r '.commit.message'"
-  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$TRAVIS_COMMIT | ./jq -r '.commit.message')
+  echo "The GITHUB_COMMIT_MESSAGE variable has a value of - ${GITHUB_COMMIT_MESSAGE}"
+  CIENGINE="github"
+  APPVEYOR_REPO_COMMIT_MESSAGE=${GITHUB_COMMIT_MESSAGE}
 elif [[ $WERCKER = true ]]
 then
   echo "The WERCKER_GIT_COMMIT variable has a value of - ${WERCKER_GIT_COMMIT}"

@@ -1,0 +1,34 @@
+name: ci cd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci_cd:
+    runs-on: macos-latest
+    name: Continuous Integration/Continuous Deployment
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: curl https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.122.macos10.xamarin.universal.pkg --output MonoFramework.pkg
+      - run: sudo installer -pkg MonoFramework.pkg -target /
+      - run: wget "https://installbuilder.com/installbuilder-enterprise-21.6.0-osx-installer.dmg" >/dev/null
+      - run: hdiutil mount installbuilder-enterprise-21.6.0-osx-installer.dmg
+      - run: sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-21.6.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none >/dev/null
+
+      - run: which mono
+      - run: mono --version
+      - run: |
+          cd build-tools
+          ./unlock-keychain.sh
+          ./go.sh github Release
+        env:
+          FD_CERT_PWD: ${{ secrets.FD_CERT_PWD }}
+          FLICKR_DOWNLOADR_SHARED_SECRET: ${{ secrets.FLICKR_DOWNLOADR_SHARED_SECRET }}
+          FLICKR_DOWNLOADR_CONSUMER_KEY: ${{ secrets.FLICKR_DOWNLOADR_CONSUMER_KEY }}
+          FLICKR_DOWNLOADR_CONSUMER_SECRET: ${{ secrets.FLICKR_DOWNLOADR_CONSUMER_SECRET }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          INSTALL_BUILDER_LICENSE_SIGNATURE: ${{ secrets.INSTALL_BUILDER_LICENSE_SIGNATURE }}

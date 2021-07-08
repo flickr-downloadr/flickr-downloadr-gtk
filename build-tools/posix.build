@@ -29,6 +29,7 @@
 
   <!-- Build Targets -->
   <target name="circleci" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-mac, deploy" />
+  <target name="github" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-mac, deploy" />
   <target name="wercker" depends="unitTestsOnly, createinstallbuilderlicense, createrelease-linux, deploy" />
 
   <target name="createrelease-win" depends="unitTestsOnly">
