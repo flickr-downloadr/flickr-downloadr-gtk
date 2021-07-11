@@ -57,8 +57,8 @@ git commit -m "created release ${VERSION} ($CIENGINE) [skip ci]" -s
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOYVERSION} || git push -u origin ${DEPLOYVERSION}
 
-# Do the below script only from Travis - updates source to mark the current released version
-if [[ $TRAVIS = true ]]
+# Do the below script only from GitHub - updates source to mark the current released version
+if [[ $CIENGINE = 'github' ]]
 then
   cd ..
   git clone -b main $SOURCEREPO flickr-downloadr-gtk-new
