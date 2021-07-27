@@ -261,7 +261,7 @@
                                 <httpGet>
                                     <filename>${system_temp_directory}/gtk-sharp.msi</filename>
                                     <progressText>Downloading GTK# Installer</progressText>
-                                    <url>https://download.xamarin.com/GTKforWindows/Windows/gtk-sharp-2.12.45.msi</url>
+                                    <url>https://xamarin.azureedge.net/GTKforWindows/Windows/gtk-sharp-2.12.45.msi</url>
                                 </httpGet>
                                 <runProgram>
                                     <program>msiexec</program>
