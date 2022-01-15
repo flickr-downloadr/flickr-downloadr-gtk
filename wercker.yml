@@ -1,4 +1,4 @@
-box: floydpink/ubuntu-install-builder:21.6.0
+box: floydpink/ubuntu-install-builder:21.9.0
 build:
     steps:
         - script:
