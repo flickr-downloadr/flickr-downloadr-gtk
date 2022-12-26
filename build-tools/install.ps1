@@ -2,7 +2,7 @@ try {
 	$buildToolsDir = "C:\projects\flickr-downloadr-gtk\build-tools\"
 
 	$gtkInstaller = "gtk-sharp-2.12.45.msi"
-	$gtkInstallerMsi = "https://xamarin.azureedge.net/GTKforWindows/Windows/$($gtkInstaller)"
+	$gtkInstallerMsi = "https://github.com/mono/gtk-sharp/releases/download/2.12.45/$($gtkInstaller)"
 	$gtkInstallerMsiLocal = "$($buildToolsDir)$($gtkInstaller)"
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
