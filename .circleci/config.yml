@@ -5,18 +5,20 @@ jobs:
     docker:
       - image: floydpink/ubuntu-install-builder:22.10.0
     steps:
+      - checkout
       - run: sudo apt-get --allow-releaseinfo-change update
       - run: sudo apt-get install wget rpm -y
       - run: sudo cert-sync /etc/ssl/certs/ca-certificates.crt
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
-      - run: echo '-------------'; ls -alh; echo '-------------';
-      - run: cd ./build-tools && ./go.sh wercker Release
+      - run: cd build-tools && ./go.sh wercker Release
 
 workflows:
     ci_cd:
       jobs:
         - build
-
+          filters:
+            branches:
+              only: main
 # VS Code Extension Version: 1.5.0
