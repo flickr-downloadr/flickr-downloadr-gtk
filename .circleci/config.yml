@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: floydpink/ubuntu-install-builder:21.9.0
+  steps:
+    - run: |-
+      sudo apt-get --allow-releaseinfo-change update
+      sudo apt-get install wget rpm -y
+      sudo cert-sync /etc/ssl/certs/ca-certificates.crt
+      echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
+      echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+      echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
+      cd build-tools && ./go.sh wercker Release
