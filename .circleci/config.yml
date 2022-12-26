@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: floydpink/ubuntu-install-builder:21.9.0
+      - image: floydpink/ubuntu-install-builder:22.10.0
   steps:
     - run: |-
       sudo apt-get --allow-releaseinfo-change update
