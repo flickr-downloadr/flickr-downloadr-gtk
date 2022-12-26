@@ -3,7 +3,7 @@ INSTALL_BUILDER_VERSION="22.10.0"
 if [ "$(uname)" == "Darwin" ]; then
   INSTALLBUILDERCLI="/Applications/VMware InstallBuilder Enterprise ${INSTALL_BUILDER_VERSION}/bin/Builder.app/Contents/MacOS/installbuilder.sh"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  if [[ $WERCKER = true ]]; then
+  if [[ $CIRCLECI = true ]]; then
     INSTALLBUILDERCLI="/opt/installbuilder-${INSTALL_BUILDER_VERSION}/bin/builder"
   else
     INSTALLBUILDERCLI="${HOME}/installbuilder-${INSTALL_BUILDER_VERSION}/bin/builder"

@@ -9,14 +9,14 @@ then
   echo "The GITHUB_COMMIT_MESSAGE variable has a value of - ${GITHUB_COMMIT_MESSAGE}"
   CIENGINE="github"
   APPVEYOR_REPO_COMMIT_MESSAGE=${GITHUB_COMMIT_MESSAGE}
-elif [[ $WERCKER = true ]]
+elif [[ $CIRCLECI = true ]]
 then
-  echo "The WERCKER_GIT_COMMIT variable has a value of - ${WERCKER_GIT_COMMIT}"
-  CIENGINE="wercker"
+  echo "The CIRCLE_SHA1 variable has a value of - ${CIRCLE_SHA1}"
+  CIENGINE="circleci"
   wget "http://stedolan.github.io/jq/download/linux64/jq"
   chmod +x jq
-  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${WERCKER_GIT_COMMIT} | ./jq -r '.commit.message'"
-  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$WERCKER_GIT_COMMIT | ./jq -r '.commit.message')
+  echo "About to run: curl https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/${CIRCLE_SHA1} | ./jq -r '.commit.message'"
+  APPVEYOR_REPO_COMMIT_MESSAGE=$(curl -u ${GH_TOKEN}:x-oauth-basic https://api.github.com/repos/flickr-downloadr/flickr-downloadr-gtk/commits/$CIRCLE_SHA1 | ./jq -r '.commit.message')
 fi
 
 echo "CI Server      : ${CIENGINE}."
@@ -35,13 +35,6 @@ git config --global user.email "contact.us@flickrdownloadr.com"
 
 VERSION="v${BUILDNUMBER}"
 DEPLOYVERSION="deploy-${VERSION}"
-
-# wercker seems to be cloning to /pipeline/source
-THISREPOCLONEDIR="flickr-downloadr-gtk"
-if [[ $WERCKER = true ]]
-then
-  THISREPOCLONEDIR="source"
-fi
 
 cd ../..
 git clone -b $SOURCE_BRANCH $REPO
