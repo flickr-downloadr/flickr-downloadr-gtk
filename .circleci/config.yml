@@ -11,6 +11,7 @@ jobs:
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
       - run: echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
+      - run: pwd; echo '-------------'; env
       - run: cd ../build-tools && ./go.sh wercker Release
 
 workflows:
