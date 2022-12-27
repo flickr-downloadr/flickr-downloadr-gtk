@@ -36,11 +36,11 @@ git config --global user.email "contact.us@flickrdownloadr.com"
 VERSION="v${BUILDNUMBER}"
 DEPLOYVERSION="deploy-${VERSION}"
 
-# wercker seems to be cloning to /pipeline/source
+# circleci seems to be cloning to /root/project
 THISREPOCLONEDIR="flickr-downloadr-gtk"
-if [[ $WERCKER = true ]]
+if [[ $CIRCLECI = true ]]
 then
-  THISREPOCLONEDIR="source"
+  THISREPOCLONEDIR="project"
 fi
 
 cd ../..
