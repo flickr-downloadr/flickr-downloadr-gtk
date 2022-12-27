@@ -6,13 +6,14 @@ jobs:
       - image: floydpink/ubuntu-install-builder:22.10.0
     steps:
       - checkout
-      - run: sudo apt-get --allow-releaseinfo-change update
-      - run: sudo apt-get install wget rpm -y
-      - run: sudo cert-sync /etc/ssl/certs/ca-certificates.crt
-      - run: echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
-      - run: echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
-      - run: echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
-      - run: cd build-tools && ./go.sh circleci Release
+      - run: |-
+          sudo apt-get --allow-releaseinfo-change update
+          sudo apt-get install wget rpm -y
+          sudo cert-sync /etc/ssl/certs/ca-certificates.crt
+          echo -e "y\n" | sudo certmgr -ssl -m https://go.microsoft.com
+          echo -e "y\n" | sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+          echo -e "y\n" | sudo certmgr -ssl -m https://nuget.org
+          cd build-tools && ./go.sh circleci Release
 
 workflows:
   ci_cd:
