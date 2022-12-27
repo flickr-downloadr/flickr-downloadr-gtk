@@ -54,7 +54,16 @@ rm -rf "../${THISREPOCLONEDIR}/dist/osx/Install flickr downloadr (${VERSION}).ap
 cp -r ../${THISREPOCLONEDIR}/dist/* ./app/installer
 git add -f .
 git commit -m "created release ${VERSION} ($CIENGINE) [skip ci]" -s
+
+# circleci throws 'fatal: could not read from remote repository' error
+if [[ $CIRCLECI = true ]]
+then
+  git remote set-url origin "https://${GH_TOKEN}:@github.com/flickr-downloadr/flickr-downloadr.github.io.git"
+fi
+
+echo "Pulling/Rebasing with the remote branch..."
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git pull --rebase origin ${DEPLOYVERSION}
+echo "Pushing the branch to remote..."
 git ls-remote --heads origin | grep ${DEPLOYVERSION} && git push origin ${DEPLOYVERSION} || git push -u origin ${DEPLOYVERSION}
 
 # Do the below script only from GitHub - updates source to mark the current released version
