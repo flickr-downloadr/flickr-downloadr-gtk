@@ -36,6 +36,13 @@ git config --global user.email "contact.us@flickrdownloadr.com"
 VERSION="v${BUILDNUMBER}"
 DEPLOYVERSION="deploy-${VERSION}"
 
+# wercker seems to be cloning to /pipeline/source
+THISREPOCLONEDIR="flickr-downloadr-gtk"
+if [[ $WERCKER = true ]]
+then
+  THISREPOCLONEDIR="source"
+fi
+
 cd ../..
 git clone -b $SOURCE_BRANCH $REPO
 cd flickr-downloadr.github.io
