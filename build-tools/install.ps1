@@ -6,7 +6,7 @@ try {
 	$gtkInstallerMsiLocal = "$($buildToolsDir)$($gtkInstaller)"
 	$gtkInstallerInstallLog = "$($buildToolsDir)gtkInstallerLog.log"
 
-	$installBuilder = "installbuilder-enterprise-22.10.0-windows-installer.exe"
+	$installBuilder = "installbuilder-enterprise-23.11.0-windows-installer.exe"
 	$installBuilderExe = "https://installbuilder.com/$($installBuilder)"
 	$installBuilderExeLocal = "$($buildToolsDir)$($installBuilder)"
 	$installBuilderInstallLog = "$($buildToolsDir)installbuilder.log"
