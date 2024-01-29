@@ -14,7 +14,7 @@ jobs:
 
       - run: curl https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.122.macos10.xamarin.universal.pkg --output MonoFramework.pkg
       - run: sudo installer -pkg MonoFramework.pkg -target /
-      - run: wget "https://installbuilder.com/installbuilder-enterprise-23.11.0-osx-installer.dmg" >/dev/null
+      - run: wget "https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.11.0-osx-installer.dmg" >/dev/null
       - run: hdiutil mount installbuilder-enterprise-23.11.0-osx-installer.dmg
       - run: sudo '/Volumes/InstallBuilder Enterprise/installbuilder-enterprise-23.11.0-osx-installer.app/Contents/MacOS/installbuilder.sh' --mode unattended --unattendedmodeui none >/dev/null
 
